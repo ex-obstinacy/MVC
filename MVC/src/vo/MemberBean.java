@@ -1,4 +1,4 @@
-package member;
+package vo;
 
 import java.sql.Timestamp;
 
