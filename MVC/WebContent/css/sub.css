@@ -1,0 +1,17 @@
+@charset "UTF-8";
+/* 서브페이지 */
+/* 사용할때 각 서브페이지명 주석으로 선언하기 ! */
+/* 공통적인 스타일은 common.css 에 작성 */
+
+/* 좌석선택 서브페이지 */
+#seatSelect{}
+#seatSelect:after{content:""; display:block; clear:both;}
+#seatSelect > section{float:left; margin-right:20px;}
+
+
+
+
+
+
+
+
