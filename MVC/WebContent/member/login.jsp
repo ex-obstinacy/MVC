@@ -30,13 +30,13 @@
 
 <body>
     <!--::header part start::-->
-    <jsp:include page="inc/top.jsp"/>
+    <jsp:include page="../inc/top.jsp"/>
     <!-- Header part end-->
 
 
     <!-- breadcrumb start-->
     <section class="breadcrumb breadcrumb_bg">
-        <div class="container">
+    	<div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="breadcrumb_iner">
@@ -61,7 +61,7 @@
                             <h2>New to our Shop?</h2>
                             <p>There are advances being made in science and technology
                                 everyday, and a good example of this is the</p>
-                            <a href="#" class="btn_3">Create an Account</a>
+                            <a href="MemberWriteForm.me" class="btn_3">Create an Account</a>
                         </div>
                     </div>
                 </div>
@@ -99,7 +99,7 @@
     <!--================login_part end =================-->
 
     <!--::footer_part start::-->
-    <jsp:include page="inc/bottom.jsp"/>
+    <jsp:include page="../inc/bottom.jsp"/>
     <!--::footer_part end::-->
 
     <!-- jquery plugins here-->
@@ -133,5 +133,4 @@
     <script src="js/custom.js"></script>
 </body>
 
-</html>ody>
 </html>

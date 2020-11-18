@@ -12,7 +12,7 @@ import action.Action;
 import action.MemberWriteProAction;
 import vo.ActionForward;
 
-@WebServlet("*.bo") // 서블릿 주소 중 XXX.bo 주소에 대한 요청을 전달받아 처리
+@WebServlet("*.me") // 서블릿 주소 중 XXX.bo 주소에 대한 요청을 전달받아 처리
 public class MemberFrontController extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,8 +32,8 @@ public class MemberFrontController extends HttpServlet {
 		ActionForward forward = null;
 		
 		// if문을 사용하여 각 서블릿 주소 판별 및 각 요청 처리를 위한 작업 요청
-		// 1. BoardWriteForm.bo 요청에 대한 처리
-		if (command.equals("/MemberWriteForm.bo")) {
+		// 1. MemberWriteForm.bo 요청에 대한 처리
+		if (command.equals("/MemberWriteForm.me")) { // 회원가입 Form
 			/*
 			 * 글쓰기 페이지에 대한 요청은 비즈니스 로직 없이
 			 * View 페이지(JSP)로 바로 포워딩 수행
@@ -48,11 +48,11 @@ public class MemberFrontController extends HttpServlet {
 			// 1. ActionForward 객체 생성(변수는 이미 선언되어 있음)
 			forward = new ActionForward();
 			// 2. 포워딩 경로 설정
-			forward.setPath("/board/qna_board_write.jsp");
+			forward.setPath("/member/member_write.jsp");
 			// 3. 포워딩 방식 설정(Dispatcher 방식)
 //			forward.setRedirect(false); // 기본값이 false 이므로 설정 생략 가능
 			
-		} else if (command.equals("/MemberWritePro.bo")) { // BoardWritePro.bo 서블릿 요청에 대한 처리
+		} else if (command.equals("/MemberWritePro.me")) { // 회원가입 정보 DB 입력
 			// BoardWriteProAction 글래스 객체 생성
 			// => Action 클래스는 Action 인터페이스를 구현하므로 다형성 활용 가능
 			action = new MemberWriteProAction();
@@ -65,6 +65,10 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+		} else if (command.equals("/MemberLogin.me")) { // 로그인 화면
+			forward = new ActionForward();
+			forward.setPath("/member/login.jsp");
 			
 		}
 		

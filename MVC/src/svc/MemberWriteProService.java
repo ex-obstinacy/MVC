@@ -1,7 +1,6 @@
 package svc;
 
 import java.sql.Connection;
-
 import dao.MemberDAO;
 import vo.MemberBean;
 // => JdbcUtil 클래스의 static 메서드들을 좀 더 쉽게 호출하기 위해
@@ -22,8 +21,8 @@ public class MemberWriteProService {
 	// 글 쓰기(등록) 요청을 처리하기 위한 registArticle() 메서드 정의
 	// => 파라미터 : 게시물 정보(BoardBean)
 	// => 리턴타입 : boolean(isWriteSuccess)
-	public boolean registArticle(MemberBean boardBean) {
-		System.out.println("BoardWriteProService! - registArticle()");
+	public boolean registArticle(MemberBean memberBean) {
+		System.out.println("MemberWriteProService! - registArticle()");
 		
 		boolean isWriteSuccess = false; // 글 등록 성공 여부를 저장
 		
@@ -34,14 +33,14 @@ public class MemberWriteProService {
 		Connection con = getConnection(); // 메서드명만으로 접근 가능
 		
 		// 2(공통). DB 작업에 필요한 DAO 객체 가져오기
-		MemberDAO boardDAO = MemberDAO.getInstance();
+		MemberDAO memberDAO = MemberDAO.getInstance();
 		
 		// 3(공통). 가져온 Connection 객체를 DAO 객체에 전달하기
-		boardDAO.setConnection(con);
+		memberDAO.setConnection(con);
 		
 		// 4. BoardDAO 객체의 insertArticle() 메서드를 호출하여 글 등록 처리
 		// => 파라미터 : BoardBean, 리턴타입 : int(insertCount)
-		int insertCount = boardDAO.insertArticle(boardBean);
+		int insertCount = memberDAO.insertArticle(memberBean);
 		
 		// 5. 리턴받은 글 등록 결과를 판별
 		// => 0보다 클 경우 성공 commit, 0 일 경우 실패 rollback 작업 수행

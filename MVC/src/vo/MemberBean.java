@@ -1,5 +1,6 @@
 package vo;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class MemberBean {
@@ -8,7 +9,7 @@ public class MemberBean {
 	private String pass;
 	private String name;
 	private String phone;
-	private Timestamp birthdate;
+	private Date birthday;
 	private String gender;
 	private String email;
 	private String postcode;
@@ -44,11 +45,11 @@ public class MemberBean {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public Timestamp getBirthdate() {
-		return birthdate;
+	public Date getBirthday() {
+		return birthday;
 	}
-	public void setBirthdate(Timestamp birthdate) {
-		this.birthdate = birthdate;
+	public void setBirthday(Date date) {
+		this.birthday = date;
 	}
 	public String getGender() {
 		return gender;
