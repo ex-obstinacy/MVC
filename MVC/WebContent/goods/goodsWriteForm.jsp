@@ -9,12 +9,12 @@
 <body>
 
 <script type="text/javascript">
-function ck() {
+function check() {
 	if(document.fr.ctg.options[0].selected == true){
 		 //document.ctg.sel.selectedIndex == 0
 		 alert("카테고리 목록을 선택하세요")
 		 document.fr.ctg.focus();
-		 return;
+		 return false;
 	 }
 	document.fr.submit()
 }
