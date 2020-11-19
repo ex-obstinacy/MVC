@@ -35,7 +35,7 @@
                                         pages
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="login.jsp">로그인</a>
+                                        <a class="dropdown-item" href="MemberLogin.me">로그인</a>
                                         <a class="dropdown-item" href="tracking.jsp">tracking</a>
                                         <a class="dropdown-item" href="checkout.jsp">결제페이지</a>
                                         <a class="dropdown-item" href="cart.jsp">장바구니</a>

@@ -7,7 +7,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>aranoz</title>
+    <title>MVC</title>
     <link rel="icon" href="img/favicon.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -30,25 +30,25 @@
 
 <body>
     <!--::header part start::-->
-    <jsp:include page="../inc/top.jsp"/>
+    <jsp:include page="/inc/top.jsp"/>
     <!-- Header part end-->
 
 
     <!-- breadcrumb start-->
-    <section class="breadcrumb breadcrumb_bg">
-    	<div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="breadcrumb_iner">
-                        <div class="breadcrumb_iner_item">
-                            <h2>Tracking Order</h2>
-                            <p>Home <span>-</span> Tracking Order</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!--     <section class="breadcrumb breadcrumb_bg"> -->
+<!--     	<div class="container"> -->
+<!--             <div class="row justify-content-center"> -->
+<!--                 <div class="col-lg-8"> -->
+<!--                     <div class="breadcrumb_iner"> -->
+<!--                         <div class="breadcrumb_iner_item"> -->
+<!--                             <h2>Tracking Order</h2> -->
+<!--                             <p>Home <span>-</span> Tracking Order</p> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--     </section> -->
     <!-- breadcrumb start-->
 
     <!--================login_part Area =================-->
@@ -61,7 +61,7 @@
                             <h2>New to our Shop?</h2>
                             <p>There are advances being made in science and technology
                                 everyday, and a good example of this is the</p>
-                            <a href="MemberWriteForm.me" class="btn_3">Create an Account</a>
+                            <a href="MemberAgreeForm.me" class="btn_3">Create an Account</a>
                         </div>
                     </div>
                 </div>
@@ -99,7 +99,7 @@
     <!--================login_part end =================-->
 
     <!--::footer_part start::-->
-    <jsp:include page="../inc/bottom.jsp"/>
+    <jsp:include page="/inc/bottom.jsp"/>
     <!--::footer_part end::-->
 
     <!-- jquery plugins here-->

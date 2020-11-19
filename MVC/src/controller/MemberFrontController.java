@@ -41,7 +41,6 @@ public class MemberFrontController extends HttpServlet {
 			 *   => ActionForward 객체에 redirect 변수값을 false 로 설정
 			 *     (boolean 타입 기본 값이 false 이므로 별도 설정 필요 없음)
 			 *   => 따라서, 포워딩 주소만 지정
-			 * - 포워딩 주소 : board 폴더 내의 qna_board_write.jsp
 			 * 
 			 */
 			
@@ -69,6 +68,10 @@ public class MemberFrontController extends HttpServlet {
 		} else if (command.equals("/MemberLogin.me")) { // 로그인 화면
 			forward = new ActionForward();
 			forward.setPath("/member/login.jsp");
+			
+		} else if (command.equals("/MemberAgreeForm.me")) { // 회원가입 동의서
+			forward = new ActionForward();
+			forward.setPath("/member/member_agree.jsp");
 			
 		}
 		
