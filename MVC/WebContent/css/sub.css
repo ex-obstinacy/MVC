@@ -7,12 +7,45 @@
 #seatSelect{}
 #seatSelect:after{content:""; display:block; clear:both;}
 #seatSelect > section{float:left; margin-right:20px;}
-
+/* 팀장님 수정 */
 #test{
 	border: 1px;
 }
+/* 경환 수정 */
+form#seatForm{}
 
+#peopleBoard{background:#ddd; padding:50px 30px; box-sizing:border-box; text-align:center;}
+#peopleBoard > div{display:inline-block; margin:0 40px;}
 
+#seatBox{text-align:center; padding:50px 0; }
+#seatBox:after{content:""; display:block; clear:both;}
+#seatBox > section{display:inline-block; margin:0 20px;}
+#seatBox > section label{}
+#seatBox > section input[type=checkbox] { display:none; }
+#seatBox > section input[type=checkbox] + label { 
+	display: inline-block; 
+	cursor: pointer; 
+	line-height: 45px;
+	font-size:18px; 
+	background-color:#aaa;
+	color:white;
+	width:45px;
+	height:45px;
+	text-align:center;
+	box-sizing: border-box;
+}
+#seatBox > section input[type=checkbox]:checked + label { background-color:red }
+#seatBox > section input[type=checkbox]:disabled + label{background-color:black }
+
+.seatInfo{text-align:center;}
+.seatInfo li{display:inline-block; text-align:center;margin:0 15px;}
+.seatInfo li span{display: inline-block; width:30px; height:30px; }
+.seatInfo li:nth-child(1) span{background-color:black;}
+.seatInfo li:nth-child(2) span{background-color:red;}
+.seatInfo li:nth-child(3) span{background-color:#aaa;}
+.seatInfo li span p{}
+
+form#seatForm{} .btnBox{text-align:right;}
 
 
 
