@@ -1,5 +1,6 @@
 package vo;
 
+
 import java.sql.Date;
 import java.sql.Timestamp;
 
@@ -13,7 +14,6 @@ public class StoreBean {
 	private int totalPrice; //총가격
 	private int sumPrice;//할인적용후최종가격
 	private int sale; //할인율
-	private int stockCount; //재고수량
 	private int sellCount; //판매수량
 	private String component; //상품구성
 	private String file; //이미지파일
@@ -79,12 +79,6 @@ public class StoreBean {
 	}
 	public void setSale(int sale) {
 		this.sale = sale;
-	}
-	public int getStockCount() {
-		return stockCount;
-	}
-	public void setStockCount(int stockCount) {
-		this.stockCount = stockCount;
 	}
 	public int getSellCount() {
 		return sellCount;
