@@ -8,7 +8,9 @@
 #seatSelect:after{content:""; display:block; clear:both;}
 #seatSelect > section{float:left; margin-right:20px;}
 
-
+#test{
+	border: 1px;
+}
 
 
 
