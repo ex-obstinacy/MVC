@@ -4,14 +4,6 @@
 /* 공통적인 스타일은 common.css 에 작성 */
 
 /* 좌석선택 서브페이지 */
-#seatSelect{}
-#seatSelect:after{content:""; display:block; clear:both;}
-#seatSelect > section{float:left; margin-right:20px;}
-/* 팀장님 수정 */
-#test{
-	border: 1px;
-}
-/* 경환 수정 */
 form#seatForm{}
 
 #peopleBoard{background:#ddd; padding:50px 30px; box-sizing:border-box; text-align:center;}
