@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.CinemaAddProAction;
+import action.PayFormAction;
+import action.SelectSeatAction;
 import vo.ActionForward;
 
 @WebServlet("*.re")		// Reserve 관련 페이지 서블릿주소
@@ -39,7 +41,21 @@ public class ReserveFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} 
+		} else if (command.equals("/SelectSeat.re")) { // 좌석 선택 페이지
+			action = new SelectSeatAction() ;
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/PayForm.re")) { // 결제 폼 페이지
+			action = new PayFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		
 		

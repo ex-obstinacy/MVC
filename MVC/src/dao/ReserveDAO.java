@@ -2,6 +2,9 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import vo.ReserveBean;
 
@@ -57,6 +60,64 @@ public class ReserveDAO {
 		return addCount;
 		
 	}
+
+	// 예약된 좌석 가져오는 메서드
+	public ArrayList<ReserveBean> getSeatList(int movienum) {
+		ArrayList<ReserveBean> seatList = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "select num from reserved_seat where reservation_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, movienum);
+			rs = pstmt.executeQuery();
+			
+			seatList = new ArrayList<ReserveBean>();
+			
+			while(rs.next()){
+				ReserveBean reserveBean = new ReserveBean();
+				reserveBean.setSeatnum(rs.getNString("num"));
+				seatList.add(reserveBean);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {			
+			close(pstmt);
+			close(rs);			
+		}
+		
+		return seatList;
+	}
+
+	public ReserveBean getMovie(int movienum) {
+		ReserveBean movie = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql="select * from admin_reservation where num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, movienum);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				movie.setMovie_subject(rs.getNString("movie_subject"));
+				movie.setCinema_name(rs.getNString("cinema_name"));
+				movie.setShowdate(rs.getString("showdate"));
+				movie.setShowtime(rs.getString("showtime"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return movie;
+	}
+
 	
 	
 	
