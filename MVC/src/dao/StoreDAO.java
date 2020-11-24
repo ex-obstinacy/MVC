@@ -181,7 +181,7 @@ public class StoreDAO {
 					article.setContent(rs.getString("content"));
 					
 					// 레코드 저장 확인용 코드
-					System.out.println("storeDAO에서 check - "+article.getName());
+					System.out.println("storeDAO - selectArticleList()에서 check - "+article.getName());
 					
 					// 1개 게시물을 전체 게시물 저장 객체(ArrayList)에 추가
 					articleList.add(article);
@@ -203,7 +203,7 @@ public class StoreDAO {
 		public StoreBean selectArticle(int goodsId) {
 			// 글번호(goodsId)에 해당하는 레코드를 SELECT
 			// 조회 결과가 있을 경우 StoreBean 객체에 저장한 뒤 리턴
-			System.out.println("selectArticle() ");
+			System.out.println("StoreDAO - selectArticle()");
 			StoreBean article = null;
 			
 			PreparedStatement pstmt = null;
@@ -229,7 +229,7 @@ public class StoreDAO {
 					article.setContent(rs.getString("content"));
 					
 					// 임시 확인용 상세 내용 출력
-					System.out.println("글제목 : " + article.getName());
+					System.out.println("storeDAO - selectArticle()에서 check - 글제목 : " + article.getName());
 				}
 			} catch (SQLException e) {
 				System.out.println("selectArticle() 오류 : " + e.getMessage());

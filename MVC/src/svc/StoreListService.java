@@ -35,17 +35,18 @@ public class StoreListService {
 		return listCount;
 	}
 	
-public ArrayList<StoreBean> getArticleList(int page, int limit) throws Exception {
+	public ArrayList<StoreBean> getArticleList(int page, int limit) throws Exception {
+		System.out.println("StoreListService - getArticleList()");
 		
 		ArrayList<StoreBean> articleList = null;
 		
 		// 1(공통). Connection 객체 가져오기
 		Connection con = getConnection();
 		
-		// 2(공통). BoardDAO 객체 가져오기
+		// 2(공통). stroeDAO 객체 가져오기
 		StoreDAO storeDAO = StoreDAO.getInstance();
 		
-		// 3(공통). BoardDAO 객체에 Connection 객체 전달
+		// 3(공통). storeDAO 객체에 Connection 객체 전달
 		storeDAO.setConnection(con);
 		
 		// 4. storeDAO 객체의 selectArticleList() 메서드를 호출하여
