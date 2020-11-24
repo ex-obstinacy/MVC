@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.GoodsDetailAction;
 import action.GoodsListAction;
 import action.GoodsWriteProAction;
+import action.StoreListAction;
 import vo.ActionForward;
 
 @WebServlet("*.go") // // 서블릿 주소 중 XXX.go 주소에 대한 요청을 전달받아 처리
@@ -71,7 +73,23 @@ public class StoreFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		} else if(command.equals("/StoreList.go")) {
+			action = new StoreListAction();
+		
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/GoodsDetail.go")) {
+			action = new GoodsDetailAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+		} 
 			
 			// ----------------------------------------------------------------
 			// 기본적인 작업 후 공통적으로 수행할 포워딩 작업

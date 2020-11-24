@@ -137,6 +137,7 @@ public class StoreDAO {
 			return listCount;
 		}
 		
+		//게시물 목록 조회
 		public ArrayList<StoreBean> selectArticleList(int page, int limit) {
 			// 지정된 갯수만큼의 게시물 조회 후 ArrayList 객체에 저장한 뒤 리턴
 			ArrayList<StoreBean> articleList = null;
@@ -167,7 +168,7 @@ public class StoreDAO {
 				// BoardBean 객체를 다시 ArrayList 객체에 추가 => 반복
 				while(rs.next()) {
 					// 1개 게시물 정보를 저장할 BoardBean 객체 생성 및 데이터 저장
-					StoreBean article = new StoreBean();
+					StoreBean article = new StoreBean(); 
 					
 					article.setGoodsId(rs.getInt("goodsId"));
 					article.setCtg(rs.getString("ctg"));
@@ -197,6 +198,50 @@ public class StoreDAO {
 			
 			return articleList;
 		}
+		
+		// 게시물 상세내용 조회
+		public StoreBean selectArticle(int goodsId) {
+			// 글번호(goodsId)에 해당하는 레코드를 SELECT
+			// 조회 결과가 있을 경우 StoreBean 객체에 저장한 뒤 리턴
+			System.out.println("selectArticle() ");
+			StoreBean article = null;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				String sql = "select * from goods where goodsId=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, goodsId);
+				rs = pstmt.executeQuery();
+				
+				// 게시물이 존재할 경우 Store 객체를 생성하여 게시물 내용 저장
+				if(rs.next()) {
+					article = new StoreBean();
+					article.setGoodsId(rs.getInt("goodsId"));
+					article.setCtg(rs.getString("ctg"));
+					article.setName(rs.getString("name"));
+					article.setPrice(rs.getInt("price"));
+					article.setSale(rs.getInt("sale"));
+					article.setComponent(rs.getString("component"));
+					article.setSellCount(rs.getInt("sellCount"));
+					article.setFile(rs.getString("file"));
+					article.setContent(rs.getString("content"));
+					
+					// 임시 확인용 상세 내용 출력
+					System.out.println("글제목 : " + article.getName());
+				}
+			} catch (SQLException e) {
+				System.out.println("selectArticle() 오류 : " + e.getMessage());
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			
+			return article;
+		}
+
 	
-}
+} //메인메서드
 
