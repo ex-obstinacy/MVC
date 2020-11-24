@@ -31,7 +31,7 @@ public class GoodsDetailAction implements Action {
 		// => request 객체를 유지하고, 서블릿 주소가 유지되어야 하므로
 		//    Dispatcher 방식으로 포워딩
 		forward = new ActionForward();
-		forward.setPath("/store_detail.jsp");
+		forward.setPath("/goods/store_detail.jsp");
 //		forward.setRedirect(false);
 		
 		

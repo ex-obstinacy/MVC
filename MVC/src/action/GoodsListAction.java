@@ -41,10 +41,14 @@ public class GoodsListAction implements Action {
 				//전체 게시물 목록을 저장할 ArrayList 객체(articleList) 생성!
 				// => 제네릭 타입으로 BoardBean 타입 지정
 				ArrayList<StoreBean> articleList = new ArrayList<StoreBean>();
-				// BoardListService 클래스의 getArticleList() 메서드를 호출하여
+				// GoodsListService 클래스의 getArticleList() 메서드를 호출하여
 				// 전체 게시물 목록 리턴받아 ArrayList 객체에 저장
 				// => 파라미터 : 현재 페이지번호(page), 페이지당 게시물 수(limit) 전달
 				articleList = goodsListService.getArticleList(page, limit);
+
+				/* 카테고리별 리스트 뿌리기  */
+				
+				
 				
 				//페이지 계산 작업 수행 588p
 				// 1. 전체 페이지 수 계산
@@ -78,6 +82,8 @@ public class GoodsListAction implements Action {
 				// Dispatcher 방식으로 포워딩 설정
 				forward = new ActionForward();
 				forward.setPath("/goods/goodsList.jsp");
+//				forward.setPath("/store_main2.jsp");
+				
 				forward.setRedirect(false); //기본값이 false 이므로 생략 가능
 				
 				return forward;
