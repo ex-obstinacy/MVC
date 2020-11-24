@@ -89,6 +89,7 @@
 					<th>판매량</th>
 					<th>상품이미지</th>
 					<th>내용</th>
+					<th>관리</th>
 				</tr>
 				<%
 				for(int i = 0; i < articleList.size(); i++) {
@@ -103,6 +104,8 @@
 					<td align="center"><%=articleList.get(i).getSellCount() %></td>
 					<td align="center"><%=articleList.get(i).getFile() %></td>
 					<td align="center"><%=articleList.get(i).getContent()%></td>
+					<td><input type="button" value="수정" onclick="">
+					<input type="button" value="삭제" onclick=""></td>
 				</tr>
 				
 				<%}%>
@@ -112,9 +115,12 @@
       </div>
 	</section>
 	<section id="buttonArea">
+  	  <div class="container">
 		<input type="button" value="상품등록" class="btn_3" onclick="location.href='GoodsWriteForm.go'" >
+	  </div>
 	</section>
 	<section id="pageList">
+	  <div class="container">
 	<%if(nowPage <= 1) {%>
 			<input type="button" value="이전" class="btn_3">&nbsp;
 	<%} else {%>
@@ -134,13 +140,50 @@
 	<%} else { %>
 			<input type="button" value="다음" class="btn_3" onclick="location.href='GoodsList.go?page=<%=nowPage + 1 %>'">
 	<%} %>
+	  </div>
 	</section>
 	<%
 	} else {
 	%>
-	<section id="emptyArea">등록된 글이 없습니다</section>
+	<section id="emptyArea">
+	<div class="container">등록된 글이 없습니다</div>
+	</section>
 	<%
 	}
 	%>
+	
+  <!-- ================ goodsList section end ================= -->
+
+  <!--::footer_part start::-->
+  <jsp:include page="/inc/bottom.jsp"/>
+  <!--::footer_part end::-->
+
+  <!-- jquery plugins here-->
+  <!-- jquery -->
+  <script src="js/jquery-1.12.1.min.js"></script>
+  <!-- popper js -->
+  <script src="js/popper.min.js"></script>
+  <!-- bootstrap js -->
+  <script src="js/bootstrap.min.js"></script>
+  <!-- easing js -->
+  <script src="js/jquery.magnific-popup.js"></script>
+  <!-- swiper js -->
+  <script src="js/swiper.min.js"></script>
+  <!-- swiper js -->
+  <script src="js/masonry.pkgd.js"></script>
+  <!-- particles js -->
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.nice-select.min.js"></script>
+  <!-- slick js -->
+  <script src="js/slick.min.js"></script>
+  <script src="js/jquery.counterup.min.js"></script>
+  <script src="js/waypoints.min.js"></script>
+  <script src="js/contact.js"></script>
+  <script src="js/jquery.ajaxchimp.min.js"></script>
+  <script src="js/jquery.form.js"></script>
+  <script src="js/jquery.validate.min.js"></script>
+  <script src="js/mail-script.js"></script>
+  <!-- custom js -->
+  <script src="js/custom.js"></script>
 </body>
 </html>
