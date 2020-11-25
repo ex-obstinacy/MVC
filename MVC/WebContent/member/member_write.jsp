@@ -106,11 +106,11 @@
 
     <!--================main_part Area =================-->
     <section class="login_part padding_top">
-	    <form action="MemberWritePro.me" id="join" method="post" name="fr">
+	    <form action="MemberWritePro.me" id="join" method="post" name="fr" class="container">
 			<fieldset>
 				<legend>필수 항목</legend>
 				<label>아이디</label> <input type="text" name="id" class="id" id="myId" required="required" placeholder="6~10자 영문과 숫자 조합" min="6">
-				<input type="button" value="ID확인" class="dup" id="chkId"><span id="reId"></span><br>
+				<input type="button" value="ID확인" class="genric-btn info radius" id="chkId"><span id="reId"></span><br>
 				<label>비밀번호</label> <input type="password" name="pass" id="pass" required="required" placeholder="8~12자 영문,숫자,특수문자" min="8"><br>
 				<label>비밀번호 재확인</label> <input type="password" name="rePass" id="rePass" required="required" onblur="chkPass()"><span id="chkPass"></span><br><br>
 				<label>이름</label> <input type="text" name="name" id="name" required="required"><br>
@@ -123,14 +123,14 @@
 	
 			<fieldset>
 				<legend>선택 항목</legend>
-				<label>주소</label> <input type="text" name="postcode" id="postcode" class="id" placeholder="우편번호"> <input type="button" value="우편번호검색" class="dup" onclick="execPostCode()"><br>
+				<label>주소</label> <input type="text" name="postcode" id="postcode" class="id" placeholder="우편번호"> <input type="button" value="우편번호검색" class="genric-btn info radius" onclick="execPostCode()"><br>
 				<label></label> <input type="text" name="address" id="address" placeholder="주소" size="46"><br>
 				<label></label> <input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소"> <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목"><br>
 			</fieldset>
 			<div class="clear"></div>
 			<div id="buttons">
-				<input type="submit" value="가입하기" class="submit">
-				<input type="reset" value="취소" class="cancel">
+				<input type="submit" value="가입하기" class="genric-btn success radius">
+				<input type="reset" value="취소" class="genric-btn danger radius">
 			</div>
 		</form>
     </section>

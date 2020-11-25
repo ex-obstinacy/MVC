@@ -68,7 +68,7 @@
 
     <!--================main_part Area =================-->
     <section class="login_part padding_top">
-	    <form action="MemberWriteForm.me" id="agree" method="post" name="fr">
+	    <form action="MemberWriteForm.me" id="agree" method="post" name="fr" class="container">
 	    	<pre>
 저희 홈페이지의 약관은 다음과 같습니다.
                        
@@ -139,8 +139,8 @@
 			<input type="radio" name="agree" value="agree" id="yes" required="required">동의합니다.
 			<input type="radio" name="agree" value="disagree" id="no">동의하지 않습니다.<br>
 			<div id="buttons">
-				<input type="submit" value="다음" class="submit">
-				<input type="button" value="뒤로" onclick="history.back()">
+				<input type="submit" value="다음" class="genric-btn success radius">
+				<input type="button" value="뒤로" class="genric-btn danger radius" onclick="history.back()">
 			</div>
 		</form>
     </section>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import action.Action;
+import action.MemberLoginProAction;
 import action.MemberWriteProAction;
 import vo.ActionForward;
 
@@ -63,6 +64,7 @@ public class MemberFrontController extends HttpServlet {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
+				
 			}
 			
 		} else if (command.equals("/MemberLogin.me")) { // 로그인 화면
@@ -72,6 +74,17 @@ public class MemberFrontController extends HttpServlet {
 		} else if (command.equals("/MemberAgreeForm.me")) { // 회원가입 동의서
 			forward = new ActionForward();
 			forward.setPath("/member/member_agree.jsp");
+			
+		} else if (command.equals("/MemberLoginPro.me")) { // 로그인 확인
+			action = new MemberLoginProAction();
+			
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
 			
 		}
 		

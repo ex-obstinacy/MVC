@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import exception.LoginException;
 import vo.MemberBean;
 import static db.JdbcUtil.*;
 
@@ -86,6 +88,46 @@ public class MemberDAO {
 		
 		return insertCount;
 		
+	}
+
+	// 로그인 작업
+	public boolean selectLoginMember(String id, String pass) throws LoginException {
+		System.out.println("MemberDAO - selectLoginMember()");
+		
+		boolean isMember = false;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT pass FROM member WHERE id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				if (pass.equals(rs.getString(1))) {
+					isMember = true;
+					
+				} else {
+					throw new LoginException("패스워드 오류!");
+					
+				}
+			} else {
+				throw new LoginException("아이디 없음!");
+				
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectLoginMember() 오류! - " + e.getMessage());
+			e.printStackTrace();
+			
+		} finally {
+			close(pstmt);
+			close(rs);
+			
+		}
+		
+		return isMember;
 	}
 
 }
