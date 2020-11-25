@@ -58,7 +58,7 @@ public class MemberDAO {
 		
 		try {
 			// 전달받은 memberBean 객체 내의 데이터를 사용하여 INSERT 작업 수행
-			String sql = "INSERT INTO member VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0, 0)";
+			String sql = "INSERT INTO member VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0, 0, 0)";
 			pstmt = con.prepareStatement(sql);
 			// memberBean 객체로부터 데이터를 꺼내서 쿼리문 ? 대체
 			pstmt.setString(1, memberBean.getId());

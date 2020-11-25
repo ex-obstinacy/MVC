@@ -19,7 +19,14 @@ public class MemberBean {
 	private int coupon_2000;
 	private int coupon_3000;
 	private int membership;
+	private int free_ticked;
 	
+	public int getFree_ticked() {
+		return free_ticked;
+	}
+	public void setFree_ticked(int free_ticked) {
+		this.free_ticked = free_ticked;
+	}
 	public String getId() {
 		return id;
 	}
