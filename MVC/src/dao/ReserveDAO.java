@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import vo.MemberBean;
 import vo.ReserveBean;
 
 import static db.JdbcUtil.*;
@@ -94,7 +95,7 @@ public class ReserveDAO {
 	}
 
 	public ReserveBean getMovie(int movienum) {
-		ReserveBean movie = null;
+		ReserveBean movie = new ReserveBean();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -116,6 +117,30 @@ public class ReserveDAO {
 		}
 		
 		return movie;
+	}
+
+	public MemberBean getCoupon(String member_id) {
+		MemberBean coupon = new MemberBean();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "select coupon_1000,coupon_2000,coupon_3000 from member where id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "kim"); // 임시확인용
+//			pstmt.setString(1, member_id); // 원래코드
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				coupon.setCoupon_1000(rs.getInt("coupon_1000"));
+				coupon.setCoupon_2000(rs.getInt("coupon_2000"));
+				coupon.setCoupon_3000(rs.getInt("coupon_3000"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return coupon;
 	}
 
 	

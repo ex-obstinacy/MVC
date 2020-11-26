@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import svc.PayFormService;
 import vo.ActionForward;
+import vo.MemberBean;
 import vo.ReserveBean;
 
 public class PayFormAction implements Action {
@@ -15,11 +16,16 @@ public class PayFormAction implements Action {
 		ActionForward forward = null;
 		
 		int movienum = Integer.parseInt(request.getParameter("movienum"));
+		String member_id = request.getParameter("member_id");
 
 		PayFormService payFormService = new PayFormService();
 		ReserveBean movie = payFormService.getMovie(movienum);
 		
 		request.setAttribute("movie", movie);
+		
+		MemberBean coupon = payFormService.getCoupon(member_id);
+		
+		request.setAttribute("coupon", coupon);
 		
 		forward = new ActionForward();
 		forward.setPath("/reservation/payForm.jsp");		

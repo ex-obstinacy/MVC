@@ -6,8 +6,15 @@
 /* 좌석선택 서브페이지 */
 form#seatForm{}
 
-#peopleBoard{background:#ddd; padding:50px 30px; box-sizing:border-box; text-align:center;}
-#peopleBoard > div{display:inline-block; margin:0 40px;}
+#peopleBoard{background:#555;  padding:50px 30px; box-sizing:border-box; text-align:center;}
+#peopleBoard > div{display:inline-block; margin:0 40px; text-align:center;}
+#peopleBoard > div h3{margin-bottom:10px; font-size:18px;}
+#peopleBoard div.numBox:after{content:""; display:block; clear:both;}
+#peopleBoard div.numBox{display:inline-block;}
+#peopleBoard button{display:block; float:left; border:1px solid #ccc; background:white; font-size:20px; line-height:25px; padding:8px 10px;}
+#peopleBoard button.lbtn{border-right:0;}
+#peopleBoard button.rbtn{border-left:0;}
+#peopleBoard input{display:block; float:left; width:50px; text-align:center; border:1px solid #ccc; border-left:0; border-right:0; font-size:18px; line-height:25px; padding:8px 0;}
 
 #seatBox{text-align:center; padding:50px 0; }
 #seatBox:after{content:""; display:block; clear:both;}
@@ -39,6 +46,79 @@ form#seatForm{}
 
 form#seatForm{} .btnBox{text-align:right;}
 
+/* 예매결제페이지 */
+#moviePayBox{}
+#moviePayBox h2{margin-bottom:50px;}
+
+#payForm{}
+#payForm:after{content:""; display:block; clear:both;}
+#payForm .leftBox{width:50%; float:left;}
+#payForm .rightBox{;width:40%; float:right; }
+#payForm .leftBox > div {margin-bottom:80px;}
+#payForm .leftBox > div:after{content:""; display:block; clear:both;}
+#payForm .leftBox h3{border-bottom:1px solid #ccc; padding-bottom:10px; margin-bottom:20px; font-size:20px;}
+#payForm span.movieImg{display:block; width:200px; height:auto; float:left; margin-right:40px;}
+#payForm div.movieInfo{float:left;}
+#payForm div.movieInfo h4:before{
+	position:absolute;
+	top:0px;
+	left:0px;
+	content:"12";
+	display:block;
+	width:20px;
+	height:20px;
+	border-radius:50%;
+	background:skyblue;
+	color:#fff;
+	font-size:15px;
+	text-align:center;
+}
+#payForm div.movieInfo h4{position:relative; font-size:20px; line-height:1em; font-weight:600; margin-bottom:20px; vertical-align:middle; padding-left:25px;}
+#payForm div.movieInfo dl{margin-bottom:5px;}
+#payForm div.movieInfo dl:after{content:""; display:block; clear:both;}
+#payForm div.movieInfo dl dt{float:left; min-width:80px; font-size:16px;}
+#payForm div.movieInfo dl dd{float:left; font-size:16px;}
+#payForm div.movieInfo dl dd .selectedSeat{display:inline-block; margin-right:3px;}
+#payForm div.movieInfo dl dd .selectedSeat:after{
+	content:",";
+	display:Inline-block;
+	width:5px;
+}
+#payForm div.movieInfo dl dd .selectedSeat:last-child{margin-right:0;}
+#payForm div.movieInfo dl dd .selectedSeat:last-child:after{display:none;}
+
+#payForm div.couponCont{}
+#payForm div.couponCont ul{margin-bottom:20px;}
+#payForm div.couponCont ul:after{content:""; display:block; clear:both;}
+#payForm div.couponCont ul li{float:left; width:80px; height:80px; border:1px solid #ccc; margin-right:20px; border-radius:5px; text-align:center; padding-top:30px; box-sizing:border-box; cursor:pointer;}
+#payForm div.couponCont ul li.current{background:#999; color:#fff;}
+#payForm div.couponCont dl{margin-bottom:10px; }
+#payForm div.couponCont .tab-content{display:none;}
+#payForm div.couponCont .tab-content.current{
+	display: inherit;
+}
+#payForm div.couponCont dl:after{content:""; display:block; clear:both;}
+#payForm div.couponCont dl dt{float:left; font-size:15px; font-weight:400; margin-right:10px;}
+#payForm div.couponCont dl dd{float:left;}
+
+#payForm div.selectPayment{}
+#payForm div.selectPayment ul{}
+#payForm div.selectPayment ul:after{content:""; display:block; clear:both;}
+#payForm div.selectPayment ul li{float:left; border:1px solid #ccc; border-radius:5px;text-align:center; margin-right:30px; }
+#payForm div.selectPayment ul li input{display:none;}
+#payForm div.selectPayment ul li input[type=checkbox] + label{width:100px; height:100px; cursor:pointer; padding-top:60px; box-sizing:border-box;}
+#payForm div.selectPayment ul li input[type=checkbox]:checked + label{background:skyblue}
+
+#payForm .rightBox table{width:100%; border:1px solid #ccc; }
+#payForm .rightBox table th{background:#121212; color:#fff; font-size:18px; font-weight:500; text-align:center; padding:15px 0; }
+#payForm .rightBox table td{padding:15px 10px; border-bottom:1px solid #ccc;}
+#payForm .rightBox table td p{text-align:right;}
+#payForm .rightBox table td dl:after{content:""; display:block; clear:both;}
+#payForm .rightBox table td dt{float:left;}
+#payForm .rightBox table td dd{float:right;}
+#payForm .rightBox table td dd input{text-align:right; max-width:100px; border:0;}
+#payForm .rightBox table tr:last-child td{padding:0;}
+#payForm .rightBox table tr:last-child td input{width:100%; border:0; background:#FF243E; color:white; padding:15px 0; font-size:16px; }
 
 
 

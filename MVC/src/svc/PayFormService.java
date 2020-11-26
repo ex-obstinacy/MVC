@@ -1,5 +1,6 @@
 package svc;
 
+import vo.MemberBean;
 import vo.ReserveBean;
 import static db.JdbcUtil.*;
 
@@ -24,6 +25,22 @@ public class PayFormService {
 		close(con);
 		
 		return movie;
+	}
+
+	public MemberBean getCoupon(String member_id) {
+		MemberBean coupon = null;
+		
+		Connection con = getConnection();
+		
+		ReserveDAO reserveDAO = ReserveDAO.getInstance();
+		
+		reserveDAO.setConnection(con);
+		
+		coupon = reserveDAO.getCoupon(member_id);
+		
+		close(con);
+		
+		return coupon;
 	}
 
 }

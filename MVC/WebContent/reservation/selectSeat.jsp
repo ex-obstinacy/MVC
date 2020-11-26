@@ -141,7 +141,7 @@ ArrayList<ReserveBean> seatList = (ArrayList<ReserveBean>)request.getAttribute("
 		}
 		
 		if(maxCount > count){
-			alert("좌석을 선택해주세요");
+			alert("선택하신 인원수 만큼 좌석을 선택해주세요");
 			return false;
 		}
 	}
@@ -159,16 +159,20 @@ ArrayList<ReserveBean> seatList = (ArrayList<ReserveBean>)request.getAttribute("
 			
 			<div class="adultNum">				
 				<h3>성인</h3>
-				<button class="peopleIcon" type="button" onclick="adultMinus()">-</button>
-				<input type="text" name="adultNum" value="0" id="adultvalue">
-				<button class="peopleIcon" type="button" onclick="adultPlus()">+</button>		
+				<div class="numBox">
+					<button class="peopleIcon lbtn" type="button" onclick="adultMinus()">-</button>
+					<input type="text" name="adultNum" value="0" id="adultvalue">
+					<button class="peopleIcon rbtn" type="button" onclick="adultPlus()">+</button>
+				</div>		
 			</div>
 			
 			<div class="kidsNum">
 				<h3>청소년, 아동</h3>
-				<button class="peopleIcon" type="button" onclick="kidsMinus()">-</button>
-				<input type="text" name="kidsNum" value="0" id="kidsvalue">
-				<button class="peopleIcon" type="button" onclick="kidsPlus()">+</button>		
+				<div class="numBox">
+					<button class="peopleIcon lbtn" type="button" onclick="kidsMinus()">-</button>
+					<input type="text" name="kidsNum" value="0" id="kidsvalue">
+					<button class="peopleIcon rbtn" type="button" onclick="kidsPlus()">+</button>
+				</div>		
 			</div>	
 		</div><!-- #peopleBoard -->
 		

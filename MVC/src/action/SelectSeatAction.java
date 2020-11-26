@@ -13,6 +13,7 @@ public class SelectSeatAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("SelectSeatAction !");
 		ActionForward forward = null;		
 		
 //		int movienum = Integer.parseInt(request.getParameter("movienum"));

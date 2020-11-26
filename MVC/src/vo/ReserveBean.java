@@ -9,6 +9,7 @@ public class ReserveBean {
 	private String showdate;
 	private String showtime;
 	private String seatnum;
+	private String[] seatArr;
 	private int ticketnum;
 	private String member_id;
 	private int adultnum;
@@ -55,6 +56,12 @@ public class ReserveBean {
 	}
 	public void setSeatnum(String seatnum) {
 		this.seatnum = seatnum;
+	}
+	public String[] getSeatArr() {
+		return seatArr;
+	}
+	public void setSeatArr(String[] seatArr) {
+		this.seatArr = seatArr;
 	}
 	public int getTicketnum() {
 		return ticketnum;

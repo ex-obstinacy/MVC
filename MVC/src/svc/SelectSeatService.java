@@ -10,6 +10,7 @@ import static db.JdbcUtil.*;
 public class SelectSeatService {
 
 	public ArrayList<ReserveBean> getSeatList(int movienum) throws Exception {
+		System.out.println("SelectSeatService !");
 		ArrayList<ReserveBean> seatList = null;
 		
 		Connection con = getConnection();
