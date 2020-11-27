@@ -1,3 +1,9 @@
+
+
+
+
+
+
 @charset "UTF-8";
 /* 서브페이지 */
 /* 사용할때 각 서브페이지명 주석으로 선언하기 ! */
@@ -121,4 +127,14 @@ form#seatForm{} .btnBox{text-align:right;}
 #payForm .rightBox table tr:last-child td input{width:100%; border:0; background:#FF243E; color:white; padding:15px 0; font-size:16px; }
 
 
+/* orderForm 서브페이지 */
 
+#orderForm div.selectPayment{}
+#orderForm div.selectPayment ul{}
+#orderForm div.selectPayment ul:after{content:""; display:block; clear:both;}
+#orderForm div.selectPayment ul li{float:left; border:1px solid #ccc; border-radius:5px;text-align:center; margin-right:30px; }
+#orderForm div.selectPayment ul li input{display:none;}
+#orderForm div.selectPayment ul li input[type=checkbox] + label{width:100px; height:100px; cursor:pointer; padding-top:60px; box-sizing:border-box;}
+#orderForm div.selectPayment ul li input[type=checkbox]:checked + label{font-weight:bold;  background:red; color:white; transition:1.2s;}
+
+#orderForm .pd_top {padding-top: 40px;}

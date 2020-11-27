@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="zxx">
-
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -29,6 +28,9 @@
   <link rel="stylesheet" href="css/price_rangs.css">
   <!-- style CSS -->
   <link rel="stylesheet" href="css/style.css">
+  
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/sub.css">
 </head>
 
 <body>
@@ -57,11 +59,11 @@
 
   <!--================Cart Area =================-->
   <section class="cart_area padding_top">
-  <div class="order_box">
     <div class="container">
       <div class="cart_inner">
-        <div class="table-responsive">
         <h3>장바구니상품 정보</h3>
+         <hr>
+        <form action="orderForm.go" name="basket" method="post" id="basketForm">
           <table class="table">
             <thead>
               <tr>
@@ -75,22 +77,20 @@
               <tr>
               	<td><input type="checkbox"></td>
                 <td>
-                  <div class="media">
-                    <div class="d-flex">
+                  <div class="media"> <!-- 상품 박스 -->
+                    <div class="d-flex"> <!-- 상품 이미지 테두리 -->
                       <img src="img/product/single-product/cart-1.jpg" alt="" />
                     </div>
-                    <div class="media-body">
+                    <div class="media-body"> <!-- 상품 설명 바디 -->
                       <p>팝콘(M)</p>
                       <p>구성품:팝콘(M)</p>
                       <p>2000원</p>
-                    </div>
+                    </div>ㄴ
                   </div>
                 </td>
                 <td>
-                  <div class="product_count">
-                    <span class="input-number-decrement"> <i class="ti-angle-down"></i></span>
-                    <input class="input-number" type="text" value="1" min="0" max="10">
-                    <span class="input-number-increment"> <i class="ti-angle-up"></i></span>
+                  <div class="product_count"> <!-- 수량변경 버튼 모양 -->
+                    <input type="number" value="1" min="0" max="10">
                   </div>
                   <div>
                   <input type="button" value="수량변경">
@@ -117,26 +117,20 @@
               </tr>
             </tbody>
           </table>
+  <!--::버튼 시작::-->
+  	 <div>        
+	   <input type="button" class="btn_3" value="이전화면" onclick="history.back">
+	 </div>
+     <div class="checkout_btn_inner float-right">
+       <input type="submit" class="btn_3" value="선택상품주문">
+       <input type="submit" class="btn_3" value="전체상품주문">
+     </div>
+  <!--::버튼 끝::-->      
+          </form>
         </div>
       </div>
-      </div>
-      </div>
   </section>
-  
-  <br>
-  <!--::버튼 시작::-->
-  <section>
-   <div class="container">
-   <div>
-     <a class="btn_1 checkout_btn_1" href="#">이전화면</a>
-          </div>
-          <div class="checkout_btn_inner float-right">
-            <a class="btn_3" href="#">선택상품주문</a>
-            <a class="btn_3" href="#">전체상품주문</a>
-          </div>
-      </div>
-  </section>
-  <!--::버튼 끝::-->
+
   <!--================End Cart Area =================-->
 
   <!--::footer_part start::-->

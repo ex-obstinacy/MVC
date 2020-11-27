@@ -29,9 +29,27 @@
   <link rel="stylesheet" href="css/price_rangs.css">
   <!-- style CSS -->
   <link rel="stylesheet" href="css/style.css">
+  
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/sub.css">
 </head>
 
 <body>
+
+<script src="js/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+
+function NoMultiChk(chk){ // 결제수단 중복체크 불가
+    var obj = document.getElementsByName("selectPay");
+    for(var i=0; i < obj.length; i++){
+        if(obj[i] != chk){
+            obj[i].checked = false;
+        }
+    }
+}
+
+</script>
+
   <!--::header part start::-->
 	<jsp:include page="inc/top.jsp"/>
   <!-- Header part end-->
@@ -57,11 +75,11 @@
 
   <!--================Cart Area =================-->
   <section class="cart_area padding_top">
-  <div class="order_box">
     <div class="container">
       <div class="cart_inner">
-        <div class="table-responsive">
         <h3>구매상품 정보</h3>
+         <hr>
+        <form action="orderPro.go" name="basket" method="post" id="orderForm">
           <table class="table">
             <thead>
               <tr>
@@ -110,14 +128,9 @@
               </tr>
             </tbody>
           </table>
-        </div>
-      </div>
-      </div>
-      </div>
-  </section>
   
   <!--::주문자 입력 정보 폼 시작::-->
- <section class="checkout_area padding_top">
+<!--  <section class="checkout_area padding_top">
  <div class="order_box"> 
  <div class="container">
  <h3>주문자 정보 확인</h3>
@@ -127,11 +140,11 @@
             <form class="row contact_form" action="#" method="post" novalidate="novalidate">
               <div class="col-md-6 form-group p_star">
                 <input type="text" class="form-control" id="first" name="name" />
-                <span class="placeholder" data-placeholder="성함"></span> <!-- 이름 세션 정보가져오기 -->
+                <span class="placeholder" data-placeholder="성함"></span> 이름 세션 정보가져오기
               </div>
               <div class="col-md-6 form-group p_star">
                 <input type="text" class="form-control" id="last" name="name" />
-                <span class="placeholder" data-placeholder="휴대전화번호"> <!-- 휴대전화번호 세션 정보가져오기 --></span>
+                <span class="placeholder" data-placeholder="휴대전화번호"> 휴대전화번호 세션 정보가져오기</span>
               </div>
               <h8>구매하신 기프티콘은 주문자 정보에 입력된 휴대전호 번호로 MMS로 발송 됩니다.<br>
             입력된 휴대전화 번호가 맞는지 꼭 확인하세요.</h8>
@@ -141,46 +154,40 @@
        </div>
        </div>
     </div>
-   </section>
+   </section> -->
   <!--::주문자 입력 정보 폼 끝::-->
   
   <br>
   
   <!--::결제수단 선택 폼 시작::-->
-  <section>
-  <div class="order_box">
-   <div class="container">
-   <h3>결제수단 선택</h3>
-  	<div class="payment_item">
-                <div class="radion_btn">
-                  <input type="radio" id="f-option5" name="selector" />
-                  <label for="f-option5">신용카드결제</label>
-                  <div class="check"></div>
-                </div>
-              </div>
-              <div class="payment_item active">
-                <div class="radion_btn">
-                  <input type="radio" id="f-option6" name="selector" />
-                  <label for="f-option6">카카오페이 </label>
-                  <img src="img/product/single-product/card.jpg" alt="" />
-                  <div class="check"></div>
-                </div>
-              </div>
-              </div>
-  </div>
-  </section>
+   <div class="selectPayment">
+		<h3 class="pd_top">결제수단 선택</h3>
+			<hr>
+			<ul>
+				<li>
+					<input type="checkbox" name="selectPay" value="creditCard" id="creditCard" onclick="NoMultiChk(this)">
+					<label for="creditCard"><span>신용카드</span></label>
+				</li>
+				<li>
+					<input type="checkbox" name="selectPay" value="simplePay" id="simplePay" onclick="NoMultiChk(this)">
+					<label for="simplePay"><span>계좌이체</span></label>
+				</li>
+				<li>
+					<input type="checkbox" name="selectPay" value="mobile" id="mobile" onclick="NoMultiChk(this)">
+					<label for="mobile"><span>휴대폰</span></label>
+				</li>
+			</ul>
+	</div>
   <!--::결제수단 선택 폼 끝::-->
-  <br>
+  <br><br>
   <!--::약관동의 시작::-->
-  <section>
-  <div class="order_box">
-  <div class="container">
-   <h3>주문정보 / 결제 대행 서비스	 약관 동의</h3>
+   <h3 class="pd_top">주문정보 / 결제 대행 서비스	 약관 동의</h3>
+     <hr>
    <div class="creat_account">
-                <input type="checkbox" id="f-option4" name="selector" />
-                <label for="f-option4">약관에 동의합니다.</label>
-                <a href="#">동의동의*</a>
-                <p>역사를 피가 있는 품으며, 것이 보는 영원히 꽃이 그리하였는가?
+      <input type="checkbox" id="f-option4" name="selector" />
+      <label for="f-option4">약관에 동의합니다.</label>
+      <a href="#">동의동의*</a>
+        <p>역사를 피가 있는 품으며, 것이 보는 영원히 꽃이 그리하였는가?
 	때에, 투명하되 생생하며, 인간의 가치를 천자만홍이 불어 피다.
  	힘차게 인간이 오아이스도 천지는 작고 끝까지 같이, 아니더면, 있다.
   	광야에서 어디 가치를 가장 간에 싹이 보이는 갑 이상의 황금시대다.
@@ -190,23 +197,20 @@
     있음으로써 같은 맺어, 있는 보배를 사는가 되려니와, 사막이다.
     바로 위하여 튼튼하며, 그들의 뛰노는 없으면 때에, 두기 별과 것이다.
     시들어 희망의 군영과 있는 있을 크고 불어 꽃이 황금시대다.</p>
-              </div>
-          </div>
-      </div>
-    </section>
+   </div>
   <!--::약관동의 끝::-->
-  <!--::버튼::-->
-    <section class="cart_area padding_top">
-    <div class="container">
-           <div>
-          <a class="btn_1 checkout_btn_1" href="#">이전화면</a>
+  	<!--::버튼 시작::-->
+          <div class="pd_top">
+            <input type="button" class="btn_3" value="이전화면" onclick="history.back">
           </div>
           <div class="checkout_btn_inner float-right">
-            <a class="btn_3" href="#">결제하기</a>
+            <input type="submit" class="btn_3" value="결제하기">
           </div>
-          </div>
-    </section>
-   <!--::버튼 끝::-->
+     <!--::버튼 끝::-->
+   		</form>
+      </div>
+     </div>
+  </section>
   
   <!--================End Cart Area =================-->
 
