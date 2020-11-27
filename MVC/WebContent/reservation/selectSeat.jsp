@@ -38,9 +38,19 @@ ArrayList<ReserveBean> seatList = (ArrayList<ReserveBean>)request.getAttribute("
 </head>
 <script src="js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
+	window.onload = function(){	
+		document.getElementById("seatForm").reset();
+	}
+	
+	window.onpageshow = function (event) {
+		document.getElementById("seatForm").reset();
+	}
+	
 	
 	// 어른 수 빼기
 	function adultMinus(){
+		var selectCount = $("input:checkbox[name=seat]:checked").length;
+				
 		document.getElementById("adultvalue").value = parseInt(document.getElementById("adultvalue").value) - 1;
 		document.getElementById("peopleNum").value = parseInt(document.getElementById("peopleNum").value) - 1;
 		
@@ -52,15 +62,31 @@ ArrayList<ReserveBean> seatList = (ArrayList<ReserveBean>)request.getAttribute("
 		if(document.getElementById("peopleNum").value < 0){
 			document.getElementById("peopleNum").value = 0;
 		}
+		
+		if(document.getElementById("peopleNum").value < selectCount){
+			alert("현재 선택한 좌석보다 인원이 적습니다.")
+			document.getElementById("adultvalue").value = parseInt(document.getElementById("adultvalue").value) + 1;
+			document.getElementById("peopleNum").value = parseInt(document.getElementById("peopleNum").value) + 1;
+		}
+		
+		if(document.getElementById("peopleNum").value <= 0){
+			$(".blackBox").css("display","block");
+		}
 	}
 	// 어른 수 더하기	
 	function adultPlus(){
 		document.getElementById("adultvalue").value = parseInt(document.getElementById("adultvalue").value) + 1;
 		document.getElementById("peopleNum").value = parseInt(document.getElementById("peopleNum").value) + 1;
+		
+		if(document.getElementById("peopleNum").value >= 1){
+			$(".blackBox").css("display","none");
+		}
 	}
 	
 	// 아이 수 빼기
 	function kidsMinus(){
+		var selectCount = $("input:checkbox[name=seat]:checked").length;
+		
 		document.getElementById("kidsvalue").value = parseInt(document.getElementById("kidsvalue").value) - 1;
 		document.getElementById("peopleNum").value = parseInt(document.getElementById("peopleNum").value) - 1;
 		
@@ -72,17 +98,33 @@ ArrayList<ReserveBean> seatList = (ArrayList<ReserveBean>)request.getAttribute("
 		if(document.getElementById("peopleNum").value < 0){
 			document.getElementById("peopleNum").value = 0;
 		}
+		
+		if(document.getElementById("peopleNum").value < selectCount){
+			alert("현재 선택한 좌석보다 인원이 적습니다.")
+			document.getElementById("kidsvalue").value = parseInt(document.getElementById("kidsvalue").value) + 1;
+			document.getElementById("peopleNum").value = parseInt(document.getElementById("peopleNum").value) + 1;
+		}
+		
+		if(document.getElementById("peopleNum").value <= 0){
+			$(".blackBox").css("display","block");
+		}
+		
 	}
 	// 아이 수 더하기
 	function kidsPlus(){
 		document.getElementById("kidsvalue").value = parseInt(document.getElementById("kidsvalue").value) + 1;
 		document.getElementById("peopleNum").value = parseInt(document.getElementById("peopleNum").value) + 1;
+		
+		if(document.getElementById("peopleNum").value >= 1){
+			$(".blackBox").css("display","none");
+		}
 	}	
 	
 	// 선택한 사람 수 만큼 좌석선택 제한								
 	var count = 0;		// 현재 선택된 좌석 수 저장하는 변수 count
 	function CountChecked(field){ 					
 		var maxCount = document.getElementById("peopleNum").value; // 사용자가 선택한 총 인원수 maxCount
+		
 		
 		if (field.checked) {						
 			count += 1;		
@@ -103,10 +145,13 @@ ArrayList<ReserveBean> seatList = (ArrayList<ReserveBean>)request.getAttribute("
 			field.checked = false;						
 			count -= 1;	
 		}
+		
+		
 	}
 	
 	// 예약된 좌석 선택 금지시키기
 	$(document).ready(function() {
+			
 		var seatList = new Array();
 		var disableList = new Array();
 		$("input[type=checkbox]").each(function(index, item){
@@ -136,7 +181,7 @@ ArrayList<ReserveBean> seatList = (ArrayList<ReserveBean>)request.getAttribute("
 	function peopleCheck(){
 		var maxCount = document.getElementById("peopleNum").value;
 		if(maxCount == 0){
-			alert("인원을 선택해주세요");
+			alert("인원을 먼저 선택해주세요");
 			return false;
 		}
 		
@@ -146,37 +191,42 @@ ArrayList<ReserveBean> seatList = (ArrayList<ReserveBean>)request.getAttribute("
 		}
 	}
 
+
 </script>
 
 <body>
 <!-- 헤더 -->
 <jsp:include page="../inc/top.jsp"/>
+<%-- <jsp:include page="../inc/sub_visual.jsp"/> --%>
 <div class="container">
 	<form action="PayForm.re?movienum=1" name="selectSeat" method="post" id="seatForm"><!-- 영화번호 전달 -->
 		<input type="hidden" name="moivenum" value="1"><!-- 영화번호 전달 -->
 		<div id="peopleBoard">
 			<input type="hidden" value="0" id="peopleNum" name="peopleNum"> <!-- 총 인원수(선택수 제한하는데 필요) -->
-			
+			<h2>인원/좌석 선택</h2>
 			<div class="adultNum">				
 				<h3>성인</h3>
 				<div class="numBox">
 					<button class="peopleIcon lbtn" type="button" onclick="adultMinus()">-</button>
-					<input type="text" name="adultNum" value="0" id="adultvalue">
+					<input type="text" name="adultNum" value="0" id="adultvalue" readonly>
 					<button class="peopleIcon rbtn" type="button" onclick="adultPlus()">+</button>
 				</div>		
-			</div>
+			</div><!-- .adultNum -->
 			
 			<div class="kidsNum">
 				<h3>청소년, 아동</h3>
 				<div class="numBox">
 					<button class="peopleIcon lbtn" type="button" onclick="kidsMinus()">-</button>
-					<input type="text" name="kidsNum" value="0" id="kidsvalue">
+					<input type="text" name="kidsNum" value="0" id="kidsvalue" readonly>
 					<button class="peopleIcon rbtn" type="button" onclick="kidsPlus()">+</button>
 				</div>		
-			</div>	
+			</div><!-- .kidsNum -->
+			
+			<p class="cautionMsg">관람인원을 먼저 선택하고, 좌석을 선택해주세요.</p>	
 		</div><!-- #peopleBoard -->
 		
 		<div id="seatBox">	
+			<div class="blackBox"></div>
 			<!-- 예약된좌석 input hidden으로 가져오기 -->
 			<div class="disableBox">
 				<%
@@ -186,7 +236,11 @@ ArrayList<ReserveBean> seatList = (ArrayList<ReserveBean>)request.getAttribute("
 						<%
 					}
 				%>
-			</div>
+			</div><!-- .disableBox -->
+			
+			
+			
+			<div class="screenBox">SCREEN</div><!-- .screenBox -->
 			
 			<section id="seatSec1">
 				<table>
@@ -298,25 +352,28 @@ ArrayList<ReserveBean> seatList = (ArrayList<ReserveBean>)request.getAttribute("
 					</tr>
 				</table>
 			</section>
-		</div>
-		<ul class="seatInfo">
-			<li>
-				<span></span>
-				<p>예약된 좌석</p>
-			</li>
-			<li>
-				<span></span>
-				<p>선택한 좌석</p>
-			</li>
-			<li>
-				<span></span>
-				<p>예약가능 좌석</p>
-			</li>
-		</ul>
-		<div class="btnBox">
-			<input type="reset" value="다시 선택하기" class="btn_cancel">
-			<input type="submit" value="결제하기" onclick="return peopleCheck()" class="btn_submit">
-		</div>
+			<ul class="seatInfo">
+				<li>
+					<span></span>
+					<p>예매 완료</p>
+				</li>
+				<li>
+					<span></span>
+					<p>선택 좌석</p>
+				</li>
+				<li>
+					<span></span>
+					<p>선택가능</p>
+				</li>
+			</ul><!-- .seatInfo -->
+			
+			<div class="btnBox">
+				<input type="reset" value="다시 선택하기" class="btn_cancel">
+				<input type="submit" value="결제하기" onclick="return peopleCheck()" class="btn_submit">
+			</div><!-- .btnBox -->
+		</div><!-- #seatBox -->
+		
+		
 	</form>
 </div><!-- .container -->
 

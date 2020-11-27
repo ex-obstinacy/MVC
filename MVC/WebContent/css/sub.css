@@ -1,29 +1,54 @@
-
-
-
-
-
-
 @charset "UTF-8";
 /* 서브페이지 */
 /* 사용할때 각 서브페이지명 주석으로 선언하기 ! */
 /* 공통적인 스타일은 common.css 에 작성 */
+div.sub_visual01{
+	width:100%;
+	height:250px;
+	background:url(../img/sub_visual01.jpg) no-repeat 0 center/100% auto;
+	margin-bottom:50px;
+	position:relative;
+	text-align:center;
+}
+div.sub_visual01:after{
+	content:"";
+	display:block;
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,0.5);
+	position:absolute;
+	top:0;
+	left:0;
+}
+div.sub_visual01 h2{color:#fff; font-size:22px; }
 
 /* 좌석선택 서브페이지 */
 form#seatForm{}
 
-#peopleBoard{background:#555;  padding:50px 30px; box-sizing:border-box; text-align:center;}
+#peopleBoard{background:#ddd; box-sizing:border-box; text-align:center;}
+#peopleBoard h2{padding:10px 0; background:#121212; color:#fff; font-size:20px; margin-bottom:30px;}
 #peopleBoard > div{display:inline-block; margin:0 40px; text-align:center;}
-#peopleBoard > div h3{margin-bottom:10px; font-size:18px;}
+#peopleBoard > div h3{margin-bottom:10px; font-size:16px;}
+#peopleBoard div.numBox{display:inline-block; background:#fff; vertical-align:middle;}
 #peopleBoard div.numBox:after{content:""; display:block; clear:both;}
-#peopleBoard div.numBox{display:inline-block;}
-#peopleBoard button{display:block; float:left; border:1px solid #ccc; background:white; font-size:20px; line-height:25px; padding:8px 10px;}
+#peopleBoard button{display:block; float:left; border:0; background:0; font-size:20px; line-height:25px; padding:8px 10px; }
 #peopleBoard button.lbtn{border-right:0;}
 #peopleBoard button.rbtn{border-left:0;}
-#peopleBoard input{display:block; float:left; width:50px; text-align:center; border:1px solid #ccc; border-left:0; border-right:0; font-size:18px; line-height:25px; padding:8px 0;}
+#peopleBoard input{display:block; float:left; width:50px; text-align:center; border:0; background:0; font-size:18px; line-height:25px; padding:8px 0;}
+#peopleBoard p.cautionMsg{padding:10px 0; background:#333; color:#fff; margin-top:30px;}
 
-#seatBox{text-align:center; padding:50px 0; }
+#seatBox{text-align:center; border:1px solid #ccc; position:relative; padding-top:50px; box-sizing:border-box;}
+#seatBox .blackBox{
+	display:block;
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,0.4);
+	position:absolute;
+	top:0px;
+	left:0;	
+}
 #seatBox:after{content:""; display:block; clear:both;}
+
 #seatBox > section{display:inline-block; margin:0 20px;}
 #seatBox > section label{}
 #seatBox > section input[type=checkbox] { display:none; }
@@ -39,18 +64,21 @@ form#seatForm{}
 	text-align:center;
 	box-sizing: border-box;
 }
-#seatBox > section input[type=checkbox]:checked + label { background-color:red }
+#seatBox > section input[type=checkbox]:checked + label { background-color:#FF243E }
 #seatBox > section input[type=checkbox]:disabled + label{background-color:black }
 
-.seatInfo{text-align:center;}
-.seatInfo li{display:inline-block; text-align:center;margin:0 15px;}
-.seatInfo li span{display: inline-block; width:30px; height:30px; }
-.seatInfo li:nth-child(1) span{background-color:black;}
-.seatInfo li:nth-child(2) span{background-color:red;}
-.seatInfo li:nth-child(3) span{background-color:#aaa;}
-.seatInfo li span p{}
+#seatBox div.screenBox{width:100%; background:#6e6e6e; color:#fff; margin-bottom:30px; font-size:18px; letter-spacing: 11px;}
 
-form#seatForm{} .btnBox{text-align:right;}
+.seatInfo{text-align:center; margin:30px 0;}
+.seatInfo li{display:inline-block; margin:0 15px;}
+.seatInfo li:after{content:""; display:block; clear:both;}
+.seatInfo li span{display:block; float:left; width:15px; height:15px; line-height:15px; margin-right:5px; border-radius:8px 0 0 0;}
+.seatInfo li:nth-child(1) span{background-color:black;}
+.seatInfo li:nth-child(2) span{background-color:#FF243E;}
+.seatInfo li:nth-child(3) span{background-color:#aaa;}
+.seatInfo li p{ float:left; font-size:14px; line-height:15px;}
+
+#seatBox .btnBox{text-align:right;}
 
 /* 예매결제페이지 */
 #moviePayBox{}
@@ -110,10 +138,16 @@ form#seatForm{} .btnBox{text-align:right;}
 #payForm div.selectPayment{}
 #payForm div.selectPayment ul{}
 #payForm div.selectPayment ul:after{content:""; display:block; clear:both;}
-#payForm div.selectPayment ul li{float:left; border:1px solid #ccc; border-radius:5px;text-align:center; margin-right:30px; }
+#payForm div.selectPayment ul li{float:left; border:1px solid #ccc; border-radius:5px;text-align:center; margin-right:30px; position:relative;}
 #payForm div.selectPayment ul li input{display:none;}
-#payForm div.selectPayment ul li input[type=checkbox] + label{width:100px; height:100px; cursor:pointer; padding-top:60px; box-sizing:border-box;}
-#payForm div.selectPayment ul li input[type=checkbox]:checked + label{background:skyblue}
+#payForm div.selectPayment ul li input[type=checkbox] + label{width:100px; height:100px; cursor:pointer; padding-top:65px; box-sizing:border-box; transition:all 0.2s; background-repeat:no-repeat; background-position:center 20px; }
+#payForm div.selectPayment ul li:nth-child(1) input[type=checkbox] + label{background-image:url(../img/sub/reservation/card.png); background-size: 35px auto;}
+#payForm div.selectPayment ul li:nth-child(2) input[type=checkbox] + label{background-image:url(../img/sub/reservation/coins.png); background-size: 35px auto;}
+#payForm div.selectPayment ul li:nth-child(3) input[type=checkbox] + label{background-image:url(../img/sub/reservation/mobile.png); background-size: 35px auto;}
+#payForm div.selectPayment ul li input[type=checkbox]:checked + label{background-color:#FF243E; color:#fff;}
+#payForm div.selectPayment ul li:nth-child(1) input[type=checkbox]:checked + label{background-image:url(../img/sub/reservation/card-hover.png);}
+#payForm div.selectPayment ul li:nth-child(2) input[type=checkbox]:checked + label{background-image:url(../img/sub/reservation/coins-hover.png);}
+#payForm div.selectPayment ul li:nth-child(3) input[type=checkbox]:checked + label{background-image:url(../img/sub/reservation/mobile-hover.png);}
 
 #payForm .rightBox table{width:100%; border:1px solid #ccc; }
 #payForm .rightBox table th{background:#121212; color:#fff; font-size:18px; font-weight:500; text-align:center; padding:15px 0; }
@@ -127,14 +161,4 @@ form#seatForm{} .btnBox{text-align:right;}
 #payForm .rightBox table tr:last-child td input{width:100%; border:0; background:#FF243E; color:white; padding:15px 0; font-size:16px; }
 
 
-/* orderForm 서브페이지 */
 
-#orderForm div.selectPayment{}
-#orderForm div.selectPayment ul{}
-#orderForm div.selectPayment ul:after{content:""; display:block; clear:both;}
-#orderForm div.selectPayment ul li{float:left; border:1px solid #ccc; border-radius:5px; text-align:center; margin-right:30px; }
-#orderForm div.selectPayment ul li input{display:none;}
-#orderForm div.selectPayment ul li input[type=checkbox] + label{width:100px; height:70px; cursor:pointer; padding-top:30px; box-sizing:border-box;}
-#orderForm div.selectPayment ul li input[type=checkbox]:checked + label{font-weight:bold;  background:red; color:white; transition:1.2s;}
-
-#orderForm .pd_top {padding-top: 40px;}

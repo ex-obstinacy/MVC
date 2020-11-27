@@ -14,6 +14,7 @@ MemberBean coupon = (MemberBean)request.getAttribute("coupon");
 int coupon1000 = coupon.getCoupon_1000();
 int coupon2000 = coupon.getCoupon_2000();
 int coupon3000 = coupon.getCoupon_3000();
+int membership = coupon.getMembership();
 
 if(adultnum == 0){
 	%>
@@ -60,7 +61,7 @@ if(adultnum == 0){
 <script src="js/jquery-3.5.1.js"></script>
 <script type="text/javascript">	
 	
-	window.onload = function(){		
+	window.onload = function(){	
 		var originPrice = document.getElementById("originPrice");
 		var payPrice = document.getElementById("payPrice");
 		originPrice.value = <%=adultnum*10000%> + <%=kidsnum*6000%> ;
@@ -101,13 +102,51 @@ if(adultnum == 0){
 	}
 	
 	function NoMultiChk(chk){ // 결제수단 중복체크 불가
-	    var obj = document.getElementsByName("selectPay");
+	    var obj = document.getElementsByName("payMethod");
 	    for(var i=0; i < obj.length; i++){
 	        if(obj[i] != chk){
 	            obj[i].checked = false;
 	        }
 	    }
-	}	
+	}
+	
+	// 결제 API (아임포트) 구현
+	IMP.init("imp56648633"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.	
+	
+	function requestPay() {
+				var payMethod=$("input:checkbox[name='payMethod']:checked").val();
+				
+		      // IMP.request_pay(param, callback) 호출
+		      IMP.request_pay({ // param
+		          pg: "html5_inicis",
+		          pay_method:payMethod,
+		          merchant_uid: "ORD20180131-0000011", // 상품 번호
+		          name: <%=movie.getCinema_name()%>, // 상품명
+		          amount: payPrice.value, // 상품가격
+		          buyer_email: "gildong@gmail.com",
+		          buyer_name: "홍길동",
+		          buyer_tel: "010-4242-4242",
+		          buyer_addr: "서울특별시 강남구 신사동",
+		          buyer_postcode: "01181"
+		      }, function (rsp) { // callback
+		    	  if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+		    	      // jQuery로 HTTP 요청
+		    	      jQuery.ajax({
+		    	          url: "https://www.myservice.com/payments/complete", // 가맹점 서버
+		    	          method: "POST",
+		    	          headers: { "Content-Type": "application/json" },
+		    	          data: {
+		    	              imp_uid: rsp.imp_uid,
+		    	              merchant_uid: rsp.merchant_uid
+		    	          }
+		    	      }).done(function (data) {
+		    	        // 가맹점 서버 결제 API 성공시 로직
+		    	      })
+		    	    } else {
+		    	      alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
+		    	    }
+		      });
+	}
 	 
 	$(document).ready(function(){
 		
@@ -186,26 +225,35 @@ if(adultnum == 0){
 					</ul>
 					<div class="tab-box">
 						<div id="tab-1" class="tab-content">
+							<dl >
+								<dt>보유한 관람권</dt>
+								<select id="movieTicket">
+									<option value="">관람권 갯수 선택</option>
+									<%
+										for(int i = 0; i < membership; i++){
+											%>
+												<option><%=i%></option>
+											<%
+										}
+									%>
+								</select>
+							</dl>
+						</div>
+						<div id="tab-2" class="tab-content">							
 							<dl>
 								<dt>보유한 할인권</dt>
 								<dd>
 									<select id="coupon_select" onchange="changeCoupon(this.value)">
-										<option value="" >쿠폰 선택</option>
-										<option value="coupon_1000" class="c1000">1000원 할인 쿠폰(<%=coupon1000%>개)</option>
-										<option value="coupon_2000" class="c2000">2000원 할인 쿠폰(<%=coupon2000 %>개)</option>
-										<option value="coupon_3000" class="c3000">3000원 할인 쿠폰(<%=coupon3000 %>개)</option>
+										<option value="" >할인권 선택</option>
+										<option value="coupon_1000" class="c1000">1000원 할인권(<%=coupon1000%>개)</option>
+										<option value="coupon_2000" class="c2000">2000원 할인권(<%=coupon2000 %>개)</option>
+										<option value="coupon_3000" class="c3000">3000원 할인권(<%=coupon3000 %>개)</option>
 									</select>
 								</dd>
 							</dl>
 							<dl>
 								<dt>적용된 할인권</dt>
 								<dd><input type="text" id="useCoupon" name="" value="" readonly><!-- 사용되는 쿠폰 --></dd>
-							</dl>
-						</div>
-						<div id="tab-2" class="tab-content">
-							<dl >
-								<dt>보유한 관람권</dt>
-								
 							</dl>						
 						</div>
 						
@@ -218,16 +266,16 @@ if(adultnum == 0){
 					<h3>결제수단</h3>
 					<ul>
 						<li>
-							<input type="checkbox" name="selectPay" value="creditCard" id="creditCard" onclick="NoMultiChk(this)">
-							<label for="creditCard"><span>신용카드</span></label>
+							<input type="checkbox" name="payMethod" value="card" id="card" onclick="NoMultiChk(this)">
+							<label for="card"><span>신용카드</span></label>
 						</li>
 						<li>
-							<input type="checkbox" name="selectPay" value="simplePay" id="simplePay" onclick="NoMultiChk(this)">
-							<label for="simplePay"><span>계좌이체</span></label>
+							<input type="checkbox" name="payMethod" value="trans" id="trans" onclick="NoMultiChk(this)">
+							<label for="trans"><span>계좌이체</span></label>
 						</li>
 						<li>
-							<input type="checkbox" name="selectPay" value="mobile" id="mobile" onclick="NoMultiChk(this)">
-							<label for="mobile"><span>휴대폰</span></label>
+							<input type="checkbox" name="payMethod" value="phone" id="phone" onclick="NoMultiChk(this)">
+							<label for="phone"><span>휴대폰</span></label>
 						</li>
 					</ul>
 				</div>
@@ -270,7 +318,7 @@ if(adultnum == 0){
 					</tr>
 					<tr>
 						<td>
-							<input type="button" value="결제하기" id="payButton">
+							<input type="button" value="결제하기" id="payButton" onclick="requestPay()">
 						</td>
 					</tr>
 				</table>
