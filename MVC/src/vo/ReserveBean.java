@@ -14,7 +14,14 @@ public class ReserveBean {
 	private String member_id;
 	private int adultnum;
 	private int kidstnum;
+	private int membership;
 	
+	public int getMembership() {
+		return membership;
+	}
+	public void setMembership(int membership) {
+		this.membership = membership;
+	}
 	public int getMovienum() {
 		return movienum;
 	}

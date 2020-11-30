@@ -68,38 +68,61 @@ if(adultnum == 0){
 		payPrice.value = originPrice.value;
 	}
 	
-	function changeCoupon(coupon){
+	function changeTicket(ticket){ // 관람권 사용
+		var salePrice = document.getElementById("salePrice");
+		var payPrice = document.getElementById("payPrice");
+		var originPrice = document.getElementById("originPrice");
+		
+		if(ticket >= 1){
+			var ticketSale = ticket * 10000;
+			salePrice.value = "-"+ticketSale;
+			
+			if(-salePrice.value >= originPrice.value){
+				salePrice.value = -document.getElementById("originPrice").value;
+			}
+		}		
+		
+		payPrice.value = Number(originPrice.value) + Number(salePrice.value);
+		if(payPrice.value <= 0){
+			payPrice.value = 0;
+		}
+	}
+	
+	var isUsedCoupon = false;
+	
+	function changeCoupon(coupon){ // 할인권 사용
 		var couponNum = document.getElementById(coupon).value;
 		var useCoupon = document.getElementById("useCoupon");
 		var originPrice = document.getElementById("originPrice");
 		var salePrice = document.getElementById("salePrice");
 		var payPrice = document.getElementById("payPrice");
-				
+		
 		document.getElementById("useCoupon").name = coupon;
+		
 		if(coupon == "coupon_1000"){
 			useCoupon.value = "1000원 할인 쿠폰";
-			salePrice.value = "-" + 1000;
+			salePrice.value = -1000;
 		} else if(coupon == "coupon_2000"){
 			useCoupon.value = "2000원 할인 쿠폰";
-			salePrice.value = "-" + 2000;
+			salePrice.value = -2000;
 		} else if(coupon == "coupon_3000"){
 			useCoupon.value = "3000원 할인 쿠폰";
-			salePrice.value = "-" + 3000;
+			salePrice.value = -3000;
 		}
 		
 		payPrice.value = Number(originPrice.value) + Number(salePrice.value);
 		
 		if(couponNum <= 0){
 			alert("해당 쿠폰이 없습니다");
-			$("option:eq(0)").prop("selected", true);
+			$("select#coupon_select option:eq(0)").prop("selected", true);
 			document.getElementById("useCoupon").value = null;
-			salePrice.value = "-0";
-			payPrice.value = originPrice.value;
+			$('#salePrice').val("-0");
+			payPrice.value = Number(originPrice.value);
 		}
 		
-		
-		
 	}
+	
+	
 	
 	function NoMultiChk(chk){ // 결제수단 중복체크 불가
 	    var obj = document.getElementsByName("payMethod");
@@ -115,13 +138,19 @@ if(adultnum == 0){
 	
 	function requestPay() {
 				var payMethod=$("input:checkbox[name='payMethod']:checked").val();
+				var movieName=$('.movieSubject').text();
+
+				if(payMethod == null){
+					alert("결제수단을 선택해주세요.");
+					return false;
+				}
 				
 		      // IMP.request_pay(param, callback) 호출
 		      IMP.request_pay({ // param
 		          pg: "html5_inicis",
 		          pay_method:payMethod,
 		          merchant_uid: "ORD20180131-0000011", // 상품 번호
-		          name: <%=movie.getCinema_name()%>, // 상품명
+		          name: movieName, // 상품명
 		          amount: payPrice.value, // 상품가격
 		          buyer_email: "gildong@gmail.com",
 		          buyer_name: "홍길동",
@@ -158,6 +187,12 @@ if(adultnum == 0){
 	
 			$(this).addClass('current');
 			$("#"+tab_id).addClass('current');
+			
+			$("select#ticket_select option:eq(0)").prop("selected", true);
+			$("select#coupon_select option:eq(0)").prop("selected", true);			
+			$("#useCoupon").val(null);
+			$('#salePrice').val("-0");
+			payPrice.value = Number(originPrice.value);
 		})
 	
 	});
@@ -227,16 +262,22 @@ if(adultnum == 0){
 						<div id="tab-1" class="tab-content">
 							<dl >
 								<dt>보유한 관람권</dt>
-								<select id="movieTicket">
-									<option value="">관람권 갯수 선택</option>
-									<%
-										for(int i = 0; i < membership; i++){
-											%>
-												<option><%=i%></option>
-											<%
-										}
-									%>
-								</select>
+								<dd>
+									<select id="ticket_select" onchange="changeTicket(this.value)">
+										<option value="">관람권 갯수 선택</option>
+										<%
+											for(int i = 1; i <= membership; i++){
+												%>
+													<option value="<%=i%>"><%=i%></option>
+												<%
+											}
+										%>
+									</select>
+								</dd>
+							</dl>
+							<dl>
+								<dt>적용된 관람권</dt>
+								<dd><input type="text" name="useTicket" value=""></dd>
 							</dl>
 						</div>
 						<div id="tab-2" class="tab-content">							

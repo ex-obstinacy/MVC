@@ -126,7 +126,7 @@ public class ReserveDAO {
 		ResultSet rs = null;
 		
 		try {
-			String sql = "select coupon_1000,coupon_2000,coupon_3000 from member where id=?";
+			String sql = "select coupon_1000,coupon_2000,coupon_3000,membership from member where id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "kim"); // 임시확인용
 //			pstmt.setString(1, member_id); // 원래코드
@@ -135,6 +135,7 @@ public class ReserveDAO {
 				coupon.setCoupon_1000(rs.getInt("coupon_1000"));
 				coupon.setCoupon_2000(rs.getInt("coupon_2000"));
 				coupon.setCoupon_3000(rs.getInt("coupon_3000"));
+				coupon.setMembership(rs.getInt("membership"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
