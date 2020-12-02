@@ -139,8 +139,8 @@
 			<input type="radio" name="agree" value="agree" id="yes" required="required">동의합니다.
 			<input type="radio" name="agree" value="disagree" id="no">동의하지 않습니다.<br>
 			<div id="buttons">
-				<input type="submit" value="다음" class="genric-btn success radius">
-				<input type="button" value="뒤로" class="genric-btn danger radius" onclick="history.back()">
+				<input type="submit" value="다음" class="genric-btn primary circle">
+				<input type="button" value="뒤로" class="genric-btn success circle" onclick="history.back()">
 			</div>
 		</form>
     </section>

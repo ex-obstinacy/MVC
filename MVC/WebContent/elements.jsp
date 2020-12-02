@@ -123,11 +123,11 @@
 				<a href="#" class="genric-btn link-border radius">Link</a>
 				<a href="#" class="genric-btn disable radius">Disable</a>
 			</div>
-			<div class="button-group-area mt-40">
-				<a href="#" class="genric-btn default circle">Default</a>
-				<a href="#" class="genric-btn primary circle">Primary</a>
-				<a href="#" class="genric-btn success circle">Success</a>
-				<a href="#" class="genric-btn info circle">Info</a>
+			<div class="button-group-area mt-40"> <!-- 사용할 버튼 -->
+				<a href="#" class="genric-btn default circle">Default</a> 
+				<a href="#" class="genric-btn primary circle">Primary</a> <!-- 확인 -->
+				<a href="#" class="genric-btn success circle">Success</a> <!-- 취소 -->
+				<a href="#" class="genric-btn info circle">Info</a> <!-- 그외 -->
 				<a href="#" class="genric-btn warning circle">Warning</a>
 				<a href="#" class="genric-btn danger circle">Danger</a>
 				<a href="#" class="genric-btn link circle">Link</a>
