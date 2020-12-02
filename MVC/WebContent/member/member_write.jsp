@@ -4,6 +4,7 @@
 <html lang="zxx">
 
 <head>
+	
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,6 +27,9 @@
     <link rel="stylesheet" href="css/slick.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
+    
+    <!-- member CSS -->
+    <link rel="stylesheet" href="css/member.css">
     
     <!-- 우편번호 검색   -->
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -269,28 +273,66 @@
 	    <form action="MemberWritePro.me" id="join" method="post" name="fr" class="container" onsubmit="return check()">
 			<fieldset>
 				<legend>필수 항목</legend>
-				<label>아이디</label> <input type="text" name="id" class="id" id="myId" required="required" placeholder="6~10자 영문과 숫자 조합" onkeyup="checkId(this)"><span id="checkIdResult"></span><br>
+				<table>
+					<tr>
+						<td class=td_size>아이디</td>
+						<td><input type="text" name="id" class="id" id="myId" required="required" placeholder="6~10자 영문과 숫자 조합" onkeyup="checkId(this)"><span id="checkIdResult"></span></td>
 <!-- 				<input type="button" value="ID확인" class="genric-btn info circle" id="chkId"> -->
-				<label>비밀번호</label> <input type="password" name="pass" id="pass" required="required" placeholder="8~12자 영문,숫자,특수문자" onkeyup="checkPasswd(this)"><span id="checkPasswdResult"></span><br>
-				<label>비밀번호 재확인</label> <input type="password" name="rePass" id="rePass" required="required" onkeyup="retryPasswd(this)"><span id="retryPasswdResult"></span><br><br>
-				<label>이름</label> <input type="text" name="name" id="name" required="required"><br>
-				<label>전화번호</label> <input type="text" name="phone" required="required"><br>
-				<label>이메일</label> <input type="email" name="email" id="email" required="required"><br>
-				<label>이메일 재확인</label> <input type="email" name="reEmail" id="reEmail" required="required" onkeyup="retryEmail(this)"><span id="retryEmailResult"></span><br>
-				<label>성별</label> <input type="radio" name="gender" value="male" id="male" required="required">남 <input type="radio" name="gender" value="female" id="female">여<br>
-				<label>생년월일</label> <input type="date" name="birthday" id="birthday" required="required" placeholder="2000-12-20"><br>
+					</tr>
+					<tr>
+						<td>비밀번호</td>
+						<td><input type="password" name="pass" id="pass" required="required" placeholder="8~12자 영문,숫자,특수문자" onkeyup="checkPasswd(this)"><span id="checkPasswdResult"></span></td>
+					</tr>
+					<tr>
+						<td>비밀번호 재확인</td>
+						<td><input type="password" name="rePass" id="rePass" required="required" onkeyup="retryPasswd(this)"><span id="retryPasswdResult"></span></td>
+					</tr>
+					<tr>
+						<td>이름</td>
+						<td><input type="text" name="name" id="name" required="required"></td>
+					</tr>
+					<tr>
+						<td>전화번호</td>
+						<td><input type="text" name="phone" required="required"></td>
+					</tr>
+					<tr>
+						<td>이메일</td>
+						<td><input type="email" name="email" id="email" required="required"></td>
+					</tr>
+					<tr>
+						<td>이메일 재확인</td>
+						<td><input type="email" name="reEmail" id="reEmail" required="required" onkeyup="retryEmail(this)"><span id="retryEmailResult"></span></td>
+					</tr>
+					<tr>
+						<td>성별</td>
+						<td><input type="radio" name="gender" value="male" id="male" required="required">남 <input type="radio" name="gender" value="female" id="female">여</td>
+					</tr>
+					<tr>
+						<td>생년월일</td>
+						<td><input type="date" name="birthday" id="birthday" required="required" placeholder="2000-12-20"></td>
+					</tr>
+				</table>
 			</fieldset>
 	
 			<fieldset>
 				<legend>선택 항목</legend>
-				<label>주소</label> <input type="text" name="postcode" id="postcode" class="id" placeholder="우편번호"> <input type="button" value="우편번호검색" class="genric-btn info circle" onclick="execPostCode()"><br>
-				<label></label> <input type="text" name="address" id="address" placeholder="주소" size="46"><br>
-				<label></label> <input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소"> <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목"><br>
+				<table>
+					<tr>
+						<td rowspan="3" class=td_size>주소</td>
+						<td><input type="text" name="postcode" id="postcode" class="id" placeholder="우편번호"> <input type="button" value="우편번호검색" class="genric-btn info circle" onclick="execPostCode()"></td>
+					</tr>
+					<tr>
+						<td><input type="text" name="address" id="address" placeholder="주소" size="46"></td>
+					</tr>
+					<tr>
+						<td><input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소"> <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목"></td>
+					</tr>
+				</table>
 			</fieldset>
 			<div class="clear"></div>
 			<div id="buttons">
 				<input type="submit" value="가입하기" class="genric-btn primary circle">
-				<input type="reset" value="취소" class="genric-btn primary circle">
+				<input type="reset" value="취소" class="genric-btn success circle">
 			</div>
 		</form>
     </section>

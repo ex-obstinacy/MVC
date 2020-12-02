@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import action.Action;
+import action.MemberInfoAction;
 import action.MemberLoginProAction;
 import action.MemberMainAction;
 import action.MemberWriteProAction;
@@ -98,6 +99,16 @@ public class MemberFrontController extends HttpServlet {
 				
 			}
 			
+		} else if (command.equals("/MemberInfo.me")) { // MY정보조회 페이지
+			action = new MemberInfoAction();
+			
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
 		}
 		
 		// ----------------------------------------------------------------------------------------------

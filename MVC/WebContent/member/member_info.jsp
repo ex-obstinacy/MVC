@@ -33,6 +33,8 @@
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
     
+    <!-- member CSS -->
+    <link rel="stylesheet" href="css/member.css">
 	
 </head>
 
@@ -76,7 +78,7 @@
 									<li><a href="">장바구니</a></li>
 									<li><a href="">리뷰내역</a></li>
 									<li><a href="">1:1문의</a></li>
-									<li><a href="MemberInfo.me">My정보</a></li>
+									<li><a href="">My정보</a></li>
 								</ul>
 							</nav>
                         </div>
@@ -85,9 +87,63 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="login_part_form">
                         <div class="login_part_form_iner">
-                            <h3><%=id %> 님<br>
-                            반갑습니다! Welcome Back!</h3>
-                            
+						    <form action="MemberWritePro.me" id="join" method="post" name="fr" class="container" onsubmit="return check()">
+								<table>
+									<tr>
+										<td class=td_size>아이디</td>
+										<td><input type="text" name="id" class="id" id="myId" required="required"></td>
+									</tr>
+									<tr>
+										<td>비밀번호</td>
+										<td><input type="password" name="pass" id="pass" required="required" placeholder="8~12자 영문,숫자,특수문자" onkeyup="checkPasswd(this)"><span id="checkPasswdResult"></span></td>
+									</tr>
+									<tr>
+										<td>비밀번호 재확인</td>
+										<td><input type="password" name="rePass" id="rePass" required="required" onkeyup="retryPasswd(this)"><span id="retryPasswdResult"></span></td>
+									</tr>
+									<tr>
+										<td>이름</td>
+										<td><input type="text" name="name" id="name" required="required"></td>
+									</tr>
+									<tr>
+										<td>전화번호</td>
+										<td><input type="text" name="phone" required="required"></td>
+									</tr>
+									<tr>
+										<td>이메일</td>
+										<td><input type="email" name="email" id="email" required="required"></td>
+									</tr>
+									<tr>
+										<td>이메일 재확인</td>
+										<td><input type="email" name="reEmail" id="reEmail" required="required" onkeyup="retryEmail(this)"><span id="retryEmailResult"></span></td>
+									</tr>
+									<tr>
+										<td>성별</td>
+										<td><input type="radio" name="gender" value="male" id="male" required="required">남 <input type="radio" name="gender" value="female" id="female">여</td>
+									</tr>
+									<tr>
+										<td>생년월일</td>
+										<td><input type="date" name="birthday" id="birthday" required="required" placeholder="2000-12-20"></td>
+									</tr>
+								</table>
+								<table>
+									<tr>
+										<td rowspan="3" class=td_size>주소</td>
+										<td><input type="text" name="postcode" id="postcode" class="id" placeholder="우편번호"> <input type="button" value="우편번호검색" class="genric-btn info circle" onclick="execPostCode()"></td>
+									</tr>
+									<tr>
+										<td><input type="text" name="address" id="address" placeholder="주소" size="46"></td>
+									</tr>
+									<tr>
+										<td><input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소"> <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목"></td>
+									</tr>
+								</table>
+								<div class="clear"></div>
+								<div id="buttons">
+									<input type="submit" value="가입하기" class="genric-btn primary circle">
+									<input type="reset" value="취소" class="genric-btn success circle">
+								</div>
+							</form>                            
                         </div>
                     </div>
                 </div>
