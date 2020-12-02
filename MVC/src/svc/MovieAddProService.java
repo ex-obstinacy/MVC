@@ -1,18 +1,18 @@
 package svc;
 
+import vo.ReserveBean;
+
 import static db.JdbcUtil.*;
 
 import java.sql.Connection;
 
 import dao.ReserveDAO;
-import vo.ReserveBean;
 
-public class CinemaAddProService {
+public class MovieAddProService {
 
-	// 영화관 등록 요청 처리를 위한 registArticle() 메서드
-	public boolean registArticle(ReserveBean cinema) {
+	public boolean addMovie(ReserveBean movie) {
 		
-		boolean isCinemaAddSuccess = false;
+		boolean isMovieAddSuccess = false;
 		
 		Connection con = getConnection();
 		
@@ -20,19 +20,21 @@ public class CinemaAddProService {
 		
 		reserveDAO.setConnection(con);
 		
-		int addCount = reserveDAO.insertCinema(cinema);
+		// 영화 등록 DAO
+		int addCount = reserveDAO.insertMovie(movie);
 		
 		if(addCount > 0) {
-			isCinemaAddSuccess = true;
+			// 영화 등록 성공
+			isMovieAddSuccess = true;
 			commit(con);
 		} else {
+			// 영화 등록 실패
 			rollback(con);
 		}
 		
 		close(con);
 		
-		return isCinemaAddSuccess;
-		
+		return isMovieAddSuccess;
 	}
-	
+
 }

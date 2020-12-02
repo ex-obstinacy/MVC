@@ -31,37 +31,6 @@ public class ReserveDAO {
 		this.con = con;
 	}
 	
-	// 영화관 등록 메서드
-	public int addCinema(ReserveBean reserveBean) {
-		
-		System.out.println("ReserveDAO - insertCinema()");
-		
-		int addCount = 0;
-		PreparedStatement pstmt = null;
-		
-		try {
-			
-			String sql = "insert into cinema(name, local) values(?, ?)";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, reserveBean.getCinema_name());
-			pstmt.setString(2, reserveBean.getLocal());
-			addCount = pstmt.executeUpdate();
-			
-		} catch (Exception e) {
-			
-			System.out.println("insertCinema() 오류! - " + e.getMessage());
-			e.printStackTrace();
-			
-		} finally {
-			
-			close(pstmt);
-			
-		}
-		
-		return addCount;
-		
-	}
-
 	// 예약된 좌석 가져오는 메서드
 	public ArrayList<ReserveBean> getSeatList(int movienum) {
 		ArrayList<ReserveBean> seatList = null;
@@ -143,8 +112,130 @@ public class ReserveDAO {
 		
 		return coupon;
 	}
-
 	
+
+	// 관리자 페이지용
+		public int insertCinema(ReserveBean cinema) {
+			
+			System.out.println("ReserveDAO - insertCinema()");
+			
+			int addCount = 0;
+			PreparedStatement pstmt = null;
+			
+			try {
+				
+				String sql = "insert into cinema values(?, ?)";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, cinema.getCinema_name());
+				pstmt.setString(2, cinema.getLocal());
+				addCount = pstmt.executeUpdate();
+				
+			} catch (Exception e) {
+				
+				System.out.println("insertCinema() 오류! - " + e.getMessage());
+				e.printStackTrace();
+				
+			} finally {
+				
+				close(pstmt);
+				
+			}
+			
+			return addCount;
+			
+		}
+
+		public int insertMovie(ReserveBean movie) {
+			
+			int num = 1;
+			int addCount = 0;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				
+				String sql = "select max(num) from admin_reservation";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					num = rs.getInt("max(num)") + 1;
+				}
+				
+				sql = "insert into admin_reservation values(?, ?, ?, ?, ?)";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				pstmt.setString(2, movie.getMovie_subject());
+				pstmt.setString(3, movie.getCinema_name());
+				pstmt.setString(4, movie.getShowdate());
+				pstmt.setString(5, movie.getShowtime());
+				addCount = pstmt.executeUpdate();
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+				
+			} finally {
+				
+				close(pstmt);
+				close(rs);
+				
+			}
+			
+			return addCount;
+			
+		}
+
+		public int deleteCinema(String cinema_name) {
+			
+			int deleteCount = 0;
+			PreparedStatement pstmt = null;
+			
+			try {
+				
+				String sql = "delete from cinema where name=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, cinema_name);
+				deleteCount = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+				
+			} finally {
+				
+				close(pstmt);
+				
+			}
+			
+			return deleteCount;
+			
+		}
+
+		public int deleteMovie(int movie_num) {
+			
+			int deleteCount = 0;
+			PreparedStatement pstmt = null;
+			
+			try {
+				
+				String sql = "delete from admin_reservation where num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, movie_num);
+				deleteCount = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+				
+			} finally {
+				
+				close(pstmt);
+				
+			}
+			
+			return deleteCount;
+			
+		}
 	
 	
 	

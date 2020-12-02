@@ -5,38 +5,37 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.CinemaAddProService;
+import svc.MovieDeleteProService;
 import vo.ActionForward;
-import vo.ReserveBean;
 
-public class CinemaAddProAction implements Action {
+public class MovieDeleteProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ActionForward forward = null;
 		
-		ReserveBean cinema = new ReserveBean();
-		cinema.setCinema_name(request.getParameter("name"));
-		cinema.setLocal(request.getParameter("local"));
+		int movie_num = Integer.parseInt(request.getParameter("movie"));
 		
-		CinemaAddProService cinemaAddProService = new CinemaAddProService();
-		boolean isCinemaAddSuccess = cinemaAddProService.registArticle(cinema);
-		
-		if(isCinemaAddSuccess) {
+		MovieDeleteProService movieDeleteProService = new MovieDeleteProService();
+		boolean isDeleteSuccess = movieDeleteProService.removeMovie(movie_num);
+		if(isDeleteSuccess) {
+			// 삭제성공
 			forward = new ActionForward();
-			forward.setPath("CinemaAddForm.re");
+			forward.setPath("MovieAddForm.re");
 			forward.setRedirect(true);
 		} else {
-			response.setContentType("text/html; charset=UTF-8");
+			// 삭제실패
+			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('영화관 등록 실패!')");
+			out.println("alert('삭제 실패!')");
 			out.println("history.back()");
 			out.println("</script>");
 		}
 		
 		return forward;
+	
 	}
 
 }

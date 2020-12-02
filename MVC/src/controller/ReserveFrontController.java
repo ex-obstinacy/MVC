@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.CinemaAddProAction;
+import action.CinemaDeleteProAction;
+import action.MovieAddProAction;
+import action.MovieDeleteProAction;
 import action.PayFormAction;
 import action.SelectSeatAction;
 import vo.ActionForward;
@@ -30,26 +33,55 @@ public class ReserveFrontController extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 		
-		if (command.equals("/CinemaAddForm.re")) {
-			forward = new ActionForward();
-			forward.setPath("/reservation/cinemaInsertForm.jsp");
-//			forward.setRedirect(false);
-		} else if (command.equals("/CinemaAddPro.re")) {
-			action = new CinemaAddProAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if (command.equals("/SelectSeat.re")) { // 좌석 선택 페이지
+		if (command.equals("/SelectSeat.re")) { // 좌석 선택 페이지
 			action = new SelectSeatAction() ;
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/PayForm.re")) { // 결제 폼 페이지
+		} else if (command.equals("/PayForm.re")) { // 결제 폼 페이지
 			action = new PayFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/CinemaAddForm.re")) { // 관리자 - 영화관 등록 폼 페이지
+			forward = new ActionForward();
+			forward.setPath("/reservation/cinemaAddForm.jsp");
+//			forward.setRedirect(false);
+		} else if (command.equals("/CinemaAddPro.re")) { // 관리자 - 영화관 등록 Pro
+			action = new CinemaAddProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/MovieAddForm.re")) { // 관리자 - 영화 등록(예매) 폼 페이지
+			forward = new ActionForward();
+			forward.setPath("/reservation/movieAddForm.jsp");
+//			forward.setRedirect(false);
+		} else if (command.equals("/MovieAddPro.re")) { // 관리자 - 영화 등록 Pro
+			action = new MovieAddProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/ReserveMain.re")) { // 사용자 - 예매 폼 페이지
+			forward = new ActionForward();
+			forward.setPath("/reservation/reserveMain.jsp");
+//			forward.setRedirect(false);
+		} else if (command.equals("/CinemaDeletePro.re")) { // 관리자 - 영화관 삭제 Pro
+			action = new CinemaDeleteProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/MovieDeletePro.re")) { // 관리자 - 영화(예매) 삭제 Pro
+			action = new MovieDeleteProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

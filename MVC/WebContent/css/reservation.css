@@ -9,8 +9,9 @@ tr:first-of-type{
 	background-color: #a0a0a0;
 }
 #tdsubject{
-	padding-left: 50px;
 	width: 250px;
+	height: 190px;
+	overflow-y: auto;
 }
 #tdlocal, #tdcinema{
 	width: 130px;
@@ -18,13 +19,13 @@ tr:first-of-type{
 	overflow-y: auto;
 }
 #tddate{
-	width: 200px;
-	height: 70px;
+	width: 250px;
+	height: 80px;
 	white-space: nowrap;
 	overflow: auto;
 }
 #tdtime{
-	padding: 50px 0 0 10px;
+	padding: 0 0 0 10px;
 	height: 70px;
 }
 
@@ -32,6 +33,17 @@ tr:first-of-type{
 input:checked+label{
 	background: #e6c0bf;
 	border-color: #e6c0bf;
+}
+
+#tdsubject label{
+	border:1px solid #e2e2e2;
+	display: inline-block;
+	padding: 10px;
+	width: 228px;
+	text-align: center;
+}
+#tdsubject input{
+	display: none;
 }
 
 #tdlocal label{
@@ -67,7 +79,21 @@ input:checked+label{
 	display: none;
 }
 
-/* 지역별 클래스 current로 제어 */
+#tddate label {
+	white-space: pre;
+}
+
+#tdtime label{
+	border:1px solid #e2e2e2;
+	display: inline-block;
+	padding: 10px;
+	width: 100px;
+	text-align: center;
+}
+#tdtime input{
+	display: none;
+}
+
 #tdcinema .cdiv{
 	display: none;
 }
@@ -75,6 +101,19 @@ input:checked+label{
 	display: inherit;
 }
 
-#tddate label {
-	white-space: pre;
+#tdtime .tdiv{
+	display: none;
+}
+#tdtime .show{
+	display: inherit;
+}
+
+#tsubject, #ttime{
+	width: 250px;
+	text-align: center;
+}
+
+#ttime{
+	padding: 20px 0 0 10px;
+	height: 70px;
 }
