@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.MemberLoginProAction;
+import action.MemberMainAction;
 import action.MemberWriteProAction;
 import vo.ActionForward;
 
@@ -77,6 +78,17 @@ public class MemberFrontController extends HttpServlet {
 			
 		} else if (command.equals("/MemberLoginPro.me")) { // 로그인 확인
 			action = new MemberLoginProAction();
+			
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
+			
+		} else if (command.equals("/MemberMain.me")) { // MY정보 메인화면
+			action = new MemberMainAction();
 			
 			try {
 				forward = action.execute(request, response);

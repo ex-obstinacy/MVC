@@ -82,7 +82,7 @@
 	<!-- 아이디/비밀번호 검사   -->
 	<script type="text/javascript">
 		// submit 전 최종 상태(아이디, 패스워드 규칙 일치 여부) 저장할 전역변수 설정
-		var checkIdResult = false, checkPasswdResult = false; 
+		var checkIdResult = false, checkPasswdResult = false, retryPasswdResult = false, retryEmailResult = false; 
 	
 		// -------------------------------------------------------------------------------
 		// 회원 ID 에 대한 정규표현식(4 ~ 12자리 영문, 숫자 조합) 체크를 위해
@@ -163,9 +163,73 @@
 			
 		}
 		
+		// 비밀번호 재확인
+		function retryPasswd(retryPasswdForm) {
+			var passwd = document.getElementById('pass').value;
+			var retryPasswd = retryPasswdForm.value;
+			var element = document.getElementById('retryPasswdResult');
+			if (passwd != retryPasswd) {
+				element.innerHTML = "비밀번호가 일치하지 않습니다.";
+				
+			} else {
+				element.innerHTML = "";
+				retryPasswdResult = true;
+				
+			}
+			
+		}
+		
+		// 이메일 재확인
+		function retryEmail(retryEmailForm) {
+			var email = document.getElementById('email').value;
+			var retryEmail = retryEmailForm.value;
+			var element = document.getElementById('retryEmailResult');
+			if (email != retryEmail) {
+				element.innerHTML = "이메일이 일치하지 않습니다.";
+				
+			} else {
+				element.innerHTML = "";
+				retryEmailResult = true;
+				
+			}
+			
+		}
+		
 		// 아이디, 패스워드 정규표현식 체크 후 정상이면 true 리턴(submit), 아니면 false 리턴
+		// 비밀번호, 이메일 일치 유무 확인
 		function check() {
-			if(checkIdResult && checkPasswdResult) {
+			if (checkIdResult) {
+				if (checkPasswdResult) {
+					if (retryPasswdResult) {
+						if (retryEmailResult) {
+							return true;
+							
+						} else {
+							alert('이메일 일치 확인 필수!');
+							return false;
+							
+						}
+						
+					} else {
+						alert('비밀번호 일치 확인 필수!');
+						return false;
+						
+					}
+					
+				} else {
+					alert('비밀번호 규칙 확인 필수!');
+					return false;
+					
+				}
+				
+			} else {
+				alert('아이디 규칙 확인 필수!');
+				return false;
+				
+			}
+			
+			
+			if(checkIdResult && checkPasswdResult && retryPasswdResult) {
 				return true;
 			} else {
 				alert('아이디 또는 패스워드 규칙 확인 필수!');
@@ -208,11 +272,11 @@
 				<label>아이디</label> <input type="text" name="id" class="id" id="myId" required="required" placeholder="6~10자 영문과 숫자 조합" onkeyup="checkId(this)"><span id="checkIdResult"></span><br>
 <!-- 				<input type="button" value="ID확인" class="genric-btn info circle" id="chkId"> -->
 				<label>비밀번호</label> <input type="password" name="pass" id="pass" required="required" placeholder="8~12자 영문,숫자,특수문자" onkeyup="checkPasswd(this)"><span id="checkPasswdResult"></span><br>
-				<label>비밀번호 재확인</label> <input type="password" name="rePass" id="rePass" required="required" onblur="chkPass()"><span id="chkPass"></span><br><br>
+				<label>비밀번호 재확인</label> <input type="password" name="rePass" id="rePass" required="required" onkeyup="retryPasswd(this)"><span id="retryPasswdResult"></span><br><br>
 				<label>이름</label> <input type="text" name="name" id="name" required="required"><br>
 				<label>전화번호</label> <input type="text" name="phone" required="required"><br>
 				<label>이메일</label> <input type="email" name="email" id="email" required="required"><br>
-				<label>이메일 재확인</label> <input type="email" name="reEmail" id="reEmail" required="required"><br>
+				<label>이메일 재확인</label> <input type="email" name="reEmail" id="reEmail" required="required" onkeyup="retryEmail(this)"><span id="retryEmailResult"></span><br>
 				<label>성별</label> <input type="radio" name="gender" value="male" id="male" required="required">남 <input type="radio" name="gender" value="female" id="female">여<br>
 				<label>생년월일</label> <input type="date" name="birthday" id="birthday" required="required" placeholder="2000-12-20"><br>
 			</fieldset>
@@ -225,7 +289,7 @@
 			</fieldset>
 			<div class="clear"></div>
 			<div id="buttons">
-				<input type="submit" value="가입하기" class="genric-btn default circle">
+				<input type="submit" value="가입하기" class="genric-btn primary circle">
 				<input type="reset" value="취소" class="genric-btn primary circle">
 			</div>
 		</form>

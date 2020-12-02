@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	//session 객체에 저장된 id 값 가져와서 변수에 저장
+	String id = (String)session.getAttribute("id");
+%>
+
 <!DOCTYPE html>
 <header class="main_menu home_menu">
         <div class="container">
@@ -35,7 +41,6 @@
                                         pages
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="MemberLogin.me">로그인</a>
                                         <a class="dropdown-item" href="tracking.jsp">tracking</a>
                                         <a class="dropdown-item" href="checkout.jsp">결제페이지</a>
                                         <a class="dropdown-item" href="cart.jsp">장바구니</a>
@@ -61,7 +66,20 @@
                         </div>
                         <div class="hearer_icon d-flex">
                             <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
+                            
+                            <!-- 세션값에 따라서 로그인 또는 마이페이지 이동 -->
+                            <%
+                          	if (id == null) {
+                            %>
                             <a href="MemberLogin.me"><i class="ti-heart"></i></a>
+                            <%
+                          	} else {
+                            %>
+                            <a href="MemberMain.me"><i class="ti-heart"></i></a>
+                            <%
+                          	}
+                            %>
+                            
                             <div class="dropdown cart">
                                 <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
