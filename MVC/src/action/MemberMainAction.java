@@ -11,7 +11,8 @@ public class MemberMainAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MemberMainAction!");
 		
-		ActionForward forward = null;
+		ActionForward forward = new ActionForward();
+		forward.setPath("/member/member_main.jsp");
 		
 		return forward;
 	}
