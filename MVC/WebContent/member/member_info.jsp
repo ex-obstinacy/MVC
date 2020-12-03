@@ -1,9 +1,14 @@
+<%@page import="vo.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%
 	//session 객체에 저장된 id 값 가져와서 변수에 저장
 	String id = (String)session.getAttribute("id");
+
+	// MemberBean 객체 가져오기
+	MemberBean article = (MemberBean)request.getAttribute("article");
+	
 %>
 
 <!DOCTYPE html>
@@ -91,7 +96,7 @@
 								<table>
 									<tr>
 										<td class=td_size>아이디</td>
-										<td><input type="text" name="id" class="id" id="myId" required="required"></td>
+										<td><%=article.getId() %></td>
 									</tr>
 									<tr>
 										<td>비밀번호</td>
@@ -103,7 +108,7 @@
 									</tr>
 									<tr>
 										<td>이름</td>
-										<td><input type="text" name="name" id="name" required="required"></td>
+										<td><input type="text" name="name" id="name" required="required" value="<%=article.getName() %>"></td>
 									</tr>
 									<tr>
 										<td>전화번호</td>

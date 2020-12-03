@@ -130,4 +130,52 @@ public class MemberDAO {
 		return isMember;
 	}
 
+	// 회원정보 조회
+	public MemberBean selectArticle(String id) {
+		System.out.println("MemberDAO - selectArticle()");
+		
+		MemberBean article = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT * FROM member WHERE id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				article = new MemberBean();
+				article.setId(rs.getString(1));
+				article.setPass(rs.getString(2));
+				article.setName(rs.getString(3));
+				article.setPhone(rs.getString(4));
+				article.setBirthday(rs.getDate(5));
+				article.setGender(rs.getString(6));
+				article.setEmail(rs.getString(7));
+				article.setPostcode(rs.getString(8));
+				article.setAddress(rs.getString(9));
+				article.setDetailAddress(rs.getString(10));
+				article.setExtraAddress(rs.getString(11));
+				article.setCoupon_1000(rs.getInt(12));
+				article.setCoupon_2000(rs.getInt(13));
+				article.setCoupon_3000(rs.getInt(14));
+				article.setMembership(rs.getInt(15));
+				article.setFree_ticked(rs.getInt(16));
+				
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectArticle() 오류! - " + e.getMessage());
+			e.printStackTrace();
+			
+		} finally {
+			close(pstmt);
+			close(rs);
+			
+		}
+		
+		return article;
+	}
+
 }
