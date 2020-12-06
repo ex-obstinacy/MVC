@@ -11,7 +11,7 @@ import vo.StoreBean;
 
 public class StoreListService {
 
-	public int getListCount() {
+	public int getListCount() throws Exception{
 		System.out.println("StoreListService - getListCount()");
 		int listCount = 0;
 		

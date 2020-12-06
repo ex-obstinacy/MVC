@@ -15,7 +15,6 @@
 	int endPage = pageInfo.getEndPage();
 	int listCount = pageInfo.getListCount();
 	
-	StoreBean sb = new StoreBean();
 %>  
 <!DOCTYPE html>
 <html lang="zxx">
@@ -24,7 +23,7 @@
 <style>
 ul.store-tab{
 	margin: 0px;
-	padding: 50px 50px 50px 50px;
+	padding: 0 50px 50px 10%;
 	list-style: none;
 }
 
@@ -32,11 +31,15 @@ ul.store-tab li{
 	background: none;
 	color: #ffffff;
 	display: inline-block;
-	padding: 50px 50px 50px 50px;
+	padding: 0 50px 50px 80px;
 	cursor: pointer;
 	line-height:50px;
 	height:50px;
 	box-sizing: border-box;
+}
+
+.price{
+	text-decoration : line-through;
 }
 
 </style>
@@ -94,43 +97,46 @@ ul.store-tab li{
     <!-- breadcrumb start-->
 	
     <!--================ 스토어 메인 상품 !!!! =================-->
-  
+  <section class="product_list section_padding">
         <div class="container">
-            <div class="row">
-                
-                <div class="col-lg-9">
-
-                    <div class="row align-items-center latest_product_inner">
-                    	<ul class="store-tab"> 
-						<li class="active"><a href="#package">패키지&nbsp;</a></li>
-						<li class=""><a href="#ticket">관람권&nbsp;</a></li>
-						<li class=""><a href="#snack">스낵음료&nbsp;</a></li>
-						</ul>
+			<div class="col-lg-12">
+                <div class="section_tittle text-center">
+                    <ul class="store-tab"> 
+						<li class="active"><a href="#package"><span>패키지</span></a>&nbsp;</li>
+						<li class=""><h2><a href="#ticket"><span>관람권</span>&nbsp;</a></h2></li>
+						<li class=""><a href="#snack"><span>스낵음료</span>&nbsp;</a></li>
+				    </ul>
+                </div>
+            </div>
                     <!--======= 패키지 카테고리 상품!!!!!! =======-->
-                  <div id = "package">
-                    <h3>패키지</h3>
-                    <table>
-                    <tr>
-                    <%
-                    int i = 0;
-                    for(int j=0; j<articleList.size(); j++){
-                    	%>
-                 	  
-                        <div class="col-lg-4 col-sm-6">
-                            <td>
-                        <a href="GoodsDetail.go?goodsId=<%=articleList.get(i).getGoodsId() %>&page=<%=nowPage %>">
-                            <div class="single_product_item">
-                            <img src="goodsUpload/<%=articleList.get(i).getFile()%>">
-                                <div class="single_product_text">
-                                    <h4><%=articleList.get(i).getName() %></h4>
-                                    <h3><%=articleList.get(i).getPrice() %> 원</h3>
-                                     <a href="#" class="add_cart">장바구니</a> 
-                                    <a href="#" class="buy">구매하기</a> 
-                                </div>
-                            </div>
-                        </a>
-                            </td>
-                        </div>
+            <div id = "package">
+              <h3>패키지</h3>
+                <table>
+                  <tr>
+                   <%
+                   int i = 0;
+                   for(int j=0; j<articleList.size(); j++){
+                	   
+                	int sale = (int)(articleList.get(i).getPrice() * articleList.get(i).getSale() * 0.01); //세일가 = 원가 * (세일 * 0.01) -> %로 나타낸거임
+                	int sumPrice = articleList.get(i).getPrice() - sale; // 할인 후 적용가 = 원가 - 세일가
+                	%>
+                     <td>
+                     <input type="hidden" name="ctgpackage" value="<%=articleList.get(i).getCtg()%>">
+                     <% if(articleList.get(i).getCtg().equals("package")) { %> 
+                         <div class="single_product_item">
+                          <a href="GoodsDetail.go?goodsId=<%=articleList.get(i).getGoodsId() %>&page=<%=nowPage %>">
+                           <img src="goodsUpload/<%=articleList.get(i).getFile()%>" width="250"></a>
+<%--                            <input type="hidden" name="ctgpackage" value="<%=articleList.get(i).getCtg()%>"> --%>
+                              <div class="single_product_text">
+                                 <h4><%=articleList.get(i).getName() %></h4>
+                                 <h3 class = "price"><%=articleList.get(i).getPrice() %> 원</h3>
+   								  <h4><%=sumPrice%> 원</h4> <!--  할인적용가 -->
+                                  <a href="BasketAdd.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="add_cart">장바구니 ★</a> 
+                                  <a href="OrderForm.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="buy">구매하기</a> 
+                              </div>
+                          </div>
+                           <% } %>
+                       </td>
                    <%
                    i++; 
                   	 if(i%4 ==0){
@@ -140,31 +146,37 @@ ul.store-tab li{
                   	 }
                    }
                   	 %>
-                    </table>
-                    </div> 
+                </table>
+             </div> 
                  
                     <!--======= 관람권 카테고리 상품!!!!!! =======-->
-                   <div id = "ticket">
-                    <h3>관람권</h3>
-                    <a href="#">
+             <div id = "ticket">
+               <h3>관람권</h3>
                     <table>
                     <tr>
                     <%
                     i = 0;
-                    for(int j=0; j<articleList.size(); j++){%>
-                        <div class="col-lg-4 col-sm-6">
+                    for(int j=0; j<articleList.size(); j++) {
+                    	
+                    int sale = (int)(articleList.get(i).getPrice() * articleList.get(i).getSale() * 0.01); //세일가 = 원가 * (세일 * 0.01) -> %로 나타낸거임
+                	int sumPrice = articleList.get(i).getPrice() - sale; // 할인 후 적용가 = 원가 - 세일가
+                	%>
                             <td>
+                            <input type="hidden" name="ctgpackage" value="<%=articleList.get(i).getCtg()%>">
+                     		<% if(articleList.get(i).getCtg().equals("ticket")) { %> 
                             <div class="single_product_item">
-                            <img src="goodsUpload/<%=articleList.get(i).getFile()%>">
+                            <a href="GoodsDetail.go?goodsId=<%=articleList.get(i).getGoodsId() %>&page=<%=nowPage %>">
+                            <img src="goodsUpload/<%=articleList.get(i).getFile()%>" width="250"></a>
                                 <div class="single_product_text">
                                     <h4><%=articleList.get(i).getName() %></h4>
-                                    <h3><%=articleList.get(i).getPrice() %> 원</h3>
-                                     <a href="#" class="add_cart">장바구니</a> 
-                                    <a href="#" class="buy">구매하기</a> 
+                                    <h3 class = "price"><%=articleList.get(i).getPrice() %> 원</h3>
+   								    <h4><%=sumPrice%> 원</h4></h3> <!--  할인적용가 -->
+                                    <a href="BasketAdd.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="add_cart">장바구니 ★</a>
+                                    <a href="OrderForm.go?goodsId=<%=articleList.get(i).getGoodsId()%>"  class="buy">구매하기</a> 
                                 </div>
                             </div>
+                            <% } %>
                             </td>
-                        </div>
                    <%
                    i++; 
                   	 if(i%4 ==0){
@@ -175,31 +187,35 @@ ul.store-tab li{
                    }
                   	 %>
                     </table>
-                    </a>
-                    </div> 
+             </div> 
                     
                     <!--======= 스낵 카테고리 상품!!!!!! =======-->
-                    <div id = "snack">
+             <div id = "snack">
                     <h3>스낵음료</h3>
-                    <a href="#">
                      <table>
                     <tr>
                     <%
                    i = 0;
-                    for(int j=0; j<articleList.size(); j++){%>
-                       <div class="col-lg-4 col-sm-6">
+                    for(int j=0; j<articleList.size(); j++) {
+                    int sale = (int)(articleList.get(i).getPrice() * articleList.get(i).getSale() * 0.01); //세일가 = 원가 * (세일 * 0.01) -> %로 나타낸거임
+                    int sumPrice = articleList.get(i).getPrice() - sale; // 할인 후 적용가 = 원가 - 세일가
+                    %>
                             <td>
+                            <input type="hidden" name="ctgpackage" value="<%=articleList.get(i).getCtg()%>">
+                     		<% if(articleList.get(i).getCtg().equals("snack")) { %>
                             <div class="single_product_item">
-                            <img src="goodsUpload/<%=articleList.get(i).getFile()%>">
+                            <a href="GoodsDetail.go?goodsId=<%=articleList.get(i).getGoodsId() %>&page=<%=nowPage %>">
+                            <img src="goodsUpload/<%=articleList.get(i).getFile()%>" width="250"></a>
                                 <div class="single_product_text">
                                     <h4><%=articleList.get(i).getName() %></h4>
-                                    <h3><%=articleList.get(i).getPrice() %> 원</h3>
-                                     <a href="#" class="add_cart">장바구니</a> 
-                                    <a href="#" class="buy">구매하기</a> 
+                                    <h3 class = "price"><%=articleList.get(i).getPrice() %> 원</h3>
+   								    <h4><%=sumPrice%> 원</h4></h3> <!--  할인적용가 -->
+                                    <a href="BasketAdd.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="add_cart">장바구니 ★</a> 
+                                    <a href="OrderForm.go?goodsId=<%=articleList.get(i).getGoodsId()%>"  class="buy">구매하기</a> 
                                 </div>
                             </div>
+                            <% } %>
                             </td>
-                        </div>
                    <%
                    i++; 
                   	 if(i%4 ==0){
@@ -210,14 +226,11 @@ ul.store-tab li{
                    }
                   	 %>
                     </table>
-                    
-                    </a>
-                    </div>  
+                  
+             </div>  
                         
-                    </div>
-                </div>
-            </div>
-        </div>
+       </div>
+   </section>
     <!--::footer_part start::-->
     <jsp:include page="/inc/bottom.jsp"/>
     <!--::footer_part end::-->

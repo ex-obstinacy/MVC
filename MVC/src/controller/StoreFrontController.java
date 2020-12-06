@@ -10,9 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.BasketAddAction;
+import action.BasketListAction;
 import action.GoodsDetailAction;
 import action.GoodsListAction;
 import action.GoodsWriteProAction;
+import action.OrderFormAction;
 import action.StoreListAction;
 import vo.ActionForward;
 
@@ -89,8 +92,31 @@ public class StoreFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			} 
-		} 
+		} else if(command.equals("/OrderForm.go")) {
+			action = new OrderFormAction();
 			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+		} else if (command.equals("/BasketAdd.go")) { //장바구니 담기
+			action = new BasketAddAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/BasketList.go")) { //장바구니 목록
+			action = new BasketListAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+		}
+		
 			// ----------------------------------------------------------------
 			// 기본적인 작업 후 공통적으로 수행할 포워딩 작업
 			// 1. ActionForward 객체 존재 여부 판별(객체가 존재할 때 포워딩 수행)

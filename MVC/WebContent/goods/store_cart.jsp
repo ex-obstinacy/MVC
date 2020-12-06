@@ -1,19 +1,13 @@
-<%@page import="vo.StoreBean"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% 
-ArrayList<StoreBean> basketList = (ArrayList<StoreBean>)request.getAttribute("basketList");
-StoreBean basket = new StoreBean(); 
-/// for문을 돌려보자
-%>
 <!DOCTYPE html>
 <html lang="zxx">
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>장바구니</title>
+  <title>aranaz</title>
   <link rel="icon" href="img/favicon.png">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -35,14 +29,11 @@ StoreBean basket = new StoreBean();
   <link rel="stylesheet" href="css/price_rangs.css">
   <!-- style CSS -->
   <link rel="stylesheet" href="css/style.css">
-  
-  <link rel="stylesheet" href="css/common.css">
-  <link rel="stylesheet" href="css/sub.css">
 </head>
 
 <body>
   <!--::header part start::-->
-	<jsp:include page="inc/top.jsp"/>
+	<jsp:include page="/inc/top.jsp"/>
   <!-- Header part end-->
 
 
@@ -55,7 +46,6 @@ StoreBean basket = new StoreBean();
           <div class="breadcrumb_iner">
             <div class="breadcrumb_iner_item">
               <h2>장바구니</h2>
-              <p>Home <span>-</span>장바구니</p>
             </div>
           </div>
         </div>
@@ -68,95 +58,86 @@ StoreBean basket = new StoreBean();
   <section class="cart_area padding_top">
     <div class="container">
       <div class="cart_inner">
-        <h3>장바구니상품 정보</h3>
-         <hr>
-        <form action="orderForm.go" name="basket" method="post" id="basketForm">
+        <div class="table-responsive">
           <table class="table">
-         <%
-          if(basketList != null){
-        	%>
             <thead>
               <tr>
-              	<th scope="col"><input type="checkbox"></th> <!-- 클릭시에 전체 선택 -->
-                <th scope="col">상품</th>
-                <th scope="col">수량</th>
-                <th scope="col">합계</th>
+                <th scope="col">장바구니상품</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"><!-- 갯수 파라미터 값들고오기 -->n건</th>
               </tr>
             </thead>
-			<%
-			for(int i= 0; i < basketList.size(); i++){
-			%>
             <tbody>
               <tr>
-              	<td><input type="checkbox"></td>
                 <td>
-                  <div class="media"> <!-- 상품 박스 -->
-                    <div class="d-flex"> <!-- 상품 이미지 테두리 -->
-                      <img src="goodsUpload/<%=basketList.get(i).getFile() %>" alt="" />
+                  <div class="media">
+                    <div class="d-flex">
+                      <img src="img/product/single-product/cart-1.jpg" alt="" /><!-- 이미지 -->
                     </div>
-                    <div class="media-body"> <!-- 상품 설명 바디 -->
-                      <p>상품명 : <%=basketList.get(i).getName() %> </p>
-                      <p>구성품: <%=basketList.get(i).getComponent() %></p>
-                      <p><%=basketList.get(i).getPrice() %>원</p>
+                    <div class="media-body">
+                      <p>상품이름</p>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <div class="product_count"> <!-- 수량변경 버튼 모양 -->
-                    <input type="number" value="1" min="0" max="10">
-                  </div>
-                  <div>
-                  <input type="button" value="수량변경">
-                  <input type="button" value="X"> <!-- 휴지통모양 혹은 x -->
-                  </div>
+                  <h5>가격</h5>
                 </td>
                 <td>
-                  <h5>2000원</h5>
+                  <div class="product_count">
+                    <span class="input-number-decrement"> <i class="ti-angle-down"></i></span>
+                    <input class="input-number" type="text" value="1" min="0" max="10">
+                    <span class="input-number-increment"> <i class="ti-angle-up"></i></span>
+                  </div>
+                    <a class="btn_1" href="#">변경</a>
+                </td>
+                <td>
+                  <h5>$720.00</h5>
                 </td>
               </tr>
-			
-			<%	
-			}
-			%>
-
-        	
-        	<%  
-          }
-          %>
               <tr>
+              </tr>
+              <tr class="bottom_button">
+                <td>
+                  <a class="btn_1" href="#">전체선택</a>
+                    <a class="btn_1" href="#">선택삭제</a>
+                </td>
                 <td></td>
                 <td></td>
                 <td>
-                  <h5>총 상품금액</h5>
-                  <h5>할인금액</h5>
-                  <h3>총 결제예정금액</h3>
+                  <div>
+                  </div>
                 </td>
+              </tr>
+              <tr>
                 <td>
-                  <h5>2000원</h5>
-                  <h5>0원</h5>
-                  <h3>34000원</h3>
+                  <h5>총상품금액(n개)</h5>
                 </td>
+                <td></td>
+                <td></td>
+                <td>
+                  <h5>가격</h5>
+                </td>
+              </tr>
+              <tr>
+              	<td><a class="btn_1" href="#">이전화면</a></td>
+                <td>
+                	<a class="btn_1" href="#">선택상품주문</a>
+                	<a class="btn_1" href="#">전체상품주문</a>
+                </td>
+                <td></td>
+                <td></td>
+                
               </tr>
             </tbody>
           </table>
-  <!--::버튼 시작::-->
-  	 <div>        
-	   <input type="button" class="btn_3" value="이전화면" onclick="history.back">
-	 </div>
-     <div class="checkout_btn_inner float-right">
-       <input type="submit" class="btn_3" value="선택상품주문">
-       <input type="submit" class="btn_3" value="전체상품주문">
-     </div>
-  <!--::버튼 끝::-->      
-          </form>
         </div>
       </div>
   </section>
-
   <!--================End Cart Area =================-->
 
   <!--::footer_part start::-->
-  <jsp:include page="inc/bottom.jsp"/>
+  <jsp:include page="/inc/bottom.jsp"/>
   <!--::footer_part end::-->
 
   <!-- jquery plugins here-->

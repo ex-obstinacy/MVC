@@ -30,7 +30,7 @@
                                         스토어
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <a class="dropdown-item" href="category.jsp">스토어</a>
+                                        <a class="dropdown-item" href="StoreList.go">스토어</a>
                                         <a class="dropdown-item" href="single-product.jsp">상품 상세정보</a>
                                         
                                     </div>

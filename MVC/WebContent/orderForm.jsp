@@ -1,5 +1,19 @@
+<%@page import="vo.StoreBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+StoreBean article = (StoreBean)request.getAttribute("article");
+int sale = (int)(article.getPrice() * article.getSale() * 0.01); //세일가 = 원가 * (세일 * 0.01) -> %로 나타낸거임
+int sumPrice = article.getPrice() - sale; // 할인 후 적용가 = 원가 - 세일가
+
+// 스토어에서 구매하기로 이동할 경우 수량을 못가져옴 
+// 그래서 그냥 수량을 변수로 줘서 1로 설정해버림 (구매하기는 수량이 무조건 1이니까)
+int orderCount = article.getOrderCount();
+if(article.getName() != null){
+	orderCount = 1;
+}
+
+%>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -79,7 +93,7 @@ function NoMultiChk(chk){ // 결제수단 중복체크 불가
       <div class="cart_inner">
         <h3>구매상품 정보</h3>
          <hr>
-        <form action="orderPro.go" name="basket" method="post" id="orderForm">
+        <form action="OrderPro.go" name="basket" method="post" id="orderForm">
           <table class="table">
             <thead>
               <tr>
@@ -95,21 +109,28 @@ function NoMultiChk(chk){ // 결제수단 중복체크 불가
                 <td>
                   <div class="media">
                     <div class="d-flex">
-                      <img src="img/product/single-product/cart-1.jpg" alt="" />
+                      <img src="goodsUpload/<%=article.getFile()%>" alt="" />
                     </div>
                     <div class="media-body">
-                      <p>팝콘(M)</p>
-                      <p>구성품:팝콘(M)</p>
+                      <p><%=article.getName() %></p>
+                      <p><%=article.getComponent() %></p>
                     </div>
                   </div>
                 </td>
                 <td>
                   <div class="product_count">
-                    <p>n개</p>
+                  <%
+                  if(article.getName() != null){
+//                 	  article.getOrderCount() = 1
+                  %>
+                    <p><%=orderCount %>개</p>
+                   <%
+                  }
+                   %> 
                   </div>
                 </td>
                 <td>
-                  <h5>2000원</h5>
+                  <h5><%=article.getPrice() %>원</h5>
                 </td>
               </tr>
               <tr>
@@ -121,9 +142,9 @@ function NoMultiChk(chk){ // 결제수단 중복체크 불가
                   <h3>총 결제예정금액</h3>
                 </td>
                 <td>
-                  <h5>2000원</h5>
-                  <h5>0원</h5>
-                  <h3>34000원</h3>
+                  <h5><%=article.getPrice() %>원</h5>
+                  <h5><%=sale%>원</h5>
+                  <h3><%=sumPrice %>원</h3>
                 </td>
               </tr>
             </tbody>

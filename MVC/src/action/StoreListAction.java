@@ -48,8 +48,6 @@ public class StoreListAction implements Action {
 
 				/* 카테고리별 리스트 뿌리기  */
 				
-				
-				
 				//페이지 계산 작업 수행 588p
 				// 1. 전체 페이지 수 계산
 				//    (총 게시물 수 / 페이지 당 게시물 수 + 0.95) -> 정수로 변환
@@ -71,7 +69,7 @@ public class StoreListAction implements Action {
 				// 계산된 모든 페이지 정보를 PageInfo 객체에 저장
 				PageInfo pageInfo = new PageInfo(
 						page, maxPage, startPage, endPage, listCount);
-				
+			
 				// request 객체의 setAttribute() 메서드를 호출하여
 				// 게시물 목록 정보(ArrayList)와 페이지 정보(PageInfo) 객체를 저장
 				request.setAttribute("articleList", articleList);

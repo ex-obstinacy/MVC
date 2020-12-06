@@ -6,6 +6,9 @@
 StoreBean article = (StoreBean)request.getAttribute("article");
 String nowPage = request.getParameter("page");
 
+int sale = (int)(article.getPrice() * article.getSale() * 0.01); //세일가 = 원가 * (세일 * 0.01) -> %로 나타낸거임
+int sumPrice = article.getPrice() - sale; // 할인 후 적용가 = 원가 - 세일가
+
 %>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -48,6 +51,10 @@ ul.tabs li.current{
 
 .tab-content.current{
 	display: inherit;
+}
+
+.price{
+	text-decoration : line-through;
 }
 
 </style>
@@ -98,6 +105,8 @@ ul.tabs li.current{
     <!-- Header part end-->
   
   <!--================Single Product Area =================-->
+<!--   폼태그 추가 -->
+  <form action="OrderForm.go?goodsId=<%=article.getGoodsId()%>" name="basket" method="post" id="OrderForm">
   <div class="product_image_area section_padding">
     <div class="container">
       <div class="row s_product_inner justify-content-between">
@@ -114,7 +123,8 @@ ul.tabs li.current{
         <div class="col-lg-5 col-xl-4">
           <div class="s_product_text">
             <h3> <%=article.getName() %></h3>
-            <h2><%=article.getPrice()%>원</h2>
+            <h2 class = "price"><%=article.getPrice()%>원</h2>
+            <h2><%=sumPrice%>원</h2>
             <ul class="list">
               <li>
                 <a class="active"> <span>구성품</span> :<%=article.getComponent() %></a>
@@ -134,16 +144,17 @@ ul.tabs li.current{
               </div>
             </div>
            	 <h2>
-               <span>총 상품금액</span> : 33,000원</a> <!-- price * count -->
+               <span>총 상품금액</span> :<%=sumPrice%>원</a> <!-- price * count -->
               </h2>
               <br>
-              <a href="#" class="btn_3">장바구니</a>
-              <a href="#" class="btn_3">구매하기</a>
+              <a href="BasketAdd.go?goodsId=<%=article.getGoodsId()%>" class="btn_3">장바구니</a>
+              <input type ="submit" class="btn_3" value ="구매하기">
           </div>
         </div>
       </div>
     </div>
   </div>
+  </form>
   <!--================End Single Product Area =================-->
 
   <!--================Product Description Area =================-->
