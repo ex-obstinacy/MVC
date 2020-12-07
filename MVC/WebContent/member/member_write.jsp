@@ -276,12 +276,12 @@
 				<table>
 					<tr>
 						<td class=td_size>아이디</td>
-						<td><input type="text" name="id" class="id" id="myId" required="required" placeholder="6~10자 영문과 숫자 조합" onkeyup="checkId(this)"><span id="checkIdResult"></span></td>
+						<td><input type="text" name="id" class="id" id="myId" required="required" placeholder="4~12자 영문과 숫자 조합" onkeyup="checkId(this)"><span id="checkIdResult"></span></td>
 <!-- 				<input type="button" value="ID확인" class="genric-btn info circle" id="chkId"> -->
 					</tr>
 					<tr>
 						<td>비밀번호</td>
-						<td><input type="password" name="pass" id="pass" required="required" placeholder="8~12자 영문,숫자,특수문자" onkeyup="checkPasswd(this)"><span id="checkPasswdResult"></span></td>
+						<td><input type="password" name="pass" id="pass" required="required" placeholder="4~16자 영문(대.소문자),숫자,특수문자" onkeyup="checkPasswd(this)"><span id="checkPasswdResult"></span></td>
 					</tr>
 					<tr>
 						<td>비밀번호 재확인</td>

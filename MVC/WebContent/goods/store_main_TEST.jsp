@@ -113,42 +113,45 @@ ul.store-tab li{
               <h3>패키지</h3>
                 <table>
                   <tr>
-                  <%
-                  		int line = 0;
-                  	
-                  		for (int i = 0; i < articleList.size(); i++) {
-                  			int sale = (int)(articleList.get(i).getPrice() * articleList.get(i).getSale() * 0.01); //세일가 = 원가 * (세일 * 0.01) -> %로 나타낸거임
-                  			int sumPrice = articleList.get(i).getPrice() - sale; // 할인 후 적용가 = 원가 - 세일가
-                  			
-                  			if (articleList.get(i).getCtg().equals("package")) {
-                  				line++;
-                  %>
-                  	<td>
-                  		<div class="single_product_item">
-                  			<a href="GoodsDetail.go?goodsId=<%=articleList.get(i).getGoodsId() %>&page=<%=nowPage %>"><img src="goodsUpload/<%=articleList.get(i).getFile()%>" width="250"></a>
-                  			<div class="single_product_text">
-                  				<h4><%=articleList.get(i).getName() %></h4>
-                  				<h3 class = "price"><%=articleList.get(i).getPrice() %> 원</h3>
-                  				<h4><%=sumPrice%> 원</h4>
-                  				<a href="BasketAdd.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="add_cart">장바구니 ★</a>
-                  				<a href="OrderForm.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="buy">구매하기</a>
-                  				
-                  			</div>
-                  		</div>
-                  	</td>
-                  <%
-                  			}
-                  			if (line % 4 == 0) {
-                  %>
-                  </tr>
-                  <tr>	
-                  <%
-                  			}
-                  		}
-                  %>
-                  </tr>
+                   <%
+                   int i = 0;
+                   for(int j=0; j<articleList.size(); j++){
+                	   
+                	int sale = (int)(articleList.get(i).getPrice() * articleList.get(i).getSale() * 0.01); //세일가 = 원가 * (세일 * 0.01) -> %로 나타낸거임
+                	int sumPrice = articleList.get(i).getPrice() - sale; // 할인 후 적용가 = 원가 - 세일가
+                	%>
+                     <td>
+                     <input type="hidden" name="ctgpackage" value="<%=articleList.get(i).getCtg()%>">
+                     <% if(articleList.get(i).getCtg().equals("package")) { %> 
+                         <div class="single_product_item">
+                          <a href="GoodsDetail.go?goodsId=<%=articleList.get(i).getGoodsId() %>&page=<%=nowPage %>">
+                           <img src="goodsUpload/<%=articleList.get(i).getFile()%>" width="250"></a>
+<%--                            <input type="hidden" name="ctgpackage" value="<%=articleList.get(i).getCtg()%>"> --%>
+                              <div class="single_product_text">
+                                 <h4><%=articleList.get(i).getName() %></h4>
+                                 <h3 class = "price"><%=articleList.get(i).getPrice() %> 원</h3>
+   								  <h4><%=sumPrice%> 원</h4> <!--  할인적용가 -->
+                                  <a href="BasketAdd.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="add_cart">장바구니 ★</a> 
+                                  <a href="OrderForm.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="buy">구매하기</a> 
+                              </div>
+                          </div>
+                           <% } %>
+                       </td>
+                   <%
+                   i++; 
+                  	 if(i%4 ==0){
+                  	 %>
+                    </tr>
+                  	 <%
+                  	 }
+                   }
+                  	 %>
                 </table>
              </div> 
+             
+             
+             
+             
                  
                     <!--======= 관람권 카테고리 상품!!!!!! =======-->
              <div id = "ticket">
@@ -156,7 +159,7 @@ ul.store-tab li{
                     <table>
                     <tr>
                     <%
-                    int i = 0;
+                    i = 0;
                     for(int j=0; j<articleList.size(); j++) {
                     	
                     int sale = (int)(articleList.get(i).getPrice() * articleList.get(i).getSale() * 0.01); //세일가 = 원가 * (세일 * 0.01) -> %로 나타낸거임

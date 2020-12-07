@@ -86,7 +86,7 @@
                             <%
                           	} else {
                             %>
-                            <a href="MemberMain.me"><i class="ti-heart"></i></a>
+                            <a href="MemberMain.me"><i class="ti-heart"></i></a><a href="MemberLogout.me"><i class="ti-heart"></i></a>
                             <%
                           	}
                             %>
