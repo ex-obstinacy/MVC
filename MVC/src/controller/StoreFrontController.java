@@ -14,6 +14,8 @@ import action.BasketAddAction;
 import action.BasketListAction;
 import action.GoodsDetailAction;
 import action.GoodsListAction;
+import action.GoodsModifyFormAction;
+import action.GoodsModifyProAction;
 import action.GoodsWriteProAction;
 import action.OrderFormAction;
 import action.StoreListAction;
@@ -115,7 +117,24 @@ public class StoreFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			} 
+		} else if(command.equals("/GoodsModifyForm.bo")) {
+			action = new GoodsModifyFormAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/GoodsModifyPro.bo")) {
+			action = new GoodsModifyProAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		
 		
 			// ----------------------------------------------------------------
 			// 기본적인 작업 후 공통적으로 수행할 포워딩 작업
