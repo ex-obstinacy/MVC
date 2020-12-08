@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-// int movienum = Integer.parseInt(request.getParameter("movienum")); 영화번호 전달
+int movienum = Integer.parseInt(request.getParameter("movienum")); // 영화번호 전달
 ArrayList<ReserveBean> seatList = (ArrayList<ReserveBean>)request.getAttribute("seatList");
 
 %>
@@ -199,8 +199,8 @@ ArrayList<ReserveBean> seatList = (ArrayList<ReserveBean>)request.getAttribute("
 <jsp:include page="../inc/top.jsp"/>
 <%-- <jsp:include page="../inc/sub_visual.jsp"/> --%>
 <div class="container">
-	<form action="PayForm.re?movienum=1" name="selectSeat" method="post" id="seatForm"><!-- 영화번호 전달 -->
-		<input type="hidden" name="moivenum" value="1"><!-- 영화번호 전달 -->
+	<form action="PayForm.re?movienum=<%=movienum %>" name="selectSeat" method="post" id="seatForm"><!-- 영화번호 전달 -->
+		<input type="hidden" name="moivenum" value="<%=movienum %>"><!-- 영화번호 전달 -->
 		<div id="peopleBoard">
 			<input type="hidden" value="0" id="peopleNum" name="peopleNum"> <!-- 총 인원수(선택수 제한하는데 필요) -->
 			<h2>인원/좌석 선택</h2>
