@@ -10,7 +10,7 @@
 <%
 Class.forName("com.mysql.jdbc.Driver");
 
-String dbUrl = "jdbc:mysql://localhost:3306/practice";
+String dbUrl = "jdbc:mysql://localhost:3306/mvc";
 String dbUser = "root";
 String dbPass= "1234";
 Connection con = DriverManager.getConnection(dbUrl, dbUser, dbPass);
