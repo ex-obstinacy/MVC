@@ -85,9 +85,15 @@
                             <a href="MemberLogin.me"><i class="ti-heart"></i></a>
                             <%
                           	} else {
+                          		if (id.equals("admin")) {
+                          	%>
+                          	<a href="AdminMain.ad"><i class="ti-heart"></i></a><a href="MemberLogout.me"><i class="ti-heart"></i></a>
+                          	<%
+                          		} else {
                             %>
                             <a href="MemberMain.me"><i class="ti-heart"></i></a><a href="MemberLogout.me"><i class="ti-heart"></i></a>
                             <%
+                          		}
                           	}
                             %>
                             
