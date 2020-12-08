@@ -80,7 +80,7 @@ public class StoreListAction implements Action {
 				// Dispatcher 방식으로 포워딩 설정
 				forward = new ActionForward();
 //				forward.setPath("/goods/goodsList.jsp");
-				forward.setPath("/goods/store_main2.jsp");
+				forward.setPath("/goods/store_main.jsp");
 				
 				forward.setRedirect(false); //기본값이 false 이므로 생략 가능
 				
