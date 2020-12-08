@@ -71,7 +71,6 @@
                                         <a class="dropdown-item" href="NoticeFaq.no">FAQ</a>
                                         <a class="dropdown-item" href="QnaList.qn">1대1 문의</a>
                                         <a class="dropdown-item" href="single-blog.jsp">이용약관</a>
-                                        <a class="dropdown-item" href="single-blog.jsp">TEST</a>
                                     </div>
                                 </li>
                             </ul>
