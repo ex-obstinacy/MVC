@@ -14,6 +14,7 @@ import action.CinemaAddProAction;
 import action.CinemaDeleteProAction;
 import action.MovieAddProAction;
 import action.MovieDeleteProAction;
+import action.MovieNumFindAction;
 import action.PayFormAction;
 import action.SelectSeatAction;
 import vo.ActionForward;
@@ -87,8 +88,14 @@ public class ReserveFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/MovieNumFind.re")) { // 사용자 - 영화 등록번호 찾아서 Seat로 넘기기
+			action = new MovieNumFindAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		
 		
 		
 		

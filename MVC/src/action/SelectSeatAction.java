@@ -16,8 +16,8 @@ public class SelectSeatAction implements Action {
 		System.out.println("SelectSeatAction !");
 		ActionForward forward = null;		
 		
-//		int movienum = Integer.parseInt(request.getParameter("movienum"));
-		int movienum = 1; // 임시확인용(원래는 위에코드)
+		int movienum = Integer.parseInt(request.getParameter("movienum"));
+//		int movienum = 1; // 임시확인용(원래는 위에코드)
 		
 		SelectSeatService selectSeatService = new SelectSeatService();
 		ArrayList<ReserveBean> seatList = new ArrayList<ReserveBean>();

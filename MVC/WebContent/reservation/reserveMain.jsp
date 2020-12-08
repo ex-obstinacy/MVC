@@ -164,7 +164,7 @@
   <section class="cart_area padding_top">
 	  <div class="container">
 		<!-- 영화등록표 시작 -->
-	  	<form action="reservation/reserveMainPro.jsp" method="post" id="movieform">
+	  	<form action="MovieNumFind.re" method="post" id="movieform">
 		<table>
 			<tr>
 				<th>영화제목</th>
@@ -217,9 +217,8 @@
 					</div>
 				</td>
 			</tr>
-		</table>
-	<!-- 	<input type="submit" value="좌석선택"> -->
-		<input type="submit" value="확인용">
+		</table><br>
+		<input type="submit" class="genric-btn primary circle" value="좌선선택">
 		</form>
 	  </div>
   </section>

@@ -56,8 +56,8 @@ public class ReserveDAO {
 			
 			e.printStackTrace();
 		} finally {			
-			close(pstmt);
 			close(rs);			
+			close(pstmt);
 		}
 		
 		return seatList;
@@ -83,6 +83,9 @@ public class ReserveDAO {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
 		}
 		
 		return movie;
@@ -108,6 +111,9 @@ public class ReserveDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
 		}
 		
 		return coupon;
@@ -176,8 +182,8 @@ public class ReserveDAO {
 				
 			} finally {
 				
-				close(pstmt);
 				close(rs);
+				close(pstmt);
 				
 			}
 			
@@ -234,6 +240,44 @@ public class ReserveDAO {
 			}
 			
 			return deleteCount;
+			
+		}
+
+		public int findMovieNum(String movie, String local, String cinema, String date, String time) {
+			
+			int movienum = 0;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				
+				String sql = "select num from admin_reservation where movie_subject=? and cinema_name=? and showdate=? and showtime=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, movie);
+				pstmt.setString(2, cinema);
+				pstmt.setString(3, date);
+				pstmt.setString(4, time);
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					movienum = rs.getInt("num");
+				}
+				
+				System.out.println(movienum);
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+				
+			} finally {
+				
+				close(rs);
+				close(pstmt);
+				
+			}
+			
+			return movienum;
 			
 		}
 	
