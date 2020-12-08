@@ -1,3 +1,4 @@
+<%@page import="org.json.simple.JSONArray"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -39,7 +40,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		// 등록되어있는 영화목록 가져오기
-		$.getJSON('reservation/movieListjson.jsp', function(rdata) {
+		$.getJSON('MovieListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
 				$('#tdsubject').append("<div class='sdiv "+item.movie_subject+"'><input type='radio' name='movie' id='"+item.movie_subject+"' value='"+item.movie_subject+"' class='rmovie'/><label for='"+item.movie_subject+"'>"+item.movie_subject+"</label></div>");
 			});
@@ -57,13 +58,13 @@
 			}
 		});
 		// cinema 목록 db에서 가져오기(admin_reserve랑 동일)
-		$.getJSON('reservation/cinemaListjson.jsp', function(rdata) {
+		$.getJSON('CinemaListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
 				$('#tdcinema').append("<div class='cdiv "+item.cinema_local+"'><input type='radio' name='cinema' id='"+item.cinema_name+"' value='"+item.cinema_name+"' class='rcinema'/><label for='"+item.cinema_name+"'>"+item.cinema_name+"</label></div>");
 			});
 		});
 		// showtime 목록 db에서 가져오기
-		$.getJSON('reservation/timeListjson.jsp', function(rdata) {
+		$.getJSON('TimeListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
 				$('#tdtime').append("<div class='tdiv "+item.movie_subject+" "+item.cinema_name+" "+item.showdate+"'><input type='radio' name='time' id='"+item.showtime+"' value='"+item.showtime+"' class='rtime'/><label for='"+item.showtime+"'>"+item.showtime+"</label></div>");
 			});

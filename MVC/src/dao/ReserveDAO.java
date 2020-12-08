@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import vo.MemberBean;
 import vo.ReserveBean;
 
@@ -278,6 +281,164 @@ public class ReserveDAO {
 			}
 			
 			return movienum;
+			
+		}
+		
+		// JSON 처리 메서드
+		public JSONArray getMovieList() {
+			
+			JSONArray movieList = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				
+				String sql = "select distinct movie_subject from admin_reservation";
+				pstmt = con.prepareStatement(sql);
+
+				rs = pstmt.executeQuery();
+
+				movieList = new JSONArray();
+
+				while(rs.next()) {
+					JSONObject jo = new JSONObject();
+					jo.put("movie_subject", rs.getString("movie_subject"));
+					
+					movieList.add(jo);
+				}
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+				
+			} finally {
+				
+				close(rs);
+				close(pstmt);
+				
+			}
+			
+			return movieList;
+			
+		}
+
+		public JSONArray getCinemaList() {
+			
+			JSONArray cinemaList = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				
+				String sql = "select * from cinema order by local";
+				pstmt = con.prepareStatement(sql);
+
+				rs = pstmt.executeQuery();
+
+				cinemaList = new JSONArray();
+
+				while(rs.next()) {
+					JSONObject jo = new JSONObject();
+					jo.put("cinema_name", rs.getString("name"));
+					String slocal = rs.getString("local").substring(0, 2);
+					jo.put("cinema_local", slocal);
+					
+					cinemaList.add(jo);
+				}
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+				
+			} finally {
+				
+				close(rs);
+				close(pstmt);
+				
+			}
+			
+			return cinemaList;
+			
+		}
+
+		public JSONArray getTimeList() {
+			
+			JSONArray timeList = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				
+				String sql = "select * from admin_reservation";
+				pstmt = con.prepareStatement(sql);
+
+				rs = pstmt.executeQuery();
+
+				timeList = new JSONArray();
+
+				while(rs.next()) {
+					JSONObject jo = new JSONObject();
+					jo.put("movie_subject", rs.getString("movie_subject"));
+					jo.put("cinema_name", rs.getString("cinema_name"));
+					jo.put("showdate", rs.getString("showdate"));
+					jo.put("showtime", rs.getString("showtime"));
+					
+					timeList.add(jo);
+				}
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+				
+			} finally {
+				
+				close(rs);
+				close(pstmt);
+				
+			}
+			
+			return timeList;
+			
+		}
+
+		public JSONArray getAllMovieList() {
+			
+			JSONArray allMovieList = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				
+				String sql = "select * from admin_reservation order by cinema_name";
+				pstmt = con.prepareStatement(sql);
+
+				rs = pstmt.executeQuery();
+
+				allMovieList = new JSONArray();
+
+				while(rs.next()) {
+					JSONObject jo = new JSONObject();
+					jo.put("movie_num", rs.getInt("num"));
+					jo.put("movie_subject", rs.getString("movie_subject"));
+					jo.put("cinema_name", rs.getString("cinema_name"));
+					jo.put("showdate", rs.getString("showdate"));
+					jo.put("showtime", rs.getString("showtime"));
+					
+					allMovieList.add(jo);
+				}
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+				
+			} finally {
+				
+				close(rs);
+				close(pstmt);
+				
+			}
+			
+			return allMovieList;
 			
 		}
 	

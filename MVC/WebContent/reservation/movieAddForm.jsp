@@ -39,7 +39,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		// 등록되어있는 영화목록 가져오기
-		$.getJSON('reservation/allMovieListjson.jsp', function(rdata) {
+		$.getJSON('AllMovieListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
 				$('#mldiv').append("<div class='ml_div "+item.movie_subject+"'><input type='radio' name='movie' id='"+item.movie_subject+"' value='"+item.movie_num+"' class='rmovie'/><label for='"+item.movie_subject+"'>"
 						+item.cinema_name+" - "+item.movie_subject+" : "+item.showdate+" / "+item.showtime+"</label></div>");

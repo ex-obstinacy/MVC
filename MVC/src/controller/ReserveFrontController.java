@@ -10,13 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.AllMovieListJsonAction;
 import action.CinemaAddProAction;
 import action.CinemaDeleteProAction;
+import action.CinemaListJsonAction;
 import action.MovieAddProAction;
 import action.MovieDeleteProAction;
+import action.MovieListJsonAction;
 import action.MovieNumFindAction;
 import action.PayFormAction;
 import action.SelectSeatAction;
+import action.TimeListJsonAction;
 import vo.ActionForward;
 
 @WebServlet("*.re")		// Reserve 관련 페이지 서블릿주소
@@ -95,8 +99,35 @@ public class ReserveFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if (command.equals("/MovieListJson.re")) { // JSON - 영화 제목만 가져오기(중복x)
+			action = new MovieListJsonAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/AllMovieListJson.re")) { // JSON - 영화 제목만 가져오기(중복x)
+			action = new AllMovieListJsonAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/CinemaListJson.re")) { // JSON - 영화관 목록 가져오기
+			action = new CinemaListJsonAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/TimeListJson.re")) { // JSON - 날짜에 맞춰서 시간 가져오기
+			action = new TimeListJsonAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		
 		
 		
 		
