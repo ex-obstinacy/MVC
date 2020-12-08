@@ -4,7 +4,12 @@
     pageEncoding="UTF-8"%>
 <% 
 ArrayList<StoreBean> basketList = (ArrayList<StoreBean>)request.getAttribute("basketList");
+
 StoreBean basket = new StoreBean(); 
+int totalPrice = basket.getTotalPrice() * basket.getBasketCount() ;
+int sale = (int)(basket.getPrice() * basket.getSale() * 0.01); //세일가 = 원가 * (세일 * 0.01) -> %로 나타낸거임
+int sumPrice = totalPrice - sale; // 할인 후 적용가 = 원가 - 세일가
+
 /// for문을 돌려보자
 %>
 <!DOCTYPE html>
@@ -42,7 +47,7 @@ StoreBean basket = new StoreBean();
 
 <body>
   <!--::header part start::-->
-	<jsp:include page="inc/top.jsp"/>
+   <jsp:include page="inc/top.jsp"/>
   <!-- Header part end-->
 
 
@@ -74,29 +79,29 @@ StoreBean basket = new StoreBean();
           <table class="table">
          <%
           if(basketList != null){
-        	%>
+           %>
             <thead>
               <tr>
-              	<th scope="col"><input type="checkbox"></th> <!-- 클릭시에 전체 선택 -->
+                 <th scope="col"><input type="checkbox"></th> <!-- 클릭시에 전체 선택 -->
                 <th scope="col">상품</th>
                 <th scope="col">수량</th>
                 <th scope="col">합계</th>
               </tr>
             </thead>
-			<%
-			for(int i= 0; i < basketList.size(); i++){
-			%>
+         <%
+         for(int i= 0; i < basketList.size(); i++){
+         %>
             <tbody>
               <tr>
-              	<td><input type="checkbox"></td>
+                 <td><input type="checkbox"></td>
                 <td>
                   <div class="media"> <!-- 상품 박스 -->
                     <div class="d-flex"> <!-- 상품 이미지 테두리 -->
-                      <img src="goodsUpload/<%=basketList.get(i).getFile() %>" alt="" />
+                      <img src="goodsUpload/<%=basketList.get(i).getFile() %>" alt=""  width="250" />
                     </div>
                     <div class="media-body"> <!-- 상품 설명 바디 -->
-                      <p>상품명 : <%=basketList.get(i).getName() %> </p>
-                      <p>구성품: <%=basketList.get(i).getComponent() %></p>
+                      <p><%=basketList.get(i).getName() %> </p>
+                      <p><%=basketList.get(i).getComponent() %></p>
                       <p><%=basketList.get(i).getPrice() %>원</p>
                     </div>
                   </div>
@@ -111,16 +116,16 @@ StoreBean basket = new StoreBean();
                   </div>
                 </td>
                 <td>
-                  <h5>2000원</h5>
+                  <h5><%=totalPrice %>원</h5>
                 </td>
               </tr>
-			
-			<%	
-			}
-			%>
+         
+         <%   
+         }
+         %>
 
-        	
-        	<%  
+           
+           <%  
           }
           %>
               <tr>
@@ -132,17 +137,17 @@ StoreBean basket = new StoreBean();
                   <h3>총 결제예정금액</h3>
                 </td>
                 <td>
-                  <h5>2000원</h5>
-                  <h5>0원</h5>
-                  <h3>34000원</h3>
+                  <h5><%=totalPrice %>원</h5>
+                  <h5><%=sale %>원</h5>
+                  <h3><%=sumPrice %>원</h3>
                 </td>
               </tr>
             </tbody>
           </table>
   <!--::버튼 시작::-->
-  	 <div>        
-	   <input type="button" class="btn_3" value="이전화면" onclick="history.back">
-	 </div>
+      <div>        
+      <input type="button" class="btn_3" value="이전화면" onclick="history.back">
+    </div>
      <div class="checkout_btn_inner float-right">
        <input type="submit" class="btn_3" value="선택상품주문">
        <input type="submit" class="btn_3" value="전체상품주문">
