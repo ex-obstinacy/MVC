@@ -96,36 +96,9 @@
 	<!-- 아이디/비밀번호 검사   -->
 	<script type="text/javascript">
 		// submit 전 최종 상태(아이디, 패스워드 규칙 일치 여부) 저장할 전역변수 설정
-		var checkIdResult = false, checkPasswdResult = false, retryPasswdResult = false, retryEmailResult = false; 
+		var checkPasswdResult = true, retryPasswdResult = true, retryEmailResult = true; 
 	
 		// -------------------------------------------------------------------------------
-		// 회원 ID 에 대한 정규표현식(4 ~ 12자리 영문, 숫자 조합) 체크를 위해
-		// ID 폼을 전달받아 입력받은 ID 에 대한 유효성 검사 함수
-		function checkId(idForm) { // 파라미터 this 로 전달된 ID 입력폼을 매개변수에 저장
-			var id = idForm.value; // ID 입력폼의 입력값을 가져와서 변수에 저장
-			
-			// ID 입력 항목의 체크 결과 메세지 출력에 필요한 <div> 태그의 element 가져오기
-			var element = document.getElementById('checkIdResult');
-			
-			// ID 유효성 검사를 위한 정규표현식 설정
-			// => 첫글자 영문자로 시작, 두번째부터 영문자, 숫자 조합 3 ~ 11자리 반복 
-			// => 영문자(대문자 또는 소문) : [A-Za-z]
-			// => 숫자 : [0-9]
-			// => 3 ~ 11자리 반복 : {3,11}
-			// => 플래그 /x/g : x 문자열의 전체에 대해서 정규표현식을 사용하여 검사 
-			var regex = /^[A-Za-z][A-Za-z0-9]{3,11}$/g;
-			
-			// 자바스크립트에서 정규표현식 판별을 위해서는 다음과 같은 문자열 사용
-			// => 정규표현식문자열.exec(검사할데이터) => 판별 결과가 true 또는 false
-			if(regex.exec(id)) { // 정규표현식과 일치할 경우
-				element.innerHTML = "사용 가능";
-				checkIdResult = true; // 전역변수 true 로 변경
-			} else { // 일치하지 않을 경우
-				element.innerHTML = "사용 불가";
-				checkIdResult = false; // 전역변수 false 로 변경(필수!)
-			}
-			
-		}
 		
 		// 회원 패스워드에 대한 정규표현식(4 ~ 16자리 영문, 숫자, 특수문자 조합) 체크를 위해
 		// 패스워드 폼을 전달받아 입력받은 패스워드에 대한 유효성 검사
@@ -179,7 +152,7 @@
 		
 		// 비밀번호 재확인
 		function retryPasswd(retryPasswdForm) {
-			var passwd = document.getElementById('pass').value;
+			var passwd = document.getElementById('chPass').value;
 			var retryPasswd = retryPasswdForm.value;
 			var element = document.getElementById('retryPasswdResult');
 			if (passwd != retryPasswd) {
@@ -195,7 +168,7 @@
 		
 		// 이메일 재확인
 		function retryEmail(retryEmailForm) {
-			var email = document.getElementById('email').value;
+			var email = document.getElementById('chEmail').value;
 			var retryEmail = retryEmailForm.value;
 			var element = document.getElementById('retryEmailResult');
 			if (email != retryEmail) {
@@ -212,43 +185,29 @@
 		// 아이디, 패스워드 정규표현식 체크 후 정상이면 true 리턴(submit), 아니면 false 리턴
 		// 비밀번호, 이메일 일치 유무 확인
 		function check() {
-			if (checkIdResult) {
-				if (checkPasswdResult) {
-					if (retryPasswdResult) {
-						if (retryEmailResult) {
-							return true;
+			if (checkPasswdResult) {
+				if (retryPasswdResult) {
+					if (retryEmailResult) {
+						return true;
 							
-						} else {
-							alert('이메일 일치 확인 필수!');
-							return false;
-							
-						}
-						
 					} else {
-						alert('비밀번호 일치 확인 필수!');
+						alert('이메일 일치 확인 필수!');
 						return false;
-						
+							
 					}
-					
+						
 				} else {
-					alert('비밀번호 규칙 확인 필수!');
+					alert('비밀번호 일치 확인 필수!');
+					return false;
+						
+				}
+					
+			} else {
+				alert('비밀번호 규칙 확인 필수!');
 					return false;
 					
-				}
-				
-			} else {
-				alert('아이디 규칙 확인 필수!');
-				return false;
-				
 			}
-			
-			
-			if(checkIdResult && checkPasswdResult && retryPasswdResult) {
-				return true;
-			} else {
-				alert('아이디 또는 패스워드 규칙 확인 필수!');
-				return false;
-			}
+				
 		}
 	
 	</script>
@@ -317,11 +276,11 @@
 									</tr>
 									<tr>
 										<td>변경할 비밀번호</td>
-										<td><input type="password" name="chPass" id="chPass" required="required" onkeyup="checkPasswd(this)"><span id="checkPasswdResult"></span></td>
+										<td><input type="password" name="chPass" id="chPass" onkeyup="checkPasswd(this)"><span id="checkPasswdResult"></span></td>
 									</tr>
 									<tr>
 										<td>변경할 비밀번호 재확인</td>
-										<td><input type="password" name="rePass" id="rePass" required="required" onkeyup="retryPasswd(this)"><span id="retryPasswdResult"></span></td>
+										<td><input type="password" name="rePass" id="rePass" onkeyup="retryPasswd(this)"><span id="retryPasswdResult"></span></td>
 									</tr>
 									<tr>
 										<td>이름</td>
@@ -337,11 +296,11 @@
 									</tr>
 									<tr>
 										<td>변경할 이메일</td>
-										<td><input type="email" name="email" id="email" required="required"></td>
+										<td><input type="email" name="chEmail" id="chEmail"></td>
 									</tr>									
 									<tr>
 										<td>변경할 이메일 재확인</td>
-										<td><input type="email" name="reEmail" id="reEmail" required="required" onkeyup="retryEmail(this)"><span id="retryEmailResult"></span></td>
+										<td><input type="email" name="reEmail" id="reEmail" onkeyup="retryEmail(this)"><span id="retryEmailResult"></span></td>
 									</tr>
 									<tr>
 										<td>성별</td>
@@ -356,19 +315,19 @@
 								<table>
 									<tr>
 										<td rowspan="3" class=td_size>주소</td>
-										<td><input type="text" name="postcode" id="postcode" class="id" placeholder="우편번호" value="<%=article.getPostcode() %>"> <input type="button" value="우편번호검색" class="genric-btn info circle" onclick="execPostCode()"></td>
+										<td><input type="text" name="postcode" id="postcode" class="id" placeholder="우편번호" value="<%=article.getPostcode() %>" readonly="readonly"> <input type="button" value="우편번호검색" class="genric-btn info circle" onclick="execPostCode()"></td>
 									</tr>
 									<tr>
-										<td><input type="text" name="address" id="address" placeholder="주소" size="46" value="<%=article.getAddress() %>"></td>
+										<td><input type="text" name="address" id="address" placeholder="주소" size="46" value="<%=article.getAddress() %>" readonly="readonly"></td>
 									</tr>
 									<tr>
-										<td><input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소" value="<%=article.getDetailAddress() %>"> <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목" value="<%=article.getExtraAddress() %>"></td>
+										<td><input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소" value="<%=article.getDetailAddress() %>"> <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목" value="<%=article.getExtraAddress() %>" readonly="readonly"></td>
 									</tr>
 								</table>
 								<div class="clear"></div>
 								<div id="buttons">
-									<input type="submit" value="적용" class="genric-btn primary circle">
-									<input type="reset" value="취소" class="genric-btn success circle">
+									<input type="submit" value="정보수정" class="genric-btn primary circle">
+									<input type="button" value="뒤로" class="genric-btn success circle" onclick="">
 								</div>
 							</form>                            
                         </div>

@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-
 import exception.LoginException;
 import vo.MemberBean;
 import static db.JdbcUtil.*;
@@ -179,7 +177,6 @@ public class MemberDAO {
 	}
 	
 	// 회원 삭제 작업
-
 	public int deleteMember(String id) {
 		System.out.println("MemberDAO - deleteMember()");
 		
@@ -204,6 +201,44 @@ public class MemberDAO {
 		}
 		
 		return deleteCount;
+	}
+	
+	// 회원 정보 업데이트 작업
+
+	public int updateMember(MemberBean memberBean) {
+		System.out.println("MemberDAO - updateMember()");
+		
+		int updateCount = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "UPDATE member "
+					+ "SET pass=?, phone=?, birthday=?, gender=?, email=?, "
+					+ "postcode=?, address=?, detailAddress=?, extraAddress=? WHERE id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberBean.getPass());
+			pstmt.setString(2, memberBean.getPhone());
+			pstmt.setDate(3, memberBean.getBirthday());
+			pstmt.setString(4, memberBean.getGender());
+			pstmt.setString(5, memberBean.getEmail());
+			pstmt.setString(6, memberBean.getPostcode());
+			pstmt.setString(7, memberBean.getAddress());
+			pstmt.setString(8, memberBean.getDetailAddress());
+			pstmt.setString(9, memberBean.getExtraAddress());
+			pstmt.setString(10, memberBean.getId());
+			updateCount = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("updateMember() 오류! - " + e.getMessage());
+			e.printStackTrace();
+			
+		} finally {
+			// 자원 반환
+			close(pstmt);
+			
+		}
+		
+		return updateCount;
 	}
 
 }

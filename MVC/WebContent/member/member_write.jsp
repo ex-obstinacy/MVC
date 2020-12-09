@@ -319,13 +319,13 @@
 				<table>
 					<tr>
 						<td rowspan="3" class=td_size>주소</td>
-						<td><input type="text" name="postcode" id="postcode" class="id" placeholder="우편번호"> <input type="button" value="우편번호검색" class="genric-btn info circle" onclick="execPostCode()"></td>
+						<td><input type="text" name="postcode" id="postcode" class="id" placeholder="우편번호" readonly="readonly"> <input type="button" value="우편번호검색" class="genric-btn info circle" onclick="execPostCode()"></td>
 					</tr>
 					<tr>
-						<td><input type="text" name="address" id="address" placeholder="주소" size="46"></td>
+						<td><input type="text" name="address" id="address" placeholder="주소" size="46" readonly="readonly"></td>
 					</tr>
 					<tr>
-						<td><input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소"> <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목"></td>
+						<td><input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소"> <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목" readonly="readonly"></td>
 					</tr>
 				</table>
 			</fieldset>
