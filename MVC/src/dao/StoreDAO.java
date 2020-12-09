@@ -262,7 +262,7 @@ public class StoreDAO {
             pstmt.setInt(1, goodsId);
             rs = pstmt.executeQuery();
             if(rs.next()) {
-//            	basketId = rs.getInt(1)+1;
+//            	
                sql = "update basket set basketCount = basketCount + ? where basketId = ? and goods_goodsId = ?";
                pstmt = con.prepareStatement(sql);
                pstmt.setInt(1, basket.getBasketCount());
@@ -271,7 +271,8 @@ public class StoreDAO {
                pstmt.executeUpdate(sql);
                
                System.out.println("StoreDAO -> addBasket() - basketId : " + basketId);
-            }
+            }  
+            	basketId = rs.getInt(1)+1;
             
             // goodsId 가 0 이상이면 basket에 상품 추가 !
             if(goodsId > 0) {
