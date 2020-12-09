@@ -244,6 +244,65 @@ public class StoreDAO {
          return article;
       }
 
+//      // 장바구니 담기
+//      public int addBasket(StoreBean basket, int goodsId, String id) {
+//         System.out.println("StoreDAO - addBasket()");
+//         
+//         PreparedStatement pstmt = null;
+//         ResultSet rs = null;
+//         int addCount = 0;
+//         
+//         int basketId = basket.getBasketId();
+//         basketId = 0;
+//         
+//         try {
+//        	 // goodsId 가 0 이상이면 basket에 상품 추가 !
+//        	 if(goodsId > 0) {
+//        		 
+//        		 String sql = "insert into basket(basketId, goods_goodsId, basketCount, member_id) value(?,?,?,?)";
+//        		 pstmt = con.prepareStatement(sql);
+//        		 pstmt.setInt(1, basketId);
+//        		 pstmt.setInt(2, goodsId);
+//        		 pstmt.setInt(3, basket.getBasketCount());
+//        		 pstmt.setString(4, id);
+//        		 addCount = pstmt.executeUpdate();
+//        		 
+//        		 System.out.println("basket.getComponent() : " + basket.getComponent());
+//        		 System.out.println("basket.getContent() : " + basket.getContent());
+//        	 }
+//        	 
+//            String sql = "select max(basketId) from basket where goods_goodsId = ?";
+////        	String sql = "select max(basketId) from basket";
+//            pstmt = con.prepareStatement(sql);
+//            pstmt.setInt(1, goodsId);
+//            rs = pstmt.executeQuery();
+//            if(rs.next()) {
+////            	
+//               sql = "update basket set basketCount = basketCount + ? where basketId = ? and goods_goodsId = ?";
+//               pstmt = con.prepareStatement(sql);
+//               pstmt.setInt(1, basket.getBasketCount());
+//               pstmt.setInt(2, basketId);
+//               pstmt.setInt(3, goodsId);
+//               pstmt.executeUpdate(sql);
+//               
+//               System.out.println("StoreDAO -> addBasket() - basketId : " + basketId);
+//            }  
+//            	basketId = rs.getInt(1)+1;
+//            
+//            
+//            System.out.println(goodsId);
+//            System.out.println(basket.getGoods_goodsId());
+//         } catch (Exception e) {
+//            System.out.println("addBasket() 오류! - " + e.getMessage());
+//            e.printStackTrace();
+//         } finally {
+//            close(rs);
+//            close(pstmt);
+//         }
+//         
+//         return addCount;
+//      }
+      
       // 장바구니 담기
       public int addBasket(StoreBean basket, int goodsId, String id) {
          System.out.println("StoreDAO - addBasket()");
@@ -252,52 +311,50 @@ public class StoreDAO {
          ResultSet rs = null;
          int addCount = 0;
          
-         int basketId = basket.getBasketId();
-         basketId = 0;
-         
          try {
-        	 // goodsId 가 0 이상이면 basket에 상품 추가 !
-        	 if(goodsId > 0) {
-        		 
-        		 String sql = "insert into basket(basketId, goods_goodsId, basketCount, member_id) value(?,?,?,?)";
-        		 pstmt = con.prepareStatement(sql);
-        		 pstmt.setInt(1, basketId);
-        		 pstmt.setInt(2, goodsId);
-        		 pstmt.setInt(3, basket.getBasketCount());
-        		 pstmt.setString(4, id);
-        		 addCount = pstmt.executeUpdate();
-        		 
-        		 System.out.println("basket.getComponent() : " + basket.getComponent());
-        		 System.out.println("basket.getContent() : " + basket.getContent());
-        	 }
+        	 int basketId = 0;
         	 
-            String sql = "select max(basketId) from basket where goods_goodsId = ?";
-//        	String sql = "select max(basketId) from basket";
-            pstmt = con.prepareStatement(sql);
-            pstmt.setInt(1, goodsId);
-            rs = pstmt.executeQuery();
-            if(rs.next()) {
-//            	
-               sql = "update basket set basketCount = basketCount + ? where basketId = ? and goods_goodsId = ?";
-               pstmt = con.prepareStatement(sql);
-               pstmt.setInt(1, basket.getBasketCount());
-               pstmt.setInt(2, basketId);
-               pstmt.setInt(3, goodsId);
-               pstmt.executeUpdate(sql);
-               
-               System.out.println("StoreDAO -> addBasket() - basketId : " + basketId);
-            }  
-            	basketId = rs.getInt(1)+1;
-            
-            
-            System.out.println(goodsId);
-            System.out.println(basket.getGoods_goodsId());
+        	 String sql = "SELECT * FROM basket WHERE goods_goodsId=? AND member_id=?";
+        	 pstmt = con.prepareStatement(sql);
+        	 pstmt.setInt(1, goodsId);
+        	 pstmt.setString(2, id);
+        	 rs = pstmt.executeQuery();
+        	 
+        	 if (rs.next()) {
+				sql = "UPDATE basket SET basketCount=basketCount+1 WHERE goods_goodsId=? AND member_id=?";
+	        	 pstmt = con.prepareStatement(sql);
+	        	 pstmt.setInt(1, goodsId);
+	        	 pstmt.setString(2, id);
+	        	 addCount = pstmt.executeUpdate();
+	        	 
+        	} else {
+        		sql = "SELECT MAX(basketId) FROM basket";
+        		pstmt = con.prepareStatement(sql);
+        		rs = pstmt.executeQuery();
+        		
+        		if (rs.next()) {
+        			basketId = rs.getInt(1);
+					
+				}
+        		
+				sql = "INSERT INTO basket(basketId, goods_goodsId, basketCount, member_id) VALUES(?, ?, ?, ?)";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, basketId);
+				pstmt.setInt(2, goodsId);
+				pstmt.setInt(3, 1);
+				pstmt.setString(4, id);
+				addCount = pstmt.executeUpdate();
+        		
+			}
+        	 
          } catch (Exception e) {
             System.out.println("addBasket() 오류! - " + e.getMessage());
             e.printStackTrace();
+            
          } finally {
             close(rs);
             close(pstmt);
+            
          }
          
          return addCount;
