@@ -93,7 +93,7 @@ request.setCharacterEncoding("utf-8"); %>
 	<div class="container">
       <div class="cart_inner">
         <div class="table-responsive">
-	<h2>상품정보 수정하기</h2>
+	<h2>상품정보 수정</h2>
 	<p>*표시는 반드시 입력바랍니다.</p>
 	<form action="GoodsModifyPro.go" method="post" name="goodsModifyForm" id="goodsModifyForm" onsubmit="return ck()" enctype="multipart/form-data">
 		<input type="hidden" name="goodsId" value="<%=article.getGoodsId() %>" >
