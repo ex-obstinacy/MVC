@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import action.Action;
+import action.MemberDeleteProAction;
 import action.MemberInfoAction;
 import action.MemberLoginProAction;
 import action.MemberLogoutAction;
@@ -115,8 +116,24 @@ public class MemberFrontController extends HttpServlet {
 			
 			try {
 				forward = action.execute(request, response);
+				
 			} catch (Exception e) {
 				e.printStackTrace();
+				
+			}
+		} else if (command.equals("/MemberDelete.me")) { // 회원탈퇴 페이지 이동
+			forward = new ActionForward();
+			forward.setPath("/member/member_delete.jsp");
+			
+		} else if(command.equals("/MemberDeletePro.me")) { // 회원탈퇴 작업 진행
+			action = new MemberDeleteProAction();
+			
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
 			}
 		}
 		

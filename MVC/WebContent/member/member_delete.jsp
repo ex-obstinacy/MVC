@@ -86,8 +86,10 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="login_part_form">
                         <div class="login_part_form_iner">
-                            <h3><%=id %> 님<br>
-                            반갑습니다! Welcome Back!</h3>
+                            <h3>정말 탈퇴 하실껀가요?</h3>
+                            <form action="MemberDeletePro.me" method="post">
+	                            비밀번호 확인 <input type="password" name="pass"> <input type="submit" value="탈퇴" class="genric-btn primary circle">
+                            </form>
                             
                         </div>
                     </div>

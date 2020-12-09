@@ -295,7 +295,8 @@
 									<li><a href="">장바구니</a></li>
 									<li><a href="">리뷰내역</a></li>
 									<li><a href="">1:1문의</a></li>
-									<li><a href="">My정보</a></li>
+									<li><a href="MemberInfo.me">My정보</a></li>
+									<li><a href="MemberDelete.me">회원탈퇴</a></li>
 								</ul>
 							</nav>
                         </div>

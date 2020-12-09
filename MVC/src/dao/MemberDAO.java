@@ -177,5 +177,33 @@ public class MemberDAO {
 		
 		return article;
 	}
+	
+	// 회원 삭제 작업
+
+	public int deleteMember(String id) {
+		System.out.println("MemberDAO - deleteMember()");
+		
+		int deleteCount = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "DELETE FROM member WHERE id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			deleteCount = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("deleteMember() 오류! - " + e.getMessage());
+			e.printStackTrace();
+			
+		} finally {
+			// 자원 반환
+			close(pstmt);
+			
+		}
+		
+		return deleteCount;
+	}
 
 }
