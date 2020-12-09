@@ -16,7 +16,6 @@ public class GoodsWriteProService {
 			
 			boolean isWriteSuccess = false; //글 등록 성공 여부를 리턴받아 저장
 											//false는 실패! 이전 페이지로 back
-			
 			// 1(공통). DB 작업에 필요한 Connection 객체 가져오기
 //			Connection con = JdbcUtil.getConnection();
 			// static import로 선언된 메서드는 클래스명을 붙일 수 없다!

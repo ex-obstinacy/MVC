@@ -117,7 +117,7 @@ public class StoreFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			} 
-		} else if(command.equals("/GoodsModifyForm.bo")) {
+		} else if(command.equals("/GoodsModifyForm.go")) {
 			action = new GoodsModifyFormAction();
 			
 			try {
@@ -125,7 +125,7 @@ public class StoreFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/GoodsModifyPro.bo")) {
+		} else if(command.equals("/GoodsModifyPro.go")) {
 			action = new GoodsModifyProAction();
 			
 			try {

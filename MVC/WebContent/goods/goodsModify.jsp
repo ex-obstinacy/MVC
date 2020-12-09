@@ -7,7 +7,7 @@
  <!-- Required meta tags -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>goodsWriteForm</title>
+<title>goodsModifyForm</title>
     <link rel="icon" href="img/favicon.png">
 <!--     Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -43,8 +43,8 @@
         <div class="col-lg-8">
           <div class="breadcrumb_iner">
             <div class="breadcrumb_iner_item">
-              <h2>상품 등록</h2>
-              <p>란희 <span>-</span> GoodsWriteForm</p>
+              <h2>상품 수정</h2>
+              <p>란희 <span>-</span> GoodsModifyForm</p>
             </div>
           </div>
         </div>
@@ -56,7 +56,7 @@
 <script src="js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	$('#goodsWriteForm').submit(function(){
+	$('#goodsModifyForm').submit(function(){
 		if ($('#gds_ctg00').is(":selected") == true) {
 			alert("상품 카테고리를 선택 하세요");
 			$('#goods_ctg').focus();
@@ -96,7 +96,7 @@ request.setCharacterEncoding("utf-8"); %>
 	<h2>상품정보 수정하기</h2>
 	<p>*표시는 반드시 입력바랍니다.</p>
 	<form action="GoodsModifyPro.go" method="post" name="goodsModifyForm" id="goodsModifyForm" onsubmit="return ck()" enctype="multipart/form-data">
-		<input type="hidden" name="board_num" value="<%=article.getGoodsId() %>" >
+		<input type="hidden" name="goodsId" value="<%=article.getGoodsId() %>" >
 		<input type="hidden" name="page" value="<%=nowPage %>" >
 		<table class="table">
 			<tr>
@@ -118,19 +118,20 @@ request.setCharacterEncoding("utf-8"); %>
 			</tr>
 			<tr>
 			 <td><label for="goods_sale">*할인율</label></td>
-			 <td><input type="text" name="goods_sale" id="goods_sale" value="0" required="required" value=<%=article.getSale() %> ></td>
+			 <td><input type="text" name="goods_sale" id="goods_sale" required="required" value=<%=article.getSale() %> ></td>
 			</tr>
 			<tr>
 			 <td><label for="goods_sellCount">*판매수량</label></td>
-			 <td><input type="text" name="goods_sellCount" id="goods_sellCount" value="0" required="required" value=<%=article.getSellCount() %> ></td>
+			 <td><input type="text" name="goods_sellCount" id="goods_sellCount" required="required" value=<%=article.getSellCount() %> ></td>
 			</tr>
 			<tr>
 			 <td><label for="goods_component">*상품구성</label></td>
 			 <td><input type="text" name="goods_component" id="goods_component" required="required" value=<%=article.getComponent() %> ></td>
 			</tr>
 			<tr>
-			 <td><label for="goods_file">*이미지파일</label></td>
-			 <td><input type="file" name="goods_file" id="goods_file" required="required" value=<%=article.getFile() %> ></td>
+			 <td><label for="goods_file">*이미지파일</label></td> 
+			 <td><input type="file" name="goods_file" id="goods_file" required="required">
+			 <input type="hidden" name="oldfile" value="<%=article.getFile()%>"><%=article.getFile()%></td>
 			</tr>
 			<tr>
 			 <td><label for="goods_content">상세내용</label></td>

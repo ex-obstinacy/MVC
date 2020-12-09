@@ -377,6 +377,43 @@ public class StoreDAO {
             }
             return basketList;
          }
+      
+   // 글 수정
+  	public int updateArticle(StoreBean article) {
+  		// StoreBean 객체에 저장된 수정 내용(작성자, 제목, 내용)을 사용하여
+  		// 상품번호(goodsId)에 해당하는 레코드를 수정 후 결과 리턴
+  		int updateCount =0;
+  		PreparedStatement pstmt = null;
+  		
+  		try {
+  			String sql = "update goods set ctg=?, name=?, price=?, sale=?, component=?, sellCount=?, file=?, content=? where goodsId=?";
+  			pstmt = con.prepareStatement(sql);
+  			pstmt.setString(1, article.getCtg());
+  			pstmt.setString(2, article.getName());
+  			pstmt.setInt(3, article.getPrice());
+            pstmt.setInt(4, article.getSale());
+            pstmt.setString(5, article.getComponent());
+            pstmt.setInt(6, article.getSellCount());
+            pstmt.setString(7, article.getFile());
+            pstmt.setString(8, article.getContent());
+            pstmt.setInt(9, article.getGoodsId());
+  			
+  			updateCount = pstmt.executeUpdate();
+  			
+  			//임시 확인용
+  			System.out.println("GoodsDAO에서 check! 수정되었는가? : " + updateCount);
+  			
+  		} catch (SQLException e) {
+  			System.out.println("updateArticle() 오류!- "+e.getMessage());
+  			
+  			e.printStackTrace();
+  		} finally {
+  			close(pstmt);
+  		}
+  		
+  		
+  		return updateCount;
+  	}
 
       
    
