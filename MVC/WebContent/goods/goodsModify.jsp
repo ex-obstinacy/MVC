@@ -130,12 +130,12 @@ request.setCharacterEncoding("utf-8"); %>
 			</tr>
 			<tr>
 			 <td><label for="goods_file">*이미지파일</label></td> 
-			 <td><input type="file" name="goods_file" id="goods_file" required="required">
+			 <td><input type="file" name="goods_file" id="goods_file">
 			 <input type="hidden" name="oldfile" value="<%=article.getFile()%>"><%=article.getFile()%></td>
 			</tr>
 			<tr>
 			 <td><label for="goods_content">상세내용</label></td>
-			 <td><textarea name="goods_content" id="goods_content" rows="10" cols="20" value=<%=article.getContent() %> ></textarea></td>
+			 <td><textarea name="goods_content" id="goods_content" rows="10" cols="20"><%=article.getContent() %></textarea></td>
 			</tr>
 		</table>
 		<section id="commandCell">

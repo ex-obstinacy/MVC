@@ -293,7 +293,7 @@
 					</tr>
 					<tr>
 						<td>전화번호</td>
-						<td><input type="text" name="phone" required="required"></td>
+						<td><input type="text" name="phone" required="required" placeholder="ex.000-0000-0000"></td>
 					</tr>
 					<tr>
 						<td>이메일</td>

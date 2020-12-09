@@ -305,7 +305,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="login_part_form">
                         <div class="login_part_form_iner">
-						    <form action="MemberWritePro.me" id="join" method="post" name="fr" class="container" onsubmit="return check()">
+						    <form action="MemberUpdatePro.me" id="join" method="post" name="fr" class="container" onsubmit="return check()">
 								<table>
 									<tr>
 										<td class=td_size>아이디</td>
@@ -329,7 +329,7 @@
 									</tr>
 									<tr>
 										<td>전화번호</td>
-										<td><input type="text" name="phone" required="required" value="<%=article.getPhone() %>"></td>
+										<td><input type="text" name="phone" required="required" value="<%=article.getPhone() %>" placeholder="ex.000-0000-0000"></td>
 									</tr>
 									<tr>
 										<td>이메일</td>

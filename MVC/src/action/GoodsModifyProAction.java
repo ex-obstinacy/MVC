@@ -54,6 +54,16 @@ public class GoodsModifyProAction implements Action {
 				new DefaultFileRenamePolicy() //파일명 중복 시 중복 처리 객체
 				);
 		
+		// 파일 수정 확인
+		String goods_file = null;
+		if (multi.getOriginalFileName("goods_file") == null) { // 수정 파일이 없을 경우 기존의 파일이름으로 대처
+			goods_file = multi.getOriginalFileName("oldfile");
+			
+		} else {
+			goods_file = multi.getOriginalFileName("goods_file"); // 수정 파일이 있을 경우 파일 이름 변경
+			
+		}
+		
 		// StoreBean 객체 생성하여 수정폼으로부터 전달받은 항목을 저장
 		// => 상품번호, 카테고리, 상품이름, 상품가격, 할인율, 판매수량, 상품구성, 이미지파일, 상세내용
 		StoreBean article = new StoreBean();
@@ -64,7 +74,7 @@ public class GoodsModifyProAction implements Action {
 		article.setSale(Integer.parseInt(multi.getParameter("goods_sale")));
 		article.setComponent(multi.getParameter("goods_component"));
 		article.setSellCount(Integer.parseInt(multi.getParameter("goods_sellCount")));
-		article.setFile(multi.getOriginalFileName("goods_file"));
+		article.setFile(goods_file);
 		article.setContent(multi.getParameter("goods_content"));
 		
 		// GoodsModifyProService 클래스 인스턴스 생성 후
