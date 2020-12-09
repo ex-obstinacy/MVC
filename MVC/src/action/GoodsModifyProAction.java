@@ -91,7 +91,7 @@ public class GoodsModifyProAction implements Action {
 			else{
 				forward = new ActionForward();
 				forward.setRedirect(true);
-				forward.setPath("GoodsList.go?goodsId="+ request.getParameter("goodsId") + "&page=" + request.getParameter("page")); 
+				forward.setPath("GoodsList.go?goodsId="+ multi.getParameter("goodsId") + "&page=" + multi.getParameter("page")); 
 			}
 			
 		
