@@ -103,11 +103,10 @@ request.setCharacterEncoding("utf-8"); %>
 			 <td>*카테고리</td>
 			 <td><select name="goods_ctg" id="goods_ctg">
 			 		<option value="" id="gds_ctg00">카테고리선택</option>
- 					<option value="package">package</option>
- 					<option value="ticket">ticket</option>
-  					<option value="snack">snack</option> 
- 				  </select><input type="hidden" name="old_ctg" value="<%=article.getCtg()%>"><%=article.getCtg()%></td>
-<!--  				  작동안함 -->
+ 					<option value="package" <%if (article.getCtg().equals("package")) { %> selected="selected" <%} %>>package</option>
+ 					<option value="ticket" <%if (article.getCtg().equals("ticket")) { %> selected="selected" <%} %>>ticket</option>
+  					<option value="snack" <%if (article.getCtg().equals("snack")) { %> selected="selected" <%} %>>snack</option> 
+ 				  </select><input type="hidden" name="old_ctg" value="<%=article.getCtg()%>"></td>
 			</tr>
 			<tr>
 			 <td><label for="goods_name" >*상품이름</label></td>
