@@ -208,9 +208,16 @@ if(adultnum == 0){
 	<div class="container">
 		<h2>결제</h2>
 		<form action="PayPro.re" name="selectSeat" method="post" id="payForm">
+			<!-- Pro로 보낼 값 -->
+			<input type="hidden" name="movie_subject" value="<%=movie.getMovie_subject() %>"> <!-- 영화제목 -->
+			<input type="hidden" name="cinema_name" value="<%=movie.getCinema_name() %>"> <!-- 영화관 이름 -->
+			<input type="hidden" name="showdate" value="<%=movie.getShowdate() %>"> <!-- 상영 날짜 -->
+			<input type="hidden" name="showtime" value="<%=movie.getShowtime() %>"> <!-- 상영 시간 -->
+			<input type="hidden" name="adultnum" value="<%=movie.getAdultnum() %>"> <!-- 성인 수 -->
+			<input type="hidden" name="kidsnum" value="<%=movie.getKidsnum() %>"> <!-- 아이 수 -->
 			<%
 				for(String seat : seatArr){
-					%><input type="hidden" value="<%=seat%>" ><%
+					%><input type="hidden" name="seat" value="<%=seat%>" ><%
 				}
 			%><!-- 좌석값 받아오기  -->
 			<input type="hidden" id="coupon_1000" name="coupon_1000" value="<%=coupon1000%>"><!-- 쿠폰 수량 가져오기 -->
@@ -364,6 +371,8 @@ if(adultnum == 0){
 					</tr>
 				</table>
 			
+				<!-- 가상 결제 완료 버튼 -->
+				<input type="submit" value="결제 완료">
 			</div><!-- .rightBox -->
 			
 		</form>

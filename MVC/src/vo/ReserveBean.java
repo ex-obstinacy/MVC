@@ -13,7 +13,7 @@ public class ReserveBean {
 	private int ticketnum;
 	private String member_id;
 	private int adultnum;
-	private int kidstnum;
+	private int kidsnum;
 	private int membership;
 	
 	public int getMembership() {
@@ -88,11 +88,12 @@ public class ReserveBean {
 	public void setAdultnum(int adultnum) {
 		this.adultnum = adultnum;
 	}
-	public int getKidstnum() {
-		return kidstnum;
+	public int getKidsnum() {
+		return kidsnum;
 	}
-	public void setKidstnum(int kidstnum) {
-		this.kidstnum = kidstnum;
+	public void setKidsnum(int kidsnum) {
+		this.kidsnum = kidsnum;
 	}
+	
 
 }
