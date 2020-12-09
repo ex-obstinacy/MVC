@@ -256,13 +256,28 @@ public class StoreDAO {
          basketId = 0;
          
          try {
+        	 // goodsId 가 0 이상이면 basket에 상품 추가 !
+        	 if(goodsId > 0) {
+        		 
+        		 String sql = "insert into basket(basketId, goods_goodsId, basketCount, member_id) value(?,?,?,?)";
+        		 pstmt = con.prepareStatement(sql);
+        		 pstmt.setInt(1, basketId);
+        		 pstmt.setInt(2, goodsId);
+        		 pstmt.setInt(3, basket.getBasketCount());
+        		 pstmt.setString(4, id);
+        		 addCount = pstmt.executeUpdate();
+        		 
+        		 System.out.println("basket.getComponent() : " + basket.getComponent());
+        		 System.out.println("basket.getContent() : " + basket.getContent());
+        	 }
+        	 
             String sql = "select max(basketId) from basket where goods_goodsId = ?";
-//        	 String sql = "select max(basketId) from basket";
+//        	String sql = "select max(basketId) from basket";
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1, goodsId);
             rs = pstmt.executeQuery();
             if(rs.next()) {
-//            	basketId = rs.getInt(1)+1;
+//            	
                sql = "update basket set basketCount = basketCount + ? where basketId = ? and goods_goodsId = ?";
                pstmt = con.prepareStatement(sql);
                pstmt.setInt(1, basket.getBasketCount());
@@ -271,22 +286,9 @@ public class StoreDAO {
                pstmt.executeUpdate(sql);
                
                System.out.println("StoreDAO -> addBasket() - basketId : " + basketId);
-            }
+            }  
+            	basketId = rs.getInt(1)+1;
             
-            // goodsId 가 0 이상이면 basket에 상품 추가 !
-            if(goodsId > 0) {
-               
-               sql = "insert into basket(basketId, goods_goodsId, basketCount, member_id) value(?,?,?,?)";
-               pstmt = con.prepareStatement(sql);
-               pstmt.setInt(1, basketId);
-               pstmt.setInt(2, goodsId);
-               pstmt.setInt(3, basket.getBasketCount());
-               pstmt.setString(4, id);
-               addCount = pstmt.executeUpdate();
-               
-              System.out.println("basket.getComponent() : " + basket.getComponent());
-              System.out.println("basket.getContent() : " + basket.getContent());
-            }
             
             System.out.println(goodsId);
             System.out.println(basket.getGoods_goodsId());
