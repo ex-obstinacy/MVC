@@ -55,12 +55,9 @@ public class GoodsModifyProAction implements Action {
 				);
 		
 		// 파일 수정 확인
-		String goods_file = null;
-		if (multi.getOriginalFileName("goods_file") == null) { // 수정 파일이 없을 경우 기존의 파일이름으로 대처
-			goods_file = multi.getOriginalFileName("oldfile");
-			
-		} else {
-			goods_file = multi.getOriginalFileName("goods_file"); // 수정 파일이 있을 경우 파일 이름 변경
+		String goods_file = multi.getFilesystemName("goods_file");
+		if (goods_file == null) { // 수정 파일이 없을 경우 기존의 파일이름으로 대처
+			goods_file = multi.getParameter("oldfile");
 			
 		}
 		

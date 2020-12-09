@@ -14,6 +14,7 @@ import action.MemberInfoAction;
 import action.MemberLoginProAction;
 import action.MemberLogoutAction;
 import action.MemberMainAction;
+import action.MemberUpdateProAction;
 import action.MemberWriteProAction;
 import vo.ActionForward;
 
@@ -127,6 +128,16 @@ public class MemberFrontController extends HttpServlet {
 			
 		} else if(command.equals("/MemberDeletePro.me")) { // 회원탈퇴 작업 진행
 			action = new MemberDeleteProAction();
+			
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
+		}  else if(command.equals("/MemberUpdatePro.me")) { // 회원탈퇴 작업 진행
+			action = new MemberUpdateProAction();
 			
 			try {
 				forward = action.execute(request, response);
