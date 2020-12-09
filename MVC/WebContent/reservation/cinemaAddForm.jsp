@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="css/price_rangs.css">
   <!-- style CSS -->
   <link rel="stylesheet" href="css/style.css">
-  <link href="css/admin_cinema.css" rel="stylesheet" type="text/css">
+  <link href="css/reservation.css" rel="stylesheet" type="text/css">
 <script src="js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
