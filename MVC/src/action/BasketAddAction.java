@@ -51,13 +51,13 @@ public class BasketAddAction implements Action {
       
       // BasketAddService 클래스의 인스턴스 생성 후  selectBasketList() 메서드를 호출하여 게시물 번호에 해당하는 글내용 가져오기
       BasketAddService basketAddService = new BasketAddService();
-      ArrayList<StoreBean> basketList = basketAddService.selectBasketList(goodsId);
       
-      // 글내용이 저장된 ArrayList<StoreBean> 객체를 request 객체에 저장
-      request.setAttribute("basketList", basketList);
+      //장바구니 항목으로 추가될 상품 정보 얻어옴
+      StoreBean basket = new StoreBean();
+      basket = basketAddService.selectArticle(goodsId);
       
-//      StoreBean basketAdd = new StoreBean();
-      boolean isBasketAddSuccess = basketAddService.addBasket(goodsId, id);
+      // 장바구니 추가
+      boolean isBasketAddSuccess = basketAddService.addBasket(basket, goodsId, id);
       
       if(isBasketAddSuccess) {
          forward = new ActionForward();
