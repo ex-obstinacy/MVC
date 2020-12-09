@@ -42,7 +42,7 @@ public class BasketAddAction implements Action {
       // -------------------- id가 null 이면 로그인 화면 이동 --------------------
       
       
-      // -------------------- 장바구니 담기 요청 --------------------
+      // -------------------- 장바구니 담기 --------------------
       
       System.out.println("BasketAddAction - 장바구니 담기");
       
@@ -53,11 +53,10 @@ public class BasketAddAction implements Action {
       BasketAddService basketAddService = new BasketAddService();
       
       //장바구니 항목으로 추가될 상품 정보 얻어옴
-      StoreBean basket = new StoreBean();
-      basket = basketAddService.selectArticle(goodsId);
+      basketAddService.selectArticle(goodsId);
       
       // 장바구니 추가
-      boolean isBasketAddSuccess = basketAddService.addBasket(basket, goodsId, id);
+      boolean isBasketAddSuccess = basketAddService.addBasket(goodsId, id);
       
       if(isBasketAddSuccess) {
          forward = new ActionForward();

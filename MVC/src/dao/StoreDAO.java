@@ -5,25 +5,18 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import vo.MemberBean;
 import vo.StoreBean;
 import static db.JdbcUtil.*;
 
 public class StoreDAO {
-   /*
-    * 싱글톤 디자인 패턴을 활용한 BoardDAO 인스턴스 작업
-    * 1. 외부에서 인스턴스 생성(생성자 호출)이 불가능하도록
-    *    생성자의 접근제한자를 private 으로 선언
-    * 2. 자신의 클래스 내에서 직접 인스턴스를 생성하여 멤버변수(instance)로 저장
-    * => 외부에서 변수에 접근하여 함부로 값을 변경하지 못하도록 접근제한자를 private 으로 선언
-    * => 멤버변수를 static 으로 선언하여 외부에서 객체 생성 없이 접근할 수 있도록 함
-    * 3. 생성된 인스턴스를 외부로 리턴하는 Getter 메서드(getInstance)를 정의
-    * => 파라미터 : 없음, 리턴타입 : BoardDAO 
-    * => static 변수를 리턴하므로 Getter 메서드도 static 으로 선언
-    */
-   private StoreDAO() {}
+
+	private StoreDAO() {}
    
    private static StoreDAO instance = new StoreDAO();
    
@@ -244,72 +237,15 @@ public class StoreDAO {
          return article;
       }
 
-//      // 장바구니 담기
-//      public int addBasket(StoreBean basket, int goodsId, String id) {
-//         System.out.println("StoreDAO - addBasket()");
-//         
-//         PreparedStatement pstmt = null;
-//         ResultSet rs = null;
-//         int addCount = 0;
-//         
-//         int basketId = basket.getBasketId();
-//         basketId = 0;
-//         
-//         try {
-//        	 // goodsId 가 0 이상이면 basket에 상품 추가 !
-//        	 if(goodsId > 0) {
-//        		 
-//        		 String sql = "insert into basket(basketId, goods_goodsId, basketCount, member_id) value(?,?,?,?)";
-//        		 pstmt = con.prepareStatement(sql);
-//        		 pstmt.setInt(1, basketId);
-//        		 pstmt.setInt(2, goodsId);
-//        		 pstmt.setInt(3, basket.getBasketCount());
-//        		 pstmt.setString(4, id);
-//        		 addCount = pstmt.executeUpdate();
-//        		 
-//        		 System.out.println("basket.getComponent() : " + basket.getComponent());
-//        		 System.out.println("basket.getContent() : " + basket.getContent());
-//        	 }
-//        	 
-//            String sql = "select max(basketId) from basket where goods_goodsId = ?";
-////        	String sql = "select max(basketId) from basket";
-//            pstmt = con.prepareStatement(sql);
-//            pstmt.setInt(1, goodsId);
-//            rs = pstmt.executeQuery();
-//            if(rs.next()) {
-////            	
-//               sql = "update basket set basketCount = basketCount + ? where basketId = ? and goods_goodsId = ?";
-//               pstmt = con.prepareStatement(sql);
-//               pstmt.setInt(1, basket.getBasketCount());
-//               pstmt.setInt(2, basketId);
-//               pstmt.setInt(3, goodsId);
-//               pstmt.executeUpdate(sql);
-//               
-//               System.out.println("StoreDAO -> addBasket() - basketId : " + basketId);
-//            }  
-//            	basketId = rs.getInt(1)+1;
-//            
-//            
-//            System.out.println(goodsId);
-//            System.out.println(basket.getGoods_goodsId());
-//         } catch (Exception e) {
-//            System.out.println("addBasket() 오류! - " + e.getMessage());
-//            e.printStackTrace();
-//         } finally {
-//            close(rs);
-//            close(pstmt);
-//         }
-//         
-//         return addCount;
-//      }
-      
       // 장바구니 담기
-      public int addBasket(StoreBean basket, int goodsId, String id) {
+      public int addBasket(int goodsId, String id) {
          System.out.println("StoreDAO - addBasket()");
          
          PreparedStatement pstmt = null;
          ResultSet rs = null;
          int addCount = 0;
+         
+         Timestamp date = new Timestamp(System.currentTimeMillis());
          
          try {
         	 int basketId = 0;
@@ -333,16 +269,17 @@ public class StoreDAO {
         		rs = pstmt.executeQuery();
         		
         		if (rs.next()) {
-        			basketId = rs.getInt(1);
+        			basketId = rs.getInt(1) +1;
 					
 				}
         		
-				sql = "INSERT INTO basket(basketId, goods_goodsId, basketCount, member_id) VALUES(?, ?, ?, ?)";
+				sql = "INSERT INTO basket(basketId, goods_goodsId, basketCount, member_id, date) VALUES(?, ?, ?, ?, ?)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, basketId);
 				pstmt.setInt(2, goodsId);
 				pstmt.setInt(3, 1);
 				pstmt.setString(4, id);
+				pstmt.setTimestamp(5, date);
 				addCount = pstmt.executeUpdate();
         		
 			}
