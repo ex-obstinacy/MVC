@@ -21,17 +21,15 @@ public class BasketAddAction implements Action {
 
    @Override
    public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-      
+      System.out.println("BasketAddAction");
+	   
       ActionForward forward = null;
       forward = new ActionForward();
       
       // -------------------- id가 null 이면 로그인 화면 이동 --------------------
-      System.out.println("BasketAddAction - 로그인 확인");
       
       HttpSession session = request.getSession(); //MemberBean id 값 가져오기
       String id = (String)session.getAttribute("id"); 
-      
-      System.out.println("id : " + id); // id 확인
       
       if(id == null) { // id가 null 이면 로그인 화면으로 이동 !
          forward.setPath("MemberLogin.me");
@@ -44,10 +42,7 @@ public class BasketAddAction implements Action {
       
       // -------------------- 장바구니 담기 --------------------
       
-      System.out.println("BasketAddAction - 장바구니 담기");
-      
       int goodsId = Integer.parseInt(request.getParameter("goodsId"));
-      System.out.println("BasketAddAction() - 게시물 번호 : " + goodsId);
       
       // BasketAddService 클래스의 인스턴스 생성 후  selectBasketList() 메서드를 호출하여 게시물 번호에 해당하는 글내용 가져오기
       BasketAddService basketAddService = new BasketAddService();

@@ -4,8 +4,10 @@
     pageEncoding="UTF-8"%>
 <% 
 ArrayList<StoreBean> basketList = (ArrayList<StoreBean>)request.getAttribute("basketList");
+StoreBean basket = new StoreBean();
 
-StoreBean basket = new StoreBean(); 
+
+
 int totalPrice = basket.getTotalPrice() * basket.getBasketCount() ;
 int sale = (int)(basket.getPrice() * basket.getSale() * 0.01); //세일가 = 원가 * (세일 * 0.01) -> %로 나타낸거임
 int sumPrice = totalPrice - sale; // 할인 후 적용가 = 원가 - 세일가

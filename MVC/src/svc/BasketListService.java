@@ -9,7 +9,7 @@ import static db.JdbcUtil.*;
 import vo.StoreBean;
 
 public class BasketListService {
-   public ArrayList<StoreBean> getBasketList(int goodsId) throws Exception {
+   public ArrayList<StoreBean> getBasketList(int goodsId, String id) throws Exception {
       System.out.println("BasketListService !");
       ArrayList<StoreBean> basketList = null;
       
@@ -19,7 +19,7 @@ public class BasketListService {
       
       storeDAO.setConnection(con);
       
-      basketList = storeDAO.selectBasketList(goodsId);
+      basketList = storeDAO.selectBasketList(goodsId, id);
       
       close(con);
       

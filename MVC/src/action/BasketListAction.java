@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import svc.BasketListService;
 import vo.ActionForward;
@@ -18,13 +19,15 @@ public class BasketListAction implements Action {
       System.out.println("BasketListAction");
       ActionForward forward = null;
       
+      HttpSession session = request.getSession(); //MemberBean id 값 가져오기
+      String id = (String)session.getAttribute("id"); 
+      
       int goodsId = Integer.parseInt(request.getParameter("goodsId"));
-//      System.out.println("BasketListAction - goodsId : " + goodsId);
       
       BasketListService basketListService = new BasketListService();
       ArrayList<StoreBean> basketList = new ArrayList<StoreBean>();
       
-      basketList = basketListService.getBasketList(goodsId);
+      basketList = basketListService.getBasketList(goodsId, id);
       
       forward = new ActionForward();
       forward.setPath("/basket.jsp"); // true랑 false 차이 뭐지 true 하니까 값을 못받아오네
