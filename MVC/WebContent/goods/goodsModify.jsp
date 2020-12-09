@@ -55,15 +55,15 @@
 
 <script src="js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-	$('#goodsModifyForm').submit(function(){
-		if ($('#gds_ctg00').is(":selected") == true) {
-			alert("상품 카테고리를 선택 하세요");
-			$('#goods_ctg').focus();
-			return false;
-		}
-	});
-});
+// $(document).ready(function(){
+// 	$('#goodsModifyForm').submit(function(){
+// 		if ($('#gds_ctg00').is(":selected") == true) {
+// 			alert("상품 카테고리를 선택 하세요");
+// 			$('#goods_ctg').focus();
+// 			return false;
+// 		}
+// 	});
+// });
 </script>
 <%
     //request 객체에 저장된 BoardBean 객체(article) 가져오기
@@ -105,8 +105,9 @@ request.setCharacterEncoding("utf-8"); %>
 			 		<option value="" id="gds_ctg00">카테고리선택</option>
  					<option value="package">package</option>
  					<option value="ticket">ticket</option>
-  					<option value="snack">snack</option>
- 				  </select></td>
+  					<option value="snack">snack</option> 
+ 				  </select><input type="hidden" name="old_ctg" value="<%=article.getCtg()%>"><%=article.getCtg()%></td>
+<!--  				  작동안함 -->
 			</tr>
 			<tr>
 			 <td><label for="goods_name" >*상품이름</label></td>

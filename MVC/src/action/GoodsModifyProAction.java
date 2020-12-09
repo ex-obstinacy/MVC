@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.sun.org.apache.bcel.internal.generic.Select;
 
 import svc.GoodsModifyProService;
 import vo.ActionForward;
@@ -56,9 +57,14 @@ public class GoodsModifyProAction implements Action {
 		
 		// 파일 수정 확인
 		String goods_file = multi.getFilesystemName("goods_file");
-		if (goods_file == null) { // 수정 파일이 없을 경우 기존의 파일이름으로 대처
+		if (goods_file == null) { // 수정 파일이 없을 경우 기존의 파일이름으로 대체
 			goods_file = multi.getParameter("oldfile");
-			
+		}
+		
+		// select 카테고리부분 수정 확인 -- 작동 x
+		String goods_ctg = multi.getParameter("goods_ctg");
+		if (goods_ctg == null) { // 수정 카테고리가 없을 경우 기존 카테고리로 대체
+			goods_ctg = multi.getParameter("old_ctg");
 		}
 		
 		// StoreBean 객체 생성하여 수정폼으로부터 전달받은 항목을 저장
