@@ -2,13 +2,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%
+ <%
 	//session 객체에 저장된 id 값 가져와서 변수에 저장
 	String id = (String)session.getAttribute("id");
-
+ 
 	// MemberBean 객체 가져오기
 	MemberBean article = (MemberBean)request.getAttribute("article");
-	
 %>
 
 <!DOCTYPE html>
@@ -26,6 +25,8 @@
     <link rel="stylesheet" href="css/animate.css">
     <!-- owl carousel CSS -->
     <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <!-- nice select CSS -->
+    <link rel="stylesheet" href="css/nice-select.css">
     <!-- font awesome CSS -->
     <link rel="stylesheet" href="css/all.css">
     <!-- flaticon CSS -->
@@ -35,6 +36,7 @@
     <link rel="stylesheet" href="css/magnific-popup.css">
     <!-- swiper CSS -->
     <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="css/price_rangs.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
     
@@ -216,135 +218,149 @@
 
 <body>
     <!--::header part start::-->
-    <jsp:include page="/inc/top.jsp"/>
+    <jsp:include page="../inc/top.jsp"/>
     <!-- Header part end-->
 
-
+    <!--================Home Banner Area =================-->
     <!-- breadcrumb start-->
-<!--     <section class="breadcrumb breadcrumb_bg"> -->
-<!--     	<div class="container"> -->
-<!--             <div class="row justify-content-center"> -->
-<!--                 <div class="col-lg-8"> -->
-<!--                     <div class="breadcrumb_iner"> -->
-<!--                         <div class="breadcrumb_iner_item"> -->
-<!--                             <h2>Tracking Order</h2> -->
-<!--                             <p>Home <span>-</span> Tracking Order</p> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--             </div> -->
-<!--         </div> -->
-<!--     </section> -->
-    <!-- breadcrumb start-->
-
-    <!--================main_part Area =================-->
-
-
-
-	
-	<section class="login_part padding_top">
+    <section class="breadcrumb breadcrumb_bg">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-6">
-                    <div class="login_part_text text-center">
-                        <div class="login_part_text_iner">
-                        	<nav id="member_sub_menu">
-								<ul>
-									<li><a href="">결제내역</a></li>
-									<li><a href="">장바구니</a></li>
-									<li><a href="">리뷰내역</a></li>
-									<li><a href="">1:1문의</a></li>
-									<li><a href="MemberInfo.me">My정보</a></li>
-									<li><a href="MemberDelete.me">회원탈퇴</a></li>
-								</ul>
-							</nav>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="login_part_form">
-                        <div class="login_part_form_iner">
-						    <form action="MemberUpdatePro.me" id="join" method="post" name="fr" class="container" onsubmit="return check()">
-								<table>
-									<tr>
-										<td class=td_size>아이디</td>
-										<td><%=article.getId() %></td>
-									</tr>
-									<tr>
-										<td>비밀번호</td>
-										<td><input type="password" name="pass" id="pass" required="required"></td>
-									</tr>
-									<tr>
-										<td>변경할 비밀번호</td>
-										<td><input type="password" name="chPass" id="chPass" onkeyup="checkPasswd(this)"><span id="checkPasswdResult"></span></td>
-									</tr>
-									<tr>
-										<td>변경할 비밀번호 재확인</td>
-										<td><input type="password" name="rePass" id="rePass" onkeyup="retryPasswd(this)"><span id="retryPasswdResult"></span></td>
-									</tr>
-									<tr>
-										<td>이름</td>
-										<td><%=article.getName() %></td>
-									</tr>
-									<tr>
-										<td>전화번호</td>
-										<td><input type="text" name="phone" required="required" value="<%=article.getPhone() %>" placeholder="ex.000-0000-0000"></td>
-									</tr>
-									<tr>
-										<td>이메일</td>
-										<td><input type="email" name="email" id="email" required="required" value="<%=article.getEmail() %>"></td>
-									</tr>
-									<tr>
-										<td>변경할 이메일</td>
-										<td><input type="email" name="chEmail" id="chEmail"></td>
-									</tr>									
-									<tr>
-										<td>변경할 이메일 재확인</td>
-										<td><input type="email" name="reEmail" id="reEmail" onkeyup="retryEmail(this)"><span id="retryEmailResult"></span></td>
-									</tr>
-									<tr>
-										<td>성별</td>
-										<td><input type="radio" name="gender" value="male" id="male" required="required" <% if(article.getGender().equals("male")) { %> checked="checked" <% } %>>남 
-											<input type="radio" name="gender" value="female" id="female" <% if(article.getGender().equals("female")) { %> checked="checked" <% } %>>여</td>
-									</tr>
-									<tr>
-										<td>생년월일</td>
-										<td><input type="date" name="birthday" id="birthday" required="required" value="<%=article.getBirthday() %>"></td>
-									</tr>
-								</table>
-								<table>
-									<tr>
-										<td rowspan="3" class=td_size>주소</td>
-										<td><input type="text" name="postcode" id="postcode" class="id" placeholder="우편번호" value="<%=article.getPostcode() %>" readonly="readonly"> <input type="button" value="우편번호검색" class="genric-btn info circle" onclick="execPostCode()"></td>
-									</tr>
-									<tr>
-										<td><input type="text" name="address" id="address" placeholder="주소" size="46" value="<%=article.getAddress() %>" readonly="readonly"></td>
-									</tr>
-									<tr>
-										<td><input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소" value="<%=article.getDetailAddress() %>"> <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목" value="<%=article.getExtraAddress() %>" readonly="readonly"></td>
-									</tr>
-								</table>
-								<div class="clear"></div>
-								<div id="buttons">
-									<input type="submit" value="정보수정" class="genric-btn primary circle">
-									<input type="button" value="뒤로" class="genric-btn success circle" onclick="">
-								</div>
-							</form>                            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            <h2><%=id %> 님</h2>
+                            <p>반갑습니다! Welcome Back!</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <!-- breadcrumb start-->
 
-    <!--================main_part end =================-->
+    <!--================ 메뉴 영역 =================-->
+    <section class="cat_product_area section_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="left_sidebar_area">
+                        <aside class="left_widgets p_filter_widgets">
+                            <div class="l_w_title">
+                            
+                            </div>
+                            <div class="widgets_inner">
+                                <ul class="list">
+                                    <li>
+                                        <a href="#">결제내역</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">장바구니</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">리뷰내역</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">1:1문의</a>
+                                    </li>
+                                    <li>
+                                        <a href="MemberInfo.me">My 정보</a>
+                                    </li>
+                                    <li>
+                                        <a href="MemberDelete.me">회원 탈퇴</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+          <!--================ 메뉴 영역 =================-->          
+                
+                <div class="col-lg-9">
+                    <div class="row align-items-center latest_product_inner">
+                    
+                    
+					    <form action="MemberUpdatePro.me" id="join" method="post" name="fr" class="container" onsubmit="return check()">
+							<table>
+								<tr>
+									<td class=td_size>아이디</td>
+									<td><%=article.getId() %></td>
+								</tr>
+								<tr>
+									<td>비밀번호</td>
+									<td><input type="password" name="pass" id="pass" required="required"></td>
+								</tr>
+								<tr>
+									<td>변경할 비밀번호</td>
+									<td><input type="password" name="chPass" id="chPass" onkeyup="checkPasswd(this)"><span id="checkPasswdResult"></span></td>
+								</tr>
+								<tr>
+									<td>변경할 비밀번호 재확인</td>
+									<td><input type="password" name="rePass" id="rePass" onkeyup="retryPasswd(this)"><span id="retryPasswdResult"></span></td>
+								</tr>
+								<tr>
+									<td>이름</td>
+									<td><%=article.getName() %></td>
+								</tr>
+								<tr>
+									<td>전화번호</td>
+									<td><input type="text" name="phone" required="required" value="<%=article.getPhone() %>" placeholder="ex.000-0000-0000"></td>
+								</tr>
+								<tr>
+									<td>이메일</td>
+									<td><input type="email" name="email" id="email" required="required" value="<%=article.getEmail() %>"></td>
+								</tr>
+								<tr>
+									<td>변경할 이메일</td>
+									<td><input type="email" name="chEmail" id="chEmail"></td>
+								</tr>									
+								<tr>
+									<td>변경할 이메일 재확인</td>
+									<td><input type="email" name="reEmail" id="reEmail" onkeyup="retryEmail(this)"><span id="retryEmailResult"></span></td>
+								</tr>
+								<tr>
+									<td>성별</td>
+									<td><input type="radio" name="gender" value="male" id="male" required="required" <% if(article.getGender().equals("male")) { %> checked="checked" <% } %>>남 
+										<input type="radio" name="gender" value="female" id="female" <% if(article.getGender().equals("female")) { %> checked="checked" <% } %>>여</td>
+								</tr>
+								<tr>
+									<td>생년월일</td>
+									<td><input type="date" name="birthday" id="birthday" required="required" value="<%=article.getBirthday() %>"></td>
+								</tr>
+							</table>
+							<table>
+								<tr>
+									<td rowspan="3" class=td_size>주소</td>
+									<td><input type="text" name="postcode" id="postcode" class="id" placeholder="우편번호" value="<%=article.getPostcode() %>" readonly="readonly"> <input type="button" value="우편번호검색" class="genric-btn info circle" onclick="execPostCode()"></td>
+								</tr>
+								<tr>
+									<td><input type="text" name="address" id="address" placeholder="주소" size="46" value="<%=article.getAddress() %>" readonly="readonly"></td>
+								</tr>
+								<tr>
+									<td><input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소" value="<%=article.getDetailAddress() %>"> <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목" value="<%=article.getExtraAddress() %>" readonly="readonly"></td>
+								</tr>
+							</table>
+							<div class="clear"></div>
+							<div id="buttons">
+								<input type="submit" value="정보수정" class="genric-btn primary circle">
+								<input type="button" value="뒤로" class="genric-btn success circle" onclick="">
+							</div>
+						</form>
+                    
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Category Product Area =================-->
+
 
     <!--::footer_part start::-->
-    <jsp:include page="/inc/bottom.jsp"/>
+    <jsp:include page="../inc/bottom.jsp"/>
     <!--::footer_part end::-->
 
     <!-- jquery plugins here-->
-    <!-- jquery -->
     <script src="js/jquery-1.12.1.min.js"></script>
     <!-- popper js -->
     <script src="js/popper.min.js"></script>

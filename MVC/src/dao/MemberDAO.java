@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import exception.LoginException;
 import vo.MemberBean;
 import static db.JdbcUtil.*;
@@ -204,7 +206,6 @@ public class MemberDAO {
 	}
 	
 	// 회원 정보 업데이트 작업
-
 	public int updateMember(MemberBean memberBean) {
 		System.out.println("MemberDAO - updateMember()");
 		
@@ -239,6 +240,98 @@ public class MemberDAO {
 		}
 		
 		return updateCount;
+	}
+
+	// 회원 수 조회
+	public int selectListCount() {
+		System.out.println("MemberDAO - selectListCount()");
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			// SELECT 구문을 사용하여 전체 회원 수 조회
+			// => count() 함수 사용, 조회 대상 컬럼 1개 지정하거나 * 사용
+			String sql = "SELECT COUNT(id) FROM member";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectListCount() 오류! - " + e.getMessage());
+			e.printStackTrace();
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+			
+		}
+		
+		return listCount;
+	}
+
+	// 전체 회원 정보 담기
+	public ArrayList<MemberBean> selectArticleList(int page, int limit) {
+		System.out.println("MemberDAO - selectArticleList()");
+		
+		ArrayList<MemberBean> articleList = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		// 조회를 시작할 레코드(행) 번호 계산
+		int startRow = (page - 1) * limit;
+		
+		try {
+			// 회원 조회
+			String sql = "SELECT * FROM member LIMIT ?,?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, limit);
+			rs = pstmt.executeQuery();
+			
+			// ArrayList 객체 생성(while문 위에서 생성 필수!)
+			articleList = new ArrayList<MemberBean>();
+			
+			while(rs.next()) {
+				// 1개 게시물 정보를 저장할 BoardBean 객체 생성 및 데이터 저장
+				MemberBean article = new MemberBean();
+				article.setId(rs.getString(1));
+				article.setPass(rs.getString(2));
+				article.setName(rs.getString(3));
+				article.setPhone(rs.getString(4));
+				article.setBirthday(rs.getDate(5));
+				article.setGender(rs.getString(6));
+				article.setEmail(rs.getString(7));
+				article.setPostcode(rs.getString(8));
+				article.setAddress(rs.getString(9));
+				article.setDetailAddress(rs.getString(10));
+				article.setExtraAddress(rs.getString(11));
+				article.setCoupon_1000(rs.getInt(12));
+				article.setCoupon_2000(rs.getInt(13));
+				article.setCoupon_3000(rs.getInt(14));
+				article.setMembership(rs.getInt(15));
+				article.setFree_ticked(rs.getInt(16));
+				
+				// 1개 회원을 전체 회원 저장 객체(ArrayList)에 추가
+				articleList.add(article);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectArticleList() 오류! - " + e.getMessage());
+			e.printStackTrace();
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+			
+		}
+		
+		return articleList;
 	}
 
 }

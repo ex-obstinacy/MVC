@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.MemberInfoAction;
+import action.MemberListAction;
 import action.MemberLoginProAction;
 import action.MemberLogoutAction;
 import action.MemberMainAction;
@@ -42,8 +43,15 @@ public class AdminFrontController extends HttpServlet {
 			forward.setPath("/member/admin_main.jsp");
 			
 		} else if (command.equals("/AdminMemberList.ad")) { // 회원 목록 확인
-			forward = new ActionForward();
-			forward.setPath("/member/admin_memberList.jsp");
+			action = new MemberListAction();
+			
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
 			
 		}
 		

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%
+ <%
 	//session 객체에 저장된 id 값 가져와서 변수에 저장
 	String id = (String)session.getAttribute("id");
 %>
@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="css/animate.css">
     <!-- owl carousel CSS -->
     <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <!-- nice select CSS -->
+    <link rel="stylesheet" href="css/nice-select.css">
     <!-- font awesome CSS -->
     <link rel="stylesheet" href="css/all.css">
     <!-- flaticon CSS -->
@@ -30,79 +32,89 @@
     <link rel="stylesheet" href="css/magnific-popup.css">
     <!-- swiper CSS -->
     <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="css/price_rangs.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
-    
-	
 </head>
 
 <body>
     <!--::header part start::-->
-    <jsp:include page="/inc/top.jsp"/>
+    <jsp:include page="../inc/top.jsp"/>
     <!-- Header part end-->
 
-
+    <!--================Home Banner Area =================-->
     <!-- breadcrumb start-->
-<!--     <section class="breadcrumb breadcrumb_bg"> -->
-<!--     	<div class="container"> -->
-<!--             <div class="row justify-content-center"> -->
-<!--                 <div class="col-lg-8"> -->
-<!--                     <div class="breadcrumb_iner"> -->
-<!--                         <div class="breadcrumb_iner_item"> -->
-<!--                             <h2>Tracking Order</h2> -->
-<!--                             <p>Home <span>-</span> Tracking Order</p> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--             </div> -->
-<!--         </div> -->
-<!--     </section> -->
-    <!-- breadcrumb start-->
-
-    <!--================main_part Area =================-->
-
-
-
-	
-	<section class="login_part padding_top">
+    <section class="breadcrumb breadcrumb_bg">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-6">
-                    <div class="login_part_text text-center">
-                        <div class="login_part_text_iner">
-                        	<nav id="member_sub_menu">
-								<ul>
-									<li><a href="">영화</a></li>
-									<li><a href="">예매</a></li>
-									<li><a href="GoodsList.go">스토어</a></li>
-									<li><a href="">공지사항</a></li>
-									<li><a href="AdminMemberList.ad">회원 LIST</a></li>
-								</ul>
-							</nav>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="login_part_form">
-                        <div class="login_part_form_iner">
-                            <h3><%=id %> 님<br>
-                            열심히 일하자!</h3>
-                            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            <h2><%=id %> 님</h2>
+                            <p>반갑습니다! Welcome Back!</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <!-- breadcrumb start-->
 
-    <!--================main_part end =================-->
+    <!--================ 메뉴 영역 =================-->
+    <section class="cat_product_area section_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="left_sidebar_area">
+                        <aside class="left_widgets p_filter_widgets">
+                            <div class="l_w_title">
+                            
+                            </div>
+                            <div class="widgets_inner">
+                                <ul class="list">
+                                    <li>
+                                        <a href="#">영화</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">예매</a>
+                                    </li>
+                                    <li>
+                                        <a href="GoodsList.go">스토어</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">공지사항</a>
+                                    </li>
+                                    <li>
+                                        <a href="AdminMemberList.ad">회원 목록</a>
+                                    </li>
+                                    <li>
+                                        <a href="MemberDelete.me">관리자 탈퇴</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+          <!--================ 메뉴 영역 =================-->          
+                
+                <div class="col-lg-9">
+                    <div class="row align-items-center latest_product_inner">
+	                    <h3><%=id %> 님<br>
+	                    열심히 일하자!</h3>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Category Product Area =================-->
+
 
     <!--::footer_part start::-->
-    <jsp:include page="/inc/bottom.jsp"/>
+    <jsp:include page="../inc/bottom.jsp"/>
     <!--::footer_part end::-->
 
     <!-- jquery plugins here-->
-    <!-- jquery -->
     <script src="js/jquery-1.12.1.min.js"></script>
     <!-- popper js -->
     <script src="js/popper.min.js"></script>
