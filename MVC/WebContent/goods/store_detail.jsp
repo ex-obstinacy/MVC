@@ -73,6 +73,10 @@ ul.tabs li.current{
 		})
 	
 	})
+	
+	function basket() {
+		
+	}
 </script>
 <!-- 탭메뉴 끝 -->
 
@@ -139,7 +143,7 @@ ul.tabs li.current{
             <div class="card_area d-flex justify-content-between align-items-center">
               <div class="product_count">
                 <span class="inumber-decrement"> <i class="ti-minus"></i></span>
-                <input class="input-number" type="text" value="1" min="0" max="10">
+                <input class="input-number" type="text" name="basketCount" min="0" max="10">
                 <span class="number-increment"> <i class="ti-plus"></i></span>
               </div>
             </div>
@@ -147,7 +151,9 @@ ul.tabs li.current{
                <span>총 상품금액</span> :<%=sumPrice%>원</a> <!-- price * count -->
               </h2>
               <br>
-              <a href="BasketAdd.go?goodsId=<%=article.getGoodsId()%>" class="btn_3">장바구니</a>
+<!--               버튼으로 만들어서 버튼 클릭햇을때 스크립트 받아서 bassketCount 받아와라..넘어가게 -->
+				<input type="button" class="btn_3" value = "장바구니" onclick="basket();">
+<%--               <a href="BasketAdd.go?goodsId=<%=article.getGoodsId()%> & basketCount=" class="btn_3">장바구니</a> --%>
               <input type ="submit" class="btn_3" value ="구매하기">
           </div>
         </div>

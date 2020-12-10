@@ -23,11 +23,14 @@ public class BasketListAction implements Action {
       String id = (String)session.getAttribute("id"); 
       
       int goodsId = Integer.parseInt(request.getParameter("goodsId"));
+ 
       
       BasketListService basketListService = new BasketListService();
       ArrayList<StoreBean> basketList = new ArrayList<StoreBean>();
       
       basketList = basketListService.getBasketList(goodsId, id);
+      
+      request.setAttribute("basketList", basketList);
       
       forward = new ActionForward();
       forward.setPath("/basket.jsp"); // true랑 false 차이 뭐지 true 하니까 값을 못받아오네

@@ -238,13 +238,13 @@ public class StoreDAO {
       }
 
       // 장바구니 담기
-      public int addBasket(int goodsId, String id) {
+      public int addBasket(int basketCount, int goodsId, String id) {
          System.out.println("StoreDAO - addBasket()");
          
          PreparedStatement pstmt = null;
          ResultSet rs = null;
          int addCount = 0;
-         
+//         null 1 basketCOunt
          Timestamp date = new Timestamp(System.currentTimeMillis());
          
          try {
@@ -256,11 +256,15 @@ public class StoreDAO {
         	 pstmt.setString(2, id);
         	 rs = pstmt.executeQuery();
         	 
+        	 if(basketCount == 0) {
+        		 basketCount = 1;
+        	 }
         	 if (rs.next()) {
-				sql = "UPDATE basket SET basketCount=basketCount+1 WHERE goods_goodsId=? AND member_id=?";
+				sql = "UPDATE basket SET basketCount=basketCount+? WHERE goods_goodsId=? AND member_id=?";
 	        	 pstmt = con.prepareStatement(sql);
-	        	 pstmt.setInt(1, goodsId);
-	        	 pstmt.setString(2, id);
+	        	 pstmt.setInt(1, basketCount);
+	        	 pstmt.setInt(2, goodsId);
+	        	 pstmt.setString(3, id);
 	        	 addCount = pstmt.executeUpdate();
 	        	 
         	} else {
@@ -309,10 +313,9 @@ public class StoreDAO {
             				+ "goods.name, goods.price, goods.sale, goods.component, goods.file, goods.content, goods.ctg "
             				+ "FROM goods JOIN basket "
             				+ "ON goods.goodsId = basket.goods_goodsId "
-            				+ "WHERE goods.goodsId = ? AND member_id = ?";
+            				+ "WHERE member_id = ?";
             	pstmt = con.prepareStatement(sql);
-            	pstmt.setInt(1, goodsId);
-            	pstmt.setString(2, id);
+            	pstmt.setString(1, id);
             	rs = pstmt.executeQuery();
                
                //ArrayList 객체 생성(while문 위에서 생성 필수!)
@@ -342,20 +345,6 @@ public class StoreDAO {
                   basketList.add(basket);
                }
                
-               // 값 확인 테스트
-                for(int i = 0; i<basketList.size(); i ++) {
-                	System.out.println(basketList.get(i).getBasketCount());
-                	System.out.println(basketList.get(i).getBasketId());
-                	System.out.println(goodsId);
-                	System.out.println(id);
-                	System.out.println(basketList.get(i).getCtg());
-                	System.out.println(basketList.get(i).getName());
-                	System.out.println(basketList.get(i).getPrice());
-                	System.out.println(basketList.get(i).getSale());
-                	System.out.println(basketList.get(i).getComponent());
-                	System.out.println(basketList.get(i).getFile());
-                	System.out.println(basketList.get(i).getComponent()); }
-               
             } catch (SQLException e) {
                System.out.println("selectBasketList() 오류!- "+e.getMessage());
                e.printStackTrace();
@@ -366,8 +355,8 @@ public class StoreDAO {
             return basketList;
          }
       
-   // 글 수정
-  	public int updateArticle(StoreBean article) {
+      // 글 수정
+      public int updateArticle(StoreBean article) {
   		// StoreBean 객체에 저장된 수정 내용(작성자, 제목, 내용)을 사용하여
   		// 상품번호(goodsId)에 해당하는 레코드를 수정 후 결과 리턴
   		int updateCount =0;

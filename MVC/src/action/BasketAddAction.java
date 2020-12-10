@@ -43,7 +43,11 @@ public class BasketAddAction implements Action {
       // -------------------- 장바구니 담기 --------------------
       
       int goodsId = Integer.parseInt(request.getParameter("goodsId"));
-      
+      String basketCount = request.getParameter("basketCount");
+      System.out.println(basketCount);
+      if(basketCount == null) {
+    	  basketCount = "0";
+      }
       // BasketAddService 클래스의 인스턴스 생성 후  selectBasketList() 메서드를 호출하여 게시물 번호에 해당하는 글내용 가져오기
       BasketAddService basketAddService = new BasketAddService();
       
@@ -51,7 +55,7 @@ public class BasketAddAction implements Action {
       basketAddService.selectArticle(goodsId);
       
       // 장바구니 추가
-      boolean isBasketAddSuccess = basketAddService.addBasket(goodsId, id);
+      boolean isBasketAddSuccess = basketAddService.addBasket(Integer.parseInt(basketCount), goodsId, id);
       
       if(isBasketAddSuccess) {
          forward = new ActionForward();

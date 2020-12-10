@@ -4,15 +4,9 @@
     pageEncoding="UTF-8"%>
 <% 
 ArrayList<StoreBean> basketList = (ArrayList<StoreBean>)request.getAttribute("basketList");
-StoreBean basket = new StoreBean();
-
-
-
-int totalPrice = basket.getTotalPrice() * basket.getBasketCount() ;
-int sale = (int)(basket.getPrice() * basket.getSale() * 0.01); //세일가 = 원가 * (세일 * 0.01) -> %로 나타낸거임
-int sumPrice = totalPrice - sale; // 할인 후 적용가 = 원가 - 세일가
-
-/// for문을 돌려보자
+int totalPrice = 0; //할인 전 총 상품금액
+int sale2 = 0; // 총 할인가격
+int sumPrice = 0; // 할인 후 상품금액
 %>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -92,6 +86,11 @@ int sumPrice = totalPrice - sale; // 할인 후 적용가 = 원가 - 세일가
             </thead>
          <%
          for(int i= 0; i < basketList.size(); i++){
+        	 int goodsPrice = basketList.get(i).getPrice() * basketList.get(i).getBasketCount(); // 상품 개 당 가격
+         	 totalPrice += goodsPrice; // 할인 전 상품금액 += 상품 개 당 가격
+        	 int sale = (int)(basketList.get(i).getPrice() * basketList.get(i).getSale() * basketList.get(i).getBasketCount() * 0.01); // 할인가격
+        	 sale2 += sale; // 총 할인가격 += 할인가격
+        	 sumPrice = totalPrice - sale; // 할인 후 상품금액 = 할인 전 상품금액 - 총 할인가격
          %>
             <tbody>
               <tr>
@@ -110,7 +109,7 @@ int sumPrice = totalPrice - sale; // 할인 후 적용가 = 원가 - 세일가
                 </td>
                 <td>
                   <div class="product_count"> <!-- 수량변경 버튼 모양 -->
-                    <input type="number" value="1" min="0" max="10">
+                    <input type="number" value="<%=basketList.get(i).getBasketCount() %>" min="0" max="10">
                   </div>
                   <div>
                   <input type="button" value="수량변경">
@@ -118,14 +117,13 @@ int sumPrice = totalPrice - sale; // 할인 후 적용가 = 원가 - 세일가
                   </div>
                 </td>
                 <td>
-                  <h5><%=totalPrice %>원</h5>
+                  <h5><%=goodsPrice %>원</h5>
                 </td>
               </tr>
          
          <%   
          }
          %>
-
            
            <%  
           }
@@ -140,7 +138,7 @@ int sumPrice = totalPrice - sale; // 할인 후 적용가 = 원가 - 세일가
                 </td>
                 <td>
                   <h5><%=totalPrice %>원</h5>
-                  <h5><%=sale %>원</h5>
+                  <h5><%=sale2 %>원</h5>
                   <h3><%=sumPrice %>원</h3>
                 </td>
               </tr>
