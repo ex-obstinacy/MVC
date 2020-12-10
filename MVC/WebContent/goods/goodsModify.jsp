@@ -110,23 +110,23 @@ request.setCharacterEncoding("utf-8"); %>
 			</tr>
 			<tr>
 			 <td><label for="goods_name" >*상품이름</label></td>
-			 <td><input type="text" name="goods_name" id="goods_name" required="required" value=<%=article.getName() %>></td>
+			 <td><input type="text" name="goods_name" id="goods_name" required="required" value="<%=article.getName() %>"></td>
 			</tr>
 			<tr>
 			 <td><label for="goods_price">*상품가격</label></td>
-			 <td><input type="text" name="goods_price" id="goods_price" required="required" value=<%=article.getPrice() %> ></td>
+			 <td><input type="text" name="goods_price" id="goods_price" required="required" value="<%=article.getPrice() %>"></td>
 			</tr>
 			<tr>
 			 <td><label for="goods_sale">*할인율</label></td>
-			 <td><input type="text" name="goods_sale" id="goods_sale" required="required" value=<%=article.getSale() %> ></td>
+			 <td><input type="text" name="goods_sale" id="goods_sale" required="required" value="<%=article.getSale() %>"></td>
 			</tr>
 			<tr>
 			 <td><label for="goods_sellCount">*판매수량</label></td>
-			 <td><input type="text" name="goods_sellCount" id="goods_sellCount" required="required" value=<%=article.getSellCount() %> ></td>
+			 <td><input type="text" name="goods_sellCount" id="goods_sellCount" required="required" value="<%=article.getSellCount() %>"></td>
 			</tr>
 			<tr>
 			 <td><label for="goods_component">*상품구성</label></td>
-			 <td><input type="text" name="goods_component" id="goods_component" required="required" value=<%=article.getComponent() %> ></td>
+			 <td><input type="text" name="goods_component" id="goods_component" required="required" value="<%=article.getComponent() %>"></td>
 			</tr>
 			<tr>
 			 <td><label for="goods_file">*이미지파일</label></td> 
