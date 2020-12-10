@@ -391,6 +391,34 @@ public class StoreDAO {
   		
   		return updateCount;
   	}
+      
+   // 글 삭제
+   		public int deleteArticle(int goodsId) {
+   			// StoreBean 객체에 저장된 내용을 사용하여
+   			// 상품번호(goodsId)에 해당하는 레코드를 삭제 후 결과 리턴
+   			int deleteCount =0;
+   			PreparedStatement pstmt = null;
+   			
+   			try {
+   				String sql = "delete from goods where goodsId=?";
+   				pstmt = con.prepareStatement(sql);
+   				pstmt.setInt(1, goodsId );
+   				
+   				deleteCount = pstmt.executeUpdate();
+   				
+   				//임시 확인용
+   				System.out.println("storeDAO - deleteArticle 에서 check! 삭제되었는가? : " + deleteCount);
+   				
+   			} catch (SQLException e) {
+   				System.out.println("deleteArticle() 오류!- "+e.getMessage());
+   				
+   				e.printStackTrace();
+   			} finally {
+   				close(pstmt);
+   			}
+   			  			
+   			return deleteCount;
+   		}
 
       
    
