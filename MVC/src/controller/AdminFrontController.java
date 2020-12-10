@@ -41,7 +41,13 @@ public class AdminFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("/member/admin_main.jsp");
 			
+		} else if (command.equals("/AdminMemberList.ad")) { // 회원 목록 확인
+			forward = new ActionForward();
+			forward.setPath("/member/admin_memberList.jsp");
+			
 		}
+		
+		
 		
 		// ----------------------------------------------------------------------------------------------
 		// 기본 설정 후 공통적으로 수행할 포워딩 작업

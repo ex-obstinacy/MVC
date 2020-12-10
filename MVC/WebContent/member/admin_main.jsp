@@ -76,6 +76,7 @@
 									<li><a href="">예매</a></li>
 									<li><a href="GoodsList.go">스토어</a></li>
 									<li><a href="">공지사항</a></li>
+									<li><a href="AdminMemberList.ad">회원 LIST</a></li>
 								</ul>
 							</nav>
                         </div>
