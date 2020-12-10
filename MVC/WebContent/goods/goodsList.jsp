@@ -105,7 +105,7 @@
 					<td align="center"><%=articleList.get(i).getFile() %></td>
 					<td align="center"><%=articleList.get(i).getContent()%></td>
 					<td><input type="submit" value="수정" onclick="location.href='GoodsModifyForm.go?goodsId=<%=articleList.get(i).getGoodsId()%>&page=<%=nowPage%>'">
-					<input type="button" value="삭제" onclick="location.href='BoardDeleteForm.go?goodsId=<%=articleList.get(i).getGoodsId()%>&page=<%=nowPage%>'"></td>
+					<input type="button" value="삭제" onclick="location.href='GoodsDeleteForm.go?goodsId=<%=articleList.get(i).getGoodsId()%>&page=<%=nowPage%>'"></td>
 				</tr>
 				
 				<%}%>
