@@ -61,7 +61,6 @@ public class GoodsModifyProAction implements Action {
 			goods_file = multi.getParameter("oldfile");
 		}
 		
-		
 		// StoreBean 객체 생성하여 수정폼으로부터 전달받은 항목을 저장
 		// => 상품번호, 카테고리, 상품이름, 상품가격, 할인율, 판매수량, 상품구성, 이미지파일, 상세내용
 		StoreBean article = new StoreBean();
