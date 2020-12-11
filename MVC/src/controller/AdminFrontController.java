@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import action.Action;
+import action.AdminDeleteProAction;
 import action.MemberInfoAction;
-import action.MemberListAction;
+import action.AdminMemberListAction;
 import action.MemberLoginProAction;
 import action.MemberLogoutAction;
 import action.MemberMainAction;
@@ -43,7 +44,18 @@ public class AdminFrontController extends HttpServlet {
 			forward.setPath("/member/admin_main.jsp");
 			
 		} else if (command.equals("/AdminMemberList.ad")) { // 회원 목록 확인
-			action = new MemberListAction();
+			action = new AdminMemberListAction();
+			
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
+			
+		} else if (command.equals("/AdminDeletePro.ad")) { // 회원 삭제
+			action = new AdminDeleteProAction();
 			
 			try {
 				forward = action.execute(request, response);
@@ -54,6 +66,9 @@ public class AdminFrontController extends HttpServlet {
 			}
 			
 		}
+		
+		
+		
 		
 		
 		

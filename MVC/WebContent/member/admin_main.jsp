@@ -85,6 +85,9 @@
                                         <a href="#">공지사항</a>
                                     </li>
                                     <li>
+                                        <a href="#">1대1 문의</a>
+                                    </li>
+                                    <li>
                                         <a href="AdminMemberList.ad">회원 목록</a>
                                     </li>
                                     <li>

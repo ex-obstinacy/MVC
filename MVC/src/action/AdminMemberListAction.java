@@ -10,11 +10,11 @@ import vo.ActionForward;
 import vo.MemberBean;
 import vo.PageInfo;
 
-public class MemberListAction implements Action {
+public class AdminMemberListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MemberListAction");
+		System.out.println("AdminMemberListAction");
 		
 		// 페이징 처리를 위한 변수 선언
 		int page = 1; // 현재 페이지 번호 저장할 변수

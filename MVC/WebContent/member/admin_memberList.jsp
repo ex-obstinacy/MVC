@@ -52,6 +52,18 @@
     
     <link rel="stylesheet" href="css/common.css"> 
         
+    <!-- 회원 삭제 -->
+    <script type="text/javascript">
+		function chDelete(id){
+             var check = confirm("삭제하시겠습니까?");
+
+             if(check){
+            	 location.href="AdminDeletePro.ad?id=" + id;
+            	 
+             }
+         }
+	</script>  
+      
 </head>
 
 <body>
@@ -102,6 +114,9 @@
                                         <a href="#">공지사항</a>
                                     </li>
                                     <li>
+                                        <a href="#">1대1 문의</a>
+                                    </li>
+                                    <li>
                                         <a href="AdminMemberList.ad">회원 목록</a>
                                     </li>
                                     <li>
@@ -149,7 +164,7 @@
 												<td><%=articleList.get(i).getEmail() %></td>
 												<td align="center"><%=articleList.get(i).getMembership() %></td>
 												<td align="center"><%=articleList.get(i).getCoupon_1000() + articleList.get(i).getCoupon_2000() + articleList.get(i).getCoupon_3000() + articleList.get(i).getFree_ticked() %></td>
-												<td><input type="button" value="삭제" onclick=""></td>
+												<td><input type="button" value="삭제" onclick="chDelete('<%=articleList.get(i).getId() %>')"></td>
 											</tr>
 											<%
 												}
