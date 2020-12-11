@@ -2,25 +2,72 @@
 /* 서브페이지 */
 /* 사용할때 각 서브페이지명 주석으로 선언하기 ! */
 /* 공통적인 스타일은 common.css 에 작성 */
-div.sub_visual01{
-	width:100%;
-	height:250px;
-	background:url(../img/sub_visual01.jpg) no-repeat 0 center/100% auto;
-	margin-bottom:50px;
-	position:relative;
-	text-align:center;
-}
-div.sub_visual01:after{
-	content:"";
-	display:block;
-	width:100%;
+
+/* 서브비주얼 */
+.sub_visual01{position:relative; width:100%; height:200px; text-align:center; background-image:url(../img/sub/sub_visual01.jpg); background-repeat:no-repeat; background-position:center center; background-size:100% auto;}
+.sub_visual01 div.black{position:absolute; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6); }
+.sub_visual01 h2{position:absolute; top:50%; left:50%; color:#fff;  font-size:23px; z-index:100; transform:translate(-50%,-50%);}
+
+/* 예매 메인페이지 reserveMain*/
+#movieform{}
+#movieform > table{width:100%; border:1px solid #ccc; border-top:2px solid #121212; border-spacing:0px; margin-bottom:20px;}
+#movieform > table th, td{border-right: 1px solid #ccc;}
+#movieform > table th{background:#fff; border-bottom:1px solid #121212; padding:20px 0; font-size:17px; text-align:center;}
+#movieform > table td{height:260px; padding:0;}
+#movieform > table td>ul{height:100%; overflow-y: auto; background:#f2f2f2;}
+#movieform > table td>ul li{border-bottom:1px solid #ddd; }
+#movieform > table td>ul li label{width:100%; cursor:pointer; font-size:12px; padding:10px 10px; background:#fff;}
+#movieform > table td>ul li input{display:none;}
+
+#movieform > table td>ul#tdsubject li label{border:2px solid transparent; box-sizing:border-box; font-size:14px;}
+#movieform > table td>ul#tdsubject li input:checked+label{border:2px solid #FF243E; background:#fff url(../img/sub/check.png) no-repeat 96% center/15px auto;}
+
+#movieform > table td>ul#tdlocal li label{}
+#movieform > table td>ul#tdlocal li input:checked+label{font-weight:bold; color:#ff243e; background: url(../img/sub/check.png) no-repeat 92% center/10px auto;}
+
+#movieform > table td>ul#tdcinema li label{}
+#movieform > table td>ul#tdcinema li input:checked+label{font-weight:bold; color:#ff243e; background:url(../img/sub/check.png) no-repeat 92% center/10px auto;}
+
+#movieform > table td.dateBox{height:130px; border-bottom:1px solid #ccc; position:relative;}
+#movieform > table td.dateBox i{position:absolute; top:50%; cursor:pointer}
+#movieform > table td.dateBox i.next{right:20px; }
+#movieform > table td.dateBox i.prev{left:20px;}
+#movieform > table td>ul#tddate{width:350px; height:auto; background:#fff; margin:0 auto 0 auto;}
+#movieform > table td>ul#tddate:after{content:""; display:block; clear:both;}
+#movieform > table td>ul#tddate li{display:block; float:left; border-bottom:0; margin-top:20px; text-align:center;}
+#movieform > table td>ul#tddate li span.month{position:absolute; display:block; font-weight:600; font-size:12px; top:-20px; left:50%; transform:translateX(-50%);}
+#movieform > table td>ul#tddate li:first-child{position:relative;}
+#movieform > table td>ul#tddate li label{width:60px; height:60px; border-radius:50%; border:1px solid #ddd; padding:0; box-sizing:border-box; text-align: center; padding: 20px;}
+#movieform > table td>ul#tddate li input:checked+label{background:#FF243E; color:#fff; border-color:#FF243E;}
+
+#movieform > table div#tdtime{
 	height:100%;
-	background:rgba(0,0,0,0.5);
-	position:absolute;
-	top:0;
-	left:0;
+	padding: 10px 10px;
+	box-sizing:border-box;
 }
-div.sub_visual01 h2{color:#fff; font-size:22px; }
+
+#movieform > table div#tdtime div.tdiv{margin-right:10px; margin-bottom:10px;}
+#movieform > table div#tdtime div.tdiv label{width:98px; text-align:center; box-sizing:border-box; border:1px solid #ddd; padding:10px 10px; border-radius:5px; cursor:pointer;}
+#movieform > table div#tdtime input:checked+label{border:1px solid #121212; background:#f1f1f1;}
+#movieform > table div#tdtime input{
+	display: none;
+}
+
+#movieform > table #tdcinema .cdiv {
+	display: none;
+}
+#movieform > table #tdcinema .show{
+	display: inherit;
+}
+
+#movieform > table #tdtime .tdiv{
+	display: none;
+}
+#movieform > table #tdtime .show{
+	display: inline-block;
+}
+
+#movieform{} div.btnBox{text-align:right;}
 
 /* 좌석선택 서브페이지 */
 form#seatForm{}
@@ -159,6 +206,10 @@ form#seatForm{}
 #payForm .rightBox table td dd input{text-align:right; max-width:100px; border:0;}
 #payForm .rightBox table tr:last-child td{padding:0;}
 #payForm .rightBox table tr:last-child td input{width:100%; border:0; background:#FF243E; color:white; padding:15px 0; font-size:16px; }
+
+/* reserveResult  */
+section#reserveResult{}
+div.reserveInfo{}
 
 /* orderForm 서브페이지 */
 

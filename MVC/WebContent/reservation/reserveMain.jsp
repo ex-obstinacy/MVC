@@ -35,14 +35,17 @@
   <link rel="stylesheet" href="css/price_rangs.css">
   <!-- style CSS -->
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/reservation.css" type="text/css">
+<!--   <link rel="stylesheet" href="css/reservation.css" type="text/css"> -->
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/sub.css">
 <script src="js/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		// 등록되어있는 영화목록 가져오기
 		$.getJSON('MovieListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
-				$('#tdsubject').append("<div class='sdiv "+item.movie_subject+"'><input type='radio' name='movie' id='"+item.movie_subject+"' value='"+item.movie_subject+"' class='rmovie'/><label for='"+item.movie_subject+"'>"+item.movie_subject+"</label></div>");
+				$('#tdsubject').append("<li class='"+item.movie_subject+"'><input type='radio' name='movie' id='"+item.movie_subject+"' value='"+item.movie_subject+"' class='rmovie'/><label for='"+item.movie_subject+"'>"+item.movie_subject+"</label></li>");
 			});
 		});
 		// 지역 선택
@@ -60,7 +63,7 @@
 		// cinema 목록 db에서 가져오기(admin_reserve랑 동일)
 		$.getJSON('CinemaListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
-				$('#tdcinema').append("<div class='cdiv "+item.cinema_local+"'><input type='radio' name='cinema' id='"+item.cinema_name+"' value='"+item.cinema_name+"' class='rcinema'/><label for='"+item.cinema_name+"'>"+item.cinema_name+"</label></div>");
+				$('#tdcinema').append("<li class='cdiv "+item.cinema_local+"'><input type='radio' name='cinema' id='"+item.cinema_name+"' value='"+item.cinema_name+"' class='rcinema'/><label for='"+item.cinema_name+"'>"+item.cinema_name+"</label></li>");
 			});
 		});
 		// showtime 목록 db에서 가져오기
@@ -133,6 +136,17 @@
 			$('#tdtime input').prop("checked", false);
 			$('#tdtime .tdiv').removeClass('show');
 		});
+		
+		// 날짜 슬라이더
+		$('.post-wrapper').slick({
+			  slidesToShow: 5,
+			  slidesToScroll: 1,
+			  autoplay: false,
+			  speed: 300,
+			  infinite: false,
+			  nextArrow:$('.next'),
+			  prevArrow:$('.prev'),
+			});
 	});
 </script>
 </head>
@@ -142,31 +156,24 @@
 	<jsp:include page="/inc/top.jsp"/>
   <!-- Header part end-->
 
+	<!-- 서브비주얼 -->
+	<jsp:include page="/inc/sub_visual1.jsp"/>
 
-  <!--================Home Banner Area =================-->
-  <!-- breadcrumb start-->
-  <section class="breadcrumb breadcrumb_bg">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div class="breadcrumb_iner">
-            <div class="breadcrumb_iner_item">
-              <h2>Reservation</h2>
-              <p>Home <span>-</span>Reservation</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- breadcrumb start-->
+  
 
   <!--================Reservation Area =================-->
-  <section class="cart_area padding_top">
+  <section id="sub_content" class="reserveMain">
 	  <div class="container">
+	  	<h3 class="sub_title">영화/상영관/날짜 선택</h3>
 		<!-- 영화등록표 시작 -->
 	  	<form action="MovieNumFind.re" method="post" id="movieform">
 		<table>
+			<colgroup>
+				<col width="30%"/>
+				<col width="15%"/>
+				<col width="15%"/>
+				<col width=""/>
+			</colgroup>
 			<tr>
 				<th>영화제목</th>
 				<th>지역</th>
@@ -175,40 +182,46 @@
 			</tr>
 			<tr>
 				<td rowspan="2">
-					<div id="tdsubject">
+					<ul id="tdsubject">
 						<!-- 등록된 영화 리스트 표출 -->
-					</div>
+					</ul>
 				</td>
 				<td rowspan="2">
-					<div id="tdlocal">
-						<input type="radio" name="local" id="서울" value="서울" class="rlocal"><label for="서울">서울</label><br>
-						<input type="radio" name="local" id="경기" value="경기" class="rlocal"/><label for="경기">경기</label><br>
-						<input type="radio" name="local" id="인천" value="인천" class="rlocal"/><label for="인천">인천</label><br>
-						<input type="radio" name="local" id="강원" value="강원" class="rlocal"/><label for="강원">강원</label><br>
-						<input type="radio" name="local" id="대전" value="대전/충청" class="rlocal"/><label for="대전">대전/충청</label><br>
-						<input type="radio" name="local" id="대구" value="대구" class="rlocal"/><label for="대구">대구</label><br>
-						<input type="radio" name="local" id="부산" value="부산/울산" class="rlocal"/><label for="부산">부산/울산</label><br>
-						<input type="radio" name="local" id="경상" value="경상" class="rlocal"/><label for="경상">경상</label><br>
-						<input type="radio" name="local" id="광주" value="광주/전라" class="rlocal"/><label for="광주">광주/전라</label><br>
-						<input type="radio" name="local" id="제주" value="제주" class="rlocal"/><label for="제주">제주</label><br>
-					</div>
+					<ul id="tdlocal">
+						<li><input type="radio" name="local" id="서울" value="서울" class="rlocal"><label for="서울">서울</label></li>
+						<li><input type="radio" name="local" id="경기" value="경기" class="rlocal"/><label for="경기">경기</label></li>
+						<li><input type="radio" name="local" id="인천" value="인천" class="rlocal"/><label for="인천">인천</label></li>
+						<li><input type="radio" name="local" id="강원" value="강원" class="rlocal"/><label for="강원">강원</label></li>
+						<li><input type="radio" name="local" id="대전" value="대전/충청" class="rlocal"/><label for="대전">대전/충청</label></li>
+						<li><input type="radio" name="local" id="대구" value="대구" class="rlocal"/><label for="대구">대구</label></li>
+						<li><input type="radio" name="local" id="부산" value="부산/울산" class="rlocal"/><label for="부산">부산/울산</label></li>
+						<li><input type="radio" name="local" id="경상" value="경상" class="rlocal"/><label for="경상">경상</label></li>
+						<li><input type="radio" name="local" id="광주" value="광주/전라" class="rlocal"/><label for="광주">광주/전라</label></li>
+						<li><input type="radio" name="local" id="제주" value="제주" class="rlocal"/><label for="제주">제주</label></li>
+					</ul>
 				</td>
 				<td rowspan="2">
-					<div id="tdcinema">
+					<ul id="tdcinema">
 						<!-- 지역 클릭시 영화관 리스트 표출 -->
-					</div>
+					</ul>
 				</td>
-				<td>
-					<div id="tddate">
-						<input type="radio" name="date" id="<%=today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>" value="<%=today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>" class="rdate"/>
-									<label for="<%=today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>"><%=today.format(DateTimeFormatter.ofPattern("dd"))%></label>
+				<td class="dateBox">
+					
+					<i class="fas fa-chevron-left prev"></i> 
+        			<i class="fas fa-chevron-right next"></i>
+					<ul id="tddate" class="post-wrapper">
+						
+						<li>
+							<span class="month"><%=today.format(DateTimeFormatter.ofPattern("MM"))%>월</span>
+							<input type="radio" name="date" id="<%=today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>" value="<%=today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>" class="rdate"/>
+									<label for="<%=today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>"><%=today.format(DateTimeFormatter.ofPattern("dd"))%></label></li>
 							<%
 							for(int i=1;i<=10;i++) {
-								%><input type="radio" id="<%=today.plusDays(i).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>" value="<%=today.plusDays(i).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>" name="date" class="rdate"/>
-									<label for="<%=today.plusDays(i).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>"><%=today.plusDays(i).format(DateTimeFormatter.ofPattern("dd"))%></label><%
+								%><li><input type="radio" id="<%=today.plusDays(i).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>" value="<%=today.plusDays(i).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>" name="date" class="rdate"/>
+									<label for="<%=today.plusDays(i).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>"><%=today.plusDays(i).format(DateTimeFormatter.ofPattern("dd"))%></label></li><%
 							}
 							%>
-					</div>
+					</ul>
 				</td>
 			</tr>
 			<tr>
@@ -218,8 +231,10 @@
 					</div>
 				</td>
 			</tr>
-		</table><br>
-		<input type="submit" class="genric-btn primary circle" value="좌선선택">
+		</table>
+		<div class="btnBox">
+			<input type="submit" class="genric-btn primary circle" value="좌선선택">
+		</div>
 		</form>
 	  </div>
   </section>
