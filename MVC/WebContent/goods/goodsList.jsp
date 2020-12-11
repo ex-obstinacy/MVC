@@ -14,7 +14,8 @@
 	int startPage = pageInfo.getStartPage();
 	int endPage = pageInfo.getEndPage();
 	int listCount = pageInfo.getListCount();
-%>    
+	
+%>                
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,6 +46,19 @@
 <!--     style CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/common.css"> 
+    
+    <script type="text/javascript">
+
+		function deleteCk(){
+             var a = confirm("삭제하시겠습니까?");
+
+             if(a){
+            	 listForm.submit();
+             }else{
+                return false;
+             }
+         }
+	</script>
 </head>
 <body>
   <!--::header part start::-->
@@ -75,6 +89,7 @@
       	  <div class="cart_inner">
             <div class="table-responsive">
 		<h2>상품 목록</h2>
+		<form action="GoodsDeletePro.go" name="listForm" method="post">
 		<table class="table">
 			<%
 			if(articleList != null && listCount > 0) {
@@ -104,12 +119,15 @@
 					<td align="center"><%=articleList.get(i).getSellCount() %></td>
 					<td align="center"><%=articleList.get(i).getFile() %></td>
 					<td align="center"><%=articleList.get(i).getContent()%></td>
-					<td><input type="submit" value="수정" onclick="location.href='GoodsModifyForm.go?goodsId=<%=articleList.get(i).getGoodsId()%>&page=<%=nowPage%>'">
-					<input type="button" value="삭제" onclick="location.href='GoodsDeleteForm.go?goodsId=<%=articleList.get(i).getGoodsId()%>&page=<%=nowPage%>'"></td>
+					<td><input type="button" value="수정" onclick="location.href='GoodsModifyForm.go?goodsId=<%=articleList.get(i).getGoodsId()%>&page=<%=nowPage%>'">
+					<input type="submit" value="삭제" onclick="deleteCk()">
+					<input type="hidden" name="goodsId" value="<%=articleList.get(i).getGoodsId() %>" >
+					<input type="hidden" name="page" value="<%=nowPage %>" ></td>
 				</tr>
 				
 				<%}%>
 		</table>
+		</form>
 		  </div>
         </div>
       </div>
