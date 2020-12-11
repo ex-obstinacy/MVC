@@ -46,7 +46,7 @@
 			});
 		})
 		// cinema 목록 db에서 가져오기
-		$.getJSON('reservation/cinemaListjson.jsp', function(rdata) {
+		$.getJSON('CinemaListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
 				$('#tdcinema').append("<div class='cdiv "+item.cinema_local+"'><input type='radio' name='cinema' id='"+item.cinema_name+"' value='"+item.cinema_name+"' class='rcinema'/><label for='"+item.cinema_name+"'>"+item.cinema_name+"</label></div>");
 			});

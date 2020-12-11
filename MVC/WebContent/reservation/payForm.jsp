@@ -203,18 +203,18 @@ if(adultnum == 0){
 <body>
 <!-- 헤더 -->
 <jsp:include page="../inc/top.jsp"/>
-
+<!-- 서브비주얼 -->
+<jsp:include page="/inc/sub_visual1.jsp"/>
+	
 <section id="moviePayBox">
 	<div class="container">
 		<h2>결제</h2>
 		<form action="PayPro.re" name="selectSeat" method="post" id="payForm">
 			<!-- Pro로 보낼 값 -->
-			<input type="hidden" name="movie_subject" value="<%=movie.getMovie_subject() %>"> <!-- 영화제목 -->
-			<input type="hidden" name="cinema_name" value="<%=movie.getCinema_name() %>"> <!-- 영화관 이름 -->
-			<input type="hidden" name="showdate" value="<%=movie.getShowdate() %>"> <!-- 상영 날짜 -->
-			<input type="hidden" name="showtime" value="<%=movie.getShowtime() %>"> <!-- 상영 시간 -->
-			<input type="hidden" name="adultnum" value="<%=movie.getAdultnum() %>"> <!-- 성인 수 -->
-			<input type="hidden" name="kidsnum" value="<%=movie.getKidsnum() %>"> <!-- 아이 수 -->
+			<input type="hidden" name="member_id" value="<%=member_id%>"> <!-- 예매 아이디 -->
+			<input type="hidden" name="movienum" value="<%=request.getParameter("movienum")%>"> <!-- 영화 번호 -->
+			<input type="hidden" name="adultnum" value="<%=adultnum %>"> <!-- 성인 수 -->
+			<input type="hidden" name="kidsnum" value="<%=kidsnum %>"> <!-- 아이 수 -->
 			<%
 				for(String seat : seatArr){
 					%><input type="hidden" name="seat" value="<%=seat%>" ><%

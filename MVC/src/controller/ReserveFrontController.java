@@ -20,6 +20,7 @@ import action.MovieListJsonAction;
 import action.MovieNumFindAction;
 import action.PayFormAction;
 import action.PayProAction;
+import action.ReserveResultAction;
 import action.SelectSeatAction;
 import action.TimeListJsonAction;
 import vo.ActionForward;
@@ -53,13 +54,20 @@ public class ReserveFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/PayPro.re")) { // 결제 폼 페이지
+		} else if (command.equals("/PayPro.re")) { // 결제 정보 DB등록 페이지
 			action = new PayProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-			}	
+			}
+		} else if (command.equals("/ReserveResult.re")) { // 결제 완료 페이지
+			action = new ReserveResultAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}		
 		} else if(command.equals("/CinemaAddForm.re")) { // 관리자 - 영화관 등록 폼 페이지
 			forward = new ActionForward();
 			forward.setPath("/reservation/cinemaAddForm.jsp");

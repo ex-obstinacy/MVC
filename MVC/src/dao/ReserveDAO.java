@@ -1,10 +1,15 @@
 package dao;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -53,6 +58,7 @@ public class ReserveDAO {
 				ReserveBean reserveBean = new ReserveBean();
 				reserveBean.setSeatnum(rs.getNString("num"));
 				seatList.add(reserveBean);
+				
 			}
 			
 		} catch (SQLException e) {
@@ -441,6 +447,149 @@ public class ReserveDAO {
 			return allMovieList;
 			
 		}
+
+		// 예매정보 DB 등록 메서드
+		public int reserveMovie(ReserveBean reservation) {
+			System.out.println("ReserveDAO - reserveMovie() !");
+			
+			int reserveCount = 0;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			SimpleDateFormat format1 = new SimpleDateFormat ( "yyyyMMdd");
+			Date time = new Date();
+			
+			int serial = 1; 
+			String suffix = String.format("%04d", serial); 
+			
+			String ticketnum = format1.format(time) + suffix;	
+			
+			String[] seatArr = reservation.getSeatArr();
+			String seat = Arrays.toString(seatArr);
+			seat = seat.substring(1, seat.length()-1);
+			
+			try {
+				String sql = "select max(ticketnum) from private_reservation where SUBSTR(ticketnum, 1, 8)=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, format1.format(time));
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					if(rs.getString(1) != null) {
+						ticketnum = String.valueOf(Long.parseLong(format1.format(time) + rs.getString(1).substring(8, 12)) + 1);
+					}
+				}
+				
+				String sql2 = "insert into private_reservation values(?,?,?,?,?,?)";
+				pstmt = con.prepareStatement(sql2);
+				pstmt.setString(1, ticketnum);
+				pstmt.setString(2, reservation.getMember_id());
+				pstmt.setInt(3, reservation.getMovienum());
+				pstmt.setInt(4, reservation.getAdultnum());
+				pstmt.setInt(5, reservation.getKidsnum());
+				pstmt.setString(6, seat);
+				reserveCount = pstmt.executeUpdate();
+				
+				for(String insertSeat:seatArr) { // 좌석 예약 
+					String sql3= "insert into reserved_seat values(?,?)";
+					pstmt = con.prepareStatement(sql3);
+					pstmt.setString(1, insertSeat);
+					pstmt.setInt(2, reservation.getMovienum());
+					pstmt.executeUpdate();
+				}				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				
+				close(rs);
+				close(pstmt);
+				
+			}
+			return reserveCount;
+		}
+
+		public String getTicketNum(ReserveBean reservation) {
+			String ticketnum = null;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			SimpleDateFormat format1 = new SimpleDateFormat ( "yyyyMMdd");
+			Date time = new Date();
+			
+			try {
+				String sql = "select max(ticketnum) from private_reservation where member_id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, reservation.getMember_id());
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					ticketnum = rs.getString(1);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				
+				close(rs);
+				close(pstmt);
+				
+			}
+			
+			return ticketnum;
+		}
+
+		public ReserveBean getReserveInfo(String ticketnum) {
+			ReserveBean reserveInfo = null;
+			
+			PreparedStatement pstmt = null;
+			PreparedStatement pstmt2 = null;
+			ResultSet rs = null;
+			ResultSet rs2 = null;
+			
+			try {
+				String sql = "select * from private_reservation where ticketnum=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, ticketnum);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					reserveInfo = new ReserveBean();
+					reserveInfo.setTicketnum(ticketnum);
+					reserveInfo.setAdultnum(rs.getInt("adultnum"));
+					reserveInfo.setKidsnum(rs.getInt("kidsnum"));
+					reserveInfo.setSeatnum(rs.getString("seat"));
+					
+					String sql2 = "select * from admin_reservation where num=?";
+					pstmt2 = con.prepareStatement(sql2);
+					pstmt2.setInt(1, rs.getInt("reservation_num"));
+					rs2 = pstmt2.executeQuery();
+					if(rs2.next()) {
+						reserveInfo.setMovie_subject(rs2.getString("movie_subject"));
+						reserveInfo.setCinema_name(rs2.getString("cinema_name"));
+						reserveInfo.setShowdate(rs2.getString("showdate"));
+						reserveInfo.setShowtime(rs2.getString("showtime"));
+					}
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				
+				close(rs);
+				close(rs2);
+				close(pstmt);
+				close(pstmt2);
+			}
+			
+			return reserveInfo;
+		}
+
+		
+
+		
+		
+
 	
 	
 	
@@ -461,4 +610,4 @@ public class ReserveDAO {
 	
 	
 	
-}
+} // ReserveDAO 
