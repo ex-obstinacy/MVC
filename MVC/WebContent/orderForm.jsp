@@ -13,6 +13,8 @@ if(article.getName() != null){
 	orderCount = 1;
 }
 
+String member_id = (String)session.getAttribute("id");
+
 %>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -50,16 +52,63 @@ if(article.getName() != null){
 
 <body>
 
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script><!-- 아임포트 결제 js -->
+
 <script src="js/jquery-3.5.1.js"></script>
 <script type="text/javascript">
 
 function NoMultiChk(chk){ // 결제수단 중복체크 불가
-    var obj = document.getElementsByName("selectPay");
+    var obj = document.getElementsByName("payMethod");
     for(var i=0; i < obj.length; i++){
         if(obj[i] != chk){
             obj[i].checked = false;
         }
     }
+}
+
+//결제 API (아임포트) 구현
+IMP.init("imp56648633"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.	
+
+function requestPay() {
+			var payMethod=$("input:checkbox[name='payMethod']:checked").val();
+			var goodsId=$('#orderForm').text();
+
+			if(payMethod == null){
+				alert("결제수단을 선택해주세요.");
+				return false;
+			}
+			
+	      // IMP.request_pay(param, callback) 호출
+	      IMP.request_pay({ // param
+	          pg: "html5_inicis",
+	          pay_method:payMethod,
+	          merchant_uid: "ORD20180131-0000011", // 상품 번호
+	          name: movieName, // 상품명
+	          amount: payPrice.value, // 상품가격
+	          buyer_email: "gildong@gmail.com",
+	          buyer_name: "홍길동",
+	          buyer_tel: "010-4242-4242",
+	          buyer_addr: "서울특별시 강남구 신사동",
+	          buyer_postcode: "01181"
+	      }, function (rsp) { // callback
+	    	  if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+	    	      // jQuery로 HTTP 요청
+	    	      jQuery.ajax({
+	    	          url: "https://www.myservice.com/payments/complete", // 가맹점 서버
+	    	          method: "POST",
+	    	          headers: { "Content-Type": "application/json" },
+	    	          data: {
+	    	              imp_uid: rsp.imp_uid,
+	    	              merchant_uid: rsp.merchant_uid
+	    	          }
+	    	      }).done(function (data) {
+	    	        // 가맹점 서버 결제 API 성공시 로직
+	    	      })
+	    	    } else {
+	    	      alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
+	    	    }
+	      });
 }
 
 </script>
@@ -94,6 +143,9 @@ function NoMultiChk(chk){ // 결제수단 중복체크 불가
         <h3>구매상품 정보</h3>
          <hr>
         <form action="OrderPro.go" name="basket" method="post" id="orderForm">
+        <!-- Pro로 보낼 값 -->
+			<input type="hidden" name="member_id" value="<%=member_id%>"> <!-- 구매 아이디 -->
+			<input type="hidden" name="goodsId" value="<%=request.getParameter("goodsId")%>"> <!-- 상품 번호 -->
           <table class="table">
             <thead>
               <tr>
@@ -109,7 +161,7 @@ function NoMultiChk(chk){ // 결제수단 중복체크 불가
                 <td>
                   <div class="media">
                     <div class="d-flex">
-                      <img src="goodsUpload/<%=article.getFile()%>" alt="" />
+                      <img src="goodsUpload/<%=article.getFile()%>" alt="상품이미지" />
                     </div>
                     <div class="media-body">
                       <p><%=article.getName() %></p>
@@ -186,15 +238,15 @@ function NoMultiChk(chk){ // 결제수단 중복체크 불가
 			<hr>
 			<ul>
 				<li>
-					<input type="checkbox" name="selectPay" value="creditCard" id="creditCard" onclick="NoMultiChk(this)">
+					<input type="checkbox" name="payMethod" value="creditCard" id="creditCard" onclick="NoMultiChk(this)">
 					<label for="creditCard"><span>신용카드</span></label>
 				</li>
 				<li>
-					<input type="checkbox" name="selectPay" value="simplePay" id="simplePay" onclick="NoMultiChk(this)">
+					<input type="checkbox" name="payMethod" value="simplePay" id="simplePay" onclick="NoMultiChk(this)">
 					<label for="simplePay"><span>계좌이체</span></label>
 				</li>
 				<li>
-					<input type="checkbox" name="selectPay" value="mobile" id="mobile" onclick="NoMultiChk(this)">
+					<input type="checkbox" name="payMethod" value="mobile" id="mobile" onclick="NoMultiChk(this)">
 					<label for="mobile"><span>휴대폰</span></label>
 				</li>
 			</ul>
@@ -222,11 +274,13 @@ function NoMultiChk(chk){ // 결제수단 중복체크 불가
   <!--::약관동의 끝::-->
   	<!--::버튼 시작::-->
           <div class="pd_top">
-            <input type="button" class="btn_3" value="이전화면" onclick="history.back">
+            <input type="button" class="btn_3" value="이전화면" onclick="history.back()">
           </div>
           <div class="checkout_btn_inner float-right">
-            <input type="submit" class="btn_3" value="결제하기">
+            <input type="button" class="btn_3" value="결제하기" onclick="requestPay()">
           </div>
+          <!-- 가상 결제 완료 버튼 -->
+<!-- 		  <input type="submit" value="결제 완료"> -->
      <!--::버튼 끝::-->
    		</form>
       </div>

@@ -134,7 +134,10 @@ public class StoreFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/GoodsDeletePro.go")) {
+		} else if(command.equals("/GoodsDeleteForm.go")) {
+			forward = new ActionForward();
+			forward.setPath("/goods/goodsDelete.jsp");
+		}  else if(command.equals("/GoodsDeletePro.go")) {
 			action = new GoodsDeleteProAction();
 			
 			try {
