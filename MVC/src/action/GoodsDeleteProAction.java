@@ -46,10 +46,9 @@ public class GoodsDeleteProAction implements Action {
 			// 삭제 성공 시
 			// ActionForward 객체를 생성하여 GoodsList.go 서블릿 요청
 			// Redirect 방식으로 포워딩
-			// => URL 뒤에 파라미터로 페이지번호(page)를 전달
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("GoodsList.go?page=" + request.getParameter("page")); 
+			forward.setPath("GoodsList.go"); 
 		}
 				
 		

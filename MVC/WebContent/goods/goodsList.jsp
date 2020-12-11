@@ -49,11 +49,11 @@
     
     <script type="text/javascript">
 
-		function deleteCk(){
+		function deleteCk(goodsId){
              var a = confirm("삭제하시겠습니까?");
 
              if(a){
-            	 listForm.submit();
+            	 location.href="GoodsDeletePro.go?goodsId="+goodsId
              }else{
                 return false;
              }
@@ -84,12 +84,11 @@
   <!-- breadcrumb start-->
   
 	<!-- 게시판 리스트 -->
-	<section id="listForm" class="checkout_area padding_top">
+	<section id="list" class="checkout_area padding_top">
 		<div class="container">
       	  <div class="cart_inner">
             <div class="table-responsive">
 		<h2>상품 목록</h2>
-		<form action="GoodsDeletePro.go" name="listForm" method="post">
 		<table class="table">
 			<%
 			if(articleList != null && listCount > 0) {
@@ -120,14 +119,12 @@
 					<td align="center"><%=articleList.get(i).getFile() %></td>
 					<td align="center"><%=articleList.get(i).getContent()%></td>
 					<td><input type="button" value="수정" onclick="location.href='GoodsModifyForm.go?goodsId=<%=articleList.get(i).getGoodsId()%>&page=<%=nowPage%>'">
-					<input type="submit" value="삭제" onclick="deleteCk()">
-					<input type="hidden" name="goodsId" value="<%=articleList.get(i).getGoodsId() %>" >
-					<input type="hidden" name="page" value="<%=nowPage %>" ></td>
+					<input type="button" value="삭제" onclick="deleteCk('<%=articleList.get(i).getGoodsId()%>')">
+					</td>
 				</tr>
 				
 				<%}%>
 		</table>
-		</form>
 		  </div>
         </div>
       </div>

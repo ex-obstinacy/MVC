@@ -9,6 +9,8 @@ String nowPage = request.getParameter("page");
 int sale = (int)(article.getPrice() * article.getSale() * 0.01); //세일가 = 원가 * (세일 * 0.01) -> %로 나타낸거임
 int sumPrice = article.getPrice() - sale; // 할인 후 적용가 = 원가 - 세일가
 
+int basketCount = 1;
+
 %>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -143,7 +145,7 @@ ul.tabs li.current{
             <div class="card_area d-flex justify-content-between align-items-center">
               <div class="product_count">
                 <span class="inumber-decrement"> <i class="ti-minus"></i></span>
-                <input class="input-number" type="text" name="basketCount" min="0" max="10">
+                <input class="input-number" type="text" name="basketCount" value="<%=basketCount %>" min="0" max="10">
                 <span class="number-increment"> <i class="ti-plus"></i></span>
               </div>
             </div>
