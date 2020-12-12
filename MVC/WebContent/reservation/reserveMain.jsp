@@ -48,6 +48,19 @@
 				$('#tdsubject').append("<li class='"+item.movie_subject+"'><input type='radio' name='movie' id='"+item.movie_subject+"' value='"+item.movie_subject+"' class='rmovie'/><label for='"+item.movie_subject+"'>"+item.movie_subject+"</label></li>");
 			});
 		});
+		// cinema 목록 db에서 가져오기(admin_reserve랑 동일)
+		$.getJSON('CinemaListJson.re', function(rdata) {
+			$.each(rdata, function(index, item) {
+				$('#tdcinema').append("<li class='cdiv "+item.cinema_local+"'><input type='radio' name='cinema' id='"+item.cinema_name+"' value='"+item.cinema_name+"' class='rcinema'/><label for='"+item.cinema_name+"'>"+item.cinema_name+"</label></li>");
+			});
+		});
+		// showtime 목록 db에서 가져오기
+		$.getJSON('TimeListJson.re', function(rdata) {
+			$.each(rdata, function(index, item) {
+				$('#tdtime').append("<div class='tdiv "+item.movie_subject+" "+item.cinema_name+" "+item.showdate+"'><input type='radio' name='time' id='"+item.movie_subject+"/"+item.cinema_name+"/"+item.showdate+"/"+item.showtime+"' value='"+item.showtime+
+						"' class='rtime'/><label for='"+item.movie_subject+"/"+item.cinema_name+"/"+item.showdate+"/"+item.showtime+"' value='"+item.showtime+"'>"+item.showtime+"</label></div>");
+			});
+		});
 		// 지역 선택
 		$('#tdlocal input').click(function() {
 			if($('.rmovie').is(":checked") == false) {
@@ -59,18 +72,6 @@
 				$('#tdcinema .cdiv').removeClass('show');
 				$('#tdcinema .'+local_id).addClass('show');
 			}
-		});
-		// cinema 목록 db에서 가져오기(admin_reserve랑 동일)
-		$.getJSON('CinemaListJson.re', function(rdata) {
-			$.each(rdata, function(index, item) {
-				$('#tdcinema').append("<li class='cdiv "+item.cinema_local+"'><input type='radio' name='cinema' id='"+item.cinema_name+"' value='"+item.cinema_name+"' class='rcinema'/><label for='"+item.cinema_name+"'>"+item.cinema_name+"</label></li>");
-			});
-		});
-		// showtime 목록 db에서 가져오기
-		$.getJSON('TimeListJson.re', function(rdata) {
-			$.each(rdata, function(index, item) {
-				$('#tdtime').append("<div class='tdiv "+item.movie_subject+" "+item.cinema_name+" "+item.showdate+"'><input type='radio' name='time' id='"+item.showtime+"' value='"+item.showtime+"' class='rtime'/><label for='"+item.showtime+"'>"+item.showtime+"</label></div>");
-			});
 		});
 		// 날짜 선택
 		$('#tddate input').click(function() {

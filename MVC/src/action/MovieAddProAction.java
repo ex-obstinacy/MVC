@@ -30,7 +30,7 @@ public class MovieAddProAction implements Action {
 			// 영화 등록 성공
 			forward = new ActionForward();
 			forward.setPath("MovieAddForm.re");
-//			forward.setRedirect(true);
+			forward.setRedirect(true);
 		} else {
 			// 영화 등록 실패
 			response.setContentType("text/html;charset=utf-8");
