@@ -9,6 +9,7 @@ String nowPage = request.getParameter("page");
 int sale = (int)(article.getPrice() * article.getSale() * 0.01); //세일가 = 원가 * (세일 * 0.01) -> %로 나타낸거임
 int sumPrice = article.getPrice() - sale; // 할인 후 적용가 = 원가 - 세일가
 
+int goodsId = article.getGoodsId();
 int basketCount = 1;
 
 %>
@@ -76,9 +77,28 @@ ul.tabs li.current{
 	
 	})
 	
-	function basket() {
-		
-	}
+	 //장바구니 button
+   function basket(goodsId) {
+//       var basketCount = document.getElementsByClassName("input-number");
+//       var basketCount = document.getElementsById("basketCount");
+      var basketCount = document.getElementsByName("basketCount");
+      
+//       if(basketCount.value != 0){
+         
+         alert(goodsId);
+         alert(basketCount.value);
+//          location.href = "BasketAdd.go?goodsId="+goodsId;
+         location.href = "BasketAdd.go?goodsId="+goodsId+"&basketCount?="+basketCount;
+//       }
+   }
+   
+   //구매하기 button
+   function order(goodsId) {
+      var basketCount = document.getElementsByName("basketCount");
+      
+         location.href = "OrderForm.go?goodsId="+goodsId;
+   }
+
 </script>
 <!-- 탭메뉴 끝 -->
 
@@ -112,7 +132,7 @@ ul.tabs li.current{
   
   <!--================Single Product Area =================-->
 <!--   폼태그 추가 -->
-  <form action="OrderForm.go?goodsId=<%=article.getGoodsId()%>" name="basket" method="post" id="OrderForm">
+<%--   <form action="OrderForm.go?goodsId=<%=article.getGoodsId()%>" name="basket" method="post" id="OrderForm"> --%>
   <div class="product_image_area section_padding">
     <div class="container">
       <div class="row s_product_inner justify-content-between">
@@ -154,9 +174,11 @@ ul.tabs li.current{
               </h2>
               <br>
 <!--               버튼으로 만들어서 버튼 클릭햇을때 스크립트 받아서 bassketCount 받아와라..넘어가게 -->
-				<input type="button" class="btn_3" value = "장바구니" onclick="basket();">
 <%--               <a href="BasketAdd.go?goodsId=<%=article.getGoodsId()%> & basketCount=" class="btn_3">장바구니</a> --%>
-              <input type ="submit" class="btn_3" value ="구매하기">
+<!--               <input type ="submit" class="btn_3" value ="구매하기"> -->
+            <input type="button" class="btn_3" value = "장바구니" id="basket" onclick="basket(<%=goodsId%>);">
+            <input type="button" class="btn_3" value = "구매하기" id="order" onclick="order(<%=goodsId%>);">
+
           </div>
         </div>
       </div>
