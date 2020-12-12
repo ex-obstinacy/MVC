@@ -90,9 +90,6 @@
                                     <li>
                                         <a href="AdminMemberList.ad">회원 목록</a>
                                     </li>
-                                    <li>
-                                        <a href="MemberDelete.me">관리자 탈퇴</a>
-                                    </li>
                                 </ul>
                             </div>
                         </aside>

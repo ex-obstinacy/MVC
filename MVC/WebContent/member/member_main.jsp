@@ -1,9 +1,12 @@
+<%@page import="vo.MemberShipBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
  <%
-	//session 객체에 저장된 id 값 가져와서 변수에 저장
+	// session 객체에 저장된 id 값 가져와서 변수에 저장
 	String id = (String)session.getAttribute("id");
+ 	// MemberShip 객체 받아오기
+ 	MemberShipBean memberShip = (MemberShipBean) request.getAttribute("memberShip");
 %>
 
 <!DOCTYPE html>
@@ -99,8 +102,9 @@
                 
                 <div class="col-lg-9">
                     <div class="row align-items-center latest_product_inner">
-                    	등급은??
-                    
+                    	<div><h5><%=memberShip.getGrade() %> 입니다.</h5></div>
+                    	<h4><B><%=memberShip.getNextGrade() %></B> 까지 남은 POINT <B><%=memberShip.getNextPoint() - memberShip.getPoint() %></B></h4>
+                    	
                     </div>
                 </div>
             </div>

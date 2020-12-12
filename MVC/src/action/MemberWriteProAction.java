@@ -39,7 +39,7 @@ public class MemberWriteProAction implements Action {
 			//    (주의! 경로명 앞에 슬래시(/) 기호 붙이지 말 것!)
 			forward.setPath("MemberLogin.me");
 			// 3. 포워딩 방식(Redirect 방식) 지정
-			forward.setRedirect(true);
+//			forward.setRedirect(true);
 			
 		} else {
 			// 글쓰기 작업 실패 시 자바스크립트를 통해

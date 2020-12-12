@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import exception.LoginException;
 import vo.MemberBean;
+import vo.MemberShipBean;
+
 import static db.JdbcUtil.*;
 
 public class MemberDAO {
@@ -332,6 +334,43 @@ public class MemberDAO {
 		}
 		
 		return articleList;
+	}
+
+	// 멤버쉽 확인
+	public MemberShipBean selectMemberShip(String id) {
+		System.out.println("MemberDAO - selectMemberShip()");
+		
+		MemberShipBean memberShip = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT membership FROM member WHERE id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				memberShip = new MemberShipBean();
+				memberShip.setPoint(rs.getInt(1));
+				
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectMemberShip() 오류! - " + e.getMessage());
+			e.printStackTrace();
+			
+		} finally {
+			close(pstmt);
+			close(rs);
+			
+		}
+		
+		
+		
+		
+		return memberShip;
 	}
 
 }
