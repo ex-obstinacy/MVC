@@ -302,7 +302,7 @@ public class StoreDAO {
       }
 
       // 장바구니 목록 조회
-      public ArrayList<StoreBean> selectBasketList(int goodsId, String id) {
+      public ArrayList<StoreBean> selectBasketList(String id) {
             System.out.println("selectBasketList DAO");
     	  	ArrayList<StoreBean> basketList = null;
             
@@ -330,7 +330,7 @@ public class StoreDAO {
                   //basket 테이블
                   basket.setBasketCount(rs.getInt("basketCount"));
                   basket.setBasketId(rs.getInt("basketId"));
-                  basket.setGoods_goodsId(goodsId);
+                  basket.setGoods_goodsId(rs.getInt("goods_goodsId"));
                   basket.setMember_id(id);
                   //goods 테이블
                   basket.setCtg(rs.getString("ctg"));
@@ -340,6 +340,8 @@ public class StoreDAO {
                   basket.setComponent(rs.getString("component"));
                   basket.setFile(rs.getString("file"));
                   basket.setContent(rs.getString("content"));
+                  
+                  System.out.println(basket.getGoods_goodsId());
                   
                   // 1개 게시물을 전체 게시물 저장 객체(ArrayList)에 추가
                   basketList.add(basket);

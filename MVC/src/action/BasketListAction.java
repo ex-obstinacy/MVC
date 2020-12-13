@@ -20,18 +20,18 @@ public class BasketListAction implements Action {
       HttpSession session = request.getSession(); //MemberBean id 값 가져오기
       String id = (String)session.getAttribute("id"); 
       
-      int goodsId = Integer.parseInt(request.getParameter("goodsId"));
+//      int goodsId = Integer.parseInt(request.getParameter("goodsId"));
  
       
       BasketListService basketListService = new BasketListService();
       ArrayList<StoreBean> basketList = new ArrayList<StoreBean>();
       
-      basketList = basketListService.getBasketList(goodsId, id);
+      basketList = basketListService.getBasketList(id);
       
       request.setAttribute("basketList", basketList);
       
       forward = new ActionForward();
-      forward.setPath("/basket.jsp");
+      forward.setPath("/goods/basket.jsp");
       forward.setRedirect(false);
       
       return forward;

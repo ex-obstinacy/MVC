@@ -60,7 +60,7 @@ public class BasketAddAction implements Action {
       if(isBasketAddSuccess) {
          forward = new ActionForward();
          forward.setPath("BasketList.go");
-         forward.setRedirect(false); // 리다이렉트랑 디스패쳐 차이 머지.. true 하니까 goodsId 값을 못가져가넹
+         forward.setRedirect(true); // 리다이렉트랑 디스패쳐 차이 머지.. true 하니까 goodsId 값을 못가져가넹
       } else {
          response.setContentType("text/html; charset=UTF-8");
          PrintWriter out = response.getWriter();
