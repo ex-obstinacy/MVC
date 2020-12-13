@@ -255,7 +255,7 @@
                                         <a href="#">결제내역</a>
                                     </li>
                                     <li>
-                                        <a href="#">장바구니</a>
+                                        <a href="BasketList.go">장바구니</a>
                                     </li>
                                     <li>
                                         <a href="#">리뷰내역</a>

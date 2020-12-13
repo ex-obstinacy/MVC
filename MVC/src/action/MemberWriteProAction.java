@@ -4,6 +4,8 @@ import java.io.PrintWriter;
 import java.sql.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import svc.MemberSendMailService;
 import svc.MemberWriteProService;
 import vo.ActionForward;
 import vo.MemberBean;
@@ -39,7 +41,11 @@ public class MemberWriteProAction implements Action {
 			//    (주의! 경로명 앞에 슬래시(/) 기호 붙이지 말 것!)
 			forward.setPath("MemberLogin.me");
 			// 3. 포워딩 방식(Redirect 방식) 지정
-//			forward.setRedirect(true);
+			forward.setRedirect(true);
+			
+//			// 가입인사 메일 보내기
+//			MemberSendMailService memberSendMailService = new MemberSendMailService();
+//			memberSendMailService.sendMail(request, response, memberBean.getId(), memberBean.getEmail());
 			
 		} else {
 			// 글쓰기 작업 실패 시 자바스크립트를 통해

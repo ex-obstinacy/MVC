@@ -119,7 +119,6 @@
 					});
 				});
 				
-				element.innerHTML = "사용 가능";
 				checkIdResult = true; // 전역변수 true 로 변경
 			} else { // 일치하지 않을 경우
 				element.innerHTML = "사용 불가";

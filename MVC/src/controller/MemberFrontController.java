@@ -19,7 +19,7 @@ import action.MemberUpdateProAction;
 import action.MemberWriteProAction;
 import vo.ActionForward;
 
-@WebServlet("*.me") // 서블릿 주소 중 XXX.bo 주소에 대한 요청을 전달받아 처리
+@WebServlet("*.me") // 서블릿 주소 중 XXX.me 주소에 대한 요청을 전달받아 처리
 public class MemberFrontController extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
