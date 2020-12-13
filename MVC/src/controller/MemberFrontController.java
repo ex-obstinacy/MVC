@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import action.Action;
+import action.MemberCheckIdAction;
 import action.MemberDeleteProAction;
 import action.MemberInfoAction;
 import action.MemberLoginProAction;
@@ -136,8 +137,18 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 				
 			}
-		}  else if(command.equals("/MemberUpdatePro.me")) { // 회원탈퇴 작업 진행
+		} else if(command.equals("/MemberUpdatePro.me")) { // 회원탈퇴 작업 진행
 			action = new MemberUpdateProAction();
+			
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
+		} else if(command.equals("/CheckId.me")) { // 회원가입시 아이디 중복 확인
+			action = new MemberCheckIdAction();
 			
 			try {
 				forward = action.execute(request, response);

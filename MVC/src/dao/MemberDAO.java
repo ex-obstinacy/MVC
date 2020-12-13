@@ -373,4 +373,35 @@ public class MemberDAO {
 		return memberShip;
 	}
 
+	// 회원 가입시 아이디중복 확인
+	public boolean checkArticle(String id) {
+		System.out.println("MemberDAO - checkArticle()");
+		
+		boolean chekcIdResult = false;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT id FROM member WHERE id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				chekcIdResult = true;
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("checkArticle() 오류! - " + e.getMessage());
+			e.printStackTrace();
+			
+		} finally {
+			close(pstmt);
+			
+		}
+		
+		return chekcIdResult;
+	}
+
 }

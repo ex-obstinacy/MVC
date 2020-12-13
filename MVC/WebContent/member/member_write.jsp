@@ -84,6 +84,7 @@
 	</script>
 	
 	<!-- 아이디/비밀번호 검사   -->
+	<script src="../js/jquery-3.5.1.js"></script>
 	<script type="text/javascript">
 		// submit 전 최종 상태(아이디, 패스워드 규칙 일치 여부) 저장할 전역변수 설정
 		var checkIdResult = false, checkPasswdResult = false, retryPasswdResult = false, retryEmailResult = false; 
@@ -108,6 +109,16 @@
 			// 자바스크립트에서 정규표현식 판별을 위해서는 다음과 같은 문자열 사용
 			// => 정규표현식문자열.exec(검사할데이터) => 판별 결과가 true 또는 false
 			if(regex.exec(id)) { // 정규표현식과 일치할 경우
+				// 아이디 중복 확인()
+				$(document).ready(function(){
+					$.ajax('CheckId.me',{
+						data:{id:$('#myId').val()},
+						success:function(rdata){
+							$('#checkIdResult').html(rdata);
+						}
+					});
+				});
+				
 				element.innerHTML = "사용 가능";
 				checkIdResult = true; // 전역변수 true 로 변경
 			} else { // 일치하지 않을 경우
