@@ -16,11 +16,15 @@ public class MovieAddProAction implements Action {
 		
 		ActionForward forward = null;
 		
+		String seltime = request.getParameter("seltime");
+		String selguan = request.getParameter("selguan");
+		String time = seltime + "(" +selguan + ")";
+		
 		ReserveBean movie = new ReserveBean();
 		movie.setMovie_subject(request.getParameter("movie_subject"));
 		movie.setCinema_name(request.getParameter("cinema"));
 		movie.setShowdate(request.getParameter("date"));
-		movie.setShowtime(request.getParameter("time"));
+		movie.setShowtime(time);
 		
 		MovieAddProService movieAddProService = new MovieAddProService();
 		

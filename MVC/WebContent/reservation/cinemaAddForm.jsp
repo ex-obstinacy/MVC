@@ -1,8 +1,12 @@
+<%@page import="org.json.simple.JSONArray"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+	<%
+	LocalDate today = LocalDate.now();
+	%>
 <html lang="zxx">
 
 <head>
@@ -31,14 +35,18 @@
   <link rel="stylesheet" href="css/price_rangs.css">
   <!-- style CSS -->
   <link rel="stylesheet" href="css/style.css">
-  <link href="css/reservation.css" rel="stylesheet" type="text/css">
+<!--   <link rel="stylesheet" href="css/reservation.css" type="text/css"> -->
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/sub.css">
 <script src="js/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		// 등록된 영화관 리스트 가져오기
-		$.getJSON('reservation/cinemaListjson.jsp', function(rdata) {
+		$.getJSON('CinemaListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
-				$('#cldiv').append("<div class='cl_div "+item.cinema_local+"'><input type='radio' name='cinema' id='"+item.cinema_name+"' value='"+item.cinema_name+"' class='rcinema'/><label for='"+item.cinema_name+"'>"+item.cinema_local+" - "+item.cinema_name+"</label></div>");
+				$('#cldiv').append("<li class='cl_div "+item.cinema_local+"'><input type='radio' name='cinema' id='"+item.cinema_name+"' value='"+item.cinema_name+"' class='rcinema'/><label for='"+item.cinema_name+"'>"
+						+"<span id='span_c1'>["+item.cinema_local+"]</span><span id='span_c2'>"+item.cinema_name+"</span></label></li>");
 			});
 		});
 		// 필수 조건
@@ -66,50 +74,36 @@
 	<jsp:include page="/inc/top.jsp"/>
   <!-- Header part end-->
 
+	<!-- 서브비주얼 -->
+	<jsp:include page="/inc/sub_visual1.jsp"/>
 
-  <!--================Home Banner Area =================-->
-  <!-- breadcrumb start-->
-  <section class="breadcrumb breadcrumb_bg">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div class="breadcrumb_iner">
-            <div class="breadcrumb_iner_item">
-              <h2>Cinema Management</h2>
-              <p>Admin<span>-</span>Cinema</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- breadcrumb start-->
+  
 
   <!--================Reservation Area =================-->
-  <section class="cart_area padding_top">
+  <section id="sub_content" class="reserveMain">
 	  <div class="container">
-	  	<div>
-			<form action="CinemaDeletePro.re" method="post">
-				<table id="cinema_list">
+	  	<h3 class="sub_title">Admin - Management Cinema</h3>
+	  	<!-- 등록된 영화 목록 -->
+	  	<div id="cinemadiv">
+		  	<form action="CinemaDeletePro.re" method="post" id="clistform">
+				<table>
 					<tr>
-						<th>지역 - 영화관명</th>
+						<th>운영중인 영화관</th>
 					</tr>
 					<tr>
 						<td>
-							<div id="cldiv">
+							<ul id="cldiv">
 							<!-- 영화관 리스트 표출 -->
-							</div>
+							</ul>
 						</td>
 					</tr>
-				</table> <br>
-				<input type="submit" value="삭제">
+				</table>
+				<div class="btnBox"><input type="submit" class="genric-btn default circle" value="삭제"></div>
 			</form>
-		</div>
-	  	<br><br>
-		<!-- 영화관 등록 폼 -->
-		<div>
-			<form action="CinemaAddPro.re" method="post" id="cinema_fr">
-				<select name="local" id="local">
+		  	<!-- 등록된 영화 목록 -->
+			<!-- 영화관 등록 폼 -->
+			<form action="CinemaAddPro.re" method="post" id="cinemaform">
+				<select name="sellocal" id="sellocal">
 					<option value="">지역을 선택하세요.</option>
 					<option value="서울">서울</option>
 					<option value="경기">경기</option>
@@ -121,11 +115,11 @@
 					<option value="경상">경상</option>
 					<option value="제주">제주</option>
 				</select><br><br><br>
-				영화관 명 : 
-				<input type="text" name="name" id="name"><br><br>
-				<input type="submit" value="등록">
+				<input type="text" name="txtcname" id="txtcname" placeholder="영화관명을 입력하세요."><br><br>
+				<div class="btnBox"><input type="submit" class="genric-btn primary circle" value="등록"></div>
 			</form>
 		</div>
+		<!-- 영화관 등록 폼 -->
 	  </div>
   </section>
   <!--================End Reservation Area =================-->

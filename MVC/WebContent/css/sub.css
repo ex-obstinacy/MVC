@@ -69,6 +69,51 @@
 
 #movieform{} div.btnBox{text-align:right;}
 
+/* 관리자 - 영화 등록 페이지 */
+#mlistform{}
+#mlistform > table{width:100%; border:1px solid #ccc; border-top:2px solid #121212; border-spacing:0px; margin-bottom:20px;}
+#mlistform > table th, td{border-right: 1px solid #ccc;}
+#mlistform > table th{background:#fff; border-bottom:1px solid #121212; padding:20px 0; font-size:17px; text-align:center;}
+#mlistform > table td{height:260px; padding:0;}
+#mlistform > table td>ul{height:100%; overflow-y: auto; background:#f2f2f2;}
+#mlistform > table td>ul li{border-bottom:1px solid #ddd; }
+#mlistform > table td>ul li label{width:100%; cursor:pointer; font-size:12px; padding:10px 10px; background:#fff;}
+#mlistform > table td>ul li input{display:none;}
+#mlistform > table td>ul#mldiv li label{border:2px solid transparent; box-sizing:border-box; font-size:14px;}
+#mlistform > table td>ul#mldiv li input:checked+label{border:2px solid #FF243E; background:#fff url(../img/sub/check.png) no-repeat 96% center/15px auto;}
+#mlistform > table td>ul#mldiv li #span_m1{font-size:16px; font-weight:bold; margin: 0 20px;}
+#mlistform > table td>ul#mldiv li #span_m2{font-size:15px; font-weight: 600; margin-right: 10px;}
+#mlistform > table td>ul#mldiv li #span_m3{font-size:14px; font-weight: 500; margin-left:760px; color: #FF3368;}
+#mlistform > table td>ul#mldiv li #span_m4{font-size:14px; font-weight: 500; margin-left: 10px; color: #FF3368;}
+#mlistform{} div.btnBox{text-align:right; margin-right: 30px;}
+
+#movieform > table td>ul#ultime li{float:left; margin: 100px 60px;}
+#movieform > table td>ul#ultime li>#seltime, #selguan{width: 100px; height: 35px;}
+
+#mformdiv{margin-top: 30px;}
+
+/* 관리자 - 영화관 등록 페이지 */
+#clistform, #cinemaform{display: inline-block; vertical-align: top; text-align: center; margin: 0 100px;}
+
+#clistform{}
+#clistform > table{width:100%; border:1px solid #ccc; border-top:2px solid #121212; border-spacing:0px; margin-bottom:20px;}
+#clistform > table th, td{border-right: 1px solid #ccc;}
+#clistform > table th{background:#fff; border-bottom:1px solid #121212; padding:20px 0; font-size:17px; text-align:center;}
+#clistform > table td{width:300px; height:260px; padding:0;}
+#clistform > table td>ul{height:100%; overflow-y: auto; background:#f2f2f2;}
+#clistform > table td>ul li{border-bottom:1px solid #ddd; }
+#clistform > table td>ul li label{width:100%; cursor:pointer; font-size:12px; padding:10px 10px; background:#fff;}
+#clistform > table td>ul li input{display:none;}
+#clistform > table td>ul#cldiv li label{border:2px solid transparent; box-sizing:border-box; font-size:14px;}
+#clistform > table td>ul#cldiv li input:checked+label{border:2px solid #FF243E; background:#fff url(../img/sub/check.png) no-repeat 96% center/15px auto;}
+#clistform > table td>ul#cldiv li #span_c1{font-size:15px; font-weight:600; margin: 0 20px 0 0;}
+#clistform > table td>ul#cldiv li #span_c2{font-size:16px; font-weight:bold; color: #FF3368;}
+#clistform{} div.btnBox{text-align:right;}
+
+#cinemaform{border:1px solid #ccc; border-top:2px solid #121212; border-spacing:0px; margin-bottom:20px; padding:40px;}
+#cinemaform >#sellocal, #txtcname{width: 200px; height: 35px;}
+#cinemaform{} div.btnBox{text-align:right; padding-top:50px;}
+
 /* 좌석선택 서브페이지 */
 form#seatForm{}
 
