@@ -10,7 +10,7 @@ int sale = (int)(article.getPrice() * article.getSale() * 0.01); //세일가 = �
 int sumPrice = article.getPrice() - sale; // 할인 후 적용가 = 원가 - 세일가
 
 int goodsId = article.getGoodsId();
-int basketCount = 1;
+// int baksetCount = article.getBasketCount();
 
 %>
 <!DOCTYPE html>
@@ -77,26 +77,23 @@ ul.tabs li.current{
 	
 	})
 	
+	
 	 //장바구니 button
    function basket(goodsId) {
-//       var basketCount = document.getElementsByClassName("input-number");
-//       var basketCount = document.getElementsById("basketCount");
-      var basketCount = document.getElementsByName("basketCount");
+	var basketCount = document.getElementById("basketCount");
       
-//       if(basketCount.value != 0){
-         
          alert(goodsId);
          alert(basketCount.value);
-//          location.href = "BasketAdd.go?goodsId="+goodsId;
-         location.href = "BasketAdd.go?goodsId="+goodsId+"&basketCount?="+basketCount;
-//       }
+         
+         location.href = "BasketAdd.go?goodsId="+goodsId+"&basketCount?="+basketCount.value;
+         
    }
    
    //구매하기 button
    function order(goodsId) {
-      var basketCount = document.getElementsByName("basketCount");
+	   var basketCount = document.getElementById("basketCount");
       
-         location.href = "OrderForm.go?goodsId="+goodsId;
+         location.href = "OrderForm.go?goodsId="+goodsId+"&basketCount?="+basketCount.value;
    }
 
 </script>
@@ -165,7 +162,8 @@ ul.tabs li.current{
             <div class="card_area d-flex justify-content-between align-items-center">
               <div class="product_count">
                 <span class="inumber-decrement"> <i class="ti-minus"></i></span>
-                <input class="input-number" type="text" name="basketCount" value="<%=basketCount %>" min="0" max="10">
+                <input class="input-number" type="text" value="1" id="basketCount" min="0" max="10"> 
+<!--                 name 은 배열 ? -->
                 <span class="number-increment"> <i class="ti-plus"></i></span>
               </div>
             </div>
