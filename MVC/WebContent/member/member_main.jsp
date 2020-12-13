@@ -101,7 +101,7 @@
           <!--================ 메뉴 영역 =================-->          
                 
                 <div class="col-lg-9">
-                    <div class="row align-items-center latest_product_inner">
+                    <div class="row2 align-items-center latest_product_inner">
                     	<div><h5><%=memberShip.getGrade() %> 입니다.</h5></div>
                     	<h4><B><%=memberShip.getNextGrade() %></B> 까지 남은 POINT <B><%=memberShip.getNextPoint() - memberShip.getPoint() %></B></h4>
                     	
