@@ -1,20 +1,15 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="vo.StoreBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-StoreBean article = (StoreBean)request.getAttribute("article");
-int sale = (int)(article.getPrice() * article.getSale() * 0.01); //세일가 = 원가 * (세일 * 0.01) -> %로 나타낸거임
-int sumPrice = article.getPrice() - sale; // 할인 후 적용가 = 원가 - 세일가
-
-// 스토어에서 구매하기로 이동할 경우 수량을 못가져옴 
-// 그래서 그냥 수량을 변수로 줘서 1로 설정해버림 (구매하기는 수량이 무조건 1이니까)
-int orderCount = article.getOrderCount();
-if(article.getName() != null){
-	orderCount = 1;
-}
+ArrayList<StoreBean> basketList = (ArrayList<StoreBean>)request.getAttribute("basketList");
 
 String member_id = (String)session.getAttribute("id");
 
+int totalPrice = 0; //할인 전 총 상품금액
+int sale2 = 0; // 총 할인가격
+int sumPrice = 0; // 할인 후 상품금액
 %>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -68,53 +63,53 @@ function NoMultiChk(chk){ // 결제수단 중복체크 불가
 }
 
 //결제 API (아임포트) 구현
-IMP.init("imp56648633"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.	
+IMP.init("imp56648633"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.   
 
 function requestPay() {
-			var payMethod=$("input:checkbox[name='payMethod']:checked").val();
-			var goodsId=$('#orderForm').text();
+         var payMethod=$("input:checkbox[name='payMethod']:checked").val();
+         var goodsId=$('#orderForm').text();
 
-			if(payMethod == null){
-				alert("결제수단을 선택해주세요.");
-				return false;
-			}
-			
-	      // IMP.request_pay(param, callback) 호출
-	      IMP.request_pay({ // param
-	          pg: "html5_inicis",
-	          pay_method:payMethod,
-	          merchant_uid: "ORD20180131-0000011", // 상품 번호
-	          name: movieName, // 상품명
-	          amount: payPrice.value, // 상품가격
-	          buyer_email: "gildong@gmail.com",
-	          buyer_name: "홍길동",
-	          buyer_tel: "010-4242-4242",
-	          buyer_addr: "서울특별시 강남구 신사동",
-	          buyer_postcode: "01181"
-	      }, function (rsp) { // callback
-	    	  if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
-	    	      // jQuery로 HTTP 요청
-	    	      jQuery.ajax({
-	    	          url: "https://www.myservice.com/payments/complete", // 가맹점 서버
-	    	          method: "POST",
-	    	          headers: { "Content-Type": "application/json" },
-	    	          data: {
-	    	              imp_uid: rsp.imp_uid,
-	    	              merchant_uid: rsp.merchant_uid
-	    	          }
-	    	      }).done(function (data) {
-	    	        // 가맹점 서버 결제 API 성공시 로직
-	    	      })
-	    	    } else {
-	    	      alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
-	    	    }
-	      });
+         if(payMethod == null){
+            alert("결제수단을 선택해주세요.");
+            return false;
+         }
+         
+         // IMP.request_pay(param, callback) 호출
+         IMP.request_pay({ // param
+             pg: "html5_inicis",
+             pay_method:payMethod,
+             merchant_uid: "ORD20180131-0000011", // 상품 번호
+             name: movieName, // 상품명
+             amount: payPrice.value, // 상품가격
+             buyer_email: "gildong@gmail.com",
+             buyer_name: "홍길동",
+             buyer_tel: "010-4242-4242",
+             buyer_addr: "서울특별시 강남구 신사동",
+             buyer_postcode: "01181"
+         }, function (rsp) { // callback
+            if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+                // jQuery로 HTTP 요청
+                jQuery.ajax({
+                    url: "https://www.myservice.com/payments/complete", // 가맹점 서버
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    data: {
+                        imp_uid: rsp.imp_uid,
+                        merchant_uid: rsp.merchant_uid
+                    }
+                }).done(function (data) {
+                  // 가맹점 서버 결제 API 성공시 로직
+                })
+              } else {
+                alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
+              }
+         });
 }
 
 </script>
 
   <!--::header part start::-->
-	<jsp:include page="inc/top.jsp"/>
+   <jsp:include page="inc/top.jsp"/>
   <!-- Header part end-->
 
 
@@ -144,9 +139,12 @@ function requestPay() {
          <hr>
         <form action="OrderPro.go" name="basket" method="post" id="orderForm">
         <!-- Pro로 보낼 값 -->
-			<input type="hidden" name="member_id" value="<%=member_id%>"> <!-- 구매 아이디 -->
-			<input type="hidden" name="goodsId" value="<%=request.getParameter("goodsId")%>"> <!-- 상품 번호 -->
+         <input type="hidden" name="member_id" value="<%=member_id%>"> <!-- 구매 아이디 -->
+         <input type="hidden" name="goodsId" value="<%=request.getParameter("goodsId")%>"> <!-- 상품 번호 -->
           <table class="table">
+          <%
+          if(basketList != null){
+           %>
             <thead>
               <tr>
                 <th scope="col"></th>
@@ -155,36 +153,47 @@ function requestPay() {
                 <th scope="col">합계</th>
               </tr>
             </thead>
+            <%
+         for(int i= 0; i < basketList.size(); i++){
+            int goodsPrice = basketList.get(i).getPrice() * basketList.get(i).getBasketCount(); // 상품 개 당 가격
+             totalPrice += goodsPrice; // 할인 전 상품금액 += 상품 개 당 가격
+            int sale = (int)(basketList.get(i).getPrice() * basketList.get(i).getSale() * basketList.get(i).getBasketCount() * 0.01); // 할인가격
+            sale2 += sale; // 총 할인가격 += 할인가격
+            sumPrice = totalPrice - sale2; // 할인 후 상품금액 = 할인 전 상품금액 - 총 할인가격
+            
+         %>
             <tbody>
               <tr>
                 <td></td>
                 <td>
                   <div class="media">
                     <div class="d-flex">
-                      <img src="goodsUpload/<%=article.getFile()%>" alt="상품이미지" />
+                      <img src="goodsUpload/<%=basketList.get(i).getFile() %>" alt="상품이미지" width="250" />
                     </div>
                     <div class="media-body">
-                      <p><%=article.getName() %></p>
-                      <p><%=article.getComponent() %></p>
+                      <p><%=basketList.get(i).getName() %></p>
+                      <p><%=basketList.get(i).getComponent() %></p>
                     </div>
                   </div>
                 </td>
                 <td>
                   <div class="product_count">
-                  <%
-                  if(article.getName() != null){
-//                 	  article.getOrderCount() = 1
-                  %>
-                    <p><%=orderCount %>개</p>
-                   <%
-                  }
-                   %> 
+                    <p><%=basketList.get(i).getBasketCount() %>개</p>
                   </div>
                 </td>
                 <td>
-                  <h5><%=article.getPrice() %>원</h5>
+                  <h5><%=goodsPrice %>원</h5>
                 </td>
               </tr>
+            <%   
+         }
+         %>
+           
+           <%  
+          }
+          %>  
+              
+              
               <tr>
                 <td></td>
                 <td></td>
@@ -194,8 +203,8 @@ function requestPay() {
                   <h3>총 결제예정금액</h3>
                 </td>
                 <td>
-                  <h5><%=article.getPrice() %>원</h5>
-                  <h5><%=sale%>원</h5>
+                  <h5><%=totalPrice %>원</h5>
+                  <h5><%=sale2%>원</h5>
                   <h3><%=sumPrice %>원</h3>
                 </td>
               </tr>
@@ -234,37 +243,37 @@ function requestPay() {
   
   <!--::결제수단 선택 폼 시작::-->
    <div class="selectPayment">
-		<h3 class="pd_top">결제수단 선택</h3>
-			<hr>
-			<ul>
-				<li>
-					<input type="checkbox" name="payMethod" value="creditCard" id="creditCard" onclick="NoMultiChk(this)">
-					<label for="creditCard"><span>신용카드</span></label>
-				</li>
-				<li>
-					<input type="checkbox" name="payMethod" value="simplePay" id="simplePay" onclick="NoMultiChk(this)">
-					<label for="simplePay"><span>계좌이체</span></label>
-				</li>
-				<li>
-					<input type="checkbox" name="payMethod" value="mobile" id="mobile" onclick="NoMultiChk(this)">
-					<label for="mobile"><span>휴대폰</span></label>
-				</li>
-			</ul>
-	</div>
+      <h3 class="pd_top">결제수단 선택</h3>
+         <hr>
+         <ul>
+            <li>
+               <input type="checkbox" name="payMethod" value="creditCard" id="creditCard" onclick="NoMultiChk(this)">
+               <label for="creditCard"><span>신용카드</span></label>
+            </li>
+            <li>
+               <input type="checkbox" name="payMethod" value="simplePay" id="simplePay" onclick="NoMultiChk(this)">
+               <label for="simplePay"><span>계좌이체</span></label>
+            </li>
+            <li>
+               <input type="checkbox" name="payMethod" value="mobile" id="mobile" onclick="NoMultiChk(this)">
+               <label for="mobile"><span>휴대폰</span></label>
+            </li>
+         </ul>
+   </div>
   <!--::결제수단 선택 폼 끝::-->
   <br><br>
   <!--::약관동의 시작::-->
-   <h3 class="pd_top">주문정보 / 결제 대행 서비스	 약관 동의</h3>
+   <h3 class="pd_top">주문정보 / 결제 대행 서비스    약관 동의</h3>
      <hr>
    <div class="creat_account">
       <input type="checkbox" id="f-option4" name="selector" />
       <label for="f-option4">약관에 동의합니다.</label>
       <a href="#">동의동의*</a>
         <p>역사를 피가 있는 품으며, 것이 보는 영원히 꽃이 그리하였는가?
-	때에, 투명하되 생생하며, 인간의 가치를 천자만홍이 불어 피다.
- 	힘차게 인간이 오아이스도 천지는 작고 끝까지 같이, 아니더면, 있다.
-  	광야에서 어디 가치를 가장 간에 싹이 보이는 갑 이상의 황금시대다.
-   	얼음에 이상 미묘한 우리의 실로 없는 얼마나 봄바람이다.
+   때에, 투명하되 생생하며, 인간의 가치를 천자만홍이 불어 피다.
+    힘차게 인간이 오아이스도 천지는 작고 끝까지 같이, 아니더면, 있다.
+     광야에서 어디 가치를 가장 간에 싹이 보이는 갑 이상의 황금시대다.
+      얼음에 이상 미묘한 우리의 실로 없는 얼마나 봄바람이다.
     풀이 간에 그러므로 이상, 피어나는 찾아다녀도, 약동하다.
     없으면 것은 부패를 목숨을 있는 하였으며, 열락의 일월과 그림자는 사막이다. 
     있음으로써 같은 맺어, 있는 보배를 사는가 되려니와, 사막이다.
@@ -272,7 +281,7 @@ function requestPay() {
     시들어 희망의 군영과 있는 있을 크고 불어 꽃이 황금시대다.</p>
    </div>
   <!--::약관동의 끝::-->
-  	<!--::버튼 시작::-->
+     <!--::버튼 시작::-->
           <div class="pd_top">
             <input type="button" class="btn_3" value="이전화면" onclick="history.back()">
           </div>
@@ -280,9 +289,9 @@ function requestPay() {
             <input type="button" class="btn_3" value="결제하기" onclick="requestPay()">
           </div>
           <!-- 가상 결제 완료 버튼 -->
-<!-- 		  <input type="submit" value="결제 완료"> -->
+<!--         <input type="submit" value="결제 완료"> -->
      <!--::버튼 끝::-->
-   		</form>
+         </form>
       </div>
      </div>
   </section>
