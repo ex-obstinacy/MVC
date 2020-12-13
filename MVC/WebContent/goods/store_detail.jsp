@@ -85,7 +85,7 @@ ul.tabs li.current{
          alert(goodsId);
          alert(basketCount.value);
          
-         location.href = "BasketAdd.go?goodsId="+goodsId+"&basketCount?="+basketCount.value;
+         location.href = "BasketAdd.go?goodsId="+goodsId+"&basketCount="+basketCount.value;
          
    }
    
@@ -93,7 +93,7 @@ ul.tabs li.current{
    function order(goodsId) {
 	   var basketCount = document.getElementById("basketCount");
       
-         location.href = "OrderForm.go?goodsId="+goodsId+"&basketCount?="+basketCount.value;
+         location.href = "OrderForm.go?goodsId="+goodsId+"&basketCount="+basketCount.value;
    }
 
 </script>
