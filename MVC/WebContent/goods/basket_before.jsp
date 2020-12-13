@@ -65,7 +65,7 @@ int sumPrice = 0; // 할인 후 상품금액
 
 <body>
   <!--::header part start::-->
-   <jsp:include page="inc/top.jsp"/>
+   <jsp:include page="../inc/top.jsp"/>
   <!-- Header part end-->
 
 
@@ -86,6 +86,9 @@ int sumPrice = 0; // 할인 후 상품금액
     </div>
   </section>
   <!-- breadcrumb start-->
+
+
+
 
   <!--================Cart Area =================-->
   <section class="cart_area padding_top">
@@ -187,7 +190,7 @@ int sumPrice = 0; // 할인 후 상품금액
   <!--================End Cart Area =================-->
 
   <!--::footer_part start::-->
-  <jsp:include page="inc/bottom.jsp"/>
+  <jsp:include page="../inc/bottom.jsp"/>
   <!--::footer_part end::-->
 
   <!-- jquery plugins here-->
