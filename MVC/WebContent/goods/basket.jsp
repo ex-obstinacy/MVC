@@ -50,9 +50,9 @@
   
 	<script src="js/jquery-3.5.1.js"></script>
 	<script type="text/javascript">
+	    
+		//체크박스 전체 선택 및 해제
 	   $(document).ready(function(){
-	      
-	      //체크박스 전체 선택 및 해제
 	      $('#ch_all').click(function(){
 	         if($("#ch_all").prop("checked")){
 	            $("input[type=checkbox]").prop("checked",true);
@@ -61,6 +61,32 @@
 	         }
 	      });
 	   })   ;
+	   
+		//체크박스 값 넘기기
+	  function orderOptional(){
+		   var check_count = document.getElementsByName("checkRow").length;
+		   var checkRow = document.getElementsByName("checkRow");
+		   var checked =0 ; //체크된 갯수 파악 위한 초기 변수
+		   
+		   // 체크박스 값 확인
+			for(var i=0; i<check_count; i++){
+			   if(checkRow[i].checked==true){
+				   checked += 1;
+				   alert(checkRow[i].value);
+			   }
+			}
+		   
+		   // 값 넘기기
+		   if(checked == 0){
+			   alert("상품을 선택하여 주십시오.");
+			   return;
+		   } else {
+			   location.href = "OrderForm.go";
+		   }
+		   
+	  }
+
+
 	   
 	
 	</script> 
@@ -138,7 +164,7 @@
          <hr>
          <!-- 장바구니 -> 구매하기로 갈 때 멤버아이디는 ..?  -->
 <%--         <form action="OrderForm.go?goodsId=<%=goodsId %>" name="basket" method="post" id="basketForm"> --%>
-		<form action="OrderForm.go" name="basket" method="post" id="basketForm">
+<!-- 		<form action="OrderForm.go" name="basket" method="post" id="basketForm"> -->
           <table class="table">
          <%
           if(basketList != null){
@@ -159,10 +185,13 @@
             sale2 += sale; // 총 할인가격 += 할인가격
             sumPrice = totalPrice - sale2; // 할인 후 상품금액 = 할인 전 상품금액 - 총 할인가격
             
+            int basketId = basketList.get(i).getBasketId();
+            
          %>
             <tbody>
               <tr>
-                 <td><input type="checkbox" name="checkRow"></td> <!-- 체크박스 개별 선택 및 해제 -->
+<!--                  <td><input type="checkbox" name="checkRow"></td> 체크박스 개별 선택 및 해제  -->
+                 <td><input type="checkbox" name="checkRow" class="checkSelect" value=<%=basketId %>></td> <!-- 체크박스 개별 선택 및 해제 -->
                 <td>
                   <div class="media"> <!-- 상품 박스 -->
                     <div class="d-flex"> <!-- 상품 이미지 테두리 -->
@@ -217,9 +246,10 @@
       <input type="button" class="btn_3" value="이전화면" onclick="history.back">
     </div>
      <div class="checkout_btn_inner float-right">
-       <input type="submit" class="btn_3" value="선택상품주문">
+<!--        <input type="submit" class="btn_3" value="선택상품주문"> -->
+       <input type="button" class="btn_3" value ="선택상품주문" id="orderOptional" onclick="orderOptional();">
 <%--        <a href="OrderForm.go?goodsId=<%=goodsId%>" class="btn_3">전체상품주문</a> --%>
-       <input type="submit" class="btn_3" value="전체상품주문">
+<!--        <input type="submit" class="btn_3" value="전체상품주문"> -->
      </div>
   <!--::버튼 끝::-->      
           </form>
