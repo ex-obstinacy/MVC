@@ -7,8 +7,6 @@ ArrayList<StoreBean> basketList = (ArrayList<StoreBean>)request.getAttribute("ba
 
 String member_id = (String)session.getAttribute("id");
 
-// int basketCount =0;
-
 int totalPrice = 0; //할인 전 총 상품금액
 int sale2 = 0; // 총 할인가격
 int sumPrice = 0; // 할인 후 상품금액
@@ -157,12 +155,8 @@ function requestPay() {
             </thead>
             <%
          for(int i= 0; i < basketList.size(); i++){
-//             basketCount = basketList.get(i).getBasketCount();
-//             if(basketCount == 0){
-//             	basketCount =1;
-//             }
             int goodsPrice = basketList.get(i).getPrice() * basketList.get(i).getBasketCount(); // 상품 개 당 가격
-             totalPrice += goodsPrice; // 할인 전 상품금액 += 상품 개 당 가격
+            totalPrice += goodsPrice; // 할인 전 상품금액 += 상품 개 당 가격
             int sale = (int)(basketList.get(i).getPrice() * basketList.get(i).getSale() * basketList.get(i).getBasketCount() * 0.01); // 할인가격
             sale2 += sale; // 총 할인가격 += 할인가격
             sumPrice = totalPrice - sale2; // 할인 후 상품금액 = 할인 전 상품금액 - 총 할인가격

@@ -10,7 +10,6 @@ int sale = (int)(article.getPrice() * article.getSale() * 0.01); //세일가 = �
 int sumPrice = article.getPrice() - sale; // 할인 후 적용가 = 원가 - 세일가
 
 int goodsId = article.getGoodsId();
-// int baksetCount = article.getBasketCount();
 
 %>
 <!DOCTYPE html>
@@ -82,9 +81,6 @@ ul.tabs li.current{
    function basket(goodsId) {
 	var basketCount = document.getElementById("basketCount");
       
-         alert(goodsId);
-         alert(basketCount.value);
-         
          location.href = "BasketAdd.go?goodsId="+goodsId+"&basketCount="+basketCount.value;
          
    }

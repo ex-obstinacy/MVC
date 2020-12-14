@@ -357,51 +357,7 @@ public class StoreDAO {
             return basketList;
          }
       
-      // 1. store_main 구매하기 목록 조회
-      public ArrayList<StoreBean> selectBasketList(int goodsId) {
-			 System.out.println("selectBasketList DAO");
-	    	  	ArrayList<StoreBean> basketList = null;
-	            
-	            PreparedStatement pstmt = null;
-	            ResultSet rs = null;
-	            try {
-	            	String sql = "SELECT * FROM goods WHERE goodsId = ?";
-	            	pstmt = con.prepareStatement(sql);
-	            	pstmt.setInt(1, goodsId);
-	            	rs = pstmt.executeQuery();
-	               
-	               //ArrayList 객체 생성(while문 위에서 생성 필수!)
-	               basketList = new ArrayList<StoreBean>();
-	               
-	               // 읽어올 게시물이 존재할 경우 다음 작업 반복 
-	               // StoreBean 객체를 생성하여 레코드 데이터 모두 저장 후  StoreBean 객체를 다시 ArrayList 객체에 추가 => 반복
-	               while(rs.next()) {
-	                  // 1개 게시물 정보를 저장할 StoreBean 객체 생성 및 데이터 저장
-	                  StoreBean basket = new StoreBean(); 
-	                    
-	                  basket.setCtg(rs.getString("ctg"));
-	                  basket.setName(rs.getString("name"));
-	                  basket.setPrice(rs.getInt("price"));
-	                  basket.setSale(rs.getInt("sale"));
-	                  basket.setComponent(rs.getString("component"));
-	                  basket.setFile(rs.getString("file"));
-	                  basket.setContent(rs.getString("content"));
-	                  
-	                  // 1개 게시물을 전체 게시물 저장 객체(ArrayList)에 추가
-	                  basketList.add(basket);
-	               }
-	               
-	            } catch (SQLException e) {
-	               System.out.println("selectBasketList() 오류!- "+e.getMessage());
-	               e.printStackTrace();
-	            } finally {
-	               close(pstmt);
-	               close(rs);
-	            }
-	            return basketList;
-	         }
-      
-      // 2. store_detail 구매하기 목록 조회
+      // 1. store_main, store_detail 구매하기 목록 조회
       public ArrayList<StoreBean> selectBasketList(int basketCount, int goodsId) {
             System.out.println("selectBasketList DAO");
     	  	ArrayList<StoreBean> basketList = null;
@@ -423,6 +379,8 @@ public class StoreDAO {
                while(rs.next()) {
                   // 1개 게시물 정보를 저장할 StoreBean 객체 생성 및 데이터 저장
                   StoreBean basket = new StoreBean(); 
+                  
+                  basket.setBasketCount(basketCount);
                   
                   basket.setCtg(rs.getString("ctg"));
                   basket.setName(rs.getString("name"));

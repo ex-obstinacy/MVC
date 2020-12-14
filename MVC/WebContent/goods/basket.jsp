@@ -7,7 +7,6 @@
  <%
 	ArrayList<StoreBean> basketList = (ArrayList<StoreBean>)request.getAttribute("basketList");
 	
-	//int goodsId = Integer.parseInt(request.getParameter("goodsId"));
 	String member_id = (String)session.getAttribute("id");
 	
 	int totalPrice = 0; //할인 전 총 상품금액
@@ -85,6 +84,10 @@
 		   }
 		   
 	  }
+		
+		function orderAll() {
+			
+		}
 
 
 	   
@@ -127,24 +130,12 @@
                             </div>
                             <div class="widgets_inner">
                                 <ul class="list">
-                                    <li>
-                                        <a href="#">결제내역</a>
-                                    </li>
-                                    <li>
-                                        <a href="BasketList.go">장바구니</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">리뷰내역</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">1:1문의</a>
-                                    </li>
-                                    <li>
-                                        <a href="MemberInfo.me">My 정보</a>
-                                    </li>
-                                    <li>
-                                        <a href="MemberDelete.me">회원 탈퇴</a>
-                                    </li>
+                                    <li><a href="#">결제내역</a></li>
+                                    <li><a href="BasketList.go">장바구니</a></li>
+                                    <li><a href="#">리뷰내역</a></li>
+                                    <li><a href="#">1:1문의</a></li>
+                                    <li><a href="MemberInfo.me">My 정보</a></li>
+                                    <li><a href="MemberDelete.me">회원 탈퇴</a></li>
                                 </ul>
                             </div>
                         </aside>
@@ -162,9 +153,6 @@
       <div class="cart_inner">
         <h3>장바구니상품 정보</h3>
          <hr>
-         <!-- 장바구니 -> 구매하기로 갈 때 멤버아이디는 ..?  -->
-<%--         <form action="OrderForm.go?goodsId=<%=goodsId %>" name="basket" method="post" id="basketForm"> --%>
-<!-- 		<form action="OrderForm.go" name="basket" method="post" id="basketForm"> -->
           <table class="table">
          <%
           if(basketList != null){
@@ -190,8 +178,7 @@
          %>
             <tbody>
               <tr>
-<!--                  <td><input type="checkbox" name="checkRow"></td> 체크박스 개별 선택 및 해제  -->
-                 <td><input type="checkbox" name="checkRow" class="checkSelect" value=<%=basketId %>></td> <!-- 체크박스 개별 선택 및 해제 -->
+                <td><input type="checkbox" name="checkRow" class="checkSelect" value=<%=basketId %>></td> <!-- 체크박스 개별 선택 및 해제 -->
                 <td>
                   <div class="media"> <!-- 상품 박스 -->
                     <div class="d-flex"> <!-- 상품 이미지 테두리 -->
@@ -246,10 +233,8 @@
       <input type="button" class="btn_3" value="이전화면" onclick="history.back">
     </div>
      <div class="checkout_btn_inner float-right">
-<!--        <input type="submit" class="btn_3" value="선택상품주문"> -->
        <input type="button" class="btn_3" value ="선택상품주문" id="orderOptional" onclick="orderOptional();">
-<%--        <a href="OrderForm.go?goodsId=<%=goodsId%>" class="btn_3">전체상품주문</a> --%>
-<!--        <input type="submit" class="btn_3" value="전체상품주문"> -->
+       <input type="button" class="btn_3" value ="전체상품주문" id="orderAll" onclick="orderAll();">
      </div>
   <!--::버튼 끝::-->      
           </form>
