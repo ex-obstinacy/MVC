@@ -17,8 +17,8 @@ public class CinemaAddProAction implements Action {
 		ActionForward forward = null;
 		
 		ReserveBean cinema = new ReserveBean();
-		cinema.setCinema_name(request.getParameter("name"));
-		cinema.setLocal(request.getParameter("local"));
+		cinema.setCinema_name(request.getParameter("txtcname"));
+		cinema.setLocal(request.getParameter("sellocal"));
 		
 		CinemaAddProService cinemaAddProService = new CinemaAddProService();
 		boolean isCinemaAddSuccess = cinemaAddProService.registArticle(cinema);

@@ -45,7 +45,7 @@
 		// 등록되어있는 영화목록 가져오기
 		$.getJSON('AllMovieListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
-				$('#mldiv').append("<li class='ml_div "+item.movie_subject+"'><input type='radio' name='movie' id='"+item.movie_subject+"' value='"+item.movie_num+"' class='rmovie'/><label for='"+item.movie_subject+"'>"
+				$('#mldiv').append("<li class='ml_div "+item.movie_subject+"'><input type='radio' name='movie' id='"+item.movie_num+"' value='"+item.movie_num+"' class='rmovie'/><label for='"+item.movie_num+"'>"
 						+"<span id='span_m1'>["+item.cinema_name+"]</span> <span id='span_m2'>"+item.movie_subject+"</span><span id='span_m3'>"+item.showdate+"</span> <span id='span_m4'>"+item.showtime+"</span></label></li>");
 			});
 		})
