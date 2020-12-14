@@ -22,12 +22,10 @@ public class MemberSendMailService {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		String sender = "관리자";
+		String sender = "admin";
 		String receiver = email;
 		String subject = "축하드려요 MVC에 가입 되셨습니다!";
-		String content = id + "님 MVC 가입을 축하드립니다.";
-		
-		System.out.println(receiver + ", " + content);
+		String content = id + " 님 MVC 가입을 축하드립니다.";
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();

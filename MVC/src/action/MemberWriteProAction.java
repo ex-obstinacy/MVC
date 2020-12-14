@@ -43,9 +43,9 @@ public class MemberWriteProAction implements Action {
 			// 3. 포워딩 방식(Redirect 방식) 지정
 			forward.setRedirect(true);
 			
-//			// 가입인사 메일 보내기
-//			MemberSendMailService memberSendMailService = new MemberSendMailService();
-//			memberSendMailService.sendMail(request, response, memberBean.getId(), memberBean.getEmail());
+			// 가입인사 메일 보내기
+			MemberSendMailService memberSendMailService = new MemberSendMailService();
+			memberSendMailService.sendMail(request, response, memberBean.getId(), memberBean.getEmail());
 			
 		} else {
 			// 글쓰기 작업 실패 시 자바스크립트를 통해
