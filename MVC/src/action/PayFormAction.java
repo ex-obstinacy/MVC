@@ -23,9 +23,9 @@ public class PayFormAction implements Action {
 		
 		request.setAttribute("movie", movie);
 		
-		MemberBean coupon = payFormService.getCoupon(member_id);
+		MemberBean memberInfo = payFormService.getMemberInfo(member_id);
 		
-		request.setAttribute("coupon", coupon);
+		request.setAttribute("memberInfo", memberInfo);
 		
 		forward = new ActionForward();
 		forward.setPath("/reservation/payForm.jsp");		

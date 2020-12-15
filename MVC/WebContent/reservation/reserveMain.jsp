@@ -57,8 +57,8 @@
 		// showtime 목록 db에서 가져오기
 		$.getJSON('TimeListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
-				$('#tdtime').append("<div class='tdiv "+item.movie_subject+" "+item.cinema_name+" "+item.showdate+"'><input type='radio' name='time' id='"+item.movie_subject+"/"+item.cinema_name+"/"+item.showdate+"/"+item.showtime+"' value='"+item.showtime+
-						"' class='rtime'/><label for='"+item.movie_subject+"/"+item.cinema_name+"/"+item.showdate+"/"+item.showtime+"' value='"+item.showtime+"'>"+item.showtime+"</label></div>");
+				$('#tdtime').append("<li class='tdiv "+item.movie_subject+" "+item.cinema_name+" "+item.showdate+"'><input type='radio' name='time' id='"+item.movie_subject+"/"+item.cinema_name+"/"+item.showdate+"/"+item.showtime+"' value='"+item.showtime+
+						"' class='rtime'/><label for='"+item.movie_subject+"/"+item.cinema_name+"/"+item.showdate+"/"+item.showtime+"' value='"+item.showtime+"'>"+item.showtime+"</label></li>");
 			});
 		});
 		// 지역 선택
@@ -163,7 +163,7 @@
   
 
   <!--================Reservation Area =================-->
-  <section id="sub_content" class="reserveMain">
+  <div id="sub_content" class="reserveMain">
 	  <div class="container">
 	  	<h3 class="sub_title">영화/상영관/날짜 선택</h3>
 		<!-- 영화등록표 시작 -->
@@ -227,9 +227,9 @@
 			</tr>
 			<tr>
 				<td>
-					<div id="tdtime">
+					<ul id="tdtime">
 						<!-- 등록된 시간 리스트 표출 -->
-					</div>
+					</ul>
 				</td>
 			</tr>
 		</table>
@@ -238,7 +238,7 @@
 		</div>
 		</form>
 	  </div>
-  </section>
+  </div><!-- #sub_content -->
   <!--================End Reservation Area =================-->
 
   <!--::footer_part start::-->

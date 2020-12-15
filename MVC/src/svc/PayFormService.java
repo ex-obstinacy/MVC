@@ -27,8 +27,8 @@ public class PayFormService {
 		return movie;
 	}
 
-	public MemberBean getCoupon(String member_id) {
-		MemberBean coupon = null;
+	public MemberBean getMemberInfo(String member_id) {
+		MemberBean memberInfo = null;
 		
 		Connection con = getConnection();
 		
@@ -36,11 +36,11 @@ public class PayFormService {
 		
 		reserveDAO.setConnection(con);
 		
-		coupon = reserveDAO.getCoupon(member_id);
+		memberInfo = reserveDAO.getMemberInfo(member_id);
 		
 		close(con);
 		
-		return coupon;
+		return memberInfo;
 	}
 
 }

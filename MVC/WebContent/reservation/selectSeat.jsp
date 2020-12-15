@@ -199,14 +199,13 @@ ArrayList<ReserveBean> seatList = (ArrayList<ReserveBean>)request.getAttribute("
 <jsp:include page="../inc/top.jsp"/>
 <!-- 서브비주얼 -->
 <jsp:include page="/inc/sub_visual1.jsp"/>
-<section id="sub_content">
+<div id="sub_content">
 	<div class="container">
-		
+		<h3 class="sub_title">인원/좌석 선택</h3>
 		<form action="PayForm.re?movienum=<%=movienum %>" name="selectSeat" method="post" id="seatForm"><!-- 영화번호 전달 -->
 			<input type="hidden" name="moivenum" value="<%=movienum %>"><!-- 영화번호 전달 -->
 			<div id="peopleBoard">
 				<input type="hidden" value="0" id="peopleNum" name="peopleNum"> <!-- 총 인원수(선택수 제한하는데 필요) -->
-				<h2>인원/좌석 선택</h2>
 				<div class="adultNum">				
 					<h3>성인</h3>
 					<div class="numBox">
@@ -370,16 +369,15 @@ ArrayList<ReserveBean> seatList = (ArrayList<ReserveBean>)request.getAttribute("
 					</li>
 				</ul><!-- .seatInfo -->
 				
-				<div class="btnBox">
-					<input type="reset" value="다시 선택하기" class="btn_cancel">
-					<input type="submit" value="결제하기" onclick="return peopleCheck()" class="btn_submit">
-				</div><!-- .btnBox -->
 			</div><!-- #seatBox -->
-			
+			<div class="btnBox">
+					<input type="reset" value="다시 선택하기" class="genric-btn success circle">
+					<input type="submit" value="결제하기" onclick="return peopleCheck()" class="genric-btn primary circle">
+			</div><!-- .btnBox -->
 			
 		</form>
 	</div><!-- .container -->
-</section>
+</div><!-- #sub_content -->
 
 <!-- 푸터 -->
 <jsp:include page="../inc/bottom.jsp"/>

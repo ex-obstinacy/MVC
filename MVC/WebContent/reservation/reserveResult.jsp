@@ -52,36 +52,52 @@ ReserveBean reserveInfo = (ReserveBean)request.getAttribute("reserveInfo");
 <!-- 서브비주얼 -->
 <jsp:include page="/inc/sub_visual1.jsp"/>
 
-<section id="reserveResult">
+<div id="sub_content">
 	<div class="container">
 		<div class="reserveInfo">
-			<dl>
-				<dt>예매번호</dt>
-				<dd><%=reserveInfo.getTicketnum() %></dd>
-			</dl>
-			<dl>
-				<dt>영화</dt>
-				<dd><%=reserveInfo.getMovie_subject() %></dd>
-			</dl>
-			<dl>
-				<dt>상영관</dt>
-				<dd><%=reserveInfo.getCinema_name()%></dd>
-			</dl>
-			<dl>
-				<dt>일시</dt>
-				<dd><%=reserveInfo.getShowdate() %><%=reserveInfo.getShowtime() %></dd>
-			</dl>
-			<dl>
-				<dt>좌석</dt>
-				<dd><%=reserveInfo.getSeatnum() %></dd>
-			</dl>
-			<dl>
-				<dt>인원</dt>
-				<dd>성인 : <%=reserveInfo.getAdultnum() %>, 청소년 및 아동 : <%=reserveInfo.getKidsnum() %></dd>
-			</dl>
+			<h2><span>예매</span>가 완료되었습니다.</h2>
+			<div class="infoBox">
+				
+				<!-- 임시이미지 -->
+				<img src="img/sub/poster.jpg">
+				
+				<div class="rightBox">
+					<p><%=reserveInfo.getMovie_subject() %></p>
+					<table >
+						<colgroup>
+							<col width="20%"/>
+							<col width="30%"/>
+							<col width="20%"/>
+							<col width="30%"/>
+						</colgroup>
+						<tr>
+							<th>예매번호</th>
+							<td><%=reserveInfo.getTicketnum()%></td>
+							<th>예매자</th>
+							<td><%=reserveInfo.getMember_name() %></td>
+						</tr>
+						<tr>
+							<th>상영관</th>
+							<td colspan="3"><%=reserveInfo.getCinema_name()%>점</td>
+						</tr>
+						<tr>
+							<th>관람일 / 시간</th>
+							<td colspan="3"><%=reserveInfo.getShowdate()%>&nbsp;/ <%=reserveInfo.getShowtime() %></td>
+						</tr>					
+						<tr>
+							<th>좌석</th>
+							<td colspan="3"><%=reserveInfo.getSeatnum()%></td>
+						</tr>
+						<tr>
+							<th>인원</th>
+							<td colspan="3">성인 : <%=reserveInfo.getAdultnum()%>명, 아동 및 청소년 : <%=reserveInfo.getKidsnum() %>명</td>
+						</tr>
+					</table>
+				</div><!-- .rightBox -->
+			</div><!-- .infoBox -->
 		</div><!-- .reserveInfo -->
 	</div><!-- .container -->
-</section><!-- #reserveResult -->
+</div><!-- #reserveResult -->
 
   
 <!-- 푸터 -->

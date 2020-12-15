@@ -24,6 +24,8 @@ public class PayProAction implements Action {
 		reservation.setAdultnum(Integer.parseInt(request.getParameter("adultnum")));
 		reservation.setKidsnum(Integer.parseInt(request.getParameter("kidsnum")));
 		reservation.setSeatArr(request.getParameterValues("seat"));
+		reservation.setFree_ticket(Integer.parseInt(request.getParameter("useTicket")));
+		reservation.setUse_coupon(request.getParameter("coupon_select"));
 		
 		PayProService payProService = new PayProService();
 		boolean isReserveSuccess = payProService.reserveMovie(reservation);

@@ -8,67 +8,6 @@
 .sub_visual01 div.black{position:absolute; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6); }
 .sub_visual01 h2{position:absolute; top:50%; left:50%; color:#fff;  font-size:23px; z-index:100; transform:translate(-50%,-50%);}
 
-/* 예매 메인페이지 reserveMain*/
-#movieform{}
-#movieform > table{width:100%; border:1px solid #ccc; border-top:2px solid #121212; border-spacing:0px; margin-bottom:20px;}
-#movieform > table th, td{border-right: 1px solid #ccc;}
-#movieform > table th{background:#fff; border-bottom:1px solid #121212; padding:20px 0; font-size:17px; text-align:center;}
-#movieform > table td{height:260px; padding:0;}
-#movieform > table td>ul{height:100%; overflow-y: auto; background:#f2f2f2;}
-#movieform > table td>ul li{border-bottom:1px solid #ddd; }
-#movieform > table td>ul li label{width:100%; cursor:pointer; font-size:12px; padding:10px 10px; background:#fff;}
-#movieform > table td>ul li input{display:none;}
-
-#movieform > table td>ul#tdsubject li label{border:2px solid transparent; box-sizing:border-box; font-size:14px;}
-#movieform > table td>ul#tdsubject li input:checked+label{border:2px solid #FF243E; background:#fff url(../img/sub/check.png) no-repeat 96% center/15px auto;}
-
-#movieform > table td>ul#tdlocal li label{}
-#movieform > table td>ul#tdlocal li input:checked+label{font-weight:bold; color:#ff243e; background: url(../img/sub/check.png) no-repeat 92% center/10px auto;}
-
-#movieform > table td>ul#tdcinema li label{}
-#movieform > table td>ul#tdcinema li input:checked+label{font-weight:bold; color:#ff243e; background:url(../img/sub/check.png) no-repeat 92% center/10px auto;}
-
-#movieform > table td.dateBox{height:130px; border-bottom:1px solid #ccc; position:relative;}
-#movieform > table td.dateBox i{position:absolute; top:50%; cursor:pointer}
-#movieform > table td.dateBox i.next{right:20px; }
-#movieform > table td.dateBox i.prev{left:20px;}
-#movieform > table td>ul#tddate{width:350px; height:auto; background:#fff; margin:0 auto 0 auto;}
-#movieform > table td>ul#tddate:after{content:""; display:block; clear:both;}
-#movieform > table td>ul#tddate li{display:block; float:left; border-bottom:0; margin-top:20px; text-align:center;}
-#movieform > table td>ul#tddate li span.month{position:absolute; display:block; font-weight:600; font-size:12px; top:-20px; left:50%; transform:translateX(-50%);}
-#movieform > table td>ul#tddate li:first-child{position:relative;}
-#movieform > table td>ul#tddate li label{width:60px; height:60px; border-radius:50%; border:1px solid #ddd; padding:0; box-sizing:border-box; text-align: center; padding: 20px;}
-#movieform > table td>ul#tddate li input:checked+label{background:#FF243E; color:#fff; border-color:#FF243E;}
-
-#movieform > table div#tdtime{
-	height:100%;
-	padding: 10px 10px;
-	box-sizing:border-box;
-}
-
-#movieform > table div#tdtime div.tdiv{margin-right:10px; margin-bottom:10px;}
-#movieform > table div#tdtime div.tdiv label{width:98px; text-align:center; box-sizing:border-box; border:1px solid #ddd; padding:10px 10px; border-radius:5px; cursor:pointer;}
-#movieform > table div#tdtime input:checked+label{border:1px solid #121212; background:#f1f1f1;}
-#movieform > table div#tdtime input{
-	display: none;
-}
-
-#movieform > table #tdcinema .cdiv {
-	display: none;
-}
-#movieform > table #tdcinema .show{
-	display: inherit;
-}
-
-#movieform > table #tdtime .tdiv{
-	display: none;
-}
-#movieform > table #tdtime .show{
-	display: inline-block;
-}
-
-#movieform{} div.btnBox{text-align:right;}
-
 /* 관리자 - 영화 등록 페이지 */
 #mlistform{}
 #mlistform > table{width:100%; border:1px solid #ccc; border-top:2px solid #121212; border-spacing:0px; margin-bottom:20px;}
@@ -114,11 +53,71 @@
 #cinemaform >#sellocal, #txtcname{width: 200px; height: 35px;}
 #cinemaform{} div.btnBox{text-align:right; padding-top:50px;}
 
+/* 예매 메인페이지 reserveMain*/
+#movieform{}
+#movieform > table{width:100%; border:1px solid #ccc; border-top:2px solid #121212; border-spacing:0px; margin-bottom:20px;}
+#movieform > table th, td{border-right: 1px solid #ccc;}
+#movieform > table th{background:#fff; border-bottom:1px solid #121212; padding:20px 0; font-size:17px; text-align:center;}
+#movieform > table td{height:260px; padding:0;}
+#movieform > table td>ul{height:100%; overflow-y: auto; background:#f2f2f2;}
+#movieform > table td>ul li{border-bottom:1px solid #ddd; }
+#movieform > table td>ul li label{width:100%; cursor:pointer; font-size:12px; padding:10px 10px; background:#fff;}
+#movieform > table td>ul li input{display:none;}
+
+#movieform > table td>ul#tdsubject li label{border:2px solid transparent; box-sizing:border-box; font-size:14px;}
+#movieform > table td>ul#tdsubject li input:checked+label{border:2px solid #FF243E; background:#fff url(../img/sub/check.png) no-repeat 96% center/15px auto;}
+
+#movieform > table td>ul#tdlocal li label{}
+#movieform > table td>ul#tdlocal li input:checked+label{font-weight:bold; color:#ff243e; background: url(../img/sub/check.png) no-repeat 92% center/10px auto;}
+
+#movieform > table td>ul#tdcinema li label{}
+#movieform > table td>ul#tdcinema li input:checked+label{font-weight:bold; color:#ff243e; background:url(../img/sub/check.png) no-repeat 92% center/10px auto;}
+
+#movieform > table td.dateBox{height:130px; border-bottom:1px solid #ccc; position:relative;}
+#movieform > table td.dateBox i{position:absolute; top:50%; cursor:pointer}
+#movieform > table td.dateBox i.next{right:20px; }
+#movieform > table td.dateBox i.prev{left:20px;}
+#movieform > table td>ul#tddate{width:350px; height:auto; background:#fff; margin:0 auto 0 auto;}
+#movieform > table td>ul#tddate:after{content:""; display:block; clear:both;}
+#movieform > table td>ul#tddate li{display:block; float:left; border-bottom:0; margin-top:20px; text-align:center;}
+#movieform > table td>ul#tddate li span.month{position:absolute; display:block; font-weight:600; font-size:12px; top:-20px; left:50%; transform:translateX(-50%);}
+#movieform > table td>ul#tddate li:first-child{position:relative;}
+#movieform > table td>ul#tddate li label{width:60px; height:60px; border-radius:50%; border:1px solid #ddd; padding:0; box-sizing:border-box; text-align: center; padding: 20px;}
+#movieform > table td>ul#tddate li input:checked+label{background:#FF243E; color:#fff; border-color:#FF243E;}
+
+#movieform > table ul#tdtime{
+	height:100%;
+	padding: 10px 10px;
+	box-sizing:border-box;
+}
+
+#movieform > table ul#tdtime li.tdiv{margin-right:10px; margin-bottom:10px; border-bottom:0;}
+#movieform > table ul#tdtime li.tdiv label{width:98px; text-align:center; box-sizing:border-box; border:1px solid #ddd; padding:10px 10px; border-radius:5px; cursor:pointer;}
+#movieform > table ul#tdtime input:checked+label{background:#555; color:#fff;}
+#movieform > table ul#tdtime input{
+	display: none;
+}
+
+#movieform > table #tdcinema .cdiv {
+	display: none;
+}
+#movieform > table #tdcinema .show{
+	display: inherit;
+}
+
+#movieform > table #tdtime .tdiv{
+	display: none;
+}
+#movieform > table #tdtime .show{
+	display: inline-block;
+}
+
+#movieform{} div.btnBox{text-align:right;}
+
 /* 좌석선택 서브페이지 */
 form#seatForm{}
 
-#peopleBoard{background:#ddd; box-sizing:border-box; text-align:center;}
-#peopleBoard h2{padding:10px 0; background:#121212; color:#fff; font-size:20px; margin-bottom:30px;}
+#peopleBoard{padding-top:30px; background:#ddd; box-sizing:border-box; text-align:center; border-top:1px solid #121212;}
 #peopleBoard > div{display:inline-block; margin:0 40px; text-align:center;}
 #peopleBoard > div h3{margin-bottom:10px; font-size:16px;}
 #peopleBoard div.numBox{display:inline-block; background:#fff; vertical-align:middle;}
@@ -129,7 +128,7 @@ form#seatForm{}
 #peopleBoard input{display:block; float:left; width:50px; text-align:center; border:0; background:0; font-size:18px; line-height:25px; padding:8px 0;}
 #peopleBoard p.cautionMsg{padding:10px 0; background:#333; color:#fff; margin-top:30px;}
 
-#seatBox{text-align:center; border:1px solid #ccc; position:relative; padding-top:50px; box-sizing:border-box;}
+#seatBox{text-align:center; border:1px solid #ccc; position:relative; padding-top:50px; box-sizing:border-box; border-top:0;}
 #seatBox .blackBox{
 	display:block;
 	width:100%;
@@ -142,6 +141,8 @@ form#seatForm{}
 #seatBox:after{content:""; display:block; clear:both;}
 
 #seatBox > section{display:inline-block; margin:0 20px;}
+#seatBox > section table{border-collapse:inherit; border-spacing:4px;}
+#seatBox > section table td{border-right:0;}
 #seatBox > section label{}
 #seatBox > section input[type=checkbox] { display:none; }
 #seatBox > section input[type=checkbox] + label { 
@@ -155,6 +156,7 @@ form#seatForm{}
 	height:45px;
 	text-align:center;
 	box-sizing: border-box;
+	border-radius:5px;
 }
 #seatBox > section input[type=checkbox]:checked + label { background-color:#FF243E }
 #seatBox > section input[type=checkbox]:disabled + label{background-color:black }
@@ -170,7 +172,7 @@ form#seatForm{}
 .seatInfo li:nth-child(3) span{background-color:#aaa;}
 .seatInfo li p{ float:left; font-size:14px; line-height:15px;}
 
-#seatBox .btnBox{text-align:right;}
+.btnBox{margin-top:30px; text-align:right;}
 
 /* 예매결제페이지 */
 #moviePayBox{}
@@ -216,7 +218,7 @@ form#seatForm{}
 #payForm div.couponCont{}
 #payForm div.couponCont ul{margin-bottom:20px;}
 #payForm div.couponCont ul:after{content:""; display:block; clear:both;}
-#payForm div.couponCont ul li{float:left; width:80px; height:80px; border:1px solid #ccc; margin-right:20px; border-radius:5px; text-align:center; padding-top:30px; box-sizing:border-box; cursor:pointer;}
+#payForm div.couponCont ul li{float:left; width:80px; height:80px; border:1px solid #ccc; margin-right:20px; border-radius:5px; text-align:center; padding-top:30px; box-sizing:border-box; cursor:pointer; transition:all 0.3s;}
 #payForm div.couponCont ul li.current{background:#999; color:#fff;}
 #payForm div.couponCont dl{margin-bottom:10px; }
 #payForm div.couponCont .tab-content{display:none;}
@@ -226,6 +228,7 @@ form#seatForm{}
 #payForm div.couponCont dl:after{content:""; display:block; clear:both;}
 #payForm div.couponCont dl dt{float:left; font-size:15px; font-weight:400; margin-right:10px;}
 #payForm div.couponCont dl dd{float:left;}
+#payForm div.couponCont dl dd input#useTicket{width:30px;}
 
 #payForm div.selectPayment{}
 #payForm div.selectPayment ul{}
@@ -249,12 +252,24 @@ form#seatForm{}
 #payForm .rightBox table td dt{float:left;}
 #payForm .rightBox table td dd{float:right;}
 #payForm .rightBox table td dd input{text-align:right; max-width:100px; border:0;}
-#payForm .rightBox table tr:last-child td{padding:0;}
-#payForm .rightBox table tr:last-child td input{width:100%; border:0; background:#FF243E; color:white; padding:15px 0; font-size:16px; }
+#payForm .rightBox table tr:last-child td{padding:0; border-right:0;}
+#payForm .rightBox table tr:last-child td input{ width:100%; border:0; background:#FF243E; color:white; padding:15px 0; font-size:16px; transition:all 0.3s;}
+#payForm .rightBox table tr:last-child td input:hover{color:#121212;}
+#payForm .rightBox table tr:last-child td input.payTestBtn{background:#4cd3e3;}
 
 /* reserveResult  */
-section#reserveResult{}
-div.reserveInfo{}
+div.reserveInfo{width:80%; margin:0 auto;}
+div.reserveInfo h2{font-size:24px; text-align:center; margin-bottom:30px; background:url(../img/sub/reserve_finish.png) no-repeat 290px center/30px auto;}
+div.reserveInfo h2 span{color:#ff243e;}
+div.reserveInfo .infoBox{border:3px solid #ff243e; padding:25px 3%;}
+div.reserveInfo .infoBox:after{content:""; display:block; clear:both;}
+div.reserveInfo .infoBox img{display:block; float:left; width:25%; height:auto; }
+div.reserveInfo .infoBox .rightBox{float:right; width:71%;}
+div.reserveInfo .infoBox .rightBox p{font-size:18px; font-weight:600; margin-bottom:20px;}
+div.reserveInfo .infoBox .rightBox table{width:100%; border-top:2px solid #121212; }
+div.reserveInfo .infoBox .rightBox table th, div.reserveInfo .infoBox .rightBox table td{border-right:0; border-bottom:1px solid #ccc; padding:10px 10px;}
+div.reserveInfo .infoBox .rightBox table th{background:#f3f3f3; border-right:1px solid #ccc;;}
+
 
 /* orderForm 서브페이지 */
 

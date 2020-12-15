@@ -9,12 +9,12 @@ int kidsnum=Integer.parseInt(request.getParameter("kidsNum"));
 String[] seatArr=request.getParameterValues("seat");
 
 ReserveBean movie = (ReserveBean)request.getAttribute("movie");
-MemberBean coupon = (MemberBean)request.getAttribute("coupon");
+MemberBean memberInfo = (MemberBean)request.getAttribute("memberInfo");
 
-int coupon1000 = coupon.getCoupon_1000();
-int coupon2000 = coupon.getCoupon_2000();
-int coupon3000 = coupon.getCoupon_3000();
-int membership = coupon.getMembership();
+int coupon1000 = memberInfo.getCoupon_1000();
+int coupon2000 = memberInfo.getCoupon_2000();
+int coupon3000 = memberInfo.getCoupon_3000();
+int freeTicket = memberInfo.getFree_ticket();
 
 if(adultnum == 0){
 	%>
@@ -72,6 +72,7 @@ if(adultnum == 0){
 		var salePrice = document.getElementById("salePrice");
 		var payPrice = document.getElementById("payPrice");
 		var originPrice = document.getElementById("originPrice");
+		var useTicket = document.getElementById("useTicket");
 		
 		if(ticket >= 1){
 			var ticketSale = ticket * 10000;
@@ -86,6 +87,8 @@ if(adultnum == 0){
 		if(payPrice.value <= 0){
 			payPrice.value = 0;
 		}
+		
+		useTicket.value = $("#ticket_select option:selected").val();
 	}
 	
 	var isUsedCoupon = false;
@@ -100,13 +103,13 @@ if(adultnum == 0){
 		document.getElementById("useCoupon").name = coupon;
 		
 		if(coupon == "coupon_1000"){
-			useCoupon.value = "1000원 할인 쿠폰";
+			useCoupon.value = "1000원 할인권";
 			salePrice.value = -1000;
 		} else if(coupon == "coupon_2000"){
-			useCoupon.value = "2000원 할인 쿠폰";
+			useCoupon.value = "2000원 할인권";
 			salePrice.value = -2000;
 		} else if(coupon == "coupon_3000"){
-			useCoupon.value = "3000원 할인 쿠폰";
+			useCoupon.value = "3000원 할인권";
 			salePrice.value = -3000;
 		}
 		
@@ -192,6 +195,7 @@ if(adultnum == 0){
 			$("select#coupon_select option:eq(0)").prop("selected", true);			
 			$("#useCoupon").val(null);
 			$('#salePrice').val("-0");
+			$('#useTicket').val("0");
 			payPrice.value = Number(originPrice.value);
 		})
 	
@@ -205,180 +209,187 @@ if(adultnum == 0){
 <jsp:include page="../inc/top.jsp"/>
 <!-- 서브비주얼 -->
 <jsp:include page="/inc/sub_visual1.jsp"/>
-	
-<section id="moviePayBox">
-	<div class="container">
-		<h2>결제</h2>
-		<form action="PayPro.re" name="selectSeat" method="post" id="payForm">
-			<!-- Pro로 보낼 값 -->
-			<input type="hidden" name="member_id" value="<%=member_id%>"> <!-- 예매 아이디 -->
-			<input type="hidden" name="movienum" value="<%=request.getParameter("movienum")%>"> <!-- 영화 번호 -->
-			<input type="hidden" name="adultnum" value="<%=adultnum %>"> <!-- 성인 수 -->
-			<input type="hidden" name="kidsnum" value="<%=kidsnum %>"> <!-- 아이 수 -->
-			<%
-				for(String seat : seatArr){
-					%><input type="hidden" name="seat" value="<%=seat%>" ><%
-				}
-			%><!-- 좌석값 받아오기  -->
-			<input type="hidden" id="coupon_1000" name="coupon_1000" value="<%=coupon1000%>"><!-- 쿠폰 수량 가져오기 -->
-			<input type="hidden" id="coupon_2000" name="coupon_2000" value="<%=coupon2000%>"><!-- 쿠폰 수량 가져오기 -->
-			<input type="hidden" id="coupon_3000" name="coupon_3000" value="<%=coupon3000%>"><!-- 쿠폰 수량 가져오기 -->
-			
-			
-			<div class="leftBox">
-				<div class="movieCont">
-					<h3>예매정보</h3>
-					<span class="movieImg"><img src="img/littlepost.jpg"></span>
-					<div class="movieInfo">			
-						<h4 class="movieSubject"><%=movie.getMovie_subject() %></h4>
-						<dl>
-							<dt>일시</dt>
-							<dd><%=movie.getShowdate() %>&nbsp; <%=movie.getShowtime()%></dd>
-						</dl>
-						<dl>
-							<dt>영화관</dt>
-							<dd><%=movie.getCinema_name() %>점</dd>
-						</dl>	
-						<dl>
-							<dt>인원</dt>
-							<dd>성인 : <%=adultnum %>명, &nbsp; 청소년 및 아동 : <%=kidsnum %>명</dd>
-						</dl>
-						<dl>
-							<dt>좌석</dt>
-							<dd><%
-										for(String seat : seatArr){
-											%><span class="selectedSeat"><%=seat%></span><%
-										}
-									%>
-							</dd>
-						</dl>
-					</div><!-- .movieInfo -->
-				</div><!-- .movieCont  -->
+
+<div id="sub_content">	
+	<section id="moviePayBox">
+		<div class="container">
+			<form action="PayPro.re" name="selectSeat" method="post" id="payForm">
+				<!-- Pro로 보낼 값 -->
+				<input type="hidden" name="member_id" value="<%=member_id%>"> <!-- 예매 아이디 -->
+				<input type="hidden" name="movienum" value="<%=request.getParameter("movienum")%>"> <!-- 영화 번호 -->
+				<input type="hidden" name="adultnum" value="<%=adultnum %>"> <!-- 성인 수 -->
+				<input type="hidden" name="kidsnum" value="<%=kidsnum %>"> <!-- 아이 수 -->
+				<%
+					for(String seat : seatArr){
+						%><input type="hidden" name="seat" value="<%=seat%>" ><%
+					}
+				%><!-- 좌석값 받아오기  -->
+				<input type="hidden" id="coupon_1000" name="coupon_1000" value="<%=coupon1000%>"><!-- 쿠폰 수량 가져오기 -->
+				<input type="hidden" id="coupon_2000" name="coupon_2000" value="<%=coupon2000%>"><!-- 쿠폰 수량 가져오기 -->
+				<input type="hidden" id="coupon_3000" name="coupon_3000" value="<%=coupon3000%>"><!-- 쿠폰 수량 가져오기 -->
 				
-				<div class="couponCont">
-					<h3>관람권/할인권 선택</h3>
-					<ul class="tabs">
-						<li data-tab="tab-1">
-							관람권
-						</li>
-						<li data-tab="tab-2">
-							할인권
-						</li>
-					</ul>
-					<div class="tab-box">
-						<div id="tab-1" class="tab-content">
-							<dl >
-								<dt>보유한 관람권</dt>
-								<dd>
-									<select id="ticket_select" onchange="changeTicket(this.value)">
-										<option value="">관람권 갯수 선택</option>
-										<%
-											for(int i = 1; i <= membership; i++){
-												%>
-													<option value="<%=i%>"><%=i%></option>
-												<%
+				
+				<div class="leftBox">
+					<div class="movieCont">
+						<h3>예매정보</h3>
+						<span class="movieImg"><img src="img/littlepost.jpg"></span>
+						<div class="movieInfo">			
+							<h4 class="movieSubject"><%=movie.getMovie_subject() %></h4>
+							<dl>
+								<dt>일시</dt>
+								<dd><%=movie.getShowdate() %>&nbsp; <%=movie.getShowtime()%></dd>
+							</dl>
+							<dl>
+								<dt>영화관</dt>
+								<dd><%=movie.getCinema_name() %>점</dd>
+							</dl>	
+							<dl>
+								<dt>인원</dt>
+								<dd>성인 : <%=adultnum %>명, &nbsp; 청소년 및 아동 : <%=kidsnum %>명</dd>
+							</dl>
+							<dl>
+								<dt>좌석</dt>
+								<dd><%
+											for(String seat : seatArr){
+												%><span class="selectedSeat"><%=seat%></span><%
 											}
 										%>
-									</select>
 								</dd>
 							</dl>
-							<dl>
-								<dt>적용된 관람권</dt>
-								<dd><input type="text" name="useTicket" value=""></dd>
-							</dl>
-						</div>
-						<div id="tab-2" class="tab-content">							
-							<dl>
-								<dt>보유한 할인권</dt>
-								<dd>
-									<select id="coupon_select" onchange="changeCoupon(this.value)">
-										<option value="" >할인권 선택</option>
-										<option value="coupon_1000" class="c1000">1000원 할인권(<%=coupon1000%>개)</option>
-										<option value="coupon_2000" class="c2000">2000원 할인권(<%=coupon2000 %>개)</option>
-										<option value="coupon_3000" class="c3000">3000원 할인권(<%=coupon3000 %>개)</option>
-									</select>
-								</dd>
-							</dl>
-							<dl>
-								<dt>적용된 할인권</dt>
-								<dd><input type="text" id="useCoupon" name="" value="" readonly><!-- 사용되는 쿠폰 --></dd>
-							</dl>						
-						</div>
-						
-						
-					</div><!-- .tab-box -->
+						</div><!-- .movieInfo -->
+					</div><!-- .movieCont  -->
 					
-				</div><!-- .couponCont -->
+					<div class="couponCont">
+						<h3>관람권/할인권 선택</h3>
+						<ul class="tabs">
+							<li data-tab="tab-1">
+								관람권
+							</li>
+							<li data-tab="tab-2">
+								할인권
+							</li>
+						</ul>
+						<div class="tab-box">
+							<div id="tab-1" class="tab-content">
+								<dl >
+									<dt>보유한 관람권</dt>
+									<dd>
+										<select id="ticket_select" name="free_ticket" onchange="changeTicket(this.value)">
+											<option value="">관람권 갯수 선택</option>
+											<%
+												for(int i = 1; i <= freeTicket; i++){
+													%>
+														<option value="<%=i%>"><%=i%></option>
+													<%
+												}
+											%>
+										</select>
+									</dd>
+								</dl>
+								<dl>
+									<dt>적용된 관람권</dt>
+									<dd><input type="text" name="useTicket" id="useTicket" value="0" readonly>개</dd>
+								</dl>
+							</div>
+							<div id="tab-2" class="tab-content">							
+								<dl>
+									<dt>보유한 할인권</dt>
+									<dd>
+										<select id="coupon_select" name="coupon_select" onchange="changeCoupon(this.value)">
+											<option value="null" >할인권 선택</option>
+											<option value="coupon_1000" class="c1000">1000원 할인권(<%=coupon1000%>개)</option>
+											<option value="coupon_2000" class="c2000">2000원 할인권(<%=coupon2000 %>개)</option>
+											<option value="coupon_3000" class="c3000">3000원 할인권(<%=coupon3000 %>개)</option>
+										</select>
+									</dd>
+								</dl>
+								<dl>
+									<dt>적용된 할인권</dt>
+									<dd><input type="text" id="useCoupon" name="" value="" readonly><!-- 사용되는 쿠폰 --></dd>
+								</dl>						
+							</div>
+							
+							
+						</div><!-- .tab-box -->
+						
+					</div><!-- .couponCont -->
+					
+					<div class="selectPayment">
+						<h3>결제수단</h3>
+						<ul>
+							<li>
+								<input type="checkbox" name="payMethod" value="card" id="card" onclick="NoMultiChk(this)">
+								<label for="card"><span>신용카드</span></label>
+							</li>
+							<li>
+								<input type="checkbox" name="payMethod" value="trans" id="trans" onclick="NoMultiChk(this)">
+								<label for="trans"><span>계좌이체</span></label>
+							</li>
+							<li>
+								<input type="checkbox" name="payMethod" value="phone" id="phone" onclick="NoMultiChk(this)">
+								<label for="phone"><span>휴대폰</span></label>
+							</li>
+						</ul>
+					</div>
+				</div><!-- .leftBox -->
 				
-				<div class="selectPayment">
-					<h3>결제수단</h3>
-					<ul>
-						<li>
-							<input type="checkbox" name="payMethod" value="card" id="card" onclick="NoMultiChk(this)">
-							<label for="card"><span>신용카드</span></label>
-						</li>
-						<li>
-							<input type="checkbox" name="payMethod" value="trans" id="trans" onclick="NoMultiChk(this)">
-							<label for="trans"><span>계좌이체</span></label>
-						</li>
-						<li>
-							<input type="checkbox" name="payMethod" value="phone" id="phone" onclick="NoMultiChk(this)">
-							<label for="phone"><span>휴대폰</span></label>
-						</li>
-					</ul>
-				</div>
-			</div><!-- .leftBox -->
-			
-			<div class="rightBox">
-				<table>
-					<tr>
-						<th>결제정보</th>
-					</tr>
-					<tr>
-						<td>
-							<p>성인 × <%=adultnum %>명 = <%=adultnum*10000 %>원</p>
-							<p>청소년 및 아동 × <%=kidsnum %>명 = <%=kidsnum*6000 %>원</p>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<dl>
-								<dt>상품금액</dt>
-								<dd><input type="text" value="" name="originPrice" id="originPrice" readonly>원</dd>
-							</dl>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<dl>
-								<dt>할인금액</dt>
-								<dd><input type="text" value="-0" name="salePrice" id="salePrice" readonly>원</dd>
-							</dl>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<dl>
-								<dt>결제금액</dt>
-								<dd><input type="text" value="" name="payPrice" id="payPrice" readonly>원</dd>
-							</dl>
-						</td>					
-					</tr>
-					<tr>
-						<td>
-							<input type="button" value="결제하기" id="payButton" onclick="requestPay()">
-						</td>
-					</tr>
-				</table>
-			
-				<!-- 가상 결제 완료 버튼 -->
-				<input type="submit" value="결제 완료">
-			</div><!-- .rightBox -->
-			
-		</form>
-	</div><!-- .container -->
-</section><!-- #moviePayForm -->
-
+				<div class="rightBox">
+					<table>
+						<colgroup>
+							<col width="50%"/>
+							<col width="50%"/>
+						</colgroup>
+						<tr>
+							<th colspan="2">결제정보</th>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<p>성인 × <%=adultnum %>명 = <%=adultnum*10000 %>원</p>
+								<p>청소년 및 아동 × <%=kidsnum %>명 = <%=kidsnum*6000 %>원</p>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<dl>
+									<dt>상품금액</dt>
+									<dd><input type="text" value="" name="originPrice" id="originPrice" readonly>원</dd>
+								</dl>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<dl>
+									<dt>할인금액</dt>
+									<dd><input type="text" value="-0" name="salePrice" id="salePrice" readonly>원</dd>
+								</dl>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<dl>
+									<dt>결제금액</dt>
+									<dd><input type="text" value="" name="payPrice" id="payPrice" readonly>원</dd>
+								</dl>
+							</td>					
+						</tr>
+						<tr>
+							<td>
+								<input type="button" value="결제하기(API)" id="payButton" onclick="requestPay()">
+							</td>
+							<td>
+								<!-- 가상 결제 완료 버튼 -->
+								<input type="submit" value="결제완료 테스트" class="payTestBtn">
+							</td>
+						</tr>
+					</table>
+				
+					
+				</div><!-- .rightBox -->
+				
+			</form>
+		</div><!-- .container -->
+	</section><!-- #moviePayForm -->
+</div><!-- #sub_content -->
   
 <!-- 푸터 -->
 <jsp:include page="../inc/bottom.jsp"/>

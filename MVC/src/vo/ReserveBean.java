@@ -15,6 +15,9 @@ public class ReserveBean {
 	private int adultnum;
 	private int kidsnum;
 	private int membership;
+	private String member_name;
+	private String use_coupon;
+	private int free_ticket;
 	
 	public int getMembership() {
 		return membership;
@@ -94,6 +97,25 @@ public class ReserveBean {
 	public void setKidsnum(int kidsnum) {
 		this.kidsnum = kidsnum;
 	}
+	public String getMember_name() {
+		return member_name;
+	}
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
+	}
+	public String getUse_coupon() {
+		return use_coupon;
+	}
+	public void setUse_coupon(String use_coupon) {
+		this.use_coupon = use_coupon;
+	}
+	public int getFree_ticket() {
+		return free_ticket;
+	}
+	public void setFree_ticket(int free_ticket) {
+		this.free_ticket = free_ticket;
+	}
+	
 	
 
 }
