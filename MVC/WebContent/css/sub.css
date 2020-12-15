@@ -12,7 +12,8 @@
 #mlistform{}
 #mlistform > table{width:100%; border:1px solid #ccc; border-top:2px solid #121212; border-spacing:0px; margin-bottom:20px;}
 #mlistform > table th, td{border-right: 1px solid #ccc;}
-#mlistform > table th{background:#fff; border-bottom:1px solid #121212; padding:20px 0; font-size:17px; text-align:center;}
+#mlistform > table th{background:#fff; border-right:none; border-bottom:1px solid #121212; padding:20px 0; font-size:17px; text-align:center;}
+#mlistform > table #thBox{width: 200px; margin: 0 20px; border-left: none;}
 #mlistform > table td{height:260px; padding:0;}
 #mlistform > table td>ul{height:100%; overflow-y: auto; background:#f2f2f2;}
 #mlistform > table td>ul li{border-bottom:1px solid #ddd; }
@@ -22,7 +23,7 @@
 #mlistform > table td>ul#mldiv li input:checked+label{border:2px solid #FF243E; background:#fff url(../img/sub/check.png) no-repeat 96% center/15px auto;}
 #mlistform > table td>ul#mldiv li #span_m1{font-size:16px; font-weight:bold; margin: 0 20px;}
 #mlistform > table td>ul#mldiv li #span_m2{font-size:15px; font-weight: 600; margin-right: 10px;}
-#mlistform > table td>ul#mldiv li #span_m3{font-size:14px; font-weight: 500; margin-left:760px; color: #FF3368;}
+#mlistform > table td>ul#mldiv li #span_m3{font-size:14px; font-weight: 500; margin-left:730px; color: #FF3368;}
 #mlistform > table td>ul#mldiv li #span_m4{font-size:14px; font-weight: 500; margin-left: 10px; color: #FF3368;}
 #mlistform{} div.btnBox{text-align:right; margin-right: 30px;}
 

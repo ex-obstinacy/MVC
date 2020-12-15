@@ -149,10 +149,11 @@
 	  	<form action="MovieDeletePro.re" method="post" id="mlistform">
 			<table>
 				<tr>
-					<th>상영중인 영화<div class="btnBox"><input type="submit" class="genric-btn default circle" value="삭제"></div></th>
+					<th>상영중인 영화</th>
+					<th id="thBox"><input type="submit" class="genric-btn default circle" value="삭제"></th>
 				</tr>
 				<tr>
-					<td>
+					<td colspan="2">
 						<ul id="mldiv">
 						<!-- 영화 리스트 표출 -->
 						</ul>
