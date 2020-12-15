@@ -415,7 +415,7 @@ public class ReserveDAO {
 			
 			try {
 				
-				String sql = "select * from admin_reservation order by cinema_name";
+				String sql = "select * from admin_reservation order by cinema_name, movie_subject, showdate, showtime";
 				pstmt = con.prepareStatement(sql);
 
 				rs = pstmt.executeQuery();
