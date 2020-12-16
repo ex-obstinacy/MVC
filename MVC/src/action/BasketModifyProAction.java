@@ -58,7 +58,7 @@ public class BasketModifyProAction implements Action {
 	      
 		// BasketModifyProService 클래스의 modifyBasketCount() 메서드를 호출하여
 		// 장바구니 상품 수량 수정 작업 요청
-		boolean isModifySuccess = basketModifyProService.modifyBasketCount(basketCount,basketId, id);	
+		boolean isModifySuccess = basketModifyProService.modifyBasketCount(basketCount, basketId);	
 					
 			// 수정 결과에 따른 처리
 			// => 변경 실패(updateCount 가 0)일 경우 자바스크립트를 사용하여

@@ -470,7 +470,7 @@ public class StoreDAO {
    		}
    		
    	// 장바구니 수량 수정
-        public int updateBasketCount(int basketCount, int basketId, String id) {
+        public int updateBasketCount(int basketCount, int basketId) {
         	System.out.println("StoreDAO - updateBasketCount()");
         	
     		int updateCount =0;
