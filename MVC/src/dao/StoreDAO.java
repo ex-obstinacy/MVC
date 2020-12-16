@@ -479,7 +479,7 @@ public class StoreDAO {
             Timestamp date = new Timestamp(System.currentTimeMillis());
     		
     		try {
-    			String sql = "update basket set basketCount=? where goodsId=? and member_id=?";
+    			String sql = "update basket set basketCount=? where goods_goodsId=? and member_id=?";
     			pstmt = con.prepareStatement(sql);
 	        	pstmt.setInt(1, basketCount);
 	        	pstmt.setInt(2, goodsId);
@@ -506,16 +506,18 @@ public class StoreDAO {
     	}
         
      // 장바구니 상품 삭제
-   		public int deleteBasket(int goodsId) {
+   		public int deleteBasket(int basketId) {
    			// StoreBean 객체에 저장된 내용을 사용하여
-   			// 상품번호(goodsId)에 해당하는 레코드를 삭제 후 결과 리턴
+   			// 장바구니번호(basketId)에 해당하는 레코드를 삭제 후 결과 리턴
    			int deleteCount =0;
    			PreparedStatement pstmt = null;
    			
    			try {
-   				String sql = "delete from basket where goodsId=? and member_id";
+//   				String sql = "delete from basket where goods_goodsId=?and member_id";
+   				String sql = "delete from basket where basketId=?";
    				pstmt = con.prepareStatement(sql);
-   				pstmt.setInt(1, goodsId );
+   				pstmt.setInt(1, basketId );
+//   				pstmt.setString(2, id);
    				
    				deleteCount = pstmt.executeUpdate();
    				

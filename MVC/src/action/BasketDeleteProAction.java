@@ -17,17 +17,17 @@ public class BasketDeleteProAction implements Action {
 		
 		ActionForward forward = null;
 		
-		// 상품 삭제에 필요한 상품번호(goodsId)
-		int goodsId = Integer.parseInt(request.getParameter("goodsId"));
+		// 상품 삭제에 필요한 장바구니번호(basketId)
+		int basketId = Integer.parseInt(request.getParameter("basketId"));
 		
 		// 임시 확인용
-		System.out.println("BasketDeleteProAction에서 check!  :goodsId " + goodsId);
+		System.out.println("BasketDeleteProAction에서 check!  :basketId " + basketId);
 		
 		// BasketDeleteProService 클래스 인스턴스 생성 후
 		BasketDeleteProService basketDeleteProService = new BasketDeleteProService();
 		// BasketDeleteProService 클래스의 removeBasket() 메서드를 호출하여
 		// 장바구니 상품 삭제 작업 요청
-		boolean isDeleteSuccess = basketDeleteProService.removeBasket(goodsId);			
+		boolean isDeleteSuccess = basketDeleteProService.removeBasket(basketId);			
 		
 		// 삭제 결과에 따른 처리
 		// => 삭제 실패(deleteCount 가 0)일 경우 자바스크립트를 사용하여

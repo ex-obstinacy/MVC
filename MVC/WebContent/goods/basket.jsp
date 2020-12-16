@@ -196,7 +196,7 @@
                   </div>
                   <div>
                   <input type="button" value="수량변경" onclick="location.href='BasketModifyPro.go?goodsId=<%=basketList.get(i).getGoods_goodsId()%>&basketCount=<%=basketList.get(i).getBasketCount()%>'">
-                  <input type="button" value="X" id="delete" onclick="location.href='BasketDeletePro.go?goodsId=<%=basketList.get(i).getGoods_goodsId()%>'"> <!-- 휴지통모양 혹은 x -->
+                  <input type="button" value="X" id="delete" onclick="location.href='BasketDeletePro.go?basketId=<%=basketId%>'"> <!-- 휴지통모양 혹은 x -->
                   </div>
                 </td>
                 <td>
