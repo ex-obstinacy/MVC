@@ -29,8 +29,9 @@
 
 #movieform > table td>ul#ultime li{float:left; margin: 100px 60px;}
 #movieform > table td>ul#ultime li>#seltime, #selguan{width: 100px; height: 35px;}
+#movieform{} div.btnBox{margin:0 30px 0 0; text-align:right;}
 
-#mformdiv{margin-top: 30px;}
+#mformdiv{margin-top: 80px;}
 
 /* 관리자 - 영화관 등록 페이지 */
 #clistform, #cinemaform{display: inline-block; vertical-align: top; text-align: center; margin: 0 100px;}
@@ -38,8 +39,9 @@
 #clistform{}
 #clistform > table{width:100%; border:1px solid #ccc; border-top:2px solid #121212; border-spacing:0px; margin-bottom:20px;}
 #clistform > table th, td{border-right: 1px solid #ccc;}
-#clistform > table th{background:#fff; border-bottom:1px solid #121212; padding:20px 0; font-size:17px; text-align:center;}
+#clistform > table th{background:#fff; border-right:none; border-bottom:1px solid #121212; padding:20px 0; font-size:17px; text-align:center;}
 #clistform > table td{width:300px; height:260px; padding:0;}
+#clistform > table #tdBox{height: 40px; padding: 10px 0; background:#f2f2f2;}
 #clistform > table td>ul{height:100%; overflow-y: auto; background:#f2f2f2;}
 #clistform > table td>ul li{border-bottom:1px solid #ddd; }
 #clistform > table td>ul li label{width:100%; cursor:pointer; font-size:12px; padding:10px 10px; background:#fff;}
@@ -50,7 +52,7 @@
 #clistform > table td>ul#cldiv li #span_c2{font-size:16px; font-weight:bold; color: #FF3368;}
 #clistform{} div.btnBox{text-align:right;}
 
-#cinemaform{border:1px solid #ccc; border-top:2px solid #121212; border-spacing:0px; margin-bottom:20px; padding:40px;}
+#cinemaform{height: 390px; border:1px solid #ccc; border-top:2px solid #121212; border-spacing:0px; margin-bottom:20px; padding:40px;}
 #cinemaform >#sellocal, #txtcname{width: 200px; height: 35px;}
 #cinemaform{} div.btnBox{text-align:right; padding-top:50px;}
 

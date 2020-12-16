@@ -346,6 +346,7 @@ public class ReserveDAO {
 				while(rs.next()) {
 					JSONObject jo = new JSONObject();
 					jo.put("cinema_name", rs.getString("name"));
+					jo.put("cinema_localfull", rs.getString("local"));
 					String slocal = rs.getString("local").substring(0, 2);
 					jo.put("cinema_local", slocal);
 					

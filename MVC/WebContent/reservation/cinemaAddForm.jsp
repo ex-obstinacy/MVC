@@ -46,7 +46,7 @@
 		$.getJSON('CinemaListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
 				$('#cldiv').append("<li class='cl_div "+item.cinema_local+"'><input type='radio' name='cinema' id='"+item.cinema_name+"' value='"+item.cinema_name+"' class='rcinema'/><label for='"+item.cinema_name+"'>"
-						+"<span id='span_c1'>["+item.cinema_local+"]</span><span id='span_c2'>"+item.cinema_name+"</span></label></li>");
+						+"<span id='span_c1'>["+item.cinema_localfull+"]</span><span id='span_c2'>"+item.cinema_name+"</span></label></li>");
 			});
 		});
 		// 필수 조건
@@ -97,8 +97,12 @@
 							</ul>
 						</td>
 					</tr>
+					<tr>
+						<td id="tdBox">
+							<input type="submit" class="genric-btn default circle" value="삭제">
+						</td>
+					</tr>
 				</table>
-				<div class="btnBox"><input type="submit" class="genric-btn default circle" value="삭제"></div>
 			</form>
 		  	<!-- 등록된 영화 목록 -->
 			<!-- 영화관 등록 폼 -->
