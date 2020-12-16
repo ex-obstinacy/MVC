@@ -22,6 +22,7 @@ import action.GoodsModifyFormAction;
 import action.GoodsModifyProAction;
 import action.GoodsWriteProAction;
 import action.OrderFormAction;
+import action.OrderFormAction2;
 import action.StoreListAction;
 import vo.ActionForward;
 
@@ -100,6 +101,14 @@ public class StoreFrontController extends HttpServlet {
 			} 
 		} else if(command.equals("/OrderForm.go")) {
 			action = new OrderFormAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+		} else if(command.equals("/OrderForm2.go")) {
+			action = new OrderFormAction2();
 			
 			try {
 				forward = action.execute(request, response);

@@ -63,12 +63,13 @@ function NoMultiChk(chk){ // 결제수단 중복체크 불가
 }
 
 //결제 API (아임포트) 구현
-IMP.init("imp56648633"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.   
-
+IMP.init("imp14042333"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.   
 function requestPay() {
          var payMethod=$("input:checkbox[name='payMethod']:checked").val();
-         var goodsId=$('#orderForm').text();
-
+         var name=$('.name').text();
+		 var sumPrice = document.getElementById("sumPrice");
+		 sumPrice.value = Number(sumPrice.value);
+         
          if(payMethod == null){
             alert("결제수단을 선택해주세요.");
             return false;
@@ -78,14 +79,10 @@ function requestPay() {
          IMP.request_pay({ // param
              pg: "html5_inicis",
              pay_method:payMethod,
-             merchant_uid: "ORD20180131-0000011", // 상품 번호
-             name: movieName, // 상품명
-             amount: payPrice.value, // 상품가격
+             merchant_uid: "ORD20180131-0000014", // 상품 번호
+             name: name, // 상품명
+             amount: sumPrice.value, // 상품가격
              buyer_email: "gildong@gmail.com",
-             buyer_name: "홍길동",
-             buyer_tel: "010-4242-4242",
-             buyer_addr: "서울특별시 강남구 신사동",
-             buyer_postcode: "01181"
          }, function (rsp) { // callback
             if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
                 // jQuery로 HTTP 요청
@@ -103,7 +100,9 @@ function requestPay() {
               } else {
                 alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
               }
+         location.href = "OrderPro.go";
          });
+         
 }
 
 </script>
@@ -137,10 +136,8 @@ function requestPay() {
       <div class="cart_inner">
         <h3>구매상품 정보</h3>
          <hr>
-        <form action="OrderPro.go" name="basket" method="post" id="orderForm">
+<!--         <form action="OrderPro.go" name="basket" method="post" id="orderForm"> -->
         <!-- Pro로 보낼 값 -->
-         <input type="hidden" name="member_id" value="<%=member_id%>"> <!-- 구매 아이디 -->
-         <input type="hidden" name="goodsId" value="<%=request.getParameter("goodsId")%>"> <!-- 상품 번호 -->
           <table class="table">
           <%
           if(basketList != null){
@@ -161,7 +158,6 @@ function requestPay() {
             sale2 += sale; // 총 할인가격 += 할인가격
             sumPrice = totalPrice - sale2; // 할인 후 상품금액 = 할인 전 상품금액 - 총 할인가격
             
-            
          %>
             <tbody>
               <tr>
@@ -172,7 +168,7 @@ function requestPay() {
                       <img src="goodsUpload/<%=basketList.get(i).getFile() %>" alt="상품이미지" width="250" />
                     </div>
                     <div class="media-body">
-                      <p><%=basketList.get(i).getName() %></p>
+                      <p class="name"><%=basketList.get(i).getName() %></p>
                       <p><%=basketList.get(i).getComponent() %></p>
                     </div>
                   </div>
@@ -207,6 +203,7 @@ function requestPay() {
                   <h5><%=totalPrice %>원</h5>
                   <h5><%=sale2%>원</h5>
                   <h3><%=sumPrice %>원</h3>
+                  <input type="hidden" value="<%=sumPrice %>" name="sumPrice" id="sumPrice">
                 </td>
               </tr>
             </tbody>
@@ -248,16 +245,16 @@ function requestPay() {
          <hr>
          <ul>
             <li>
-               <input type="checkbox" name="payMethod" value="creditCard" id="creditCard" onclick="NoMultiChk(this)">
-               <label for="creditCard"><span>신용카드</span></label>
+               <input type="checkbox" name="payMethod" value="card" id="card" onclick="NoMultiChk(this)">
+               <label for="card"><span>신용카드</span></label>
             </li>
             <li>
-               <input type="checkbox" name="payMethod" value="simplePay" id="simplePay" onclick="NoMultiChk(this)">
-               <label for="simplePay"><span>계좌이체</span></label>
+               <input type="checkbox" name="payMethod" value="trans" id="trans" onclick="NoMultiChk(this)">
+               <label for="trans"><span>계좌이체</span></label>
             </li>
             <li>
-               <input type="checkbox" name="payMethod" value="mobile" id="mobile" onclick="NoMultiChk(this)">
-               <label for="mobile"><span>휴대폰</span></label>
+               <input type="checkbox" name="payMethod" value="phone" id="phone" onclick="NoMultiChk(this)">
+               <label for="phone"><span>휴대폰</span></label>
             </li>
          </ul>
    </div>

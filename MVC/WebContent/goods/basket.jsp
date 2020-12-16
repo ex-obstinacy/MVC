@@ -1,3 +1,4 @@
+<%@page import="vo.StoreBasketIds"%>
 <%@page import="vo.StoreBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="vo.MemberShipBean"%>
@@ -8,6 +9,8 @@
 	ArrayList<StoreBean> basketList = (ArrayList<StoreBean>)request.getAttribute("basketList");
 	
 	String member_id = (String)session.getAttribute("id");
+	
+	StoreBasketIds storeBasketIds = new StoreBasketIds();
 	
 	int totalPrice = 0; //할인 전 총 상품금액
 	int sale2 = 0; // 총 할인가격
@@ -67,13 +70,18 @@
 		   var checkRow = document.getElementsByName("checkRow");
 		   var checked =0 ; //체크된 갯수 파악 위한 초기 변수
 		   
+		   var basketIds = new Array();
 		   // 체크박스 값 확인
 			for(var i=0; i<check_count; i++){
 			   if(checkRow[i].checked==true){
 				   checked += 1;
-				   alert(checkRow[i].value);
+				   basketIds[i]=checkRow[i].value;
+				   alert(basketIds[i]);
 			   }
 			}
+		   
+		   storeBasketIds.getBasketIds(basketIds);
+		   request.setAttribute("storeBasketIds, storeBasketIds");
 		   
 		   // 값 넘기기
 		   if(checked == 0){
@@ -90,7 +98,7 @@
 		}
 	
 	//수량변경 button
-	function countChg(basketId) {
+	function CountChg(basketId) {
 		var basketCount = document.getElementById("basketCount");
 		location.href = "BasketModifyPro.go?basketId="+basketId+"&basketCount="+basketCount.value;
 		         
