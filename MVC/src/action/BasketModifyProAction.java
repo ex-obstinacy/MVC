@@ -25,7 +25,7 @@ public class BasketModifyProAction implements Action {
 		// request 객체의 getServletContext() 메서드 호출
 		ServletContext context = request.getServletContext();
 		
-		// -------------------- id가 null 이면 로그인 화면 이동 시작 --------------------
+		// -------------------- id가 null 이면 로그인 화면 이동 (시작) --------------------
 	      
 	      HttpSession session = request.getSession(); //MemberBean id 값 가져오기
 	      String id = (String)session.getAttribute("id"); 
@@ -35,25 +35,30 @@ public class BasketModifyProAction implements Action {
 	         forward.setRedirect(true);
 	         return forward;
 	      } 
-	    // -------------------- id가 null 이면 로그인 화면 이동 끝 --------------------
+	    // -------------------- id가 null 이면 로그인 화면 이동 (끝) --------------------
 		
 	      
 		// StoreBean 객체 생성하여 리스트로부터 전달받은 항목을 저장
 		// => 상품번호, 장바구니수량
 //		StoreBean basket = new StoreBean();
+//		basket.setBasketId(Integer.parseInt(request.getParameter("basketId")));
+//		basket.setBasketCount(Integer.parseInt(request.getParameter("basketCount")));
 //		basket.setGoodsId(Integer.parseInt(request.getParameter("goodsId")));
 //		basket.setBasketCount(Integer.parseInt(request.getParameter("basketCount")));
 	      
-	    int goodsId = Integer.parseInt(request.getParameter("goodsId"));
+//	    int goodsId = Integer.parseInt(request.getParameter("goodsId"));  
+	    int basketId = Integer.parseInt(request.getParameter("basketId"));
 	    int basketCount = Integer.parseInt(request.getParameter("basketCount"));
+//	    System.out.println(goodsId);
+	    System.out.println(basketId);
+	    System.out.println(basketCount);
 		
 		// BasketModifyProService 클래스 인스턴스 생성 후
 		BasketModifyProService basketModifyProService = new BasketModifyProService();
 	      
-		// BasketModifyProService 클래스의 modifyBasket() 메서드를 호출하여
+		// BasketModifyProService 클래스의 modifyBasketCount() 메서드를 호출하여
 		// 장바구니 상품 수량 수정 작업 요청
-		// => 파라미터 : StoreBean, 리턴타입 : boolean(isModifySuccess)
-		boolean isModifySuccess = basketModifyProService.modifyBasketCount(basketCount, goodsId, id);	
+		boolean isModifySuccess = basketModifyProService.modifyBasketCount(basketCount,basketId, id);	
 					
 			// 수정 결과에 따른 처리
 			// => 변경 실패(updateCount 가 0)일 경우 자바스크립트를 사용하여
@@ -72,7 +77,7 @@ public class BasketModifyProAction implements Action {
 			else{
 				forward = new ActionForward();
 				forward.setRedirect(true);
-				forward.setPath("BasketList.go?goodsId="+ request.getParameter("goodsId") + "&basketCount=" + request.getParameter("basketCount")); 
+				forward.setPath("BasketList.go"); 
 			}
 			
 		

@@ -470,20 +470,23 @@ public class StoreDAO {
    		}
    		
    	// 장바구니 수량 수정
-        public int updateBasketCount(int basketCount, int goodsId, String id) {
+        public int updateBasketCount(int basketCount, int basketId, String id) {
         	System.out.println("StoreDAO - updateBasketCount()");
         	
     		int updateCount =0;
     		PreparedStatement pstmt = null;
-            ResultSet rs = null;
+//            ResultSet rs = null;
             Timestamp date = new Timestamp(System.currentTimeMillis());
     		
     		try {
-    			String sql = "update basket set basketCount=? where goods_goodsId=? and member_id=?";
+//    			String sql = "update basket set basketCount=? where goods_goodsId=? and member_id=?";
+    			String sql = "update basket set basketCount=? date=? where basketId=?";
     			pstmt = con.prepareStatement(sql);
 	        	pstmt.setInt(1, basketCount);
-	        	pstmt.setInt(2, goodsId);
-	        	pstmt.setString(3, id);
+//	        	pstmt.setInt(2, goodsId);
+//	        	pstmt.setString(3, id);
+	        	pstmt.setTimestamp(2, date);
+	        	pstmt.setInt(3, basketId);
 	        	
 	        	if(basketCount == 0) {
 	        		 basketCount = 1;

@@ -170,8 +170,8 @@ ul.tabs li.current{
 <!--               버튼으로 만들어서 버튼 클릭햇을때 스크립트 받아서 bassketCount 받아와라..넘어가게 -->
 <%--               <a href="BasketAdd.go?goodsId=<%=article.getGoodsId()%> & basketCount=" class="btn_3">장바구니</a> --%>
 <!--               <input type ="submit" class="btn_3" value ="구매하기"> -->
-            <input type="button" class="btn_3" value = "장바구니" id="basket" onclick="basket(<%=goodsId%>);">
-            <input type="button" class="btn_3" value = "구매하기" id="order" onclick="order(<%=goodsId%>);">
+            <input type="button" class="btn_3" value = "장바구니" id="basket" onclick="basket(<%=goodsId%>)">
+            <input type="button" class="btn_3" value = "구매하기" id="order" onclick="order(<%=goodsId%>)">
 
           </div>
         </div>

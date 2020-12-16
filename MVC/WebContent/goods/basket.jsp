@@ -88,7 +88,13 @@
 		function orderAll() {
 			
 		}
-
+	
+	//수량변경 button
+	function countChg(goodsId) {
+		var basketCount = document.getElementById("basketCount");
+		location.href = "BasketModifyPro.go?basketId="+basketId+"&basketCount="+basketCount.value;
+		         
+	}
 
 	   
 	
@@ -191,11 +197,11 @@
                 </td>
                 <td>
                   <div class="product_count"> <!-- 수량변경 버튼 모양 -->
-                    <input type="number" name="basketCount" value="<%=basketList.get(i).getBasketCount() %>" min="0" max="100">
-                    <input type="hidden" name="goodsId" value="<%=basketList.get(i).getGoods_goodsId() %>">
+                    <input type="number" name="basketCount" id=basketCount value="<%=basketList.get(i).getBasketCount() %>" min="0" max="100">
+<%--                     <input type="hidden" name="goodsId" value="<%=basketList.get(i).getGoods_goodsId() %>"> --%>
                   </div>
                   <div>
-                  <input type="button" value="수량변경" onclick="location.href='BasketModifyPro.go?goodsId=<%=basketList.get(i).getGoods_goodsId()%>&basketCount=<%=basketList.get(i).getBasketCount()%>'">
+                  <input type="button" value="수량변경" id="countChg" onclick="BasketModifyPro.go?basketId=<%=basketId%>&basketCount=<%=basketCount.value%>">
                   <input type="button" value="X" id="delete" onclick="location.href='BasketDeletePro.go?basketId=<%=basketId%>'"> <!-- 휴지통모양 혹은 x -->
                   </div>
                 </td>
