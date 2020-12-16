@@ -404,7 +404,7 @@ public class StoreDAO {
             return basketList;
          }
       
-      // 글 수정
+      // 상품 수정
       public int updateArticle(StoreBean article) {
   		// StoreBean 객체에 저장된 수정 내용(작성자, 제목, 내용)을 사용하여
   		// 상품번호(goodsId)에 해당하는 레코드를 수정 후 결과 리턴
@@ -427,7 +427,7 @@ public class StoreDAO {
   			updateCount = pstmt.executeUpdate();
   			
   			//임시 확인용
-  			System.out.println("GoodsDAO에서 check! 수정되었는가? : " + updateCount);
+  			System.out.println("StoreDAO에서 check! 수정되었는가? : " + updateCount);
   			
   		} catch (SQLException e) {
   			System.out.println("updateArticle() 오류!- "+e.getMessage());
@@ -441,7 +441,7 @@ public class StoreDAO {
   		return updateCount;
   	}
       
-      // 글 삭제
+      // 상품 삭제
    		public int deleteArticle(int goodsId) {
    			// StoreBean 객체에 저장된 내용을 사용하여
    			// 상품번호(goodsId)에 해당하는 레코드를 삭제 후 결과 리턴
@@ -468,6 +468,43 @@ public class StoreDAO {
    			  			
    			return deleteCount;
    		}
+   		
+   	// 장바구니 수량 수정
+        public int updateBasketCount(int basketCount, int goodsId, String id) {
+        	System.out.println("StoreDAO - updateBasketCount()");
+        	
+    		int updateCount =0;
+    		PreparedStatement pstmt = null;
+            ResultSet rs = null;
+            Timestamp date = new Timestamp(System.currentTimeMillis());
+    		
+    		try {
+    			String sql = "update basket set basketCount=? where goodsId=? and member_id=?";
+    			pstmt = con.prepareStatement(sql);
+	        	pstmt.setInt(1, basketCount);
+	        	pstmt.setInt(2, goodsId);
+	        	pstmt.setString(3, id);
+	        	
+	        	if(basketCount == 0) {
+	        		 basketCount = 1;
+	        	 }
+    			
+    			updateCount = pstmt.executeUpdate();
+    			
+    			//임시 확인용
+    			System.out.println("StoreDAO에서 check! 수정되었는가? : " + updateCount);
+    			
+    		} catch (SQLException e) {
+    			System.out.println("updateBasketCount() 오류!- "+e.getMessage());
+    			
+    			e.printStackTrace();
+    		} finally {
+    			close(pstmt);
+    		}
+    		
+    		
+    		return updateCount;
+    	}
 
 
 

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import action.Action;
 import action.BasketAddAction;
 import action.BasketListAction;
+import action.BasketModifyProAction;
 import action.GoodsDeleteProAction;
 import action.GoodsDetailAction;
 import action.GoodsListAction;
@@ -146,7 +147,16 @@ public class StoreFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		} 
+		
+//		else if(command.equals("/BasketModifyPro.go")) {
+//			action = new BasketModifyProAction();
+//			
+//			try {
+//				forward = action.execute(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//		} 
 		
 		
 			// ----------------------------------------------------------------

@@ -14,8 +14,8 @@
 	int startPage = pageInfo.getStartPage();
 	int endPage = pageInfo.getEndPage();
 	int listCount = pageInfo.getListCount();
-	
 %>  
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -43,9 +43,11 @@ ul.store-tab li{
 }
 
 </style>
-
-
 <!-- 탭메뉴 끝 -->
+<script src="js/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+</script>
+
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -130,7 +132,8 @@ ul.store-tab li{
                   				<h4><%=articleList.get(i).getName() %></h4>
                   				<h3 class = "price"><%=articleList.get(i).getPrice() %> 원</h3>
                   				<h4><%=sumPrice%> 원</h4>
-                  				<a href="BasketAdd.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="add_cart">장바구니 ★</a>
+                  				<a href="BasketAdd.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="add_cart">장바구니</a>
+<!-- 								<input type="button"> -->
                   				<a href="OrderForm.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="buy">구매하기</a>
                   				
                   			</div>
@@ -172,7 +175,7 @@ ul.store-tab li{
                   				<h4><%=articleList.get(i).getName() %></h4>
                   				<h3 class = "price"><%=articleList.get(i).getPrice() %> 원</h3>
                   				<h4><%=sumPrice%> 원</h4>
-                  				<a href="BasketAdd.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="add_cart">장바구니 ★</a>
+                  				<a href="BasketAdd.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="add_cart">장바구니</a>
                   				<a href="OrderForm.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="buy">구매하기</a>
                   				
                   			</div>
@@ -214,7 +217,7 @@ ul.store-tab li{
                   				<h4><%=articleList.get(i).getName() %></h4>
                   				<h3 class = "price"><%=articleList.get(i).getPrice() %> 원</h3>
                   				<h4><%=sumPrice%> 원</h4>
-                  				<a href="BasketAdd.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="add_cart">장바구니 ★</a>
+                  				<a href="BasketAdd.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="add_cart">장바구니</a>
                   				<a href="OrderForm.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="buy">구매하기</a>
                   				
                   			</div>

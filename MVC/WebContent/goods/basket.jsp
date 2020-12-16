@@ -143,12 +143,9 @@
                 </div>
           <!--================ 메뉴 영역 =================-->          
                 
-                <div class="col-lg-9">
-                    <div class="row align-items-center latest_product_inner">
-                    	
-                    	
-                    	
-                    	  <section class="cart_area padding_top">
+   <div class="col-lg-9">
+     <div class="row align-items-center latest_product_inner">
+        <section class="cart_area padding_top">
     <div class="container">
       <div class="cart_inner">
         <h3>장바구니상품 정보</h3>
@@ -167,6 +164,7 @@
             </thead>
          <%
          for(int i= 0; i < basketList.size(); i++){
+        	 
             int goodsPrice = basketList.get(i).getPrice() * basketList.get(i).getBasketCount(); // 상품 개 당 가격
              totalPrice += goodsPrice; // 할인 전 상품금액 += 상품 개 당 가격
             int sale = (int)(basketList.get(i).getPrice() * basketList.get(i).getSale() * basketList.get(i).getBasketCount() * 0.01); // 할인가격
@@ -193,11 +191,12 @@
                 </td>
                 <td>
                   <div class="product_count"> <!-- 수량변경 버튼 모양 -->
-                    <input type="number" value="<%=basketList.get(i).getBasketCount() %>" min="0" max="10">
+                    <input type="number" name="basketCount" value="<%=basketList.get(i).getBasketCount() %>" min="0" max="10">
+                    <input type="hidden" name="goodsId" value="<%=basketList.get(i).getGoods_goodsId() %>">
                   </div>
                   <div>
-                  <input type="button" value="수량변경">
-                  <input type="button" value="X" id="delete"> <!-- 휴지통모양 혹은 x -->
+                  <input type="button" value="수량변경" onclick="location.href='BasketModifyForm.go?goodsId=<%=basketList.get(i).getGoods_goodsId()%>&basketCount=<%=basketList.get(i).getBasketCount()%>'">
+                  <input type="button" value="X" id="delete" onclick="location.href='BasketDeletePro.go?goodsId=<%=basketList.get(i).getGoods_goodsId()%>'"> <!-- 휴지통모양 혹은 x -->
                   </div>
                 </td>
                 <td>
@@ -229,24 +228,19 @@
             </tbody>
           </table>
   <!--::버튼 시작::-->
-      <div>        
-      <input type="button" class="btn_3" value="이전화면" onclick="history.back">
+    <div>        
+      <input type="button" class="btn_3" value="이전화면" onclick="history.back()">
     </div>
      <div class="checkout_btn_inner float-right">
        <input type="button" class="btn_3" value ="선택상품주문" id="orderOptional" onclick="orderOptional();">
        <input type="button" class="btn_3" value ="전체상품주문" id="orderAll" onclick="orderAll();">
      </div>
   <!--::버튼 끝::-->      
-          </form>
+         
         </div>
       </div>
   </section>
-                    	
-                    	
-                    	
-                    	
-                    	
-                    	
+                	
                     </div>
                 </div>
             </div>
