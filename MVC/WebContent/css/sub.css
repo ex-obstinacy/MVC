@@ -8,6 +8,9 @@
 .sub_visual01 div.black{position:absolute; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6); }
 .sub_visual01 h2{position:absolute; top:50%; left:50%; color:#fff;  font-size:23px; z-index:100; transform:translate(-50%,-50%);}
 
+/* 서브비주얼 - store_main*/
+.sub_store01{position:relative; width:100%; height:450px; text-align:center; background-image:url(../img/sub/sub_store01.jpg); background-repeat:no-repeat; background-position:center center; background-size:100% auto;}
+
 /* 관리자 - 영화 등록 페이지 */
 #mlistform{}
 #mlistform > table{width:100%; border:1px solid #ccc; border-top:2px solid #121212; border-spacing:0px; margin-bottom:20px;}

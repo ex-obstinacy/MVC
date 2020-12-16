@@ -74,6 +74,9 @@ ul.store-tab li{
     <link rel="stylesheet" href="css/price_rangs.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
+    
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/sub.css">
 </head>
 
 <body>
@@ -81,22 +84,8 @@ ul.store-tab li{
     <jsp:include page="/inc/top.jsp"/>
     <!-- Header part end-->
 
-    <!--================Home Banner Area =================-->
-    <!-- breadcrumb start-->
-    <section class="breadcrumb breadcrumb_bg">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="breadcrumb_iner">
-                        <div class="breadcrumb_iner_item">
-                            <h2>TICKET & POPCORN <br>STORE</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- breadcrumb start-->
+    <!-- 서브비주얼 -->
+	<jsp:include page="/inc/sub_store1.jsp"/>
 	
     <!--================ 스토어 메인 상품 !!!! =================-->
   <section class="product_list section_padding">
