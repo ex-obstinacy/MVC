@@ -15,6 +15,7 @@ import action.BasketAddAction;
 import action.BasketDeleteProAction;
 import action.BasketListAction;
 import action.BasketModifyProAction;
+import action.CheckcheckAction;
 import action.GoodsDeleteProAction;
 import action.GoodsDetailAction;
 import action.GoodsListAction;
@@ -173,7 +174,15 @@ public class StoreFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			} 
-		}
+		} else if(command.equals("/Checkcheck.go")) {
+			action = new CheckcheckAction();
+			
+		try {
+			forward = action.execute(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+	}
 		
 		
 			// ----------------------------------------------------------------

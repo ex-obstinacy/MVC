@@ -164,6 +164,7 @@
       <div class="cart_inner">
         <h3>장바구니상품 정보</h3>
          <hr>
+         <form action="Checkcheck.go" method="post">
           <table class="table">
          <%
           if(basketList != null){
@@ -241,15 +242,17 @@
               </tr>
             </tbody>
           </table>
-  <!--::버튼 시작::-->
-    <div>        
-      <input type="button" class="btn_3" value="이전화면" onclick="history.back()">
-    </div>
-     <div class="checkout_btn_inner float-right">
-       <input type="button" class="btn_3" value ="선택상품주문" id="orderOptional" onclick="orderOptional();">
-       <input type="button" class="btn_3" value ="전체상품주문" id="orderAll" onclick="orderAll();">
-     </div>
-  <!--::버튼 끝::-->      
+		  <!--::버튼 시작::-->
+		    <div>        
+		      <input type="button" class="btn_3" value="이전화면" onclick="history.back()">
+		    </div>
+		     <div class="checkout_btn_inner float-right">
+		       <input type="button" class="btn_3" value ="선택상품주문" id="orderOptional" onclick="orderOptional();">
+		       <input type="button" class="btn_3" value ="전체상품주문" id="orderAll" onclick="orderAll();">
+		       <input type="submit" value ="개별선택 확인용(은주)">
+		     </div>
+		  <!--::버튼 끝::-->      
+         </form>
          
         </div>
       </div>
