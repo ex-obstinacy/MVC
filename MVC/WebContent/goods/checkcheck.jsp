@@ -13,7 +13,7 @@ String[] checkRow = request.getParameterValues("checkRow");
 <h1>확인용 페이지</h1>
 <%
 for(String check: checkRow) {
-	out.println("체크된 basketId"+check);
+	out.println("체크된 basketId : "+check+"<br>");
 }
 %>
 </body>
