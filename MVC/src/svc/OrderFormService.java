@@ -12,7 +12,7 @@ public class OrderFormService {
 
 // store_main, store_detail 구매목록
 public ArrayList<StoreBean> getBasketList(int basketCount, int goodsId) {
-	System.out.println("OrderFormService - store_detail !");
+	System.out.println("OrderFormService !");
     
     ArrayList<StoreBean> basketList = null;
        

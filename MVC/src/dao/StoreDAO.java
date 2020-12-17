@@ -404,6 +404,56 @@ public class StoreDAO {
             return basketList;
          }
       
+      // 2. 장바구니 -> 구매하기 목록 조회
+      public ArrayList<StoreBean> selectBasketList(String[] checkRows) {
+		System.out.println("selectBasketList DAO - String[] checkRows");
+		ArrayList<StoreBean> basketList = null;
+			
+		PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        
+		try {
+			for(String check: checkRows) {
+				System.out.println(check);
+				
+				String sql = "SELECT * FROM basket WHERE basketId = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, check);
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+	                  // 1개 게시물 정보를 저장할 StoreBean 객체 생성 및 데이터 저장
+	                  StoreBean basket = new StoreBean(); 
+	                  
+	                  basket.setBasketId(rs.getInt("basketId"));
+	                  basket.setGoods_goodsId(rs.getInt("goods_goodsId"));
+	                  basket.setMember_id(rs.getString("member_id"));
+	                  basket.setBasketCount(rs.getInt("basketCount"));
+	                  basket.setDate(rs.getTimestamp("date"));
+	                  
+	                  // 1개 게시물을 전체 게시물 저장 객체(ArrayList)에 추가
+	                  basketList.add(basket);
+	               }
+				
+				for(int i =0; i<basketList.size(); i++) {
+					System.out.println(basketList.get(i).getBasketCount());
+					System.out.println(basketList.get(i).getGoods_goodsId());
+					System.out.println(basketList.get(i).getMember_id());
+					System.out.println(basketList.get(i).getBasketId());
+				}
+				
+			}
+		} catch (SQLException e) {
+            System.out.println("selectBasketList DAO - String[] checkRows 오류!- "+e.getMessage());
+            e.printStackTrace();
+         } finally {
+            close(pstmt);
+            close(rs);
+         }
+			
+			return basketList;
+		}
+      
       // 상품 수정
       public int updateArticle(StoreBean article) {
   		// StoreBean 객체에 저장된 수정 내용(작성자, 제목, 내용)을 사용하여
@@ -537,6 +587,9 @@ public class StoreDAO {
    			  			
    			return deleteCount;
    		}
+
+   		
+		
 
 
 

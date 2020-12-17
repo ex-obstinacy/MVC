@@ -10,8 +10,6 @@
 	
 	String member_id = (String)session.getAttribute("id");
 	
-	StoreBasketIds storeBasketIds = new StoreBasketIds();
-	
 	int totalPrice = 0; //할인 전 총 상품금액
 	int sale2 = 0; // 총 할인가격
 	int sumPrice = 0; // 할인 후 상품금액
@@ -80,21 +78,18 @@
 			   }
 			}
 		   
-		   storeBasketIds.getBasketIds(basketIds);
-		   request.setAttribute("storeBasketIds, storeBasketIds");
-		   
 		   // 값 넘기기
 		   if(checked == 0){
 			   alert("상품을 선택하여 주십시오.");
-			   return;
+			   return false;
 		   } else {
-			   location.href = "OrderForm.go";
+			   document.basketform.submit();
 		   }
 		   
 	  }
 		
 		function orderAll() {
-			
+			document.basketform.submit();
 		}
 	
 	//수량변경 button
@@ -164,7 +159,7 @@
       <div class="cart_inner">
         <h3>장바구니상품 정보</h3>
          <hr>
-         <form action="Checkcheck.go" method="post">
+         <form action="OrderForm2.go" name="basketform" method="post">
           <table class="table">
          <%
           if(basketList != null){
@@ -238,6 +233,9 @@
                   <h5><%=totalPrice %>원</h5>
                   <h5><%=sale2 %>원</h5>
                   <h3><%=sumPrice %>원</h3>
+                  <!-- Pro로 보낼 값 -->
+                  <input type="hidden" name="totalPrice" value="<%=totalPrice %>">
+                  <input type="hidden" name="sumPrice" value="<%=sumPrice %>">
                 </td>
               </tr>
             </tbody>
@@ -247,9 +245,9 @@
 		      <input type="button" class="btn_3" value="이전화면" onclick="history.back()">
 		    </div>
 		     <div class="checkout_btn_inner float-right">
-		       <input type="button" class="btn_3" value ="선택상품주문" id="orderOptional" onclick="orderOptional();">
-		       <input type="button" class="btn_3" value ="전체상품주문" id="orderAll" onclick="orderAll();">
-		       <input type="submit" value ="개별선택 확인용(은주)">
+		       <input type="button" class="btn_3" value ="선택상품주문" onclick="orderOptional()">
+		       <input type="button" class="btn_3" value ="전체상품주문" onclick="orderAll()">
+<!-- 		       <input type="submit" value ="개별선택 확인용(은주)"> -->
 		     </div>
 		  <!--::버튼 끝::-->      
          </form>

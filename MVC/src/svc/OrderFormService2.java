@@ -1,7 +1,6 @@
 package svc;
 
-import static db.JdbcUtil.close;
-import static db.JdbcUtil.getConnection;
+import static db.JdbcUtil.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -11,21 +10,26 @@ import vo.StoreBean;
 
 public class OrderFormService2 {
 
-	public ArrayList<StoreBean> getBasketList(String[] basketIds, String id) {
-		System.out.println("OrderFormService - store_detail !");
+	public ArrayList<StoreBean> getBasketList(String[] checkRows) {
+		System.out.println("OrderFormService2 !");
 	    
 	    ArrayList<StoreBean> basketList = null;
-	       
-	    System.out.println(basketIds);
-	     Connection con = getConnection();
-	     StoreDAO storeDAO = StoreDAO.getInstance();
-	     storeDAO.setConnection(con);
-	       
-//	     basketList = storeDAO.selectBasketList(basketIds, id);
 	    
-	     close(con);
+	    for(String check: checkRows) {
+			System.out.println(check);
+		}
+	    
+	    Connection con = getConnection();
+	    StoreDAO storeDAO = StoreDAO.getInstance();
+	    storeDAO.setConnection(con);
 	       
-	     return basketList;
+	    basketList = storeDAO.selectBasketList(checkRows);
+	    
+	    close(con);
+	       
+	    return basketList;
 	}
+
+
 
 }
