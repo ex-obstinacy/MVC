@@ -20,6 +20,11 @@ public class OrderFormAction2 implements Action {
       System.out.println("OrderFormAction2 !");
       ActionForward forward = null;
       
+      HttpSession session = request.getSession(); //MemberBean id 값 가져오기
+      String id = (String)session.getAttribute("id"); 
+      
+      System.out.println(id);
+      
 		if(request.getParameterValues("checkRow") == null) {
 			// 체크 안한 경우
 			System.out.println("체크안함");
@@ -36,12 +41,12 @@ public class OrderFormAction2 implements Action {
 			OrderFormService2 orderFormService2 = new OrderFormService2();
 			ArrayList<StoreBean> basketList = new ArrayList<StoreBean>();
 			
-			basketList = orderFormService2.getBasketList(checkRows);
+			basketList = orderFormService2.getBasketList(checkRows,id);
 			
 			request.setAttribute("basketList", basketList);
 			
 			forward = new ActionForward();
-			forward.setPath("goods/checkcheck.jsp");
+			forward.setPath("goods/orderForm.jsp");
 //			forward.setRedirect(false);
 		}
 		

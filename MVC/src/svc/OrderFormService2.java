@@ -10,7 +10,7 @@ import vo.StoreBean;
 
 public class OrderFormService2 {
 
-	public ArrayList<StoreBean> getBasketList(String[] checkRows) {
+	public ArrayList<StoreBean> getBasketList(String[] checkRows, String id) {
 		System.out.println("OrderFormService2 !");
 	    
 	    ArrayList<StoreBean> basketList = null;
@@ -23,7 +23,7 @@ public class OrderFormService2 {
 	    StoreDAO storeDAO = StoreDAO.getInstance();
 	    storeDAO.setConnection(con);
 	       
-	    basketList = storeDAO.selectBasketList(checkRows);
+	    basketList = storeDAO.selectBasketList(checkRows, id);
 	    
 	    close(con);
 	       

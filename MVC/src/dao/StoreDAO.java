@@ -405,10 +405,14 @@ public class StoreDAO {
          }
       
       // 2. 장바구니 -> 구매하기 목록 조회
-      public ArrayList<StoreBean> selectBasketList(String[] checkRows) {
+      public ArrayList<StoreBean> selectBasketList(String[] checkRows, String id) {
 		System.out.println("selectBasketList DAO - String[] checkRows");
 		ArrayList<StoreBean> basketList = null;
-			
+
+		for(String check : checkRows) {
+			System.out.println(check);
+		}
+		
 		PreparedStatement pstmt = null;
         ResultSet rs = null;
         
@@ -422,24 +426,37 @@ public class StoreDAO {
 				rs = pstmt.executeQuery();
 				
 				while(rs.next()) {
-	                  // 1개 게시물 정보를 저장할 StoreBean 객체 생성 및 데이터 저장
-	                  StoreBean basket = new StoreBean(); 
-	                  
-	                  basket.setBasketId(rs.getInt("basketId"));
-	                  basket.setGoods_goodsId(rs.getInt("goods_goodsId"));
-	                  basket.setMember_id(rs.getString("member_id"));
-	                  basket.setBasketCount(rs.getInt("basketCount"));
-	                  basket.setDate(rs.getTimestamp("date"));
-	                  
-	                  // 1개 게시물을 전체 게시물 저장 객체(ArrayList)에 추가
-	                  basketList.add(basket);
-	               }
-				
-				for(int i =0; i<basketList.size(); i++) {
-					System.out.println(basketList.get(i).getBasketCount());
-					System.out.println(basketList.get(i).getGoods_goodsId());
-					System.out.println(basketList.get(i).getMember_id());
-					System.out.println(basketList.get(i).getBasketId());
+					sql = "SELECT basket.basketCount, basket.basketId, basket.goods_goodsId, " 
+            				+ "goods.ctg, goods.name, goods.price, goods.sale, goods.component, goods.file, goods.content "
+            				+ "FROM basket JOIN goods "
+            				+ "ON basket.goods_goodsId = goods.goodsId "
+            				+ "WHERE member_id = ?";
+					pstmt = con.prepareStatement(sql);
+	            	pstmt.setString(1, id);
+	            	rs = pstmt.executeQuery();
+					// StoreBean 객체를 생성하여 레코드 데이터 모두 저장 후  StoreBean 객체를 다시 ArrayList 객체에 추가 => 반복
+		               while(rs.next()) {
+		                  // 1개 게시물 정보를 저장할 StoreBean 객체 생성 및 데이터 저장
+		                  StoreBean basket = new StoreBean(); 
+		                    
+		                  //basket 테이블
+		                  basket.setBasketCount(rs.getInt("basketCount"));
+		                  basket.setBasketId(rs.getInt("basketId"));
+		                  basket.setGoods_goodsId(rs.getInt("goods_goodsId"));
+		                  //goods 테이블
+		                  basket.setCtg(rs.getString("ctg"));
+		                  basket.setName(rs.getString("name"));
+		                  basket.setPrice(rs.getInt("price"));
+		                  basket.setSale(rs.getInt("sale"));
+		                  basket.setComponent(rs.getString("component"));
+		                  basket.setFile(rs.getString("file"));
+		                  basket.setContent(rs.getString("content"));
+		                  
+		                  System.out.println("goodsId : " + basket.getGoods_goodsId());
+		                  
+		                  // 1개 게시물을 전체 게시물 저장 객체(ArrayList)에 추가
+		                  basketList.add(basket);
+		               }
 				}
 				
 			}
