@@ -409,16 +409,12 @@ public class StoreDAO {
 		System.out.println("selectBasketList DAO - String[] checkRows");
 		ArrayList<StoreBean> basketList = null;
 
-		for(String check : checkRows) {
-			System.out.println(check);
-		}
-		
 		PreparedStatement pstmt = null;
         ResultSet rs = null;
         
 		try {
 			for(String check: checkRows) {
-				System.out.println(check);
+//				System.out.println(check);
 				
 				String sql = "SELECT * FROM basket WHERE basketId = ?";
 				pstmt = con.prepareStatement(sql);
@@ -434,6 +430,8 @@ public class StoreDAO {
 					pstmt = con.prepareStatement(sql);
 	            	pstmt.setString(1, id);
 	            	rs = pstmt.executeQuery();
+	            	
+	            	basketList = new ArrayList<StoreBean>();
 					// StoreBean 객체를 생성하여 레코드 데이터 모두 저장 후  StoreBean 객체를 다시 ArrayList 객체에 추가 => 반복
 		               while(rs.next()) {
 		                  // 1개 게시물 정보를 저장할 StoreBean 객체 생성 및 데이터 저장
@@ -451,8 +449,6 @@ public class StoreDAO {
 		                  basket.setComponent(rs.getString("component"));
 		                  basket.setFile(rs.getString("file"));
 		                  basket.setContent(rs.getString("content"));
-		                  
-		                  System.out.println("goodsId : " + basket.getGoods_goodsId());
 		                  
 		                  // 1개 게시물을 전체 게시물 저장 객체(ArrayList)에 추가
 		                  basketList.add(basket);

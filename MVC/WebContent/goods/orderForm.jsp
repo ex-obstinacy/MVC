@@ -79,7 +79,7 @@ function requestPay() {
          IMP.request_pay({ // param
              pg: "html5_inicis",
              pay_method:payMethod,
-             merchant_uid: "ORD20180131-0000014", // 상품 번호
+             merchant_uid: "ORD20180131-0000018", // 상품 번호
              name: name, // 상품명
              amount: sumPrice.value, // 상품가격
              buyer_email: "gildong@gmail.com",
