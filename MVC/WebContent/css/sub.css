@@ -8,15 +8,11 @@
 .sub_visual01 div.black{position:absolute; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6); }
 .sub_visual01 h2{position:absolute; top:50%; left:50%; color:#fff;  font-size:23px; z-index:100; transform:translate(-50%,-50%);}
 
-/* 서브비주얼 - store_main*/
-.sub_store01{position:relative; width:100%; height:450px; text-align:center; background-image:url(../img/sub/sub_store01.jpg); background-repeat:no-repeat; background-position:center center; background-size:100% auto;}
-
 /* 관리자 - 영화 등록 페이지 */
 #mlistform{}
 #mlistform > table{width:100%; border:1px solid #ccc; border-top:2px solid #121212; border-spacing:0px; margin-bottom:20px;}
 #mlistform > table th, td{border-right: 1px solid #ccc;}
-#mlistform > table th{background:#fff; border-right:none; border-bottom:1px solid #121212; padding:20px 0; font-size:17px; text-align:center;}
-#mlistform > table #thBox{width: 200px; margin: 0 20px; border-left: none;}
+#mlistform > table th{background:#fff; border-bottom:1px solid #121212; padding:20px 0; font-size:17px; text-align:center;}
 #mlistform > table td{height:260px; padding:0;}
 #mlistform > table td>ul{height:100%; overflow-y: auto; background:#f2f2f2;}
 #mlistform > table td>ul li{border-bottom:1px solid #ddd; }
@@ -26,15 +22,14 @@
 #mlistform > table td>ul#mldiv li input:checked+label{border:2px solid #FF243E; background:#fff url(../img/sub/check.png) no-repeat 96% center/15px auto;}
 #mlistform > table td>ul#mldiv li #span_m1{font-size:16px; font-weight:bold; margin: 0 20px;}
 #mlistform > table td>ul#mldiv li #span_m2{font-size:15px; font-weight: 600; margin-right: 10px;}
-#mlistform > table td>ul#mldiv li #span_m3{font-size:14px; font-weight: 500; margin-left:730px; color: #FF3368;}
+#mlistform > table td>ul#mldiv li #span_m3{font-size:14px; font-weight: 500; margin-left:760px; color: #FF3368;}
 #mlistform > table td>ul#mldiv li #span_m4{font-size:14px; font-weight: 500; margin-left: 10px; color: #FF3368;}
-#mlistform{} div.btnBox{text-align:right; margin-right: 30px;}
+#mlistform div.btnBox{text-align:right; margin-right: 30px;}
 
 #movieform > table td>ul#ultime li{float:left; margin: 100px 60px;}
 #movieform > table td>ul#ultime li>#seltime, #selguan{width: 100px; height: 35px;}
-#movieform{} div.btnBox{margin:0 30px 0 0; text-align:right;}
 
-#mformdiv{margin-top: 80px;}
+#mformdiv{margin-top: 30px;}
 
 /* 관리자 - 영화관 등록 페이지 */
 #clistform, #cinemaform{display: inline-block; vertical-align: top; text-align: center; margin: 0 100px;}
@@ -42,9 +37,8 @@
 #clistform{}
 #clistform > table{width:100%; border:1px solid #ccc; border-top:2px solid #121212; border-spacing:0px; margin-bottom:20px;}
 #clistform > table th, td{border-right: 1px solid #ccc;}
-#clistform > table th{background:#fff; border-right:none; border-bottom:1px solid #121212; padding:20px 0; font-size:17px; text-align:center;}
+#clistform > table th{background:#fff; border-bottom:1px solid #121212; padding:20px 0; font-size:17px; text-align:center;}
 #clistform > table td{width:300px; height:260px; padding:0;}
-#clistform > table #tdBox{height: 40px; padding: 10px 0; background:#f2f2f2;}
 #clistform > table td>ul{height:100%; overflow-y: auto; background:#f2f2f2;}
 #clistform > table td>ul li{border-bottom:1px solid #ddd; }
 #clistform > table td>ul li label{width:100%; cursor:pointer; font-size:12px; padding:10px 10px; background:#fff;}
@@ -53,11 +47,11 @@
 #clistform > table td>ul#cldiv li input:checked+label{border:2px solid #FF243E; background:#fff url(../img/sub/check.png) no-repeat 96% center/15px auto;}
 #clistform > table td>ul#cldiv li #span_c1{font-size:15px; font-weight:600; margin: 0 20px 0 0;}
 #clistform > table td>ul#cldiv li #span_c2{font-size:16px; font-weight:bold; color: #FF3368;}
-#clistform{} div.btnBox{text-align:right;}
+#clistform div.btnBox{text-align:right;}
 
-#cinemaform{height: 390px; border:1px solid #ccc; border-top:2px solid #121212; border-spacing:0px; margin-bottom:20px; padding:40px;}
+#cinemaform{border:1px solid #ccc; border-top:2px solid #121212; border-spacing:0px; margin-bottom:20px; padding:40px;}
 #cinemaform >#sellocal, #txtcname{width: 200px; height: 35px;}
-#cinemaform{} div.btnBox{text-align:right; padding-top:50px;}
+#cinemaform div.btnBox{text-align:right; padding-top:50px;}
 
 /* 예매 메인페이지 reserveMain*/
 #movieform{}
@@ -67,10 +61,10 @@
 #movieform > table td{height:260px; padding:0;}
 #movieform > table td>ul{height:100%; overflow-y: auto; background:#f2f2f2;}
 #movieform > table td>ul li{border-bottom:1px solid #ddd; }
-#movieform > table td>ul li label{width:100%; cursor:pointer; font-size:12px; padding:10px 10px; background:#fff;}
+#movieform > table td>ul li label{width:100%; cursor:pointer; font-size:12px; padding:10px 10px; background:#fff; margin:0;}
 #movieform > table td>ul li input{display:none;}
 
-#movieform > table td>ul#tdsubject li label{border:2px solid transparent; box-sizing:border-box; font-size:14px;}
+#movieform > table td>ul#tdsubject li label{border:2px solid transparent; box-sizing:border-box; font-size:14px; }
 #movieform > table td>ul#tdsubject li input:checked+label{border:2px solid #FF243E; background:#fff url(../img/sub/check.png) no-repeat 96% center/15px auto;}
 
 #movieform > table td>ul#tdlocal li label{}
@@ -118,7 +112,7 @@
 	display: inline-block;
 }
 
-#movieform{} div.btnBox{text-align:right;}
+#movieform div.btnBox{text-align:right;}
 
 /* 좌석선택 서브페이지 */
 form#seatForm{}
@@ -191,7 +185,7 @@ form#seatForm{}
 #payForm .leftBox > div {margin-bottom:80px;}
 #payForm .leftBox > div:after{content:""; display:block; clear:both;}
 #payForm .leftBox h3{border-bottom:1px solid #ccc; padding-bottom:10px; margin-bottom:20px; font-size:20px;}
-#payForm span.movieImg{display:block; width:200px; height:auto; float:left; margin-right:40px;}
+#payForm span.movieImg{display:block; width:150px; height:auto; float:left; margin-right:40px;}
 #payForm div.movieInfo{float:left;}
 #payForm div.movieInfo h4:before{
 	position:absolute;
@@ -241,14 +235,14 @@ form#seatForm{}
 #payForm div.selectPayment ul:after{content:""; display:block; clear:both;}
 #payForm div.selectPayment ul li{float:left; border:1px solid #ccc; border-radius:5px;text-align:center; margin-right:30px; position:relative;}
 #payForm div.selectPayment ul li input{display:none;}
-#payForm div.selectPayment ul li input[type=checkbox] + label{width:100px; height:100px; cursor:pointer; padding-top:65px; box-sizing:border-box; transition:all 0.2s; background-repeat:no-repeat; background-position:center 20px; }
-#payForm div.selectPayment ul li:nth-child(1) input[type=checkbox] + label{background-image:url(../img/sub/reservation/card.png); background-size: 35px auto;}
-#payForm div.selectPayment ul li:nth-child(2) input[type=checkbox] + label{background-image:url(../img/sub/reservation/coins.png); background-size: 35px auto;}
-#payForm div.selectPayment ul li:nth-child(3) input[type=checkbox] + label{background-image:url(../img/sub/reservation/mobile.png); background-size: 35px auto;}
+#payForm div.selectPayment ul li input[type=checkbox] + label{width:100px; height:100px; cursor:pointer; padding-top:65px; box-sizing:border-box; transition:all 0.2s; background-repeat:no-repeat; background-position:center 25px; }
+#payForm div.selectPayment ul li:nth-child(1) input[type=checkbox] + label{background-image:url(../img/sub/card.png); background-size: 35px auto;}
+#payForm div.selectPayment ul li:nth-child(2) input[type=checkbox] + label{background-image:url(../img/sub/trans.png); background-size: 35px auto;}
+#payForm div.selectPayment ul li:nth-child(3) input[type=checkbox] + label{background-image:url(../img/sub/mobile.png); background-size: 35px auto; background-position:center 22px;}
 #payForm div.selectPayment ul li input[type=checkbox]:checked + label{background-color:#FF243E; color:#fff;}
-#payForm div.selectPayment ul li:nth-child(1) input[type=checkbox]:checked + label{background-image:url(../img/sub/reservation/card-hover.png);}
-#payForm div.selectPayment ul li:nth-child(2) input[type=checkbox]:checked + label{background-image:url(../img/sub/reservation/coins-hover.png);}
-#payForm div.selectPayment ul li:nth-child(3) input[type=checkbox]:checked + label{background-image:url(../img/sub/reservation/mobile-hover.png);}
+#payForm div.selectPayment ul li:nth-child(1) input[type=checkbox]:checked + label{background-image:url(../img/sub/card_hover.png);}
+#payForm div.selectPayment ul li:nth-child(2) input[type=checkbox]:checked + label{background-image:url(../img/sub/trans_hover.png);}
+#payForm div.selectPayment ul li:nth-child(3) input[type=checkbox]:checked + label{background-image:url(../img/sub/mobile_hover.png); }
 
 #payForm .rightBox table{width:100%; border:1px solid #ccc; }
 #payForm .rightBox table th{background:#121212; color:#fff; font-size:18px; font-weight:500; text-align:center; padding:15px 0; }
@@ -261,7 +255,7 @@ form#seatForm{}
 #payForm .rightBox table tr:last-child td{padding:0; border-right:0;}
 #payForm .rightBox table tr:last-child td input{ width:100%; border:0; background:#FF243E; color:white; padding:15px 0; font-size:16px; transition:all 0.3s;}
 #payForm .rightBox table tr:last-child td input:hover{color:#121212;}
-#payForm .rightBox table tr:last-child td input.payTestBtn{background:#4cd3e3;}
+#payForm .rightBox table tr:last-child td input.changePriceBtn{background:#4cd3e3;}
 
 /* reserveResult  */
 div.reserveInfo{width:80%; margin:0 auto;}
@@ -275,6 +269,8 @@ div.reserveInfo .infoBox .rightBox p{font-size:18px; font-weight:600; margin-bot
 div.reserveInfo .infoBox .rightBox table{width:100%; border-top:2px solid #121212; }
 div.reserveInfo .infoBox .rightBox table th, div.reserveInfo .infoBox .rightBox table td{border-right:0; border-bottom:1px solid #ccc; padding:10px 10px;}
 div.reserveInfo .infoBox .rightBox table th{background:#f3f3f3; border-right:1px solid #ccc;;}
+
+div.reserveInfo .btnBox{text-align:center;}
 
 
 /* orderForm 서브페이지 */

@@ -33,32 +33,5 @@ public class PayProService {
 		return isReserveSuccess;
 	}
 
-	public String getTicketNum(ReserveBean reservation) {
-		String ticketnum = null;
-		
-		Connection con = getConnection();
-		
-		ReserveDAO reserveDAO = ReserveDAO.getInstance();
-		
-		reserveDAO.setConnection(con);
-		
-		ticketnum = reserveDAO.getTicketNum(reservation);
-		
-		close(con);
-		
-		return ticketnum;
-	}
-
-	
-
-	
-
-
-
-
-
-	
-
-	
 
 }

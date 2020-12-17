@@ -1,11 +1,10 @@
 @charset "UTF-8";
 /* 공통 스타일 */
-ul,ol, dl{margin:0;}
-dd{margin:0;}
+*{margin:0; padding:0;}
+label{margin-bottom:0;}
 select{display:block !important;}
-label{margin:0;}
-
 div.nice-select{display:none;}
+
 
 #sub_content{padding-top:80px;}
 h3.sub_title{font-size:20px; margin-bottom:30px;}

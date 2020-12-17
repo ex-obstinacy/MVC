@@ -23,99 +23,200 @@
     <!-- font awesome CSS -->
     <link rel="stylesheet" href="css/magnific-popup.css">
     <!-- swiper CSS -->
-    <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="css/slick.css"/>
+	<link rel="stylesheet" href="css/slick-theme.css"/>
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/common.css"> 
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/main.css">
+    
+   <script src="js/jquery-3.5.1.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+    	// 날짜 슬라이더
+		$('.rank_slider').slick({
+			  slidesToShow: 5,
+			  slidesToScroll: 1,
+			  autoplay: false,
+			  speed: 300,
+			  infinite: false,
+			  nextArrow:$('.next'),
+			  prevArrow:$('.prev'),
+		});
+    	
+		
+		if($('.rank_box li:first').attr("aria-hidden")=="false"){
+			$('.rank_box .prev').css("display","none");
+		};
+		
+    	$('.rank_box .next').click(function(){
+    		if($('.rank_box li:first').attr("aria-hidden")=="true"){
+    			$('.rank_box .prev').css("display","block");
+    		};
+    		
+    		if($('.rank_box li:last').attr("aria-hidden")=="false"){
+    			$('.rank_box .next').css("display","none");
+    		};
+    	});
+    	
+    	$('.rank_box .prev').click(function(){
+	    	if($('.rank_box li:first').attr("aria-hidden")=="false"){
+				$('.rank_box .prev').css("display","none");
+			};
+			if($('.rank_box li:last').attr("aria-hidden")=="true"){
+    			$('.rank_box .next').css("display","block");
+    		};
+    	});
+		
+    });
+    
+    </script> 
 </head>
 
 <body>
-    <!--::header part start::-->
+    <!--헤더-->
     <jsp:include page="inc/top.jsp"/>
-    <!-- Header part end-->
+    <!-- 헤더 끝-->
 
-    <!-- banner part start-->
+    <!-- 메인슬라이더 시작-->
     <section class="banner_part">
-        <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <div class="banner_slider owl-carousel">
                         <div class="single_banner_slider">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-8">
-                                    <div class="banner_text">
-                                        <div class="banner_text_iner">
-                                            <h1>Wood & Cloth
-                                                Sofa</h1>
-                                            <p>Incididunt ut labore et dolore magna aliqua quis ipsum
-                                                suspendisse ultrices gravida. Risus commodo viverra</p>
-                                            <a href="#" class="btn_2">buy now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="banner_img d-none d-lg-block">
-                                    <img src="img/banner_img.png" alt="">
-                                </div>
-                            </div>
-                        </div><div class="single_banner_slider">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-8">
-                                    <div class="banner_text">
-                                        <div class="banner_text_iner">
-                                            <h1>Cloth & Wood
-                                                Sofa</h1>
-                                            <p>Incididunt ut labore et dolore magna aliqua quis ipsum
-                                                suspendisse ultrices gravida. Risus commodo viverra</p>
-                                            <a href="#" class="btn_2">buy now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="banner_img d-none d-lg-block">
-                                    <img src="img/banner_img.png" alt="">
-                                </div>
-                            </div>
-                        </div><div class="single_banner_slider">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-8">
-                                    <div class="banner_text">
-                                        <div class="banner_text_iner">
-                                            <h1>Wood & Cloth
-                                                Sofa</h1>
-                                            <p>Incididunt ut labore et dolore magna aliqua quis ipsum
-                                                suspendisse ultrices gravida. Risus commodo viverra</p>
-                                            <a href="#" class="btn_2">buy now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="banner_img d-none d-lg-block">
-                                    <img src="img/banner_img.png" alt="">
-                                </div>
-                            </div>
+                             <img src="img/main/main_slide1.jpg" alt=""><!-- 메인슬라이더 1 이미지 -->
                         </div>
-                        <!-- <div class="single_banner_slider">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-8">
-                                    <div class="banner_text">
-                                        <div class="banner_text_iner">
-                                            <h1>Cloth $ Wood Sofa</h1>
-                                            <p>Incididunt ut labore et dolore magna aliqua quis ipsum
-                                                suspendisse ultrices gravida. Risus commodo viverra</p>
-                                            <a href="#" class="btn_2">buy now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="banner_img d-none d-lg-block">
-                                    <img src="img/banner_img.png" alt="">
-                                </div>
-                            </div>
-                        </div> -->
-                    </div>
-                    <div class="slider-counter"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- banner part start-->
+                        <div class="single_banner_slider">
+                                <img src="img/main/main_slide2.jpg" alt=""><!-- 메인슬라이더 2 이미지 -->
+                        </div>
+                    </div><!-- .banner_slider -->
+                </div><!-- .col-lg-12 -->
+            </div><!-- .<div class="row align-items-center"> -->
+    </section><!-- .banner_part -->
+    <!-- 메인슬라이더 끝-->
+    
+    <!-- 예매순위 -->
+    <section class="reserve_ranking">
+    	<div class="container">
+    		<div class="rank_box">
+	    		<i class="fas fa-chevron-left prev"></i> 
+	        	<i class="fas fa-chevron-right next"></i>
+	    		<ul class="rank_slider">
+	    			<li>
+	    				<img src="img/main/main_poster1.jpg" alt="">
+	    				<div>
+	    					<span class="rank_subject">조제</span>
+	    					<p>예매율 : </p>
+	    				</div>
+	    			</li>
+	    			<li>
+	    				<img src="img/main/main_poster2.jpg" alt="">
+	    				<div>
+	    					<span class="rank_subject">도굴</span>
+	    					<p>예매율 : </p>
+	    				</div>
+	    			</li>
+	    			<li>
+	    				<img src="img/main/main_poster3.jpg" alt="">
+	    				<div>
+	    					<span class="rank_subject">런</span>
+	    					<p>예매율 : </p>
+	    				</div>
+	    			</li>
+	    			<li>
+	    				<img src="img/main/main_poster4.jpg" alt="">
+	    				<div>
+	    					<span class="rank_subject">이웃사촌</span>
+	    					<p>예매율 : </p>
+	    				</div>
+	    			</li>
+	    			<li>
+	    				<img src="img/main/main_poster5.jpg" alt="">
+	    				<div>
+	    					<span class="rank_subject">리플레이</span>
+	    					<p>예매율 : </p>
+	    				</div>
+	    			</li>
+	    			<li>
+	    				<img src="img/main/main_poster6.jpg" alt="">
+	    				<div>
+	    					<span class="rank_subject">존윅3</span>
+	    					<p>예매율 : </p>
+	    				</div>
+	    			</li>
+	    			<li>
+	    				<img src="img/main/main_poster7.jpg" alt="">
+	    				<div>
+	    					<span class="rank_subject">러브액츄얼리</span>
+	    					<p>예매율 : </p>
+	    				</div>
+	    			</li>
+	    		</ul>
+    		</div><!-- .rank_box -->
+    	</div><!-- .container -->
+    </section><!-- .reserve_ranking -->
+    
+<!--     product_list part start -->
+<!--     <section class="product_list best_seller section_padding"> -->
+<!--         <div class="container"> -->
+<!--             <div class="row justify-content-center"> -->
+<!--                 <div class="col-lg-12"> -->
+<!--                     <div class="section_tittle text-center"> -->
+<!--                         <h2>예매 순위</h2> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--             <div class="row align-items-center justify-content-between"> -->
+<!--                 <div class="col-lg-12"> -->
+<!--                     <div class="best_product_slider owl-carousel"> -->
+                    
+<!--                         <div class="single_product_item"> -->
+<!--                             <img src="img/main/main_poster1.jpg" alt=""> -->
+<!--                             <div class="single_product_text"> -->
+<!--                                 <h4>조제</h4> -->
+<!--                                 <h3>예매율</h3> -->
+<!--                             </div> -->
+<!--                         </div> -->
+                        
+<!--                         <div class="single_product_item"> -->
+<!--                             <img src="img/main/main_poster2.jpg" alt=""> -->
+<!--                             <div class="single_product_text"> -->
+<!--                                 <h4>도굴</h4> -->
+<!--                                 <h3>예매율</h3> -->
+<!--                             </div> -->
+<!--                         </div> -->
+                        
+<!--                         <div class="single_product_item"> -->
+<!--                             <img src="img/main/main_poster3.jpg" alt=""> -->
+<!--                             <div class="single_product_text"> -->
+<!--                                 <h4>Quartz Belt Watch</h4> -->
+<!--                                 <h3>예매율</h3> -->
+<!--                             </div> -->
+<!--                         </div> -->
+                        
+<!--                         <div class="single_product_item"> -->
+<!--                             <img src="img/main/main_poster4.jpg" alt=""> -->
+<!--                             <div class="single_product_text"> -->
+<!--                                 <h4>Quartz Belt Watch</h4> -->
+<!--                                 <h3>예매율</h3> -->
+<!--                             </div> -->
+<!--                         </div> -->
+                        
+<!--                         <div class="single_product_item"> -->
+<!--                             <img src="img/main/main_poster5.jpg" alt=""> -->
+<!--                             <div class="single_product_text"> -->
+<!--                                 <h4>Quartz Belt Watch</h4> -->
+<!--                                 <h3>예매율</h3> -->
+<!--                             </div> -->
+<!--                         </div> -->
+                        
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div>.container -->
+<!--         </div> -->
+<!--     </section> -->
+<!--     product_list part end -->
 
     <!-- feature_part start-->
     <section class="feature_part padding_top">
@@ -388,60 +489,7 @@
     </section>
     <!-- awesome_shop part start-->
 
-    <!-- product_list part start-->
-    <section class="product_list best_seller section_padding">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="section_tittle text-center">
-                        <h2>Best Sellers <span>shop</span></h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row align-items-center justify-content-between">
-                <div class="col-lg-12">
-                    <div class="best_product_slider owl-carousel">
-                        <div class="single_product_item">
-                            <img src="img/product/product_1.png" alt="">
-                            <div class="single_product_text">
-                                <h4>Quartz Belt Watch</h4>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="single_product_item">
-                            <img src="img/product/product_2.png" alt="">
-                            <div class="single_product_text">
-                                <h4>Quartz Belt Watch</h4>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="single_product_item">
-                            <img src="img/product/product_3.png" alt="">
-                            <div class="single_product_text">
-                                <h4>Quartz Belt Watch</h4>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="single_product_item">
-                            <img src="img/product/product_4.png" alt="">
-                            <div class="single_product_text">
-                                <h4>Quartz Belt Watch</h4>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                        <div class="single_product_item">
-                            <img src="img/product/product_5.png" alt="">
-                            <div class="single_product_text">
-                                <h4>Quartz Belt Watch</h4>
-                                <h3>$150.00</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- product_list part end-->
+    
 
     <!-- subscribe_area part start-->
     <section class="subscribe_area section_padding">
@@ -527,6 +575,7 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/jquery.nice-select.min.js"></script>
     <!-- slick js -->
+    <script src="js/slick.js"></script>
     <script src="js/slick.min.js"></script>
     <script src="js/jquery.counterup.min.js"></script>
     <script src="js/waypoints.min.js"></script>

@@ -19,13 +19,15 @@ public class PayFormAction implements Action {
 		String member_id = request.getParameter("member_id");
 
 		PayFormService payFormService = new PayFormService();
-		ReserveBean movie = payFormService.getMovie(movienum);
 		
+		ReserveBean movie = payFormService.getMovie(movienum);		
 		request.setAttribute("movie", movie);
 		
-		MemberBean memberInfo = payFormService.getMemberInfo(member_id);
-		
+		MemberBean memberInfo = payFormService.getMemberInfo(member_id);		
 		request.setAttribute("memberInfo", memberInfo);
+		
+		String ticketnum = payFormService.createTicketNum();
+		request.setAttribute("ticketnum", ticketnum);
 		
 		forward = new ActionForward();
 		forward.setPath("/reservation/payForm.jsp");		

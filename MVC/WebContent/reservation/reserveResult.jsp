@@ -95,6 +95,10 @@ ReserveBean reserveInfo = (ReserveBean)request.getAttribute("reserveInfo");
 					</table>
 				</div><!-- .rightBox -->
 			</div><!-- .infoBox -->
+			<div class="btnBox">
+				<a href="main.jsp" class="genric-btn primary circle">홈으로</a>
+				<a href="#" class="genric-btn info circle">마이페이지</a>
+			</div>
 		</div><!-- .reserveInfo -->
 	</div><!-- .container -->
 </div><!-- #reserveResult -->

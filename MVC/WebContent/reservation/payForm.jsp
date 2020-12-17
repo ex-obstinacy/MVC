@@ -16,6 +16,8 @@ int coupon2000 = memberInfo.getCoupon_2000();
 int coupon3000 = memberInfo.getCoupon_3000();
 int freeTicket = memberInfo.getFree_ticket();
 
+String ticketnum = (String)request.getAttribute("ticketnum");
+
 if(adultnum == 0){
 	%>
 		<script type="text/javascript">
@@ -136,12 +138,32 @@ if(adultnum == 0){
 	    }
 	}
 	
+	function changePrice(btn){
+		var payPrice = document.getElementById("payPrice");
+		var salePrice = document.getElementById("salePrice");
+		var originPrice = document.getElementById("originPrice");
+		
+		
+		
+		if(btn.value == "결제금액 10원으로 변경"){
+			payPrice.value = 10;
+			btn.value = "결제금액 되돌리기";
+		} else if(btn.value == "결제금액 되돌리기"){
+			payPrice.value = Number(originPrice.value) + Number(salePrice.value);	
+			btn.value = "결제금액 10원으로 변경";
+		}
+		
+	}
+	
 	// 결제 API (아임포트) 구현
 	IMP.init("imp56648633"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.	
 	
 	function requestPay() {
 				var payMethod=$("input:checkbox[name='payMethod']:checked").val();
 				var movieName=$('.movieSubject').text();
+				var ticketnum = $("input:hidden[name='ticketnum']").val();
+				var queryString = $('#payForm').serialize();
+				
 
 				if(payMethod == null){
 					alert("결제수단을 선택해주세요.");
@@ -152,7 +174,7 @@ if(adultnum == 0){
 		      IMP.request_pay({ // param
 		          pg: "html5_inicis",
 		          pay_method:payMethod,
-		          merchant_uid: "ORD20180131-0000011", // 상품 번호
+		          merchant_uid: ticketnum, // 예매 번호
 		          name: movieName, // 상품명
 		          amount: payPrice.value, // 상품가격
 		          buyer_email: "gildong@gmail.com",
@@ -164,15 +186,13 @@ if(adultnum == 0){
 		    	  if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
 		    	      // jQuery로 HTTP 요청
 		    	      jQuery.ajax({
-		    	          url: "https://www.myservice.com/payments/complete", // 가맹점 서버
+		    	          url:"http://localhost:8080/MVC/PayPro.re",
 		    	          method: "POST",
 		    	          headers: { "Content-Type": "application/json" },
-		    	          data: {
-		    	              imp_uid: rsp.imp_uid,
-		    	              merchant_uid: rsp.merchant_uid
-		    	          }
+		    	          data: queryString
 		    	      }).done(function (data) {
 		    	        // 가맹점 서버 결제 API 성공시 로직
+		    	        document.payForm.submit();
 		    	      })
 		    	    } else {
 		    	      alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
@@ -213,12 +233,14 @@ if(adultnum == 0){
 <div id="sub_content">	
 	<section id="moviePayBox">
 		<div class="container">
-			<form action="PayPro.re" name="selectSeat" method="post" id="payForm">
+			<form action="PayPro.re" name="payForm" method="post" id="payForm">
 				<!-- Pro로 보낼 값 -->
+				<input type="hidden" name="ticketnum" value="<%=ticketnum%>"> <!-- 예매번호 -->
 				<input type="hidden" name="member_id" value="<%=member_id%>"> <!-- 예매 아이디 -->
 				<input type="hidden" name="movienum" value="<%=request.getParameter("movienum")%>"> <!-- 영화 번호 -->
 				<input type="hidden" name="adultnum" value="<%=adultnum %>"> <!-- 성인 수 -->
 				<input type="hidden" name="kidsnum" value="<%=kidsnum %>"> <!-- 아이 수 -->
+
 				<%
 					for(String seat : seatArr){
 						%><input type="hidden" name="seat" value="<%=seat%>" ><%
@@ -232,7 +254,7 @@ if(adultnum == 0){
 				<div class="leftBox">
 					<div class="movieCont">
 						<h3>예매정보</h3>
-						<span class="movieImg"><img src="img/littlepost.jpg"></span>
+						<span class="movieImg"><img src="img/sub/poster.jpg"></span>
 						<div class="movieInfo">			
 							<h4 class="movieSubject"><%=movie.getMovie_subject() %></h4>
 							<dl>
@@ -374,15 +396,15 @@ if(adultnum == 0){
 						</tr>
 						<tr>
 							<td>
-								<input type="button" value="결제하기(API)" id="payButton" onclick="requestPay()">
+								<input type="button" value="결제하기" id="payButton" onclick="requestPay()">
 							</td>
 							<td>
-								<!-- 가상 결제 완료 버튼 -->
-								<input type="submit" value="결제완료 테스트" class="payTestBtn">
+								<input type="button" value="결제금액 10원으로 변경" class="changePriceBtn" onclick="changePrice(this)">
+<!-- 								가상 결제 완료 버튼 -->
+<!-- 								<input type="submit" value="결제완료 테스트" class="payTestBtn"> -->
 							</td>
 						</tr>
 					</table>
-				
 					
 				</div><!-- .rightBox -->
 				

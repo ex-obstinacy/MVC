@@ -16,11 +16,13 @@ public class PayProAction implements Action {
 		ActionForward forward = null;
 		
 		int movienum = Integer.parseInt(request.getParameter("movienum"));
+		String ticketnum = request.getParameter("ticketnum");
 		
 		ReserveBean reservation = new ReserveBean();
 //		reservation.setMember_id(request.getParameter("member_id")); // 원래 코드
 		reservation.setMember_id("kim"); // 임시 코드
 		reservation.setMovienum(movienum);
+		reservation.setTicketnum(ticketnum);
 		reservation.setAdultnum(Integer.parseInt(request.getParameter("adultnum")));
 		reservation.setKidsnum(Integer.parseInt(request.getParameter("kidsnum")));
 		reservation.setSeatArr(request.getParameterValues("seat"));
@@ -30,9 +32,7 @@ public class PayProAction implements Action {
 		PayProService payProService = new PayProService();
 		boolean isReserveSuccess = payProService.reserveMovie(reservation);
 		
-		if(isReserveSuccess) {	
-			String ticketnum = payProService.getTicketNum(reservation);
-			
+		if(isReserveSuccess) {		
 			if(ticketnum != null) {
 				forward = new ActionForward();
 				forward.setPath("ReserveResult.re?ticketnum=" + ticketnum);

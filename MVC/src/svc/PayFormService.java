@@ -43,4 +43,20 @@ public class PayFormService {
 		return memberInfo;
 	}
 
+	public String createTicketNum() {
+		String ticketnum = null;
+		
+		Connection con = getConnection();
+		
+		ReserveDAO reserveDAO = ReserveDAO.getInstance();
+		
+		reserveDAO.setConnection(con);
+		
+		ticketnum = reserveDAO.createTicketNum();
+		
+		close(con);
+		
+		return ticketnum;
+	}
+
 }
