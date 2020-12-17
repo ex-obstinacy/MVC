@@ -1,23 +1,9 @@
-<%@page import="vo.PageInfo"%>
-<%@page import="vo.MemberBean"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
  <%
 	//session 객체에 저장된 id 값 가져와서 변수에 저장
 	String id = (String)session.getAttribute("id");
- 
-	// 전달받은 request 객체로부터 데이터 가져오기
-	// "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
-	ArrayList<MemberBean> articleList = (ArrayList<MemberBean>) request.getAttribute("articleList");
-	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
-	// "pageInfo" 객체로부터 페이지 관련 값들을 꺼내서 변수에 저장
-	int nowPage = pageInfo.getPage();
-	int maxPage = pageInfo.getMaxPage();
-	int startPage = pageInfo.getStartPage();
-	int endPage = pageInfo.getEndPage();
-	int listCount = pageInfo.getListCount();
 %>
 
 <!DOCTYPE html>
@@ -49,21 +35,6 @@
     <link rel="stylesheet" href="css/price_rangs.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
-    
-    <link rel="stylesheet" href="css/common.css"> 
-        
-    <!-- 회원 삭제 -->
-    <script type="text/javascript">
-		function chDelete(id){
-             var check = confirm("삭제하시겠습니까?");
-
-             if(check){
-            	 location.href="AdminDeletePro.ad?id=" + id;
-            	 
-             }
-         }
-	</script>  
-      
 </head>
 
 <body>
@@ -79,8 +50,7 @@
                 <div class="col-lg-8">
                     <div class="breadcrumb_iner">
                         <div class="breadcrumb_iner_item">
-                            <h2><%=id %> 님</h2>
-                            <p>반갑습니다! Welcome Back!</p>
+                            <h2>영화 등록</h2>
                         </div>
                     </div>
                 </div>
@@ -127,104 +97,62 @@
           <!--================ 메뉴 영역 =================-->          
                 
                 <div class="col-lg-9">
-                    <div class="row align-items-center"><!-- 삭제 class(latest_product_inner) -->
-
-						<!-- 게시판 리스트 -->
-						<section id="listForm" class="checkout_area padding_top">
-							<div class="container">
-								<div class="cart_inner">
-									<div class="table-responsive">
-										<table class="table">
-											<%
-												if (articleList != null && listCount > 0) {
-											%>
-											<tr>
-												<th>아이디</th>
-												<th>비밀번호</th>
-												<th>이름</th>
-												<th>생년월일</th>
-												<th>전화번호</th>
-												<th>이메일</th>
-												<th>회원등급</th>
-												<th>쿠폰</th>
-												<th></th>
-											</tr>
-											<%
-												for (int i = 0; i < articleList.size(); i++) {
-											%>
-											<tr>
-												<td align="center"><a href="AdminMemberDetail.ad?id=<%=articleList.get(i).getId() %>&page=<%=nowPage %>"><%=articleList.get(i).getId() %></a></td>
-												<td align="center"><%=articleList.get(i).getPass() %></td>
-												<td align="center"><%=articleList.get(i).getName() %></td>
-												<td align="center"><%=articleList.get(i).getBirthday() %></td>
-												<td><%=articleList.get(i).getPhone() %></td>
-												<td><%=articleList.get(i).getEmail() %></td>
-												<td align="center"><%=articleList.get(i).getMembership() %></td>
-												<td align="center"><%=articleList.get(i).getCoupon_1000() + articleList.get(i).getCoupon_2000() + articleList.get(i).getCoupon_3000() + articleList.get(i).getFree_ticket() %></td>
-												<td><input type="button" value="삭제" onclick="chDelete('<%=articleList.get(i).getId() %>')"></td>
-											</tr>
-											<%
-												}
-											%>
-										</table>
-									</div>
-								</div>
-							</div>
-						</section>
-						<section id="pageList">
-							<div class="container">
-								<%
-									if (nowPage <= 1) {
-								%>
-								<input type="button" value="이전" class="btn_3">&nbsp;
-								<%
-									} else {
-								%>
-								<input type="button" value="이전" class="btn_3" onclick="location.href='AdminMemberList.ad?page=<%=nowPage - 1%>'">&nbsp;
-								<%
-									}
-								%>
-					
-								<%
-									for (int i = startPage; i <= endPage; i++) {
-									if (i == nowPage) {
-								%>
-								[<%=i%>]&nbsp;
-								<%
-									} else {
-								%>
-								<a href="AdminMemberList.ad?page=<%=i%>">[<%=i%>]
-								</a>&nbsp;
-								<%
-									}
-								%>
-								<%
-									}
-								%>
-					
-								<%
-									if (nowPage >= maxPage) {
-								%>
-								<input type="button" value="다음" class="btn_3">
-								<%
-									} else {
-								%>
-								<input type="button" value="다음" class="btn_3"
-									onclick="location.href='AdminMemberList.ad?page=<%=nowPage + 1%>'">
-								<%
-									}
-								%>
-							</div>
-						</section>
-						<%
-							} else {
-						%>
-						<section id="emptyArea">
-							<div class="container">등록된 글이 없습니다</div>
-						</section>
-						<%
-							}
-						%>
+                    <div class="row align-items-center latest_product_inner">
+	                    <form action="MovWritePro.mo" method="post" enctype="multipart/form-data">
+	                    	<table class="table">
+	                    		<tr>
+	                    			<td>제목</td>
+	                    			<td><input type="text" class="single-input"></td>
+	                    			<td>영화 코드</td>
+	                    			<td><input type="text" class="single-input" placeholder="영화진흥위원회 코드"></td>
+	                    		</tr>
+	                    		<tr>
+	                    			<td>장르</td>
+	                    			<td><input type="text" class="single-input"></td>
+	                    			<td>개봉일</td>
+	                    			<td><input type="text" class="single-input"></td>
+	                    		</tr>
+	                    		<tr>
+	                    			<td>상영시간</td>
+	                    			<td><input type="text" class="single-input"></td>
+	                    			<td>감독</td>
+	                    			<td><input type="text" class="single-input"></td>
+	                    		</tr>
+	                    		<tr>
+	                    			<td>출연</td>
+	                    			<td><input type="text" class="single-input"></td>
+	                    			<td>관람등급</td>
+	                    			<td>
+	                    				<div class="default-select" id="default-select_2">
+											<select>
+												<option value="1">전체관람가</option>
+												<option value="1">12세이상관람가</option>
+												<option value="1">15세이상관람가</option>
+												<option value="1">청소년관람불가</option>
+											</select>
+										</div>
+	                    			</td>
+	                    		</tr>
+	                    		<tr>
+	                    			<td>포스터</td>
+	                    			<td><input type="file"></td>
+	                    			<td>스틸컷</td>
+	                    			<td><input type="file" multiple></td>
+	                    		</tr>
+	                    		<tr>
+	                    			<td colspan="4">
+	                    				<textarea class="single-textarea" placeholder="영화정보"></textarea>
+	                    			</td>
+	                    		</tr>
+	                    		<tr>
+	                    			<td colspan="4">
+	                    				<input type="submit" value="등록" class="genric-btn primary circle">
+	                    				<input type="reset" value="취소" class="genric-btn success circle">
+	                    			</td>
+	                    		</tr>
+	                    		
+	                    	</table>
+	                    </form>
                     
                     </div>
                 </div>

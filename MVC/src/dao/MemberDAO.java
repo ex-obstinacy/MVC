@@ -163,7 +163,7 @@ public class MemberDAO {
 				article.setCoupon_2000(rs.getInt(13));
 				article.setCoupon_3000(rs.getInt(14));
 				article.setMembership(rs.getInt(15));
-				article.setFree_ticked(rs.getInt(16));
+				article.setFree_ticket(rs.getInt(16));
 				
 			}
 			
@@ -317,7 +317,7 @@ public class MemberDAO {
 				article.setCoupon_2000(rs.getInt(13));
 				article.setCoupon_3000(rs.getInt(14));
 				article.setMembership(rs.getInt(15));
-				article.setFree_ticked(rs.getInt(16));
+				article.setFree_ticket(rs.getInt(16));
 				
 				// 1개 회원을 전체 회원 저장 객체(ArrayList)에 추가
 				articleList.add(article);

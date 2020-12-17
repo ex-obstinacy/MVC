@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.AdminDeleteProAction;
-import action.AdminMemberDetailProAction;
 import action.MemberInfoAction;
 import action.AdminMemberListAction;
 import action.MemberLoginProAction;
@@ -19,8 +18,8 @@ import action.MemberMainAction;
 import action.MemberWriteProAction;
 import vo.ActionForward;
 
-@WebServlet("*.ad") // 서블릿 주소 중 XXX.bo 주소에 대한 요청을 전달받아 처리
-public class AdminFrontController extends HttpServlet {
+@WebServlet("*.mo") // 서블릿 주소 중 XXX.bo 주소에 대한 요청을 전달받아 처리
+public class MovFrontController extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 서블릿 요청 시 GET 방식 또는 POST 방식의 요청이 들어오면
@@ -40,42 +39,9 @@ public class AdminFrontController extends HttpServlet {
 		
 		// if문을 사용하여 각 서블릿 주소 판별 및 각 요청 처리를 위한 작업 요청
 		// 1. MemberWriteForm.bo 요청에 대한 처리
-		if (command.equals("/AdminMain.ad")) { // 관리자모드 메인화면
+		if (command.equals("/MovWrite.mo")) { // 영화 등록 화면
 			forward = new ActionForward();
-			forward.setPath("/member/admin_main.jsp");
-			
-		} else if (command.equals("/AdminMemberList.ad")) { // 회원 목록 확인
-			action = new AdminMemberListAction();
-			
-			try {
-				forward = action.execute(request, response);
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-				
-			}
-			
-		} else if (command.equals("/AdminDeletePro.ad")) { // 회원 삭제
-			action = new AdminDeleteProAction();
-			
-			try {
-				forward = action.execute(request, response);
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-				
-			}
-			
-		}  else if (command.equals("/AdminMemberDetail.ad")) { // 회원 정보 조회
-			action = new AdminMemberDetailProAction();
-			
-			try {
-				forward = action.execute(request, response);
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-				
-			}
+			forward.setPath("/mov/mov_write.jsp");
 			
 		}
 		
