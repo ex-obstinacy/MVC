@@ -405,66 +405,76 @@ public class StoreDAO {
          }
       
       // 2. 장바구니 -> 구매하기 목록 조회
-      public ArrayList<StoreBean> selectBasketList(String[] checkRows, String id) {
-		System.out.println("selectBasketList DAO - String[] checkRows");
-		ArrayList<StoreBean> basketList = null;
-
-		PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        
-		try {
-			for(String check: checkRows) {
-//				System.out.println(check);
-				
-				String sql = "SELECT * FROM basket WHERE basketId = ?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, check);
-				rs = pstmt.executeQuery();
-				
-				while(rs.next()) {
-					sql = "SELECT basket.basketCount, basket.basketId, basket.goods_goodsId, " 
-            				+ "goods.ctg, goods.name, goods.price, goods.sale, goods.component, goods.file, goods.content "
-            				+ "FROM basket JOIN goods "
-            				+ "ON basket.goods_goodsId = goods.goodsId "
-            				+ "WHERE member_id = ?";
-					pstmt = con.prepareStatement(sql);
-	            	pstmt.setString(1, id);
-	            	rs = pstmt.executeQuery();
-	            	
-	            	basketList = new ArrayList<StoreBean>();
-					// StoreBean 객체를 생성하여 레코드 데이터 모두 저장 후  StoreBean 객체를 다시 ArrayList 객체에 추가 => 반복
-		               while(rs.next()) {
-		                  // 1개 게시물 정보를 저장할 StoreBean 객체 생성 및 데이터 저장
-		                  StoreBean basket = new StoreBean(); 
-		                    
-		                  //basket 테이블
-		                  basket.setBasketCount(rs.getInt("basketCount"));
-		                  basket.setBasketId(rs.getInt("basketId"));
-		                  basket.setGoods_goodsId(rs.getInt("goods_goodsId"));
-		                  //goods 테이블
-		                  basket.setCtg(rs.getString("ctg"));
-		                  basket.setName(rs.getString("name"));
-		                  basket.setPrice(rs.getInt("price"));
-		                  basket.setSale(rs.getInt("sale"));
-		                  basket.setComponent(rs.getString("component"));
-		                  basket.setFile(rs.getString("file"));
-		                  basket.setContent(rs.getString("content"));
-		                  
-		                  // 1개 게시물을 전체 게시물 저장 객체(ArrayList)에 추가
-		                  basketList.add(basket);
-		               }
-				}
-				
-			}
-		} catch (SQLException e) {
-            System.out.println("selectBasketList DAO - String[] checkRows 오류!- "+e.getMessage());
-            e.printStackTrace();
-         } finally {
-            close(pstmt);
-            close(rs);
-         }
-			
-			return basketList;
+      public ArrayList<StoreBean> selectBasketList(String[] basketIds, String id) {
+    	  System.out.println("selectBasketList DAO");
+  	  	ArrayList<StoreBean> basketList = null;
+  	  	
+          PreparedStatement pstmt = null;
+          PreparedStatement pstmt2 = null;
+          ResultSet rs = null;
+          ResultSet rs2 = null;
+          
+          try {
+          	
+          	basketList = new ArrayList<StoreBean>();
+          	
+          	for(String basket: basketIds) {
+          		int basketId = Integer.parseInt(basket);
+          		
+          		String sql = "SELECT * FROM basket WHERE basketId = ?";
+          		pstmt = con.prepareStatement(sql);
+          		pstmt.setInt(1, basketId);
+          		rs = pstmt.executeQuery();
+          		
+          		if(rs.next()) {
+          			// 가져온 상품번호를 통해 상품정보 저장하기위해 변수 정의
+          			int goods_goodsId = rs.getInt("goods_goodsId");
+          			
+          			String sql2 = "SELECT * FROM goods WHERE goodsId = ?";
+          			pstmt2 = con.prepareStatement(sql2);
+          			pstmt2.setInt(1, goods_goodsId);
+          			rs2 = pstmt2.executeQuery();
+          			
+          			//ArrayList 객체 생성(while문 위에서 생성 필수!)
+          			
+          			while(rs2.next()) {
+          				
+          				// 1개 게시물 정보를 저장할 StoreBean 객체 생성 및 데이터 저장
+                          StoreBean sb = new StoreBean(); 
+                            
+                          //basket 테이블
+                          sb.setBasketCount(rs.getInt("basketCount"));
+                          sb.setBasketId(rs.getInt("basketId"));
+                          sb.setGoods_goodsId(rs.getInt("goods_goodsId"));
+                          sb.setMember_id(id);
+                          //goods 테이블
+                          sb.setCtg(rs2.getString("ctg"));
+                          sb.setName(rs2.getString("name"));
+                          sb.setPrice(rs2.getInt("price"));
+                          sb.setSale(rs2.getInt("sale"));
+                          sb.setComponent(rs2.getString("component"));
+                          sb.setFile(rs2.getString("file"));
+                          sb.setContent(rs2.getString("content"));
+                          
+                          System.out.println(sb.getGoods_goodsId());
+                          
+                          // 1개 게시물을 전체 게시물 저장 객체(ArrayList)에 추가
+                          basketList.add(sb);
+                          System.out.println(basketList);
+          			}
+          			
+          		}
+             
+             }
+             
+          } catch (SQLException e) {
+             System.out.println("selectBasketList() 오류!- "+e.getMessage());
+             e.printStackTrace();
+          } finally {
+             close(pstmt);
+             close(rs);
+          }
+          return basketList;
 		}
       
       // 상품 수정

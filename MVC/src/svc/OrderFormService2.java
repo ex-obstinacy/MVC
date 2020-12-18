@@ -15,10 +15,6 @@ public class OrderFormService2 {
 	    
 	    ArrayList<StoreBean> basketList = null;
 	    
-	    for(String check: checkRows) {
-			System.out.println(check);
-		}
-	    
 	    Connection con = getConnection();
 	    StoreDAO storeDAO = StoreDAO.getInstance();
 	    storeDAO.setConnection(con);
