@@ -477,6 +477,80 @@ public class StoreDAO {
           return basketList;
 		}
       
+      // 결제내역 추가
+      public int orderGoods(String[] goodsIds, String id, int sumPrice, int totalPrice) {
+			System.out.println("StoreDAO - orderGoods");
+			
+			int addCount = 0;
+			Timestamp date = new Timestamp(System.currentTimeMillis());
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				int orderId = 0;
+				int orderCount = 0;
+				
+				for(String goods: goodsIds) {
+					int goodsId = Integer.parseInt(goods);
+					
+					System.out.println("goods : " + goods);
+					System.out.println(id);
+					System.out.println(sumPrice);
+					System.out.println(totalPrice);
+					
+					 String sql = "SELECT * FROM goods_order WHERE goods_goodsId=? AND member_id=?";
+					 pstmt = con.prepareStatement(sql);
+					 pstmt.setInt(1, goodsId);
+					 pstmt.setString(2, id);
+					 rs = pstmt.executeQuery();
+					 
+					 if(rs.next()) {
+						orderCount ++;
+						System.out.println(orderCount);
+						sql = "UPDATE goods_order SET orderCount WHERE goods_goodsId=? AND member_id=?";
+						pstmt = con.prepareStatement(sql);
+						pstmt.setInt(1, orderCount);
+						pstmt.setInt(2, goodsId);
+						pstmt.setString(3, id);
+						addCount = pstmt.executeUpdate();
+					 } else {
+			              sql = "SELECT MAX(orderId) FROM goods_order";
+			              pstmt = con.prepareStatement(sql);
+			              rs = pstmt.executeQuery();
+			              
+			              if (rs.next()) {
+			            	  orderId = rs.getInt(1) +1;
+			               
+			         }
+			              
+			        sql = "INSERT INTO goods_order(orderId, goods_goodsId, member_id, orderCount, totalPrice, date, sumPrice) VALUES(?, ? ,? ,? ,? ,? ,?)";
+			        pstmt = con.prepareStatement(sql);
+			        pstmt.setInt(1, orderId);
+			        pstmt.setInt(2, goodsId);
+			        pstmt.setString(3, id);
+			        pstmt.setInt(4, 1);
+			        pstmt.setInt(5, totalPrice);
+			        pstmt.setTimestamp(6, date);
+			        pstmt.setInt(7, sumPrice);
+			        
+			        addCount = pstmt.executeUpdate();
+			            
+			        }
+					 
+				} //포문
+			} catch (Exception e) {
+				System.out.println("orderGoods() 오류!- "+e.getMessage());
+				e.printStackTrace();
+			} finally {
+	             close(pstmt);
+	             close(rs);
+	          }
+			
+			return addCount;
+		}
+      
+      
+      
       // 상품 수정
       public int updateArticle(StoreBean article) {
   		// StoreBean 객체에 저장된 수정 내용(작성자, 제목, 내용)을 사용하여
@@ -610,6 +684,8 @@ public class StoreDAO {
    			  			
    			return deleteCount;
    		}
+
+		
 
    		
 		

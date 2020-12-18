@@ -68,13 +68,14 @@
 		   var checkRow = document.getElementsByName("checkRow");
 		   var checked =0 ; //체크된 갯수 파악 위한 초기 변수
 		   
-		   var basketIds = new Array();
+// 		   var basketIds = new Array();
 		   // 체크박스 값 확인
 			for(var i=0; i<check_count; i++){
 			   if(checkRow[i].checked==true){
 				   checked += 1;
-				   basketIds[i]=checkRow[i].value;
-				   alert(basketIds[i]);
+// 				   basketIds[i]=checkRow[i].value;
+// 				   alert(basketIds[i]);
+				   alert(checkRow[i].value);
 			   }
 			}
 		   

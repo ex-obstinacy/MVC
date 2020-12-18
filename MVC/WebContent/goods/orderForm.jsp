@@ -69,6 +69,7 @@ function requestPay() {
          var name=$('.name').text();
 		 var sumPrice = document.getElementById("sumPrice");
 		 sumPrice.value = Number(sumPrice.value);
+		 var queryString = $('#orderForm').serialize();
          
          if(payMethod == null){
             alert("결제수단을 선택해주세요.");
@@ -79,28 +80,44 @@ function requestPay() {
          IMP.request_pay({ // param
              pg: "html5_inicis",
              pay_method:payMethod,
-             merchant_uid: "ORD20180131-0000018", // 상품 번호
+             merchant_uid: "ORD20180131-0000038", // 상품 번호
              name: name, // 상품명
-             amount: sumPrice.value, // 상품가격
+             amount: 100, // 상품가격
+//              amount: sumPrice.value, // 상품가격
              buyer_email: "gildong@gmail.com",
          }, function (rsp) { // callback
             if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
                 // jQuery로 HTTP 요청
                 jQuery.ajax({
-                    url: "https://www.myservice.com/payments/complete", // 가맹점 서버
+                    url: "http://localhost:8080/MVC/OrderPro.go", // 가맹점 서버
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    data: {
-                        imp_uid: rsp.imp_uid,
-                        merchant_uid: rsp.merchant_uid
-                    }
+                    data: queryString
                 }).done(function (data) {
                   // 가맹점 서버 결제 API 성공시 로직
+
+         		   //ㅇㅕ기 넣으면 왜 안넘어가지 !!!!?!?????
+         				   
                 })
+                
+                ///추가////  
+                   var check_count = document.getElementsByName("goodsRow").length;
+         		   var goodsRow = document.getElementsByName("goodsRow");
+         		   var checked =0 ; //체크된 갯수 파악 위한 초기 변수
+         		   
+         		   // 체크박스 값 확인
+         			for(var i=0; i<check_count; i++){
+         				   alert(goodsRow[i].value);
+         			}
+                  alert("결제성공");
+                	document.orderResult.submit();
+               	///추가////
+               	
+               	
               } else {
                 alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
               }
-         location.href = "OrderPro.go";
+//          location.href = "OrderPro.go";
          });
          
 }
@@ -136,8 +153,7 @@ function requestPay() {
       <div class="cart_inner">
         <h3>구매상품 정보</h3>
          <hr>
-<!--         <form action="OrderPro.go" name="basket" method="post" id="orderForm"> -->
-        <!-- Pro로 보낼 값 -->
+        <form action="OrderPro.go" name="orderResult" method="post">
           <table class="table">
           <%
           if(basketList != null){
@@ -158,6 +174,7 @@ function requestPay() {
             sale2 += sale; // 총 할인가격 += 할인가격
             sumPrice = totalPrice - sale2; // 할인 후 상품금액 = 할인 전 상품금액 - 총 할인가격
             
+            int goods_goodsId = basketList.get(i).getGoods_goodsId();
          %>
             <tbody>
               <tr>
@@ -165,6 +182,8 @@ function requestPay() {
                 <td>
                   <div class="media">
                     <div class="d-flex">
+					<!-- goodsRow,, Pro로 보낼 값 -->
+                    <input type="hidden" name="goodsRow" class="goodsSelect" value=<%=goods_goodsId %>>
                       <img src="goodsUpload/<%=basketList.get(i).getFile() %>" alt="상품이미지" width="250" />
                     </div>
                     <div class="media-body">
@@ -203,7 +222,9 @@ function requestPay() {
                   <h5><%=totalPrice %>원</h5>
                   <h5><%=sale2%>원</h5>
                   <h3><%=sumPrice %>원</h3>
+                  <!-- sumPrice,, totalPrice로 보낼 값 -->
                   <input type="hidden" value="<%=sumPrice %>" name="sumPrice" id="sumPrice">
+                  <input type="hidden" value="<%=totalPrice %>" name="totalPrice" id="totalPrice">
                 </td>
               </tr>
             </tbody>
