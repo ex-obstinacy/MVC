@@ -62,7 +62,7 @@
 	      });
 	   })   ;
 	   
-		//체크박스 값 넘기기
+		//선택상품 주문
 	  function orderOptional(){
 		   var check_count = document.getElementsByName("checkRow").length;
 		   var checkRow = document.getElementsByName("checkRow");
@@ -88,9 +88,11 @@
 		   
 	  }
 		
-		function orderAll() {
-			document.basketform.submit();
-		}
+		//전체상품주문
+	  function orderAll() {
+	         $("input[type=checkbox]").prop("checked",true);
+	         document.basketform.submit();
+	      }
 	
 	//수량변경 button
 	function CountChg(basketId) {
