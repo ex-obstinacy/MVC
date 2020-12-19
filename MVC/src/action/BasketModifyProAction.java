@@ -50,8 +50,8 @@ public class BasketModifyProAction implements Action {
 	    int basketId = Integer.parseInt(request.getParameter("basketId"));
 	    int basketCount = Integer.parseInt(request.getParameter("basketCount"));
 //	    System.out.println(goodsId);
-	    System.out.println("basketId = "+basketId);
-	    System.out.println("basketCount = "+basketCount);
+	    System.out.println("변경할 basketId = "+basketId);
+	    System.out.println("변경할 basketCount = "+basketCount);
 		
 		// BasketModifyProService 클래스 인스턴스 생성 후
 		BasketModifyProService basketModifyProService = new BasketModifyProService();

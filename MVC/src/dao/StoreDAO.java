@@ -343,7 +343,7 @@ public class StoreDAO {
                   basket.setFile(rs.getString("file"));
                   basket.setContent(rs.getString("content"));
                   
-                  System.out.println(basket.getGoods_goodsId());
+                  System.out.println("storeDAO - selectBasketList()에서 check - 담겨있는 상품아이디 :" + basket.getGoods_goodsId());
                   
                   // 1개 게시물을 전체 게시물 저장 객체(ArrayList)에 추가
                   basketList.add(basket);
