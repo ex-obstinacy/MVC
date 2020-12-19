@@ -22,7 +22,7 @@ public class OrderProAction2 implements Action {
       
       HttpSession session = request.getSession(); //MemberBean id 값 가져오기
       String id = (String)session.getAttribute("id");
-      int goodsId = Integer.parseInt(request.getParameter("goodsId"));
+//      int goodsId = Integer.parseInt(request.getParameter("goodsId"));
       int sumPrice = Integer.parseInt(request.getParameter("sumPrice")); //sumPrice 값 가져오기
       int totalPrice = Integer.parseInt(request.getParameter("totalPrice")); //totalPrice 값 가져오기
       String orderNum = request.getParameter("orderNum");
@@ -33,9 +33,9 @@ public class OrderProAction2 implements Action {
       order.setReserveNum(reserveNum);
       order.setSumPrice(sumPrice);
       order.setTotalPrice(totalPrice);
-      order.setGoodsId(goodsId);
+//      order.setGoodsId(goodsId);
       
-      System.out.println("goodsId : " + goodsId);
+//      System.out.println("goodsId : " + goodsId);
       
       // 선택한 상품번호 가져오기
       String[] goodsIds = request.getParameterValues("goodsRow");

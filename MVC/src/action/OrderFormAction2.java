@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import svc.OrderFormService2;
 import svc.OrderFormService;
 import vo.ActionForward;
-import vo.StoreBasketIds;
 import vo.StoreBean;
 
 //장바구니 -> 구매목록

@@ -6,7 +6,7 @@
 ArrayList<StoreBean> basketList = (ArrayList<StoreBean>)request.getAttribute("basketList");
 
 String member_id = (String)session.getAttribute("id");
-int goodsId = Integer.parseInt(request.getParameter("goodsId"));
+// int goodsId = Integer.parseInt(request.getParameter("goodsId"));
 
 int totalPrice = 0; //할인 전 총 상품금액
 int sale2 = 0; // 총 할인가격
@@ -186,8 +186,8 @@ function requestPay() {
                   <div class="media">
                     <div class="d-flex">
 					<!-- Pro로 넘길 값 -->
-                    <input type="hidden" value=<%=goods_goodsId %> name="goodsRow" class="goodsSelect">
-                    <input type="hidden" value=<%=reserveNum %> name="reserveNum">
+                    <input type="text" value=<%=goods_goodsId %> name="goodsRow" class="goodsSelect">
+                    <input type="text" value=<%=reserveNum %> name="reserveNum">
                     <input type="hidden" value="<%=orderNum %>" name="orderNum">
                     <!-- Pro로 넘길 값 -->
                       <img src="goodsUpload/<%=basketList.get(i).getFile() %>" alt="상품이미지" width="250" />
@@ -231,7 +231,7 @@ function requestPay() {
                   <!-- Pro로 넘길 값 -->
                   <input type="hidden" value="<%=sumPrice %>" name="sumPrice" id="sumPrice">
                   <input type="hidden" value="<%=totalPrice %>" name="totalPrice" id="totalPrice">
-                  <input type="hidden" value=<%=goodsId %> name="goodsId">
+<%--                   <input type="hidden" value=<%=goodsId %> name="goodsId"> --%>
                   <!-- Pro로 넘길 값 -->
                 </td>
               </tr>

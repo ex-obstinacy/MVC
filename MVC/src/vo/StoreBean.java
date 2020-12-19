@@ -22,7 +22,7 @@ public class StoreBean {
 	private int orderCount; //결제 수량
 	private String orderNum; //주문 번호
 	private String reserveNum; //예약 번호
-	private int expiredate; //유효 기간
+	private String expiredate; //유효 기간
 	private boolean status; //사용상태확인
 	private String member_id; // 멤버아이디 (12.05 추가)
 	private int goods_goodsId; // 상품번호 (외래키) (12.05 추가)
@@ -143,10 +143,10 @@ public class StoreBean {
 	public void setReserveNum(String reserveNum) {
 		this.reserveNum = reserveNum;
 	}
-	public int getExpiredate() {
+	public String getExpiredate() {
 		return expiredate;
 	}
-	public void setExpiredate(int expiredate) {
+	public void setExpiredate(String expiredate) {
 		this.expiredate = expiredate;
 	}
 	public boolean isStatus() {

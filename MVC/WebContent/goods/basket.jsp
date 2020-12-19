@@ -1,4 +1,3 @@
-<%@page import="vo.StoreBasketIds"%>
 <%@page import="vo.StoreBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="vo.MemberShipBean"%>

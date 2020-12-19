@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.util.Date;
 import java.util.Random;
+import java.util.TimeZone;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -479,106 +480,6 @@ public class StoreDAO {
           return basketList;
 		}
       
-      // 결제내역 추가
-      public int orderGoods(String[] goodsIds, String id, StoreBean order) {
-			System.out.println("StoreDAO - orderGoods");
-			
-			int addCount = 0;
-			Timestamp date = new Timestamp(System.currentTimeMillis());
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			
-			System.out.println(order.getGoodsId());
-			
-			try {
-				int orderId = 0;
-				int orderCount = 1;
-				
-				for(String goods: goodsIds) {
-					int goodsId = Integer.parseInt(goods);
-					//확인
-					System.out.println("goodsId : " + goodsId);
-		            System.out.println(order.getReserveNum());
-		            
-		            String sql = "SELECT * FROM goods_order WHERE orderNum=?";
-		           	pstmt = con.prepareStatement(sql);
-		           	pstmt.setString(1, order.getOrderNum());
-		           	rs = pstmt.executeQuery();
-		            
-		           	System.out.println("확인");
-		           	
-					if(rs.next()) {
-						sql = "SELECT MAX(orderCount) FROM goods_order where orderNum = ?";
-						pstmt = con.prepareStatement(sql);
-						pstmt.setString(1, order.getOrderNum());
-				        rs = pstmt.executeQuery();
-				        if (rs.next()) {
-				        	orderCount = rs.getInt(1) +1;
-				        	System.out.println(orderCount);
-				            System.out.println("확인2");
-				            
-				            sql = "SELECT MAX(orderId) FROM goods_order";
-					        pstmt = con.prepareStatement(sql);
-					        rs = pstmt.executeQuery();
-					        if (rs.next()) {
-					              orderId = rs.getInt(1) +1;
-					              System.out.println("확인6");
-					        }
-					        sql = "INSERT INTO goods_order(orderId, goods_goodsId, member_id, orderCount, totalPrice, date, orderNum, sumPrice, reserveNum) VALUES(?, ?, ? ,? ,? ,? ,? ,?, ?)";
-							 pstmt = con.prepareStatement(sql);
-							 pstmt.setInt(1, orderId);
-							 pstmt.setInt(2, goodsId);
-							 pstmt.setString(3, id);
-							 pstmt.setInt(4, orderCount);
-							 pstmt.setInt(5, order.getTotalPrice());
-							 pstmt.setTimestamp(6, date);
-							 pstmt.setString(7, order.getOrderNum());
-							 pstmt.setInt(8, order.getSumPrice());
-							 pstmt.setString(9, order.getReserveNum());
-				        
-							 addCount = pstmt.executeUpdate();
-							 System.out.println("확인7");
-							 
-				        }
-					} else {
-						sql = "SELECT MAX(orderId) FROM goods_order";
-				        pstmt = con.prepareStatement(sql);
-				        rs = pstmt.executeQuery();
-				        System.out.println("확인3"); 
-				        if (rs.next()) {
-				              orderId = rs.getInt(1) +1;
-				              System.out.println("확인4");
-				        }
-						 sql = "INSERT INTO goods_order(orderId, goods_goodsId, member_id, orderCount, totalPrice, date, orderNum, sumPrice, reserveNum) VALUES(?, ?, ?, ? ,? ,? ,? ,? ,?)";
-						 pstmt = con.prepareStatement(sql);
-						 pstmt.setInt(1, orderId);
-						 pstmt.setInt(2, goodsId);
-						 pstmt.setString(3, id);
-						 pstmt.setInt(4, orderCount);
-						 pstmt.setInt(5, order.getTotalPrice());
-						 pstmt.setTimestamp(6, date);
-						 pstmt.setString(7, order.getOrderNum());
-						 pstmt.setInt(8, order.getSumPrice());
-						 pstmt.setString(9, order.getReserveNum());
-			        
-						 addCount = pstmt.executeUpdate();
-						 System.out.println("확인5");
-			        }
-					 
-				} //포문
-			} catch (Exception e) {
-				System.out.println("orderGoods() 오류!- "+e.getMessage());
-				e.printStackTrace();
-			} finally {
-	             close(pstmt);
-	             close(rs);
-	          }
-			
-			return addCount;
-		}
-      
-      
-      
       // 상품 수정
       public int updateArticle(StoreBean article) {
   		// StoreBean 객체에 저장된 수정 내용(작성자, 제목, 내용)을 사용하여
@@ -713,8 +614,115 @@ public class StoreDAO {
    			return deleteCount;
    		}
 
+   	// 결제내역 추가
+        public int orderGoods(String[] goodsIds, String id, StoreBean order) {
+  			System.out.println("StoreDAO - orderGoods");
+  			
+  			int addCount = 0;
+  			Timestamp date = new Timestamp(System.currentTimeMillis());
+  			PreparedStatement pstmt = null;
+  			ResultSet rs = null;
+  			
+  			//---유효기간---
+  			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+  	        String currentTime = sdf.format(new java.util.Date());
+  	        Calendar c = Calendar.getInstance(TimeZone.getTimeZone("Asia/Seoul"));
+  	        String fromDate = sdf.format(c.getTime());
+  	        c.add(Calendar.YEAR, 1);    // 1년 증가
+  	        String expiredate = sdf.format(c.getTime());
+  	        //---유효기간---
+  			
+  			try {
+  				int orderId = 0;
+  				int orderCount = 1;
+  				
+  				for(String goods: goodsIds) {
+  					int goodsId = Integer.parseInt(goods);
+  					//확인
+  					System.out.println("goodsId : " + goodsId);
+  		            System.out.println(order.getReserveNum());
+  		            
+  		            String sql = "SELECT * FROM goods_order WHERE orderNum=?";
+  		           	pstmt = con.prepareStatement(sql);
+  		           	pstmt.setString(1, order.getOrderNum());
+  		           	rs = pstmt.executeQuery();
+  		            
+  		           	System.out.println("확인");
+  		           	
+  					if(rs.next()) {
+  						sql = "SELECT MAX(orderCount) FROM goods_order where orderNum = ?";
+  						pstmt = con.prepareStatement(sql);
+  						pstmt.setString(1, order.getOrderNum());
+  				        rs = pstmt.executeQuery();
+  				        if (rs.next()) {
+  				        	orderCount = rs.getInt(1) +1;
+  				        	System.out.println(orderCount);
+  				            System.out.println("확인2");
+  				            
+  				            sql = "SELECT MAX(orderId) FROM goods_order";
+  					        pstmt = con.prepareStatement(sql);
+  					        rs = pstmt.executeQuery();
+  					        if (rs.next()) {
+  					              orderId = rs.getInt(1) +1;
+  					              System.out.println("확인6");
+  					        }
+  					        sql = "INSERT INTO goods_order(orderId, goods_goodsId, member_id, orderCount, totalPrice, date, orderNum, sumPrice, reserveNum, expiredate) VALUES(?, ?, ?, ? ,? ,? ,? ,? ,?, ?)";
+  							 pstmt = con.prepareStatement(sql);
+  							 pstmt.setInt(1, orderId);
+  							 pstmt.setInt(2, goodsId);
+  							 pstmt.setString(3, id);
+  							 pstmt.setInt(4, orderCount);
+  							 pstmt.setInt(5, order.getTotalPrice());
+  							 pstmt.setTimestamp(6, date);
+  							 pstmt.setString(7, order.getOrderNum());
+  							 pstmt.setInt(8, order.getSumPrice());
+  							 pstmt.setString(9, order.getReserveNum());
+  							 pstmt.setString(10, expiredate);
+  				        
+  							 addCount = pstmt.executeUpdate();
+  							 System.out.println("확인7");
+  							 
+  				        }
+  					} else {
+  						sql = "SELECT MAX(orderId) FROM goods_order";
+  				        pstmt = con.prepareStatement(sql);
+  				        rs = pstmt.executeQuery();
+  				        System.out.println("확인3"); 
+  				        if (rs.next()) {
+  				              orderId = rs.getInt(1) +1;
+  				              System.out.println("확인4");
+  				        }
+  						 sql = "INSERT INTO goods_order(orderId, goods_goodsId, member_id, orderCount, totalPrice, date, orderNum, sumPrice, reserveNum, expiredate) VALUES(?, ?, ?, ?, ? ,? ,? ,? ,? ,?)";
+  						 pstmt = con.prepareStatement(sql);
+  						 pstmt.setInt(1, orderId);
+  						 pstmt.setInt(2, goodsId);
+  						 pstmt.setString(3, id);
+  						 pstmt.setInt(4, orderCount);
+  						 pstmt.setInt(5, order.getTotalPrice());
+  						 pstmt.setTimestamp(6, date);
+  						 pstmt.setString(7, order.getOrderNum());
+  						 pstmt.setInt(8, order.getSumPrice());
+  						 pstmt.setString(9, order.getReserveNum());
+  						 pstmt.setString(10, expiredate);
+  			        
+  						 addCount = pstmt.executeUpdate();
+  						 System.out.println("확인5");
+  			        }
+  					 
+  				} //포문
+  			} catch (Exception e) {
+  				System.out.println("orderGoods() 오류!- "+e.getMessage());
+  				e.printStackTrace();
+  			} finally {
+  	             close(pstmt);
+  	             close(rs);
+  	          }
+  			
+  			return addCount;
+  		}	
+   		
    	// 주문번호 생성
-   			public String createOrderNum() {
+   	public String createOrderNum() {
    				System.out.println("StoreDAO - createOrderNum() !");
    				
    				String orderNum = null;
@@ -756,6 +764,7 @@ public class StoreDAO {
    				
    				return orderNum;
    			}
+   	
 	//개별 구매번호
 	public String createReserveNum() {
 		System.out.println("StoreDAO - createReserveNum() !");
@@ -800,7 +809,7 @@ public class StoreDAO {
 		return reserveNum;
 	}
 
-	//구매내역
+	// 구매내역 조회
 	public ArrayList<StoreBean> selectOrderList(String orderNum, String id) {
 		 System.out.println("selectOrderList DAO");
  	  	ArrayList<StoreBean> orderList = null;
@@ -818,27 +827,20 @@ public class StoreDAO {
         	pstmt.setString(2, id);
          	rs = pstmt.executeQuery();
             
-            //ArrayList 객체 생성(while문 위에서 생성 필수!)
          	orderList = new ArrayList<StoreBean>();
             
-            // 읽어올 게시물이 존재할 경우 다음 작업 반복 
-            // StoreBean 객체를 생성하여 레코드 데이터 모두 저장 후  StoreBean 객체를 다시 ArrayList 객체에 추가 => 반복
             while(rs.next()) {
-               // 1개 게시물 정보를 저장할 StoreBean 객체 생성 및 데이터 저장
                StoreBean order = new StoreBean(); 
                  
-               //basket 테이블
                order.setOrderNum(orderNum);
                order.setReserveNum(rs.getString("reserveNum"));
                order.setMember_id(id);
-               order.setExpiredate(rs.getInt("expiredate"));
-               //goods 테이블
+               order.setExpiredate(rs.getString("expiredate"));
+
                order.setName(rs.getString("name"));
                order.setComponent(rs.getString("component"));
                order.setFile(rs.getString("file"));
                
-               
-               // 1개 게시물을 전체 게시물 저장 객체(ArrayList)에 추가
                orderList.add(order);
             }
             

@@ -42,6 +42,7 @@ public class OrderFormAction implements Action {
       
       String reserveNum = orderFormService.createReserveNum();
       request.setAttribute("reserveNum", reserveNum);
+      
       forward = new ActionForward();
       forward.setPath("/goods/orderForm.jsp");
 //    forward.setRedirect(false);
