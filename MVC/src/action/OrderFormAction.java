@@ -29,13 +29,19 @@ public class OrderFormAction implements Action {
     	  basketCount = "1";
       }
       
+      System.out.println(goodsId);
+      
       OrderFormService orderFormService = new OrderFormService();
       
       ArrayList<StoreBean> basketList = new ArrayList<StoreBean>();
       basketList = orderFormService.getBasketList(Integer.parseInt(basketCount), goodsId); 
-      
       request.setAttribute("basketList", basketList);
-
+      
+      String orderNum = orderFormService.createOrderNum();
+      request.setAttribute("orderNum", orderNum);
+      
+      String reserveNum = orderFormService.createReserveNum();
+      request.setAttribute("reserveNum", reserveNum);
       forward = new ActionForward();
       forward.setPath("/goods/orderForm.jsp");
 //    forward.setRedirect(false);

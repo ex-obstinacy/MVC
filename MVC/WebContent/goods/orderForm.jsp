@@ -6,10 +6,14 @@
 ArrayList<StoreBean> basketList = (ArrayList<StoreBean>)request.getAttribute("basketList");
 
 String member_id = (String)session.getAttribute("id");
+int goodsId = Integer.parseInt(request.getParameter("goodsId"));
 
 int totalPrice = 0; //할인 전 총 상품금액
 int sale2 = 0; // 총 할인가격
 int sumPrice = 0; // 할인 후 상품금액
+
+String orderNum = (String)request.getAttribute("orderNum");
+String reserveNum = (String)request.getAttribute("reserveNum");
 %>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -117,7 +121,7 @@ function requestPay() {
               } else {
                 alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
               }
-//          location.href = "OrderPro.go";
+//          location.href = "OrderPro2.go";
          });
          
 }
@@ -153,7 +157,7 @@ function requestPay() {
       <div class="cart_inner">
         <h3>구매상품 정보</h3>
          <hr>
-        <form action="OrderPro.go" name="orderResult" method="post">
+        <form action="OrderPro2.go" name="orderResult" method="post">
           <table class="table">
           <%
           if(basketList != null){
@@ -173,7 +177,6 @@ function requestPay() {
             int sale = (int)(basketList.get(i).getPrice() * basketList.get(i).getSale() * basketList.get(i).getBasketCount() * 0.01); // 할인가격
             sale2 += sale; // 총 할인가격 += 할인가격
             sumPrice = totalPrice - sale2; // 할인 후 상품금액 = 할인 전 상품금액 - 총 할인가격
-            
             int goods_goodsId = basketList.get(i).getGoods_goodsId();
          %>
             <tbody>
@@ -182,8 +185,11 @@ function requestPay() {
                 <td>
                   <div class="media">
                     <div class="d-flex">
-					<!-- goodsRow,, Pro로 보낼 값 -->
-                    <input type="hidden" name="goodsRow" class="goodsSelect" value=<%=goods_goodsId %>>
+					<!-- Pro로 넘길 값 -->
+                    <input type="hidden" value=<%=goods_goodsId %> name="goodsRow" class="goodsSelect">
+                    <input type="hidden" value=<%=reserveNum %> name="reserveNum">
+                    <input type="hidden" value="<%=orderNum %>" name="orderNum">
+                    <!-- Pro로 넘길 값 -->
                       <img src="goodsUpload/<%=basketList.get(i).getFile() %>" alt="상품이미지" width="250" />
                     </div>
                     <div class="media-body">
@@ -222,9 +228,11 @@ function requestPay() {
                   <h5><%=totalPrice %>원</h5>
                   <h5><%=sale2%>원</h5>
                   <h3><%=sumPrice %>원</h3>
-                  <!-- sumPrice,, totalPrice로 보낼 값 -->
+                  <!-- Pro로 넘길 값 -->
                   <input type="hidden" value="<%=sumPrice %>" name="sumPrice" id="sumPrice">
                   <input type="hidden" value="<%=totalPrice %>" name="totalPrice" id="totalPrice">
+                  <input type="hidden" value=<%=goodsId %> name="goodsId">
+                  <!-- Pro로 넘길 값 -->
                 </td>
               </tr>
             </tbody>
@@ -308,7 +316,7 @@ function requestPay() {
             <input type="button" class="btn_3" value="결제하기" onclick="requestPay()">
           </div>
           <!-- 가상 결제 완료 버튼 -->
-<!--         <input type="submit" value="결제 완료"> -->
+        <input type="submit" value="결제 완료">
      <!--::버튼 끝::-->
          </form>
       </div>

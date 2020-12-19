@@ -1,7 +1,8 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Date;
+import java.util.Random;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -401,6 +402,8 @@ public class StoreDAO {
                close(pstmt);
                close(rs);
             }
+            System.out.println("goodsId : " + goodsId);
+            
             return basketList;
          }
       
@@ -460,7 +463,6 @@ public class StoreDAO {
                           
                           // 1개 게시물을 전체 게시물 저장 객체(ArrayList)에 추가
                           basketList.add(sb);
-                          System.out.println(basketList);
           			}
           			
           		}
@@ -478,7 +480,7 @@ public class StoreDAO {
 		}
       
       // 결제내역 추가
-      public int orderGoods(String[] goodsIds, String id, int sumPrice, int totalPrice) {
+      public int orderGoods(String[] goodsIds, String id, StoreBean order) {
 			System.out.println("StoreDAO - orderGoods");
 			
 			int addCount = 0;
@@ -486,55 +488,81 @@ public class StoreDAO {
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			
+			System.out.println(order.getGoodsId());
+			
 			try {
 				int orderId = 0;
-				int orderCount = 0;
+				int orderCount = 1;
 				
 				for(String goods: goodsIds) {
 					int goodsId = Integer.parseInt(goods);
-					
-					System.out.println("goods : " + goods);
-					System.out.println(id);
-					System.out.println(sumPrice);
-					System.out.println(totalPrice);
-					
-					 String sql = "SELECT * FROM goods_order WHERE goods_goodsId=? AND member_id=?";
-					 pstmt = con.prepareStatement(sql);
-					 pstmt.setInt(1, goodsId);
-					 pstmt.setString(2, id);
-					 rs = pstmt.executeQuery();
-					 
-					 if(rs.next()) {
-						orderCount ++;
-						System.out.println(orderCount);
-						sql = "UPDATE goods_order SET orderCount WHERE goods_goodsId=? AND member_id=?";
+					//확인
+					System.out.println("goodsId : " + goodsId);
+		            System.out.println(order.getReserveNum());
+		            
+		            String sql = "SELECT * FROM goods_order WHERE orderNum=?";
+		           	pstmt = con.prepareStatement(sql);
+		           	pstmt.setString(1, order.getOrderNum());
+		           	rs = pstmt.executeQuery();
+		            
+		           	System.out.println("확인");
+		           	
+					if(rs.next()) {
+						sql = "SELECT MAX(orderCount) FROM goods_order where orderNum = ?";
 						pstmt = con.prepareStatement(sql);
-						pstmt.setInt(1, orderCount);
-						pstmt.setInt(2, goodsId);
-						pstmt.setString(3, id);
-						addCount = pstmt.executeUpdate();
-					 } else {
-			              sql = "SELECT MAX(orderId) FROM goods_order";
-			              pstmt = con.prepareStatement(sql);
-			              rs = pstmt.executeQuery();
-			              
-			              if (rs.next()) {
-			            	  orderId = rs.getInt(1) +1;
-			               
-			         }
-			              
-			        sql = "INSERT INTO goods_order(orderId, goods_goodsId, member_id, orderCount, totalPrice, date, sumPrice) VALUES(?, ? ,? ,? ,? ,? ,?)";
-			        pstmt = con.prepareStatement(sql);
-			        pstmt.setInt(1, orderId);
-			        pstmt.setInt(2, goodsId);
-			        pstmt.setString(3, id);
-			        pstmt.setInt(4, 1);
-			        pstmt.setInt(5, totalPrice);
-			        pstmt.setTimestamp(6, date);
-			        pstmt.setInt(7, sumPrice);
+						pstmt.setString(1, order.getOrderNum());
+				        rs = pstmt.executeQuery();
+				        if (rs.next()) {
+				        	orderCount = rs.getInt(1) +1;
+				        	System.out.println(orderCount);
+				            System.out.println("확인2");
+				            
+				            sql = "SELECT MAX(orderId) FROM goods_order";
+					        pstmt = con.prepareStatement(sql);
+					        rs = pstmt.executeQuery();
+					        if (rs.next()) {
+					              orderId = rs.getInt(1) +1;
+					              System.out.println("확인6");
+					        }
+					        sql = "INSERT INTO goods_order(orderId, goods_goodsId, member_id, orderCount, totalPrice, date, orderNum, sumPrice, reserveNum) VALUES(?, ?, ? ,? ,? ,? ,? ,?, ?)";
+							 pstmt = con.prepareStatement(sql);
+							 pstmt.setInt(1, orderId);
+							 pstmt.setInt(2, goodsId);
+							 pstmt.setString(3, id);
+							 pstmt.setInt(4, orderCount);
+							 pstmt.setInt(5, order.getTotalPrice());
+							 pstmt.setTimestamp(6, date);
+							 pstmt.setString(7, order.getOrderNum());
+							 pstmt.setInt(8, order.getSumPrice());
+							 pstmt.setString(9, order.getReserveNum());
+				        
+							 addCount = pstmt.executeUpdate();
+							 System.out.println("확인7");
+							 
+				        }
+					} else {
+						sql = "SELECT MAX(orderId) FROM goods_order";
+				        pstmt = con.prepareStatement(sql);
+				        rs = pstmt.executeQuery();
+				        System.out.println("확인3"); 
+				        if (rs.next()) {
+				              orderId = rs.getInt(1) +1;
+				              System.out.println("확인4");
+				        }
+						 sql = "INSERT INTO goods_order(orderId, goods_goodsId, member_id, orderCount, totalPrice, date, orderNum, sumPrice, reserveNum) VALUES(?, ?, ?, ? ,? ,? ,? ,? ,?)";
+						 pstmt = con.prepareStatement(sql);
+						 pstmt.setInt(1, orderId);
+						 pstmt.setInt(2, goodsId);
+						 pstmt.setString(3, id);
+						 pstmt.setInt(4, orderCount);
+						 pstmt.setInt(5, order.getTotalPrice());
+						 pstmt.setTimestamp(6, date);
+						 pstmt.setString(7, order.getOrderNum());
+						 pstmt.setInt(8, order.getSumPrice());
+						 pstmt.setString(9, order.getReserveNum());
 			        
-			        addCount = pstmt.executeUpdate();
-			            
+						 addCount = pstmt.executeUpdate();
+						 System.out.println("확인5");
 			        }
 					 
 				} //포문
@@ -685,13 +713,144 @@ public class StoreDAO {
    			return deleteCount;
    		}
 
-		
+   	// 주문번호 생성
+   			public String createOrderNum() {
+   				System.out.println("StoreDAO - createOrderNum() !");
+   				
+   				String orderNum = null;
+   				
+   				PreparedStatement pstmt = null;
+   				ResultSet rs = null;
+   				
+   				SimpleDateFormat format1 = new SimpleDateFormat ( "yyyyMMdd");
+   				Date time = new Date();
+   				
+   				Random random = new Random();
+   				int bound = 10000;
+   				
+   				String suffix = String.format("%04d", random.nextInt(bound)); 
+   				orderNum = format1.format(time) + suffix;
+   				
+   				try {
+   					String sql = "select orderNum from goods_order where orderNum=?";
+   					pstmt = con.prepareStatement(sql);
+   					pstmt.setString(1, orderNum);
+   					rs = pstmt.executeQuery();
+   					
+   					if(rs.next()) {
+   						while(rs.next()) {
+   							suffix = String.format("%04d", random.nextInt(bound));
+   							orderNum = format1.format(time) + suffix;
+   						}						
+   					}
+   			
+   				} catch (SQLException e) {
+   					
+   					e.printStackTrace();
+   				}finally {
+   					if(rs != null) {
+   						close(rs);
+   					}						
+   					close(pstmt);
+   				}				
+   				
+   				return orderNum;
+   			}
+	//개별 구매번호
+	public String createReserveNum() {
+		System.out.println("StoreDAO - createReserveNum() !");
+ 				
+		String reserveNum = null;
+ 				
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+   				
+		SimpleDateFormat format1 = new SimpleDateFormat ( "yyyyMMdd");
+		Date time = new Date();
+  				
+		Random random = new Random();
+		int bound = 10000;
+  				
+		String suffix = String.format("%04d", random.nextInt(bound)); 
+		reserveNum = format1.format(time) + suffix;
+   				
+		try {
+			String sql = "select reserveNum from goods_order where reserveNum=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, reserveNum);
+			rs = pstmt.executeQuery();
+   					
+			if(rs.next()) {
+				while(rs.next()) {
+					suffix = String.format("%04d", random.nextInt(bound));
+					reserveNum = format1.format(time) + suffix;
+				}						
+			}
+ 			
+		} catch (SQLException e) {
+   					
+			e.printStackTrace();
+		}finally {
+			if(rs != null) {
+				close(rs);
+			}						
+			close(pstmt);
+		}				
+   				
+		return reserveNum;
+	}
 
-   		
-		
+	//구매내역
+	public ArrayList<StoreBean> selectOrderList(String orderNum, String id) {
+		 System.out.println("selectOrderList DAO");
+ 	  	ArrayList<StoreBean> orderList = null;
+         
+         PreparedStatement pstmt = null;
+         ResultSet rs = null;
+         try {
+         	String sql = "SELECT o.orderNum, o.reserveNum, o.member_id, o.expiredate, " 
+         				+ "g.name, g.component, g.file "
+         				+ "FROM goods g JOIN goods_order o "
+         				+ "ON g.goodsId = o.goods_goodsId "
+         				+ "WHERE orderNum = ? AND member_id = ?";
+         	pstmt = con.prepareStatement(sql);
+         	pstmt.setString(1, orderNum);
+        	pstmt.setString(2, id);
+         	rs = pstmt.executeQuery();
+            
+            //ArrayList 객체 생성(while문 위에서 생성 필수!)
+         	orderList = new ArrayList<StoreBean>();
+            
+            // 읽어올 게시물이 존재할 경우 다음 작업 반복 
+            // StoreBean 객체를 생성하여 레코드 데이터 모두 저장 후  StoreBean 객체를 다시 ArrayList 객체에 추가 => 반복
+            while(rs.next()) {
+               // 1개 게시물 정보를 저장할 StoreBean 객체 생성 및 데이터 저장
+               StoreBean order = new StoreBean(); 
+                 
+               //basket 테이블
+               order.setOrderNum(orderNum);
+               order.setReserveNum(rs.getString("reserveNum"));
+               order.setMember_id(id);
+               order.setExpiredate(rs.getInt("expiredate"));
+               //goods 테이블
+               order.setName(rs.getString("name"));
+               order.setComponent(rs.getString("component"));
+               order.setFile(rs.getString("file"));
+               
+               
+               // 1개 게시물을 전체 게시물 저장 객체(ArrayList)에 추가
+               orderList.add(order);
+            }
+            
+         } catch (SQLException e) {
+            System.out.println("selectOrderList() 오류!- "+e.getMessage());
+            e.printStackTrace();
+         } finally {
+            close(pstmt);
+            close(rs);
+         }
+         return orderList;
+      }
 
-
-
-      
    
 } //메인메서드

@@ -30,8 +30,13 @@ public class OrderFormAction2 implements Action {
 	      
 	      ArrayList<StoreBean> basketList = new ArrayList<StoreBean>();
 	      basketList = orderFormService2.getBasketList(basketIds, id);
-	      
 	      request.setAttribute("basketList", basketList);
+	      
+	      String orderNum = orderFormService2.createOrderNum();
+	      request.setAttribute("orderNum", orderNum);
+	      
+		  String reserveNum = orderFormService2.createReserveNum();
+		  request.setAttribute("reserveNum", reserveNum);
 	      
 	      forward = new ActionForward();
 	      forward.setPath("goods/orderForm.jsp");

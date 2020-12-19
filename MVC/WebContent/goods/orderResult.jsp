@@ -1,7 +1,10 @@
+<%@page import="vo.StoreBean"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-
+ArrayList<StoreBean> orderList = (ArrayList<StoreBean>)request.getAttribute("orderList");
+String orderNum = (String)session.getAttribute("orderNum");
 %>
 <!DOCTYPE html>
 <html>
@@ -54,11 +57,19 @@
 			<div class="infoBox">
 				
 				<!-- 임시이미지 -->
-				<img src="img/sub/poster.jpg">
+					<%
+					if(orderList != null){
+					
+					for(int i= 0; i< orderList.size(); i++){
+					%>
+				<img src="goodsUpload/<%=orderList.get(i).getFile() %>">
 				
 				<div class="rightBox">
-					<p>주문번호 : 동일하게 ~</p>
+					<p>주문번호 : <%=orderList.get(i).getOrderNum() %></p>
 					<table >
+					
+					
+					
 						<colgroup>
 							<col width="20%"/>
 							<col width="30%"/>
@@ -67,27 +78,33 @@
 						</colgroup>
 						<tr>
 							<th>구매번호</th>
-							<td>ex. 202020102031</td>
+							<td><%=orderList.get(i).getReserveNum() %></td>
 							<th>예매자</th>
-							<td>ex.길동이</td>
+							<td><%=orderList.get(i).getMember_id()%></td>
 						</tr>
 						<tr>
 							<th>상품명</th>
-							<td colspan="3">ex.커플패키지</td>
+							<td colspan="3"><%=orderList.get(i).getName()%></td>
 						</tr>
 						<tr>
 							<th>구성품</th>
-							<td colspan="3">ex.팝콘2 + 콜라1</td>
+							<td colspan="3"><%=orderList.get(i).getComponent()%></td>
 						</tr>					
 						<tr>
 							<th>유효기간</th>
-							<td colspan="3">ex.구매후 1년</td>
+							<td colspan="3"><%=orderList.get(i).getExpiredate()%></td>
 						</tr>
 						<tr>
 							<th>?</th>
 							<td colspan="3"></td>
 						</tr>
 					</table>
+						<%	
+					}
+					
+						
+					}
+					%>
 				</div><!-- .rightBox -->
 			</div><!-- .infoBox -->
 			<div class="btnBox">

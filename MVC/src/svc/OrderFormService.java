@@ -17,6 +17,7 @@ public ArrayList<StoreBean> getBasketList(int basketCount, int goodsId) {
     ArrayList<StoreBean> basketList = null;
        
     System.out.println(basketCount );
+    System.out.println(goodsId);
      Connection con = getConnection();
      StoreDAO storeDAO = StoreDAO.getInstance();
      storeDAO.setConnection(con);
@@ -26,6 +27,38 @@ public ArrayList<StoreBean> getBasketList(int basketCount, int goodsId) {
      close(con);
        
      return basketList;
+}
+
+public String createOrderNum() {
+	System.out.println("OrderFormService - createOrderNum !");
+	
+	String orderNum = null;
+	
+	Connection con = getConnection();
+    StoreDAO storeDAO = StoreDAO.getInstance();
+    storeDAO.setConnection(con);
+    
+    orderNum = storeDAO.createOrderNum();
+    
+    close(con);
+    
+	return orderNum;
+}
+
+public String createReserveNum() {
+	System.out.println("OrderFormService - createReserveNum !");
+	
+	String reserveNum = null;
+	
+	Connection con = getConnection();
+    StoreDAO storeDAO = StoreDAO.getInstance();
+    storeDAO.setConnection(con);
+    
+    reserveNum = storeDAO.createReserveNum();
+    
+    close(con);
+    
+	return reserveNum;
 }
 
 

@@ -26,6 +26,38 @@ public class OrderFormService2 {
 	    return basketList;
 	}
 
+	public String createOrderNum() {
+		System.out.println("OrderFormService2 - createOrderNum !");
+		
+		String orderNum = null;
+		
+		Connection con = getConnection();
+	    StoreDAO storeDAO = StoreDAO.getInstance();
+	    storeDAO.setConnection(con);
+	    
+	    orderNum = storeDAO.createOrderNum();
+	    
+	    close(con);
+	    
+		return orderNum;
+	}
+
+	public String createReserveNum() {
+		System.out.println("OrderFormService2 - createReserveNum !");
+		
+		String reserveNum = null;
+		
+		Connection con = getConnection();
+	    StoreDAO storeDAO = StoreDAO.getInstance();
+	    storeDAO.setConnection(con);
+	    
+	    reserveNum = storeDAO.createReserveNum();
+	    
+	    close(con);
+	    
+		return reserveNum;
+	}
+
 
 
 }

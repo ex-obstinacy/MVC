@@ -20,8 +20,8 @@ public class StoreBean {
 	private Timestamp date; //현재날짜
 	private int basketCount; //장바구니 수량
 	private int orderCount; //결제 수량
-	private int orderNum; //주문 번호
-	private int reserveNum; //예약 번호
+	private String orderNum; //주문 번호
+	private String reserveNum; //예약 번호
 	private int expiredate; //유효 기간
 	private boolean status; //사용상태확인
 	private String member_id; // 멤버아이디 (12.05 추가)
@@ -131,16 +131,16 @@ public class StoreBean {
 	public void setOrderCount(int orderCount) {
 		this.orderCount = orderCount;
 	}
-	public int getOrderNum() {
+	public String getOrderNum() {
 		return orderNum;
 	}
-	public void setOrderNum(int orderNum) {
+	public void setOrderNum(String orderNum) {
 		this.orderNum = orderNum;
 	}
-	public int getReserveNum() {
+	public String getReserveNum() {
 		return reserveNum;
 	}
-	public void setReserveNum(int reserveNum) {
+	public void setReserveNum(String reserveNum) {
 		this.reserveNum = reserveNum;
 	}
 	public int getExpiredate() {
