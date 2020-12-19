@@ -80,11 +80,11 @@ ul.store-tab li{
 </head>
 
 <body>
-    <!--::header part start::-->
+<!--     ::header part start:: -->
     <jsp:include page="/inc/top.jsp"/>
-    <!-- Header part end-->
+<!--     Header part end -->
 
-    <!-- 서브비주얼 -->
+<!--     서브비주얼 -->
 	<jsp:include page="/inc/sub_store1.jsp"/>
 	
     <!--================ 스토어 메인 상품 !!!! =================-->
