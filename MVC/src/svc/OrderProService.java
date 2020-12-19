@@ -7,18 +7,18 @@ import java.sql.Connection;
 import dao.StoreDAO;
 import vo.StoreBean;
 
-//////장바구니에서 넘어옴 //////
-public class OrderProService2 {
+//////스토어메인, 디테일에서 넘어옴 //////
+public class OrderProService {
 
-	public boolean OrderGoods(String[] goodsIds, String id, StoreBean order) {
-		System.out.println("OrderProService2 - OrderGoods() !");
+	public boolean OrderGoods(String id, StoreBean order) {
+		System.out.println("OrderProService - OrderGoods() !");
 		boolean isOrderSuccess = false;
 		
 		Connection con = getConnection();
 	    StoreDAO storeDAO = StoreDAO.getInstance();
 	    storeDAO.setConnection(con);
 	    
-	    int addCount = storeDAO.orderGoods(goodsIds, id, order);
+	    int addCount = storeDAO.orderGoods(id, order);
 	      
 	    if(addCount > 0) {
 	    	isOrderSuccess = true;

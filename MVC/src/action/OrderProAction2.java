@@ -12,6 +12,7 @@ import svc.PayProService;
 import vo.ActionForward;
 import vo.StoreBean;
 
+//////장바구니에서 넘어옴 //////
 public class OrderProAction2 implements Action {
 
    @Override

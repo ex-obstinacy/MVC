@@ -3,12 +3,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-////// 스토어 메인, 디테일에서 넘어옴 //////
-
+////// 장바구니에서 넘어옴 //////
 ArrayList<StoreBean> basketList = (ArrayList<StoreBean>)request.getAttribute("basketList");
 
 String member_id = (String)session.getAttribute("id");
-int goodsId = Integer.parseInt(request.getParameter("goodsId"));
 
 int totalPrice = 0; //할인 전 총 상품금액
 int sale2 = 0; // 총 할인가격
@@ -106,12 +104,24 @@ function requestPay() {
          				   
                 })
                 
+                ///추가////  
+                   var check_count = document.getElementsByName("goodsRow").length;
+         		   var goodsRow = document.getElementsByName("goodsRow");
+         		   var checked =0 ; //체크된 갯수 파악 위한 초기 변수
+         		   
+         		   // 체크박스 값 확인
+         			for(var i=0; i<check_count; i++){
+         				   alert(goodsRow[i].value);
+         			}
                   alert("결제성공");
                 	document.orderResult.submit();
+               	///추가////
+               	
                	
               } else {
                 alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
               }
+//          location.href = "OrderPro2.go";
          });
          
 }
@@ -147,7 +157,7 @@ function requestPay() {
       <div class="cart_inner">
         <h3>구매상품 정보</h3>
          <hr>
-        <form action="OrderPro.go" name="orderResult" method="post">
+        <form action="OrderPro2.go" name="orderResult" method="post">
           <table class="table">
           <%
           if(basketList != null){
@@ -167,6 +177,7 @@ function requestPay() {
             int sale = (int)(basketList.get(i).getPrice() * basketList.get(i).getSale() * basketList.get(i).getBasketCount() * 0.01); // 할인가격
             sale2 += sale; // 총 할인가격 += 할인가격
             sumPrice = totalPrice - sale2; // 할인 후 상품금액 = 할인 전 상품금액 - 총 할인가격
+            int goods_goodsId = basketList.get(i).getGoods_goodsId();
          %>
             <tbody>
               <tr>
@@ -175,7 +186,7 @@ function requestPay() {
                   <div class="media">
                     <div class="d-flex">
 					<!-- Pro로 넘길 값 -->
-                    <input type="text" value=<%=goodsId %> name="goodsId" class="goodsId">
+                    <input type="text" value=<%=goods_goodsId %> name="goodsRow" class="goodsSelect">
                     <input type="text" value=<%=reserveNum %> name="reserveNum">
                     <input type="hidden" value="<%=orderNum %>" name="orderNum">
                     <!-- Pro로 넘길 값 -->

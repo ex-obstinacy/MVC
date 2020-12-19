@@ -24,6 +24,7 @@ import action.GoodsModifyProAction;
 import action.GoodsWriteProAction;
 import action.OrderFormAction;
 import action.OrderFormAction2;
+import action.OrderProAction;
 import action.OrderProAction2;
 import action.OrderResultAction;
 import action.StoreListAction;
@@ -118,6 +119,14 @@ public class StoreFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			} 
+		} else if(command.equals("/OrderPro.go")) { // 결제담기..
+			action = new OrderProAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else if(command.equals("/OrderPro2.go")) { // 결제담기..
 			action = new OrderProAction2();
 			

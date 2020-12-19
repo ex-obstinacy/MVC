@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import dao.StoreDAO;
 import vo.StoreBean;
 
+//장바구니 구매목록
 public class OrderFormService2 {
 
 	public ArrayList<StoreBean> getBasketList(String[] checkRows, String id) {

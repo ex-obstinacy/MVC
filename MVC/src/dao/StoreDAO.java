@@ -613,8 +613,70 @@ public class StoreDAO {
    			  			
    			return deleteCount;
    		}
-
-   	// 결제내역 추가
+   		
+   	// 1. 스토어메인, 디테일 -> 구매내역 -> 결제내역 추가
+        public int orderGoods(String id, StoreBean order) {
+  			System.out.println("StoreDAO - orderGoods ----String id, StoreBean order");
+  			
+  			int addCount = 0;
+  			Timestamp date = new Timestamp(System.currentTimeMillis());
+  			PreparedStatement pstmt = null;
+  			ResultSet rs = null;
+  			
+  			//---유효기간---
+  			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+  	        String currentTime = sdf.format(new java.util.Date());
+  	        Calendar c = Calendar.getInstance(TimeZone.getTimeZone("Asia/Seoul"));
+  	        String fromDate = sdf.format(c.getTime());
+  	        c.add(Calendar.YEAR, 1);    // 1년 증가
+  	        String expiredate = sdf.format(c.getTime());
+  	        //---유효기간---
+  			
+  			try {
+  				int orderId = 1;
+  				int orderCount = 1;
+  				
+  					//확인
+  					System.out.println("goodsId : " + order.getGoodsId());
+  		            System.out.println(order.getReserveNum());
+  		            
+  		            String sql = "SELECT MAX(orderId) FROM goods_order";
+  		            pstmt = con.prepareStatement(sql);
+			        rs = pstmt.executeQuery();
+			        
+			        if(rs.next()) {
+			        	orderId = rs.getInt(1) +1;
+			        	System.out.println("확인");
+			        }
+			        
+  		             sql = "INSERT INTO goods_order(orderId, goods_goodsId, member_id, orderCount, totalPrice, date, orderNum, sumPrice, reserveNum, expiredate) VALUES(?, ?, ?, ? ,? ,? ,? ,? ,?, ?)";
+  					 pstmt = con.prepareStatement(sql);
+  					 pstmt.setInt(1, orderId);
+  					 pstmt.setInt(2, order.getGoodsId());
+  					 pstmt.setString(3, id);
+  					 pstmt.setInt(4, orderCount);
+  					 pstmt.setInt(5, order.getTotalPrice());
+  					 pstmt.setTimestamp(6, date);
+  					 pstmt.setString(7, order.getOrderNum());
+  					 pstmt.setInt(8, order.getSumPrice());
+  					 pstmt.setString(9, order.getReserveNum());
+  					 pstmt.setString(10, expiredate);
+  				        
+  					 addCount = pstmt.executeUpdate();
+  					 System.out.println("확인2");
+  					 
+  			} catch (Exception e) {
+  				System.out.println("orderGoods() 오류!- "+e.getMessage());
+  				e.printStackTrace();
+  			} finally {
+  	             close(pstmt);
+  	             close(rs);
+  	          }
+  			
+  			return addCount;
+  		}	
+        
+   	// 2. 장바구니 -> 구매내역 -> 결제내역 추가
         public int orderGoods(String[] goodsIds, String id, StoreBean order) {
   			System.out.println("StoreDAO - orderGoods");
   			
