@@ -49,7 +49,7 @@ public class BasketModifyProAction implements Action {
 //	    int goodsId = Integer.parseInt(request.getParameter("goodsId"));  
 	    int basketId = Integer.parseInt(request.getParameter("basketId"));
 	    int basketCount = Integer.parseInt(request.getParameter("basketCount"));
-//	    System.out.println(goodsId);
+//	    System.out.println("변경할 goodsId = "+goodsId);
 	    System.out.println("변경할 basketId = "+basketId);
 	    System.out.println("변경할 basketCount = "+basketCount);
 		
@@ -58,7 +58,8 @@ public class BasketModifyProAction implements Action {
 	      
 		// BasketModifyProService 클래스의 modifyBasketCount() 메서드를 호출하여
 		// 장바구니 상품 수량 수정 작업 요청
-		boolean isModifySuccess = basketModifyProService.modifyBasketCount(basketCount, basketId);	
+		boolean isModifySuccess = basketModifyProService.modifyBasketCount(basketCount, basketId);
+//		boolean isModifySuccess = basketModifyProService.modifyBasketCount(basketCount, goodsId, id);
 					
 			// 수정 결과에 따른 처리
 			// => 변경 실패(updateCount 가 0)일 경우 자바스크립트를 사용하여

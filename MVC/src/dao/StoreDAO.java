@@ -559,8 +559,8 @@ public class StoreDAO {
     			String sql = "update basket set basketCount=?, date=? where basketId=?";
     			pstmt = con.prepareStatement(sql);
 	        	pstmt.setInt(1, basketCount);
-//	        	pstmt.setInt(2, goodsId);
-//	        	pstmt.setString(3, id);
+//	        	pstmt.setInt(3, goodsId);
+//	        	pstmt.setString(4, id);
 	        	pstmt.setTimestamp(2, date);
 	        	pstmt.setInt(3, basketId);
 	        	

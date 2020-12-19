@@ -24,7 +24,8 @@ public class BasketModifyProService {
 		storeDAO.setConnection(con);
 				
 		// 4. StoreDAO 클래스의 updateBasketCount() 메서드를 호출하여 상품 수량 변경
-		int updateCount = storeDAO.updateBasketCount(basketCount, basketId);		
+//		int updateCount = storeDAO.updateBasketCount(basketCount, goodsId, id);
+		int updateCount = storeDAO.updateBasketCount(basketCount, basketId);
 				
 		// 5. 글 수정 결과에 대한 판별 작업 수행
 		// => updateCount 가 0보다 크면 commit 수행, isModifySuccess 를 true 변경
