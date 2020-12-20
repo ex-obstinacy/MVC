@@ -49,6 +49,8 @@
   
 	<script src="js/jquery-3.5.1.js"></script>
 	<script type="text/javascript">
+	
+		var chCount = 0;
 	    
 		//체크박스 전체 선택 및 해제
 	   $(document).ready(function(){
@@ -101,12 +103,16 @@
 		         
 // 	}
 	function CountChg(basketId) {
-		var basketCount = document.getElementById("basketCount");
-		location.href = "BasketModifyPro.go?basketId="+basketId+"&basketCount="+basketCount.value;
+// 		var basketCount = document.getElementById("basketCount");
+		location.href = "BasketModifyPro.go?basketId="+basketId+"&basketCount="+chCount;
 		         
 	}
-
-	   
+	
+	function countChk(count) {
+// 		alert(count.value);
+		chCount = count.value;
+// 		alert(chCount);
+	}
 	
 	</script> 
 </head>
@@ -208,7 +214,7 @@
                 </td>
                 <td>
                   <div class="product_count"> <!-- 수량변경 버튼 모양 -->
-                    <input type="number" name="basketCount" id=basketCount value="<%=basketList.get(i).getBasketCount() %>" min="0" max="100">
+                    <input type="number" name="basketCount" id=basketCount value="<%=basketList.get(i).getBasketCount() %>" min="0" max="100" onchange="countChk(this)">
 <%--                     <input type="hidden" name="goodsId" id=goodsId value="<%=basketList.get(i).getGoods_goodsId() %>"> --%>
                   </div>
                   <div>
