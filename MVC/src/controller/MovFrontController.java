@@ -16,6 +16,7 @@ import action.MemberLoginProAction;
 import action.MemberLogoutAction;
 import action.MemberMainAction;
 import action.MemberWriteProAction;
+import action.MovWriteProAction;
 import vo.ActionForward;
 
 @WebServlet("*.mo") // 서블릿 주소 중 XXX.bo 주소에 대한 요청을 전달받아 처리
@@ -43,6 +44,16 @@ public class MovFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("/mov/mov_write.jsp");
 			
+		} else if (command.equals("/MovWritePro.mo")) { // 영화등록
+			action = new MovWriteProAction();
+			
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
 		}
 		
 		
