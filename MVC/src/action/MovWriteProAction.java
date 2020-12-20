@@ -1,14 +1,11 @@
 package action;
 
 import java.sql.Date;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
 import vo.ActionForward;
 import vo.MovBean;
 
@@ -73,7 +70,7 @@ public class MovWriteProAction implements Action {
 		System.out.println("Companys : " + movBean.getCompanys());
 		System.out.println("Grade : " + movBean.getGrade());
 		System.out.println("Post : " + movBean.getPost());
-		System.out.println("StillCut : " + movBean.getStillCut().toString());
+		System.out.println("StillCut : " + movBean.getStillCut());
 		System.out.println("Trailer : " + movBean.getTrailer());
 		System.out.println("Content : " + movBean.getContent());
 		
