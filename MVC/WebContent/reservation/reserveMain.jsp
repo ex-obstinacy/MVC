@@ -73,6 +73,7 @@
 				$('#tdcinema .'+local_id).addClass('show');
 			}
 		});
+		
 		// 날짜 선택
 		$('#tddate input').click(function() {
 			if($('.rcinema').is(":checked") == false) {
@@ -86,6 +87,18 @@
 				$('#tdtime .tdiv').removeClass('show');
 				$('#tdtime .'+movie_id+'.'+cinema_id+'.'+date_id).addClass('show');
 			}
+		});
+		// 날짜는 3일뒤까지만 예약 가능
+		$('#movieform > table td>ul#tddate li').addClass('reserveNo');
+		$('#movieform > table td>ul#tddate li:nth-child(1)').removeClass('reserveNo');
+		$('#movieform > table td>ul#tddate li:nth-child(2)').removeClass('reserveNo');
+		$('#movieform > table td>ul#tddate li:nth-child(3)').removeClass('reserveNo');
+		$('#movieform > table td>ul#tddate li:nth-child(4)').removeClass('reserveNo');
+		
+		$('#movieform > table td>ul#tddate li.reserveNo').click(function() {
+			$('#tddate input').prop("checked", false);
+			$('#tdtime input').prop("checked", false);
+			$('#tdtime .tdiv').removeClass('show');
 		});
 		
 // 		필수 조건
@@ -147,7 +160,8 @@
 			  infinite: false,
 			  nextArrow:$('.next'),
 			  prevArrow:$('.prev'),
-			});
+		});
+
 	});
 </script>
 </head>
@@ -217,8 +231,12 @@
 							<input type="radio" name="date" id="<%=today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>" value="<%=today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>" class="rdate"/>
 									<label for="<%=today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>"><%=today.format(DateTimeFormatter.ofPattern("dd"))%></label></li>
 							<%
-							for(int i=1;i<=10;i++) {
+							for(int i=1;i<=3;i++) {
 								%><li><input type="radio" id="<%=today.plusDays(i).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>" value="<%=today.plusDays(i).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>" name="date" class="rdate"/>
+									<label for="<%=today.plusDays(i).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>"><%=today.plusDays(i).format(DateTimeFormatter.ofPattern("dd"))%></label></li><%
+							}
+							for(int i=4;i<=10;i++) {
+								%><li><input type="radio" id="<%=today.plusDays(i).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>" value="<%=today.plusDays(i).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>" name="date" class="rdate" disabled/>
 									<label for="<%=today.plusDays(i).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>"><%=today.plusDays(i).format(DateTimeFormatter.ofPattern("dd"))%></label></li><%
 							}
 							%>

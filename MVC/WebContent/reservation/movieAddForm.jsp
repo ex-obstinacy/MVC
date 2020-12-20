@@ -46,7 +46,7 @@
 		$.getJSON('AllMovieListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
 				$('#mldiv').append("<li class='ml_div "+item.movie_subject+"'><input type='radio' name='movie' id='"+item.movie_num+"' value='"+item.movie_num+"' class='rmovie'/><label for='"+item.movie_num+"'>"
-						+"<span id='span_m1'>["+item.cinema_name+"]</span> <span id='span_m2'>"+item.movie_subject+"</span><span id='span_m3'>"+item.showdate+"</span> <span id='span_m4'>"+item.showtime+"</span></label></li>");
+						+"<span id='span_m1'>["+item.cinema_name+"]</span> <span id='span_m2'>"+item.movie_subject+"</span><span id='span_m3'>"+item.showtime+"</span> <span id='span_m4'>"+item.showdate+"</span></label></li>");
 			});
 		})
 		// cinema 목록 db에서 가져오기
@@ -220,7 +220,7 @@
 							<input type="radio" name="date" id="<%=today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>" value="<%=today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>" class="rdate"/>
 									<label for="<%=today.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>"><%=today.format(DateTimeFormatter.ofPattern("dd"))%></label></li>
 							<%
-							for(int i=1;i<=10;i++) {
+							for(int i=1;i<=19;i++) {
 								%><li><input type="radio" id="<%=today.plusDays(i).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>" value="<%=today.plusDays(i).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>" name="date" class="rdate"/>
 									<label for="<%=today.plusDays(i).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))%>"><%=today.plusDays(i).format(DateTimeFormatter.ofPattern("dd"))%></label></li><%
 							}

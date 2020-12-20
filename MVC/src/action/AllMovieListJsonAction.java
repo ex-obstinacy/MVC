@@ -1,6 +1,8 @@
 package action;
 
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 
 import svc.AllMovieListJsonService;
-import svc.MovieListJsonService;
 import vo.ActionForward;
 
 public class AllMovieListJsonAction implements Action {
@@ -18,8 +19,13 @@ public class AllMovieListJsonAction implements Action {
 		
 		ActionForward forward = null;
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar c = Calendar.getInstance();
+		String today = sdf.format(c.getTime());
+//		System.out.println(today);
+		
 		AllMovieListJsonService allMovieListJsonService = new AllMovieListJsonService();
-		JSONArray allMovieList = allMovieListJsonService.getAllMovieListJson();
+		JSONArray allMovieList = allMovieListJsonService.getAllMovieListJson(today);
 		
 //		System.out.println(allMovieList);
 		

@@ -579,7 +579,7 @@ public class ReserveDAO {
 			
 		}
 
-		public JSONArray getAllMovieList() {
+		public JSONArray getAllMovieList(String today) {
 			
 			JSONArray allMovieList = null;
 			PreparedStatement pstmt = null;
@@ -587,8 +587,10 @@ public class ReserveDAO {
 			
 			try {
 				
-				String sql = "select * from admin_reservation order by cinema_name, movie_subject, showdate, showtime";
+//				String sql = "select * from admin_reservation order by cinema_name, movie_subject, showdate, showtime";
+				String sql = "select * from admin_reservation where showdate >= ? order by cinema_name, movie_subject, showdate, showtime";
 				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, today);
 
 				rs = pstmt.executeQuery();
 

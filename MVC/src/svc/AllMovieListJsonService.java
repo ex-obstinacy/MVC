@@ -9,7 +9,7 @@ import static db.JdbcUtil.*;
 
 public class AllMovieListJsonService {
 
-	public JSONArray getAllMovieListJson() {
+	public JSONArray getAllMovieListJson(String today) {
 		
 		JSONArray allMovieList = null;
 		
@@ -19,7 +19,7 @@ public class AllMovieListJsonService {
 		
 		reserveDAO.setConnection(con);
 		
-		allMovieList = reserveDAO.getAllMovieList();
+		allMovieList = reserveDAO.getAllMovieList(today);
 		
 		close(con);
 		
