@@ -96,18 +96,12 @@
 	         document.basketform.submit();
 	      }
 	
-	//수량변경 button
-// 	function CountChg(goodsId) {
-// 		var basketCount = document.getElementById("basketCount");
-// 		location.href = "BasketModifyPro.go?goodsId="+goodsId+"&basketCount="+basketCount.value;
-		         
-// 	}
+	// 수량변경 button
 	function CountChg(basketId) {
-// 		var basketCount = document.getElementById("basketCount");
 		location.href = "BasketModifyPro.go?basketId="+basketId+"&basketCount="+chCount;
 		         
 	}
-	
+	// 수량이 변경될때마다 basketCount check 후 chCount에 담는 함수
 	function countChk(count) {
 // 		alert(count.value);
 		chCount = count.value;
@@ -215,11 +209,9 @@
                 <td>
                   <div class="product_count"> <!-- 수량변경 버튼 모양 -->
                     <input type="number" name="basketCount" id=basketCount value="<%=basketList.get(i).getBasketCount() %>" min="0" max="100" onchange="countChk(this)">
-<%--                     <input type="hidden" name="goodsId" id=goodsId value="<%=basketList.get(i).getGoods_goodsId() %>"> --%>
                   </div>
                   <div>
                   <input type="button" value="수량변경" id="countChg" onclick="CountChg(<%=basketId%>)">
-<%--                   <input type="button" value="수량변경" id="countChg" onclick="CountChg(<%=basketList.get(i).getGoods_goodsId()%>)"> --%>
                   <input type="button" value="X" id="delete" onclick="location.href='BasketDeletePro.go?basketId=<%=basketId%>'"> <!-- 휴지통모양 혹은 x -->
                   </div>
                 </td>
