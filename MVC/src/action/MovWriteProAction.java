@@ -1,11 +1,13 @@
 package action;
 
+import java.io.PrintWriter;
 import java.sql.Date;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import svc.MovWriteProService;
 import vo.ActionForward;
 import vo.MovBean;
 
@@ -47,7 +49,7 @@ public class MovWriteProAction implements Action {
 		movBean.setSubjet(multi.getParameter("subject"));
 		movBean.setMovieCd(Integer.parseInt(multi.getParameter("movieCd")));
 		movBean.setGenre(multi.getParameter("genre"));
-//		movBean.setOpenDt(multi.getParameter("openDt"));
+		movBean.setOpenDt(Date.valueOf(multi.getParameter("openDt")));
 		movBean.setShowTm(multi.getParameter("showTm"));
 		movBean.setDirector(multi.getParameter("director"));
 		movBean.setCast(multi.getParameter("cast"));
@@ -55,14 +57,14 @@ public class MovWriteProAction implements Action {
 		movBean.setCompanys(multi.getParameter("companys"));
 		movBean.setGrade(multi.getParameter("grade"));
 		movBean.setPost(multi.getOriginalFileName("post"));
-		movBean.setStillCut(multi.getParameterValues("stillCut"));
+		movBean.setStillCut(multi.getOriginalFileName("stillCut[]"));
 		movBean.setTrailer(multi.getParameter("trailer"));
 		movBean.setContent(multi.getParameter("content"));
 		
 		System.out.println("Subject : " + movBean.getSubjet());
 		System.out.println("MovieCd : " + movBean.getMovieCd());
 		System.out.println("Genre : " + movBean.getGenre());
-//		System.out.println("OpenDt : " + movBean.getOpenDt());
+		System.out.println("OpenDt : " + movBean.getOpenDt());
 		System.out.println("ShowTm : " + movBean.getShowTm());
 		System.out.println("Director : " + movBean.getDirector());
 		System.out.println("Cast : " + movBean.getCast());
@@ -74,9 +76,25 @@ public class MovWriteProAction implements Action {
 		System.out.println("Trailer : " + movBean.getTrailer());
 		System.out.println("Content : " + movBean.getContent());
 		
-		
+		MovWriteProService movWriteProSevice = new MovWriteProService();
+		boolean isWriteSuccess = movWriteProSevice.registArticle(movBean);
 		
 		ActionForward forward = new ActionForward();
+		
+		if (isWriteSuccess) {
+			forward.setPath("MemberLogin.me");
+			forward.setRedirect(true);
+			
+		} else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>"); // 자바스크립트 시작 태그
+			out.println("alert('영화 등록 실패!')"); // 다이얼로그 메세지 출력
+			out.println("history.back()"); // 이전 페이지로 이동
+			out.println("</script>"); // 자바스크립트 끝 태그
+			
+		}
+		
 		return forward;
 	}
 

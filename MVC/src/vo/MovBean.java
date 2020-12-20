@@ -15,9 +15,10 @@ public class MovBean {
 	private String companys;
 	private String grade;
 	private String post;
-	private String[] stillCut;
+	private String stillCut;
 	private String trailer;
 	private String content;
+	private String ticketing;
 	
 	public String getSubjet() {
 		return subjet;
@@ -85,11 +86,11 @@ public class MovBean {
 	public void setPost(String post) {
 		this.post = post;
 	}
-	public String[] getStillCut() {
+	public String getStillCut() {
 		return stillCut;
 	}
-	public void setStillCut(String[] StillCut) {
-		this.stillCut = StillCut;
+	public void setStillCut(String stillCut) {
+		this.stillCut = stillCut;
 	}
 	public String getTrailer() {
 		return trailer;
@@ -102,6 +103,12 @@ public class MovBean {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public String getTicketing() {
+		return ticketing;
+	}
+	public void setTicketing(String ticketing) {
+		this.ticketing = ticketing;
 	}
 
 }

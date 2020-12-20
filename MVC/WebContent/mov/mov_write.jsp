@@ -35,6 +35,32 @@
     <link rel="stylesheet" href="css/price_rangs.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
+    
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+    
+    	var fileName;
+	    $(document).ready( function() {
+	 
+	        $("input[type=file]").change(function () {
+	            
+	            var fileInput = document.getElementById("stillCut");
+	            
+	            var files = fileInput.files;
+	            var file;
+	            
+	            for (var i = 0; i < files.length; i++) {
+	                
+	                file = files[i];
+	 
+	                alert(file.name);
+	            }
+	            
+	        });
+	 
+	    });
+	</script>
+	
 </head>
 
 <body>
@@ -110,7 +136,7 @@
 	                    			<td>장르</td>
 	                    			<td><input type="text" class="single-input" name="genre"></td>
 	                    			<td>개봉일</td>
-	                    			<td><input type="text" class="single-input" name="openDt"></td>
+	                    			<td><input type="date" class="single-input" name="openDt"></td>
 	                    		</tr>
 	                    		<tr>
 	                    			<td>상영시간</td>
@@ -143,7 +169,7 @@
 	                    			<td>포스터</td>
 	                    			<td><input type="file" name="post"></td>
 	                    			<td>스틸컷</td>
-	                    			<td><input type="file" multiple name="stillCut"></td>
+	                    			<td><input type="file" multiple="multiple" name="stillCut[]" id="stillCut"></td>
 	                    		</tr>
 	                    		<tr>
 	                    			<td>트레일러</td>
