@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 import vo.MemberBean;
@@ -677,13 +678,14 @@ public class StoreDAO {
   		}	
         
    	// 2. 장바구니 -> 구매내역 -> 결제내역 추가
-        public int orderGoods(String[] goodsIds, String id, StoreBean order) {
+        public int orderGoods(String[] goodsIds, String[] reserveNum, String id, StoreBean order) {
   			System.out.println("StoreDAO - orderGoods");
   			
   			int addCount = 0;
   			Timestamp date = new Timestamp(System.currentTimeMillis());
   			PreparedStatement pstmt = null;
   			ResultSet rs = null;
+  			
   			
   			//---유효기간---
   			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -699,10 +701,12 @@ public class StoreDAO {
   				int orderCount = 1;
   				
   				for(String goods: goodsIds) {
+  					for(String num: reserveNum) {
+  						
   					int goodsId = Integer.parseInt(goods);
   					//확인
   					System.out.println("goodsId : " + goodsId);
-  		            System.out.println(order.getReserveNum());
+  		            System.out.println(num);
   		            
   		            String sql = "SELECT * FROM goods_order WHERE orderNum=?";
   		           	pstmt = con.prepareStatement(sql);
@@ -738,7 +742,7 @@ public class StoreDAO {
   							 pstmt.setTimestamp(6, date);
   							 pstmt.setString(7, order.getOrderNum());
   							 pstmt.setInt(8, order.getSumPrice());
-  							 pstmt.setString(9, order.getReserveNum());
+  							 pstmt.setString(9, num);
   							 pstmt.setString(10, expiredate);
   				        
   							 addCount = pstmt.executeUpdate();
@@ -764,14 +768,15 @@ public class StoreDAO {
   						 pstmt.setTimestamp(6, date);
   						 pstmt.setString(7, order.getOrderNum());
   						 pstmt.setInt(8, order.getSumPrice());
-  						 pstmt.setString(9, order.getReserveNum());
+  						 pstmt.setString(9, num);
   						 pstmt.setString(10, expiredate);
   			        
   						 addCount = pstmt.executeUpdate();
   						 System.out.println("확인5");
   			        }
   					 
-  				} //포문
+  					} // reserveNum 포문
+  				} // goods 포문
   			} catch (Exception e) {
   				System.out.println("orderGoods() 오류!- "+e.getMessage());
   				e.printStackTrace();
@@ -875,7 +880,7 @@ public class StoreDAO {
     public String[] createReserveNum(int count) {
        System.out.println("StoreDAO - createReserveNum() 배열 !");
        System.out.println(count);
-       String[] reserveNum = new String[count];
+       String[] reserveNum2 = new String[count];
               
        PreparedStatement pstmt = null;
        ResultSet rs = null;
@@ -894,17 +899,17 @@ public class StoreDAO {
              int num = Integer.parseInt(rs.getString(1).substring(8));
              if (rs.getString(1).contains(today)) {
                 for (int i = 0; i < count; i++) {
-                   reserveNum[i] = today + (num + i + 1);
+                	reserveNum2[i] = today + (num + i + 1);
                 }
              } else {
                 for (int i = 0; i < count; i++) {
-                   reserveNum[i] = today + "000" + i;
+                	reserveNum2[i] = today + "000" + i;
                 }
              }
           }
           
           //값 확인
-          for(String reserve : reserveNum) {
+          for(String reserve : reserveNum2) {
         	  System.out.println(reserve);
           }
           
@@ -916,7 +921,7 @@ public class StoreDAO {
           
        }
        
-       return reserveNum;
+       return reserveNum2;
     }
     
    // 구매내역 조회

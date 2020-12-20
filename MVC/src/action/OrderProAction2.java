@@ -27,16 +27,18 @@ public class OrderProAction2 implements Action {
       int sumPrice = Integer.parseInt(request.getParameter("sumPrice")); //sumPrice 값 가져오기
       int totalPrice = Integer.parseInt(request.getParameter("totalPrice")); //totalPrice 값 가져오기
       String orderNum = request.getParameter("orderNum");
-      String[] reserveNum = (String [])request.getParameterValues("reserveNum");
       
       StoreBean order = new StoreBean();
       order.setOrderNum(orderNum);
-      order.setReserveNum(reserveNum);
       order.setSumPrice(sumPrice);
       order.setTotalPrice(totalPrice);
-//      order.setGoodsId(goodsId);
       
-//      System.out.println("goodsId : " + goodsId);
+      //개별상품번호 !
+      String[] reserveNum = request.getParameterValues("reserveNum");
+      
+      for(String num:reserveNum) {
+    	  System.out.println(num);
+      }
       
       // 선택한 상품번호 가져오기
       String[] goodsIds = request.getParameterValues("goodsRow");
@@ -45,13 +47,13 @@ public class OrderProAction2 implements Action {
       }
       
       OrderProService2 orderProService = new OrderProService2();
-	  boolean isOrderSuccess = orderProService.OrderGoods(goodsIds, id, order);
+	  boolean isOrderSuccess = orderProService.OrderGoods(goodsIds, reserveNum, id, order);
       
 	  
 	  if(isOrderSuccess) {
 		  if(orderNum != null) {
 			  forward = new ActionForward();
-			  forward.setPath("OrderResult.go");
+			  forward.setPath("OrderResult.go?orderNum=" + orderNum);
 			  forward.setRedirect(true);
 		  } else {
 	         response.setContentType("text/html; charset=UTF-8");

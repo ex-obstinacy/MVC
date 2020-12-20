@@ -22,6 +22,7 @@ public class StoreBean {
 	private int orderCount; //결제 수량
 	private String orderNum; //주문 번호
 	private String reserveNum; //예약 번호
+//	private String[] reserveNum2;
 	private String expiredate; //유효 기간
 	private boolean status; //사용상태확인
 	private String member_id; // 멤버아이디 
@@ -173,5 +174,11 @@ public class StoreBean {
 	public void setMember_name(String member_name) {
 		this.member_name = member_name;
 	}
+//	public String[] getReserveNum2() {
+//		return reserveNum2;
+//	}
+//	public void setReserveNum2(String[] reserveNum2) {
+//		this.reserveNum2 = reserveNum2;
+//	}
 	
 }

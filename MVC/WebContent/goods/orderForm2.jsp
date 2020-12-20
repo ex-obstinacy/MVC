@@ -194,7 +194,7 @@ function requestPay() {
                   <div class="media">
                     <div class="d-flex">
 					<!-- Pro로 넘길 값 -->
-                    <input type="text" value=<%=goods_goodsId %> name="goodsRow" class="goodsSelect">
+                    <input type="hidden" value=<%=goods_goodsId %> name="goodsRow" class="goodsSelect">
                     <input type="text" value=<%=reserveNum[i] %> name="reserveNum">
                     <input type="hidden" value="<%=orderNum %>" name="orderNum">
                     <!-- Pro로 넘길 값 -->

@@ -10,7 +10,7 @@ import vo.StoreBean;
 //////장바구니에서 넘어옴 //////
 public class OrderProService2 {
 
-	public boolean OrderGoods(String[] goodsIds, String id, StoreBean order) {
+	public boolean OrderGoods(String[] goodsIds, String[] reserveNum, String id, StoreBean order) {
 		System.out.println("OrderProService2 - OrderGoods() !");
 		boolean isOrderSuccess = false;
 		
@@ -18,7 +18,7 @@ public class OrderProService2 {
 	    StoreDAO storeDAO = StoreDAO.getInstance();
 	    storeDAO.setConnection(con);
 	    
-	    int addCount = storeDAO.orderGoods(goodsIds, id, order);
+	    int addCount = storeDAO.orderGoods(goodsIds, reserveNum, id, order);
 	      
 	    if(addCount > 0) {
 	    	isOrderSuccess = true;
