@@ -94,13 +94,13 @@ ArrayList<StoreBean> orderList = (ArrayList<StoreBean>)request.getAttribute("ord
 							<td colspan="3"><%=orderList.get(i).getExpiredate()%></td>
 						</tr>
 					</table>
+				</div><!-- .rightBox -->
 						<%	
 					}
 					
 						
 					}
 					%>
-				</div><!-- .rightBox -->
 			</div><!-- .infoBox -->
 			<div class="btnBox">
 				<a href="main.jsp" class="genric-btn primary circle">홈으로</a>

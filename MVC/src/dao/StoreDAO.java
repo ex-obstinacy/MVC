@@ -700,13 +700,15 @@ public class StoreDAO {
   				int orderId = 0;
   				int orderCount = 1;
   				
-  				for(String goods: goodsIds) {
-  					for(String num: reserveNum) {
+  				for(int i=0; i<goodsIds.length; i++) {
+  					
+//  				for(String goods: goodsIds) {
+//  					for(String num: reserveNum) {
   						
-  					int goodsId = Integer.parseInt(goods);
+  					int goodsId = Integer.parseInt(goodsIds[i]);
   					//확인
-  					System.out.println("goodsId : " + goodsId);
-  		            System.out.println(num);
+//  					System.out.println("goodsId : " + goodsIds.g);
+//  		            System.out.println(num);
   		            
   		            String sql = "SELECT * FROM goods_order WHERE orderNum=?";
   		           	pstmt = con.prepareStatement(sql);
@@ -742,7 +744,7 @@ public class StoreDAO {
   							 pstmt.setTimestamp(6, date);
   							 pstmt.setString(7, order.getOrderNum());
   							 pstmt.setInt(8, order.getSumPrice());
-  							 pstmt.setString(9, num);
+  							 pstmt.setString(9, reserveNum[i]);
   							 pstmt.setString(10, expiredate);
   				        
   							 addCount = pstmt.executeUpdate();
@@ -768,15 +770,16 @@ public class StoreDAO {
   						 pstmt.setTimestamp(6, date);
   						 pstmt.setString(7, order.getOrderNum());
   						 pstmt.setInt(8, order.getSumPrice());
-  						 pstmt.setString(9, num);
+  						 pstmt.setString(9, reserveNum[i]);
   						 pstmt.setString(10, expiredate);
   			        
   						 addCount = pstmt.executeUpdate();
   						 System.out.println("확인5");
   			        }
   					 
-  					} // reserveNum 포문
-  				} // goods 포문
+//  					} // reserveNum 포문
+//  				} // goods 포문
+  				}
   			} catch (Exception e) {
   				System.out.println("orderGoods() 오류!- "+e.getMessage());
   				e.printStackTrace();
@@ -931,6 +934,10 @@ public class StoreDAO {
          
          PreparedStatement pstmt = null;
          ResultSet rs = null;
+         
+         PreparedStatement pstmt2 = null;
+         ResultSet rs2 = null;
+         
          try {
             String sql = "SELECT o.orderNum, o.reserveNum, o.member_id, o.expiredate, " 
                      + "g.name, g.component, g.file "
@@ -959,12 +966,12 @@ public class StoreDAO {
                order.setFile(rs.getString("file"));
                
                
-               sql = "select name from member where id = ?";
-               pstmt = con.prepareStatement(sql);
-               pstmt.setString(1, id);
-               rs = pstmt.executeQuery();
-               if(rs.next()) {
-            	   order.setMember_name(rs.getString("name"));
+               String sql2 = "select name from member where id = ?";
+               pstmt2 = con.prepareStatement(sql2);
+               pstmt2.setString(1, id);
+               rs2 = pstmt2.executeQuery();
+               if(rs2.next()) {
+            	   order.setMember_name(rs2.getString("name"));
                }
 				
                orderList.add(order);
@@ -986,6 +993,8 @@ public class StoreDAO {
          } finally {
             close(pstmt);
             close(rs);
+            close(pstmt2);
+            close(rs2);
          }
          return orderList;
       }
