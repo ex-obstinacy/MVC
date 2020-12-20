@@ -871,25 +871,68 @@ public class StoreDAO {
 		return reserveNum;
 	}
 
-	// 구매내역 조회
-	public ArrayList<StoreBean> selectOrderList(String orderNum, String id) {
-		 System.out.println("selectOrderList DAO");
- 	  	ArrayList<StoreBean> orderList = null;
+	//개별 구매번호 --- 리저브넘 배열 !!!!!
+    public String[] createReserveNum(int count) {
+       System.out.println("StoreDAO - createReserveNum() 배열 !");
+              
+       String[] reserveNum = {};
+              
+       PreparedStatement pstmt = null;
+       ResultSet rs = null;
+       
+       try {
+          String sql = "SELECT MAX(reserveNum) FROM goods_order";
+          pstmt = con.prepareStatement(sql);
+          rs = pstmt.executeQuery();
+          
+          SimpleDateFormat format1 = new SimpleDateFormat ( "yyyyMMdd");
+          Date time = new Date();
+          String today = format1.format(time);
+          
+          if (rs.next()) {
+             int num = Integer.parseInt(rs.getString(1).substring(8));
+             if (rs.getString(1).contains(today)) {
+                for (int i = 0; i < count; i++) {
+                   reserveNum[i] = today + (num + i + 1);
+                }
+             } else {
+                for (int i = 0; i < count; i++) {
+                   reserveNum[i] = today + "000" + i;
+                }
+             }
+          }
+       } catch (NumberFormatException e) {
+          e.printStackTrace();
+          
+       } catch (SQLException e) {
+          e.printStackTrace();
+          
+       }
+       
+       return reserveNum;
+    }
+    
+   // 구매내역 조회
+   public ArrayList<StoreBean> selectOrderList(String orderNum, String id) {
+       System.out.println("selectOrderList DAO");
+         ArrayList<StoreBean> orderList = null;
          
          PreparedStatement pstmt = null;
          ResultSet rs = null;
          try {
-         	String sql = "SELECT o.orderNum, o.reserveNum, o.member_id, o.expiredate, " 
-         				+ "g.name, g.component, g.file "
-         				+ "FROM goods g JOIN goods_order o "
-         				+ "ON g.goodsId = o.goods_goodsId "
-         				+ "WHERE orderNum = ? AND member_id = ?";
-         	pstmt = con.prepareStatement(sql);
-         	pstmt.setString(1, orderNum);
-        	pstmt.setString(2, id);
-         	rs = pstmt.executeQuery();
+            String sql = "SELECT o.orderNum, o.reserveNum, o.member_id, o.expiredate, " 
+                     + "g.name, g.component, g.file "
+                     + "FROM goods g JOIN goods_order o "
+                     + "ON g.goodsId = o.goods_goodsId "
+                     + "WHERE orderNum = ? AND member_id = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, orderNum);
+            pstmt.setString(2, id);
+            rs = pstmt.executeQuery();
             
-         	orderList = new ArrayList<StoreBean>();
+            System.out.println("확인");
+            
+            orderList = new ArrayList<StoreBean>();
             
             while(rs.next()) {
                StoreBean order = new StoreBean(); 
@@ -903,8 +946,27 @@ public class StoreDAO {
                order.setComponent(rs.getString("component"));
                order.setFile(rs.getString("file"));
                
+               
+               sql = "select name from member where id = ?";
+               pstmt = con.prepareStatement(sql);
+               pstmt.setString(1, id);
+               rs = pstmt.executeQuery();
+               if(rs.next()) {
+            	   order.setMember_name(rs.getString("name"));
+               }
+				
                orderList.add(order);
+               System.out.println("확인2");
             }
+            
+            for(int i=0; i<orderList.size(); i++) {
+               System.out.println(orderList.get(i).getName());
+               System.out.println(orderList.get(i).getOrderNum());
+               System.out.println(orderList.get(i).getExpiredate());
+               System.out.println(orderList.get(i).getComponent());
+               System.out.println(orderList.get(i).getMember_name());
+            }
+            System.out.println("확인3");
             
          } catch (SQLException e) {
             System.out.println("selectOrderList() 오류!- "+e.getMessage());

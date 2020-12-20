@@ -4,7 +4,6 @@
     pageEncoding="UTF-8"%>
 <%
 ArrayList<StoreBean> orderList = (ArrayList<StoreBean>)request.getAttribute("orderList");
-String orderNum = (String)session.getAttribute("orderNum");
 %>
 <!DOCTYPE html>
 <html>
@@ -79,8 +78,8 @@ String orderNum = (String)session.getAttribute("orderNum");
 						<tr>
 							<th>구매번호</th>
 							<td><%=orderList.get(i).getReserveNum() %></td>
-							<th>예매자</th>
-							<td><%=orderList.get(i).getMember_id()%></td>
+							<th>구매자</th>
+							<td><%=orderList.get(i).getMember_name()%></td>
 						</tr>
 						<tr>
 							<th>상품명</th>
@@ -93,10 +92,6 @@ String orderNum = (String)session.getAttribute("orderNum");
 						<tr>
 							<th>유효기간</th>
 							<td colspan="3"><%=orderList.get(i).getExpiredate()%></td>
-						</tr>
-						<tr>
-							<th>?</th>
-							<td colspan="3"></td>
 						</tr>
 					</table>
 						<%	

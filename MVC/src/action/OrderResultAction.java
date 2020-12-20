@@ -21,6 +21,8 @@ public class OrderResultAction implements Action {
 	    String id = (String)session.getAttribute("id"); 
 	    
 	    String orderNum = request.getParameter("orderNum");
+	    System.out.println(id);
+	    System.out.println(orderNum);
 	    
 	    OrderResultService orderResultService = new OrderResultService();
 	    ArrayList<StoreBean> orderList = new ArrayList<StoreBean>();

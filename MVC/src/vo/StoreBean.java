@@ -24,16 +24,9 @@ public class StoreBean {
 	private String reserveNum; //예약 번호
 	private String expiredate; //유효 기간
 	private boolean status; //사용상태확인
-	private String member_id; // 멤버아이디 (12.05 추가)
-	private int goods_goodsId; // 상품번호 (외래키) (12.05 추가)
-	
-	public int getGoods_goodsId() {
-		return goods_goodsId;
-	}
-
-	public void setGoods_goodsId(int goods_goodsId) {
-		this.goods_goodsId = goods_goodsId;
-	}
+	private String member_id; // 멤버아이디 
+	private int goods_goodsId; // 상품번호 (외래키) 
+	private String member_name; //멤버이름
 
 	public int getGoodsId() {
 		return goodsId;
@@ -165,5 +158,20 @@ public class StoreBean {
 	}
 	
 	
+	public int getGoods_goodsId() {
+		return goods_goodsId;
+	}
+	
+	public void setGoods_goodsId(int goods_goodsId) {
+		this.goods_goodsId = goods_goodsId;
+	}
+	
+	public String getMember_name() {
+		return member_name;
+	}
+	
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
+	}
 	
 }

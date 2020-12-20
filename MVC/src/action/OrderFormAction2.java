@@ -34,7 +34,7 @@ public class OrderFormAction2 implements Action {
 	      String orderNum = orderFormService2.createOrderNum();
 	      request.setAttribute("orderNum", orderNum);
 	      
-		  String reserveNum = orderFormService2.createReserveNum();
+		  String[] reserveNum = orderFormService2.createReserveNum(basketIds.length);
 		  request.setAttribute("reserveNum", reserveNum);
 	      
 	      forward = new ActionForward();

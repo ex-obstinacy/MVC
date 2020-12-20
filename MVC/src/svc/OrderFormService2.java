@@ -43,16 +43,16 @@ public class OrderFormService2 {
 		return orderNum;
 	}
 
-	public String createReserveNum() {
+	public String[] createReserveNum(int length) {
 		System.out.println("OrderFormService2 - createReserveNum !");
 		
-		String reserveNum = null;
+		String[] reserveNum = null;
 		
 		Connection con = getConnection();
 	    StoreDAO storeDAO = StoreDAO.getInstance();
 	    storeDAO.setConnection(con);
 	    
-	    reserveNum = storeDAO.createReserveNum();
+	    reserveNum = storeDAO.createReserveNum(length);
 	    
 	    close(con);
 	    

@@ -49,7 +49,7 @@ public class OrderProAction implements Action {
 		  if(isOrderSuccess) {
 			  if(orderNum != null) {
 				  forward = new ActionForward();
-				  forward.setPath("OrderResult.go");
+				  forward.setPath("OrderResult.go?orderNum=" + orderNum);
 				  forward.setRedirect(true);
 			  } else {
 		         response.setContentType("text/html; charset=UTF-8");
