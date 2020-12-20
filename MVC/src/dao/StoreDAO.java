@@ -874,8 +874,8 @@ public class StoreDAO {
 	//개별 구매번호 --- 리저브넘 배열 !!!!!
     public String[] createReserveNum(int count) {
        System.out.println("StoreDAO - createReserveNum() 배열 !");
-              
-       String[] reserveNum = {};
+       System.out.println(count);
+       String[] reserveNum = new String[count];
               
        PreparedStatement pstmt = null;
        ResultSet rs = null;
@@ -890,6 +890,7 @@ public class StoreDAO {
           String today = format1.format(time);
           
           if (rs.next()) {
+        	  System.out.println(rs.getString(1));
              int num = Integer.parseInt(rs.getString(1).substring(8));
              if (rs.getString(1).contains(today)) {
                 for (int i = 0; i < count; i++) {
@@ -901,6 +902,12 @@ public class StoreDAO {
                 }
              }
           }
+          
+          //값 확인
+          for(String reserve : reserveNum) {
+        	  System.out.println(reserve);
+          }
+          
        } catch (NumberFormatException e) {
           e.printStackTrace();
           

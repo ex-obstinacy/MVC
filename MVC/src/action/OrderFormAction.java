@@ -17,9 +17,19 @@ public class OrderFormAction implements Action {
    public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
       System.out.println("OrderFormAction !");
       ActionForward forward = null;
+      forward = new ActionForward();
       
+      // -------------------- id가 null 이면 로그인 화면 이동 --------------------
       HttpSession session = request.getSession(); //MemberBean id 값 가져오기
       String id = (String)session.getAttribute("id"); 
+      
+      if(id == null) { // id가 null 이면 로그인 화면으로 이동 !
+         forward.setPath("MemberLogin.me");
+         forward.setRedirect(true);
+         return forward;
+      } 
+      
+      // -------------------- id가 null 이면 로그인 화면 이동 --------------------
       
       int goodsId = Integer.parseInt(request.getParameter("goodsId"));
       
@@ -43,7 +53,6 @@ public class OrderFormAction implements Action {
       String reserveNum = orderFormService.createReserveNum();
       request.setAttribute("reserveNum", reserveNum);
       
-      forward = new ActionForward();
       forward.setPath("/goods/orderForm.jsp");
 //    forward.setRedirect(false);
       

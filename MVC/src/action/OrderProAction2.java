@@ -27,7 +27,7 @@ public class OrderProAction2 implements Action {
       int sumPrice = Integer.parseInt(request.getParameter("sumPrice")); //sumPrice 값 가져오기
       int totalPrice = Integer.parseInt(request.getParameter("totalPrice")); //totalPrice 값 가져오기
       String orderNum = request.getParameter("orderNum");
-      String reserveNum = request.getParameter("reserveNum");
+      String[] reserveNum = (String [])request.getParameterValues("reserveNum");
       
       StoreBean order = new StoreBean();
       order.setOrderNum(orderNum);

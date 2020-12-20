@@ -13,7 +13,8 @@ int sale2 = 0; // 총 할인가격
 int sumPrice = 0; // 할인 후 상품금액
 
 String orderNum = (String)request.getAttribute("orderNum");
-String reserveNum = (String)request.getAttribute("reserveNum");
+String[] reserveNum = (String [])request.getAttribute("reserveNum");
+
 %>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -70,6 +71,8 @@ function NoMultiChk(chk){ // 결제수단 중복체크 불가
 IMP.init("imp14042333"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.   
 function requestPay() {
          var payMethod=$("input:checkbox[name='payMethod']:checked").val();
+         var selector=$("input:checkbox[name='selector']:checked").val();
+         var orderNum = $("input:hidden[name='orderNum']").val();
          var name=$('.name').text();
 		 var sumPrice = document.getElementById("sumPrice");
 		 sumPrice.value = Number(sumPrice.value);
@@ -80,11 +83,16 @@ function requestPay() {
             return false;
          }
          
+         if(selector == null){
+        	 alert("약관에 동의해주십시요.");
+        	 return false;
+         }
+         
          // IMP.request_pay(param, callback) 호출
          IMP.request_pay({ // param
              pg: "html5_inicis",
              pay_method:payMethod,
-             merchant_uid: "ORD20180131-0000038", // 상품 번호
+             merchant_uid: orderNum, // 상품 번호
              name: name, // 상품명
              amount: 100, // 상품가격
 //              amount: sumPrice.value, // 상품가격
@@ -93,7 +101,7 @@ function requestPay() {
             if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
                 // jQuery로 HTTP 요청
                 jQuery.ajax({
-                    url: "http://localhost:8080/MVC/OrderPro.go", // 가맹점 서버
+                    url: "http://localhost:8080/MVC/OrderPro2.go", // 가맹점 서버
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     data: queryString
@@ -187,7 +195,7 @@ function requestPay() {
                     <div class="d-flex">
 					<!-- Pro로 넘길 값 -->
                     <input type="text" value=<%=goods_goodsId %> name="goodsRow" class="goodsSelect">
-                    <input type="text" value=<%=reserveNum %> name="reserveNum">
+                    <input type="text" value=<%=reserveNum[i] %> name="reserveNum">
                     <input type="hidden" value="<%=orderNum %>" name="orderNum">
                     <!-- Pro로 넘길 값 -->
                       <img src="goodsUpload/<%=basketList.get(i).getFile() %>" alt="상품이미지" width="250" />

@@ -72,6 +72,8 @@ function NoMultiChk(chk){ // 결제수단 중복체크 불가
 IMP.init("imp14042333"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.   
 function requestPay() {
          var payMethod=$("input:checkbox[name='payMethod']:checked").val();
+         var selector=$("input:checkbox[name='selector']:checked").val();
+         var orderNum = $("input:hidden[name='orderNum']").val();
          var name=$('.name').text();
 		 var sumPrice = document.getElementById("sumPrice");
 		 sumPrice.value = Number(sumPrice.value);
@@ -82,11 +84,16 @@ function requestPay() {
             return false;
          }
          
+         if(selector == null){
+        	 alert("약관에 동의해주십시요.");
+        	 return false;
+         }
+         
          // IMP.request_pay(param, callback) 호출
          IMP.request_pay({ // param
              pg: "html5_inicis",
              pay_method:payMethod,
-             merchant_uid: "ORD20180131-0000038", // 상품 번호
+             merchant_uid: orderNum, // 상품 번호
              name: name, // 상품명
              amount: 100, // 상품가격
 //              amount: sumPrice.value, // 상품가격
@@ -175,7 +182,7 @@ function requestPay() {
                   <div class="media">
                     <div class="d-flex">
 					<!-- Pro로 넘길 값 -->
-                    <input type="text" value=<%=goodsId %> name="goodsId" class="goodsId">
+                    <input type="hidden" value=<%=goodsId %> name="goodsId" class="goodsId">
                     <input type="text" value=<%=reserveNum %> name="reserveNum">
                     <input type="hidden" value="<%=orderNum %>" name="orderNum">
                     <!-- Pro로 넘길 값 -->
@@ -283,7 +290,7 @@ function requestPay() {
    <div class="creat_account">
       <input type="checkbox" id="f-option4" name="selector" />
       <label for="f-option4">약관에 동의합니다.</label>
-      <a href="#">동의동의*</a>
+<!--       <a href="#">동의동의*</a> -->
         <p>역사를 피가 있는 품으며, 것이 보는 영원히 꽃이 그리하였는가?
    때에, 투명하되 생생하며, 인간의 가치를 천자만홍이 불어 피다.
     힘차게 인간이 오아이스도 천지는 작고 끝까지 같이, 아니더면, 있다.

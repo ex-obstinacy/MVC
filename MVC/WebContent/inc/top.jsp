@@ -25,13 +25,14 @@
                                     <a class="nav-link" href="ReserveMain.re">예매</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="category.jsp" id="navbarDropdown_1"
+                                    <a class="nav-link dropdown-toggle" href="StoreList.go" id="navbarDropdown_1"
                                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        스토어
+                               		         스토어
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <a class="dropdown-item" href="StoreList.go">스토어</a>
-                                        <a class="dropdown-item" href="single-product.jsp">상품 상세정보</a>
+                                        <a class="dropdown-item" href="StoreList.go#package">패키지</a>
+                                        <a class="dropdown-item" href="StoreList.go#ticket">관람권</a>
+                                        <a class="dropdown-item" href="StoreList.go#snack">스낵음료</a>
                                         
                                     </div>
                                 </li>
