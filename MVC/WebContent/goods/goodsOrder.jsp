@@ -118,7 +118,7 @@
 					<td align="center"><%=orderList.get(i).getComponent() %></td>
 <%-- 					<td align="center"><%=orderList.get(i).getFile() %></td> --%>
 					<td align="center"><%=orderList.get(i).getReserveNum()%></td>
-					<td align="center" id="status"><%=orderList.get(i).isStatus() %></td>
+					<td align="center" id="status"><% if (orderList.get(i).isStatus()) { %>Y <% } else { %>N<% } %></td>
 					<td><input type="button" value="사용완료" onclick="useCk('<%=orderList.get(i).getReserveNum()%>')"></td>
 				</tr>
 				
@@ -144,7 +144,7 @@
 			if(i == nowPage) { %>
 				[<%=i %>]&nbsp;
 			<%} else { %>
-					<a href="GoodsList.go?page=<%=i %>">[<%=i %>]</a>&nbsp;
+					<a href="GoodsOrder.go?page=<%=i %>">[<%=i %>]</a>&nbsp;
 			<%} %>
 	<%} %>
 	

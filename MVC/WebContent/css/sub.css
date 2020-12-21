@@ -307,11 +307,11 @@ div.reserveInfo .btnBox{text-align:center;}
 /* basket */
 .cat_product_area {margin-top: 20px;}
 
-/* orderResult  아니 이거 왜 안먹히지 */ 
+/* orderResult */ 
 div.orderResult{width:80%; margin:0 auto;}
 div.orderResult h2{font-size:24px; text-align:center; margin-bottom:30px; background:url(../img/sub/reserve_finish.png) no-repeat 290px center/30px auto;}
 div.orderResult h2 span{color:#ff243e;}
-div.orderResult .infoBox{border:3px solid #ff243e; padding:25px 3%;}
+div.orderResult .infoBox{border:3px solid #ff243e; padding:25px 3%; margin-bottom: 25px;}
 div.orderResult .infoBox:after{content:""; display:block; clear:both;}
 div.orderResult .infoBox img{display:block; float:left; width:25%; height:auto; }
 div.orderResult .infoBox .rightBox{float:right; width:71%;}

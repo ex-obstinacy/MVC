@@ -47,13 +47,12 @@ ArrayList<StoreBean> orderList = (ArrayList<StoreBean>)request.getAttribute("ord
 <!-- 헤더 -->
 <jsp:include page="../inc/top.jsp"/>
 <!-- 서브비주얼 -->
-<jsp:include page="/inc/sub_visual1.jsp"/>
+<jsp:include page="/inc/sub_store1.jsp"/>
 
 <div id="sub_content">
 	<div class="container">
 		<div class="orderResult">
 			<h2><span>결제</span>가 완료되었습니다.</h2>
-			<div class="infoBox">
 				
 				<!-- 임시이미지 -->
 					<%
@@ -61,11 +60,11 @@ ArrayList<StoreBean> orderList = (ArrayList<StoreBean>)request.getAttribute("ord
 					
 					for(int i= 0; i< orderList.size(); i++){
 					%>
+			<div class="infoBox">
 				<img src="goodsUpload/<%=orderList.get(i).getFile() %>">
 				
 				<div class="rightBox">
-					<p>주문번호 : <%=orderList.get(i).getOrderNum() %>
-					<p>구매자 : <%=orderList.get(i).getMember_name()%></p>
+					<p>교환권번호 : <%=orderList.get(i).getReserveNum() %></p>
 					<table >
 					
 					
@@ -77,8 +76,8 @@ ArrayList<StoreBean> orderList = (ArrayList<StoreBean>)request.getAttribute("ord
 							<col width="30%"/>
 						</colgroup>
 						<tr>
-							<th>교환권번호</th>
-							<td><%=orderList.get(i).getReserveNum() %></td>
+							<th>주문번호</th>
+							<td><%=orderList.get(i).getOrderNum() %></td>
 <!-- 							<th>구매자</th> -->
 <%-- 							<td><%=orderList.get(i).getMember_name()%></td> --%>
 						</tr>
@@ -96,13 +95,13 @@ ArrayList<StoreBean> orderList = (ArrayList<StoreBean>)request.getAttribute("ord
 						</tr>
 					</table>
 				</div><!-- .rightBox -->
+			</div><!-- .infoBox -->
 						<%	
 					}
 					
 						
 					}
 					%>
-			</div><!-- .infoBox -->
 			<div class="btnBox">
 				<a href="main.jsp" class="genric-btn primary circle">홈으로</a>
 				<a href="#" class="genric-btn info circle">마이페이지</a>
