@@ -57,24 +57,24 @@ public class MovWriteProAction implements Action {
 		movBean.setCompanys(multi.getParameter("companys"));
 		movBean.setGrade(multi.getParameter("grade"));
 		movBean.setPost(multi.getOriginalFileName("post"));
-		movBean.setStillCut(multi.getOriginalFileName("stillCut[]"));
+		movBean.setStillCut(multi.getOriginalFileName("stillCut"));
 		movBean.setTrailer(multi.getParameter("trailer"));
 		movBean.setContent(multi.getParameter("content"));
 		
-		System.out.println("Subject : " + movBean.getSubjet());
-		System.out.println("MovieCd : " + movBean.getMovieCd());
-		System.out.println("Genre : " + movBean.getGenre());
-		System.out.println("OpenDt : " + movBean.getOpenDt());
-		System.out.println("ShowTm : " + movBean.getShowTm());
-		System.out.println("Director : " + movBean.getDirector());
-		System.out.println("Cast : " + movBean.getCast());
-		System.out.println("NationNm : " + movBean.getNationNm());
-		System.out.println("Companys : " + movBean.getCompanys());
-		System.out.println("Grade : " + movBean.getGrade());
-		System.out.println("Post : " + movBean.getPost());
-		System.out.println("StillCut : " + movBean.getStillCut());
-		System.out.println("Trailer : " + movBean.getTrailer());
-		System.out.println("Content : " + movBean.getContent());
+//		System.out.println("Subject : " + movBean.getSubjet());
+//		System.out.println("MovieCd : " + movBean.getMovieCd());
+//		System.out.println("Genre : " + movBean.getGenre());
+//		System.out.println("OpenDt : " + movBean.getOpenDt());
+//		System.out.println("ShowTm : " + movBean.getShowTm());
+//		System.out.println("Director : " + movBean.getDirector());
+//		System.out.println("Cast : " + movBean.getCast());
+//		System.out.println("NationNm : " + movBean.getNationNm());
+//		System.out.println("Companys : " + movBean.getCompanys());
+//		System.out.println("Grade : " + movBean.getGrade());
+//		System.out.println("Post : " + movBean.getPost());
+//		System.out.println("StillCut : " + movBean.getStillCut());
+//		System.out.println("Trailer : " + movBean.getTrailer());
+//		System.out.println("Content : " + movBean.getContent());
 		
 		MovWriteProService movWriteProSevice = new MovWriteProService();
 		boolean isWriteSuccess = movWriteProSevice.registArticle(movBean);
@@ -82,7 +82,7 @@ public class MovWriteProAction implements Action {
 		ActionForward forward = new ActionForward();
 		
 		if (isWriteSuccess) {
-			forward.setPath("MemberLogin.me");
+			forward.setPath("MovList.mo");
 			forward.setRedirect(true);
 			
 		} else {

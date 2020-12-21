@@ -169,7 +169,7 @@
 	                    			<td>포스터</td>
 	                    			<td><input type="file" name="post"></td>
 	                    			<td>스틸컷</td>
-	                    			<td><input type="file" multiple="multiple" name="stillCut[]" id="stillCut"></td>
+	                    			<td><input type="file" multiple="multiple" name="stillCut" id="stillCut"></td>
 	                    		</tr>
 	                    		<tr>
 	                    			<td>트레일러</td>

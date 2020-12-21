@@ -16,6 +16,7 @@ import action.MemberLoginProAction;
 import action.MemberLogoutAction;
 import action.MemberMainAction;
 import action.MemberWriteProAction;
+import action.MovListAction;
 import action.MovWriteProAction;
 import vo.ActionForward;
 
@@ -54,7 +55,19 @@ public class MovFrontController extends HttpServlet {
 				e.printStackTrace();
 				
 			}
+		} else if (command.equals("/MovList.mo")) { // 영화 리스트 조회
+			action = new MovListAction();
+			
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
 		}
+		
+		
 		
 		
 		
