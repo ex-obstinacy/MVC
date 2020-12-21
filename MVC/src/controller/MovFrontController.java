@@ -68,7 +68,18 @@ public class MovFrontController extends HttpServlet {
 		} else if (command.equals("/MovDetail.mo")) { // 영화 상세 정보 조회
 			forward = new ActionForward();
 			forward.setPath("/mov/mov_detail.jsp");
-		}
+			
+		} else if (command.equals("/AdminMovDetail.mo")) { // 관리자 영화 상세 정보 조회
+			action = new MovListAction();
+			
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
+		} 
 		
 		
 		
