@@ -623,6 +623,7 @@ public class StoreDAO {
   			Timestamp date = new Timestamp(System.currentTimeMillis());
   			PreparedStatement pstmt = null;
   			ResultSet rs = null;
+  			boolean status = false;
   			
   			//---유효기간---
   			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -650,7 +651,7 @@ public class StoreDAO {
 			        	System.out.println("확인");
 			        }
 			        
-  		             sql = "INSERT INTO goods_order(orderId, goods_goodsId, member_id, orderCount, totalPrice, date, orderNum, sumPrice, reserveNum, expiredate) VALUES(?, ?, ?, ? ,? ,? ,? ,? ,?, ?)";
+  		             sql = "INSERT INTO goods_order(orderId, goods_goodsId, member_id, orderCount, totalPrice, date, orderNum, sumPrice, reserveNum, expiredate, status) VALUES(?, ?, ?, ?, ? ,? ,? ,? ,? ,?, ?)";
   					 pstmt = con.prepareStatement(sql);
   					 pstmt.setInt(1, orderId);
   					 pstmt.setInt(2, order.getGoodsId());
@@ -662,6 +663,7 @@ public class StoreDAO {
   					 pstmt.setInt(8, order.getSumPrice());
   					 pstmt.setString(9, order.getReserveNum());
   					 pstmt.setString(10, expiredate);
+  					 pstmt.setBoolean(11, status);
   				        
   					 addCount = pstmt.executeUpdate();
   					 System.out.println("확인2");
@@ -1111,6 +1113,7 @@ public class StoreDAO {
          return orderList;
       }
 
+   // 사용여부 변경
    public int UseArticle(String reserveNum) {
 		int UseCount =0;
 		

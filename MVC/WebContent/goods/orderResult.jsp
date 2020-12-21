@@ -51,7 +51,7 @@ ArrayList<StoreBean> orderList = (ArrayList<StoreBean>)request.getAttribute("ord
 
 <div id="sub_content">
 	<div class="container">
-		<div class="reserveInfo">
+		<div class="orderResult">
 			<h2><span>결제</span>가 완료되었습니다.</h2>
 			<div class="infoBox">
 				
