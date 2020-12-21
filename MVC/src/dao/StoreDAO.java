@@ -625,7 +625,7 @@ public class StoreDAO {
   			ResultSet rs = null;
   			
   			//---유효기간---
-  			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+  			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
   	        String currentTime = sdf.format(new java.util.Date());
   	        Calendar c = Calendar.getInstance(TimeZone.getTimeZone("Asia/Seoul"));
   	        String fromDate = sdf.format(c.getTime());
@@ -686,9 +686,10 @@ public class StoreDAO {
   			PreparedStatement pstmt = null;
   			ResultSet rs = null;
   			
+  			boolean status = false;
   			
   			//---유효기간---
-  			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+  			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
   	        String currentTime = sdf.format(new java.util.Date());
   	        Calendar c = Calendar.getInstance(TimeZone.getTimeZone("Asia/Seoul"));
   	        String fromDate = sdf.format(c.getTime());
@@ -734,7 +735,7 @@ public class StoreDAO {
   					              orderId = rs.getInt(1) +1;
   					              System.out.println("확인6");
   					        }
-  					        sql = "INSERT INTO goods_order(orderId, goods_goodsId, member_id, orderCount, totalPrice, date, orderNum, sumPrice, reserveNum, expiredate) VALUES(?, ?, ?, ? ,? ,? ,? ,? ,?, ?)";
+  					        sql = "INSERT INTO goods_order(orderId, goods_goodsId, member_id, orderCount, totalPrice, date, orderNum, sumPrice, reserveNum, expiredate, status) VALUES(?, ?, ?, ?, ? ,? ,? ,? ,? ,?, ?)";
   							 pstmt = con.prepareStatement(sql);
   							 pstmt.setInt(1, orderId);
   							 pstmt.setInt(2, goodsId);
@@ -746,6 +747,7 @@ public class StoreDAO {
   							 pstmt.setInt(8, order.getSumPrice());
   							 pstmt.setString(9, reserveNum[i]);
   							 pstmt.setString(10, expiredate);
+  							 pstmt.setBoolean(11, status);
   				        
   							 addCount = pstmt.executeUpdate();
   							 System.out.println("확인7");
@@ -760,7 +762,7 @@ public class StoreDAO {
   				              orderId = rs.getInt(1) +1;
   				              System.out.println("확인4");
   				        }
-  						 sql = "INSERT INTO goods_order(orderId, goods_goodsId, member_id, orderCount, totalPrice, date, orderNum, sumPrice, reserveNum, expiredate) VALUES(?, ?, ?, ?, ? ,? ,? ,? ,? ,?)";
+  						 sql = "INSERT INTO goods_order(orderId, goods_goodsId, member_id, orderCount, totalPrice, date, orderNum, sumPrice, reserveNum, expiredate, status) VALUES(?, ?, ?, ?, ?, ? ,? ,? ,? ,? ,?)";
   						 pstmt = con.prepareStatement(sql);
   						 pstmt.setInt(1, orderId);
   						 pstmt.setInt(2, goodsId);
@@ -772,6 +774,7 @@ public class StoreDAO {
   						 pstmt.setInt(8, order.getSumPrice());
   						 pstmt.setString(9, reserveNum[i]);
   						 pstmt.setString(10, expiredate);
+  						 pstmt.setBoolean(11, status);
   			        
   						 addCount = pstmt.executeUpdate();
   						 System.out.println("확인5");
@@ -998,6 +1001,139 @@ public class StoreDAO {
          }
          return orderList;
       }
+   
+ //전체 게시물 수 조회
+   public int selectOrderListCount() {
+      int listCount = 0;
+      
+      PreparedStatement pstmt = null;
+      ResultSet rs = null;
+      
+      try {
+         String sql= "select count(goods_goodsId) from goods_order";
+         pstmt = con.prepareStatement(sql);
+         rs= pstmt.executeQuery();
+         
+         if (rs.next()) {
+            listCount = rs.getInt(1);
+         }
+         
+         System.out.println("selectOrderListCount에서 check! 전체 게시물 수 : " + listCount);
+         
+      } catch (SQLException e) {
+         System.out.println("selectOrderListCount() 오류!- "+e.getMessage());
+         e.printStackTrace();
+      } finally {
+         close(rs);
+         close(pstmt);
+      }
+      
+      return listCount;
+   }
 
+   // 관리자 구매내역 조회
+   public ArrayList<StoreBean> selectOrderList(int page, int limit) {
+       System.out.println("selectOrderList DAO");
+         ArrayList<StoreBean> orderList = null;
+         
+         PreparedStatement pstmt = null;
+         ResultSet rs = null;
+         
+         PreparedStatement pstmt2 = null;
+         ResultSet rs2 = null;
+         
+         // 조회를 시작할 레코드(행) 번호 계산
+         int startRow = (page - 1) * limit;
+
+         
+         try {
+            String sql = "SELECT o.orderNum, o.reserveNum, o.member_id, o.expiredate, o.status, " 
+                     + "g.name, g.component, g.file, g.ctg "
+                     + "FROM goods g JOIN goods_order o "
+                     + "ON g.goodsId = o.goods_goodsId "
+                     + "ORDER BY orderNum limit ?,?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, startRow);
+            pstmt.setInt(2, limit);
+
+            rs = pstmt.executeQuery();
+            
+            System.out.println("확인");
+            
+            orderList = new ArrayList<StoreBean>();
+            
+            while(rs.next()) {
+               StoreBean order = new StoreBean(); 
+                 
+               order.setOrderNum(rs.getString("orderNum"));
+               order.setReserveNum(rs.getString("reserveNum"));
+               order.setMember_id(rs.getString("member_id"));
+               order.setExpiredate(rs.getString("expiredate"));
+               order.setStatus(rs.getBoolean("status"));
+
+               order.setName(rs.getString("name"));
+               order.setComponent(rs.getString("component"));
+               order.setFile(rs.getString("file"));
+               order.setCtg(rs.getString("ctg"));
+               
+               
+               String sql2 = "select name from member where id = ?";
+               pstmt2 = con.prepareStatement(sql2);
+               pstmt2.setString(1, order.getMember_id());
+               rs2 = pstmt2.executeQuery();
+               if(rs2.next()) {
+            	   order.setMember_name(rs2.getString("name"));
+               }
+				
+               orderList.add(order);
+            }
+            
+            for(int i=0; i<orderList.size(); i++) {
+            	System.out.println(orderList.get(i).isStatus());
+               System.out.println(orderList.get(i).getName());
+               System.out.println(orderList.get(i).getOrderNum());
+               System.out.println(orderList.get(i).getExpiredate());
+               System.out.println(orderList.get(i).getComponent());
+               System.out.println(orderList.get(i).getMember_name());
+               System.out.println(orderList.get(i).getMember_id());
+               
+            }
+            
+         } catch (SQLException e) {
+            System.out.println("selectOrderList() 오류!- "+e.getMessage());
+            e.printStackTrace();
+         } finally {
+            close(pstmt);
+            close(rs);
+            close(pstmt2);
+            close(rs2);
+         }
+         return orderList;
+      }
+
+   public int UseArticle(String reserveNum) {
+		int UseCount =0;
+		
+		PreparedStatement pstmt =null;
+		
+		try {
+			
+			String sql = "UPDATE goods_order SET status=1 WHERE reserveNum =?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, reserveNum);
+			UseCount = pstmt.executeUpdate();
+			
+			System.out.println("storeDAO - UseArticle 에서 check! " + UseCount);
+			
+		} catch (SQLException e) {
+			System.out.println("UseArticle() 오류!- "+e.getMessage());
+			
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		  			
+		return UseCount;
+}
    
 } //메인메서드

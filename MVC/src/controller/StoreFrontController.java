@@ -21,6 +21,8 @@ import action.GoodsDetailAction;
 import action.GoodsListAction;
 import action.GoodsModifyFormAction;
 import action.GoodsModifyProAction;
+import action.GoodsOrderAction;
+import action.GoodsUseProAction;
 import action.GoodsWriteProAction;
 import action.OrderFormAction;
 import action.OrderFormAction2;
@@ -201,15 +203,23 @@ public class StoreFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			} 
-		} else if(command.equals("/Checkcheck.go")) {
-			action = new CheckcheckAction();
+		} else if(command.equals("/GoodsOrder.go")) {
+			action = new GoodsOrderAction();
 			
-		try {
-			forward = action.execute(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
-	}
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+		} else if(command.equals("/GoodsUsePro.go")) {
+			action = new GoodsUseProAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+		}
 		
 		
 			// ----------------------------------------------------------------

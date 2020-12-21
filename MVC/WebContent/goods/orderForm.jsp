@@ -183,7 +183,7 @@ function requestPay() {
                     <div class="d-flex">
 					<!-- Pro로 넘길 값 -->
                     <input type="hidden" value=<%=goodsId %> name="goodsId" class="goodsId">
-                    <input type="text" value=<%=reserveNum %> name="reserveNum">
+                    <input type="hidden" value=<%=reserveNum %> name="reserveNum">
                     <input type="hidden" value="<%=orderNum %>" name="orderNum">
                     <!-- Pro로 넘길 값 -->
                       <img src="goodsUpload/<%=basketList.get(i).getFile() %>" alt="상품이미지" width="250" />

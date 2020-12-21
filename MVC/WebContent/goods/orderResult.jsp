@@ -64,7 +64,8 @@ ArrayList<StoreBean> orderList = (ArrayList<StoreBean>)request.getAttribute("ord
 				<img src="goodsUpload/<%=orderList.get(i).getFile() %>">
 				
 				<div class="rightBox">
-					<p>주문번호 : <%=orderList.get(i).getOrderNum() %></p>
+					<p>주문번호 : <%=orderList.get(i).getOrderNum() %>
+					<p>구매자 : <%=orderList.get(i).getMember_name()%></p>
 					<table >
 					
 					
@@ -76,10 +77,10 @@ ArrayList<StoreBean> orderList = (ArrayList<StoreBean>)request.getAttribute("ord
 							<col width="30%"/>
 						</colgroup>
 						<tr>
-							<th>구매번호</th>
+							<th>교환권번호</th>
 							<td><%=orderList.get(i).getReserveNum() %></td>
-							<th>구매자</th>
-							<td><%=orderList.get(i).getMember_name()%></td>
+<!-- 							<th>구매자</th> -->
+<%-- 							<td><%=orderList.get(i).getMember_name()%></td> --%>
 						</tr>
 						<tr>
 							<th>상품명</th>
