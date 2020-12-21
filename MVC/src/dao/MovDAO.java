@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -109,7 +110,7 @@ public class MovDAO {
 	public ArrayList<MovBean> selectArticleList(int page, int limit) {
 		System.out.println("MovDAO - selectArticleList()");
 		
-		ArrayList<MemberBean> articleList = null;
+		ArrayList<MovBean> articleList = null;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -119,34 +120,32 @@ public class MovDAO {
 		
 		try {
 			// 회원 조회
-			String sql = "SELECT * FROM member LIMIT ?,?";
+			String sql = "SELECT * FROM movie_board LIMIT ?,?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, limit);
 			rs = pstmt.executeQuery();
 			
 			// ArrayList 객체 생성(while문 위에서 생성 필수!)
-			articleList = new ArrayList<MemberBean>();
+			articleList = new ArrayList<MovBean>();
 			
 			while(rs.next()) {
 				// 1개 게시물 정보를 저장할 BoardBean 객체 생성 및 데이터 저장
-				MemberBean article = new MemberBean();
-				article.setId(rs.getString(1));
-				article.setPass(rs.getString(2));
-				article.setName(rs.getString(3));
-				article.setPhone(rs.getString(4));
-				article.setBirthday(rs.getDate(5));
-				article.setGender(rs.getString(6));
-				article.setEmail(rs.getString(7));
-				article.setPostcode(rs.getString(8));
-				article.setAddress(rs.getString(9));
-				article.setDetailAddress(rs.getString(10));
-				article.setExtraAddress(rs.getString(11));
-				article.setCoupon_1000(rs.getInt(12));
-				article.setCoupon_2000(rs.getInt(13));
-				article.setCoupon_3000(rs.getInt(14));
-				article.setMembership(rs.getInt(15));
-				article.setFree_ticket(rs.getInt(16));
+				MovBean article = new MovBean();
+				article.setMovieCd(rs.getInt(1));
+				article.setSubjet(rs.getString(2));
+				article.setGenre(rs.getString(3));
+				article.setOpenDt(rs.getDate(4));
+				article.setShowTm(rs.getString(5));
+				article.setDirector(rs.getString(6));
+				article.setCast(rs.getString(7));
+				article.setNationNm(rs.getString(8));
+				article.setCompanys(rs.getString(9));
+				article.setGrade(rs.getString(10));
+				article.setPost(rs.getString(11));
+				article.setStillCut(rs.getString(12));
+				article.setTrailer(rs.getString(13));
+				article.setContent(rs.getString(14));
 				
 				// 1개 회원을 전체 회원 저장 객체(ArrayList)에 추가
 				articleList.add(article);
