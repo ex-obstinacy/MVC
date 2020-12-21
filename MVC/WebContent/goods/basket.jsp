@@ -166,11 +166,11 @@
       <div class="cart_inner">
         <h3>장바구니상품 정보</h3>
          <hr>
-         <form action="OrderForm2.go" name="basketform" method="post">
-          <table class="table">
          <%
           if(basketList != null){
            %>
+         <form action="OrderForm2.go" name="basketform" method="post">
+          <table class="table">
             <thead>
               <tr>
                 <th scope="col" class="checkbox"><input type="checkbox" id="ch_all"></th> <!-- 체크박스 전체 선택 및 해제 -->
@@ -223,10 +223,6 @@
          <%   
          }
          %>
-           
-           <%  
-          }
-          %>
               <tr>
                 <td></td>
                 <td></td>
@@ -257,6 +253,18 @@
 		     </div>
 		  <!--::버튼 끝::-->      
          </form>
+            <%  
+          }
+          %>
+         <%
+          if(basketList != null){
+           %>
+           <section class="emptyBasket">
+            장바구니에 담긴 상품이 없습니다. <br>
+            온라인 스토어에서 좀 더 저렴하게 스낵을 즐기세요! <br>
+            <input type="button" class="btn_3" value="쇼핑하기" onclick="location.href='StoreList.go'" >
+           </section>
+           <%} %>
          
         </div>
       </div>
