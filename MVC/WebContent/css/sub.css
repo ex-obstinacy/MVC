@@ -295,6 +295,13 @@ div.reserveInfo .btnBox{text-align:center;}
 
 #orderForm .pd_top {padding-top: 40px;}
 
+/* store_main */
+.product_list .active {border-bottom: 1px solid #ccc;
+					text-align:left;
+					margin-top: 20px;
+					width: 300px;}
+.product_list .active:hover {border-bottom: 2px solid black;}
+
 /* orderResult  아니 이거 왜 안먹히지 */ 
 div.orderResult{width:80%; margin:0 auto;}
 div.orderResult h2{font-size:24px; text-align:center; margin-bottom:30px; background:url(../img/sub/reserve_finish.png) no-repeat 290px center/30px auto;}

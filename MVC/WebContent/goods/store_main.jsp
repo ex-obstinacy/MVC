@@ -88,14 +88,14 @@ ul.store-tab li{
 	<jsp:include page="/inc/sub_store1.jsp"/>
 	
     <!--================ 스토어 메인 상품 !!!! =================-->
-  <section class="product_list section_padding">
+  <section class="product_list">
         <div class="container">
 			<div class="col-lg-12">
                 <div class="section_tittle text-center">
                     <ul class="store-tab"> 
 						<li class="active"><a href="#package"><span>패키지</span></a>&nbsp;</li>
-						<li class=""><h2><a href="#ticket"><span>관람권</span>&nbsp;</a></h2></li>
-						<li class=""><a href="#snack"><span>스낵음료</span>&nbsp;</a></li>
+						<li class="active"><a href="#ticket"><span>관람권</span>&nbsp;</a></li>
+						<li class="active"><a href="#snack"><span>스낵음료</span>&nbsp;</a></li>
 				    </ul>
                 </div>
             </div>
