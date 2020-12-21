@@ -1,13 +1,18 @@
 @charset "UTF-8";
 /* 메인페이지 css */
+/* 메인 공용 */
+#main_container{}
+#main_container h2{font-size:18px; font-weight:500;}
+#main_container section{margin-bottom:100px;}
+
 /* 메인슬라이더 */
 section.banner_part{margin-bottom:50px;}
-
+section.banner_part{}
 
 /* 예매순위 슬라이더 */
 section.reserve_ranking{}
 div.rank_box{position:relative;}
-div.rank_box i{position:absolute; top:40%; font-size:23px;}
+div.rank_box i{position:absolute; top:40%; font-size:23px; cursor:pointer;}
 div.rank_box i.next{right:-30px;}
 div.rank_box i.prev{left:-30px;}
 div.rank_box ul.rank_slider{}
