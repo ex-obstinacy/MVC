@@ -154,7 +154,7 @@ function requestPay() {
       <div class="cart_inner">
         <h3>구매상품 정보</h3>
          <hr>
-        <form action="OrderPro.go" name="orderResult" method="post">
+        <form action="OrderPro.go" name="orderResult" method="post" id="orderForm">
           <table class="table">
           <%
           if(basketList != null){
