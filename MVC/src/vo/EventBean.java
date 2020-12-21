@@ -12,6 +12,11 @@ public class EventBean {
 	private String file;
 	private String member_id;
 	private String thumbnail;
+	private String apply;
+	
+	
+	
+	
 	public int getNum() {
 		return num;
 	}
@@ -59,6 +64,12 @@ public class EventBean {
 	}
 	public void setThumbnail(String thumbnail) {
 		this.thumbnail = thumbnail;
+	}
+	public String getApply() {
+		return apply;
+	}
+	public void setApply(String apply) {
+		this.apply = apply;
 	}
 	
 	

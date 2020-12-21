@@ -6,20 +6,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	// BoardBean 객체 파라미터 가져오기
-	EventBean article = (EventBean)request.getAttribute("article");
+EventBean article = (EventBean) request.getAttribute("article");
 
-	// page 파라미터 가져오기
-	// 1. BoardDetailAction 에서 request.setAttribute() 메서드로 저장했을 경우
+// page 파라미터 가져오기
+// 1. BoardDetailAction 에서 request.setAttribute() 메서드로 저장했을 경우
 // 	String nowPage = (String)request.getAttribute("page");
 
-	// 2. 서블릿 주소로 전달된 page 값을 파라미터 그대로 사용할 경우
-	String nowPage = request.getParameter("page");
-	
-	String Member_id =(String)session.getAttribute("id");
-	
-	int num = Integer.parseInt(request.getParameter("num"));
-	
-	
+// 2. 서블릿 주소로 전달된 page 값을 파라미터 그대로 사용할 경우
+String nowPage = request.getParameter("page");
+
+String Member_id = (String) session.getAttribute("id");
+
+int num = Integer.parseInt(request.getParameter("num"));
+
+String member_id = request.getParameter("member_id");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,6 +77,8 @@
 .content-view {
 	white-space: pre-line;
 }
+
+
 </style>
 <link rel="icon" href="img/favicon.png">
 <!-- Bootstrap CSS -->
@@ -141,8 +143,8 @@
 		</div>
 	</section>
 	<%
-SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-%>
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	%>
 	<section id="listForm" class="checkout_area padding_top">
 		<div class="container">
 			<div id="content">
@@ -156,41 +158,73 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 								<!-- 리스트 시작 -->
 								<div class="bbs-document-wrap" itemscope itemtype="http://schema.org/Article">
 									<div class="bbs-title" itemprop="name">
-										<p><%=article.getSubject() %></p>
+										<p><%=article.getSubject()%></p>
 									</div>
 									<div class="bbs-detail">
 										<div class="detail-attr detail-writer">
 											<div class="detail-name">작성자</div>
-											<div class="detail-value"><%=article.getMember_id() %></div>
+											<div class="detail-value"><%=article.getMember_id()%></div>
 										</div>
 										<div class="detail-attr detail-date">
 											<div class="detail-name">작성일</div>
-											<div class="detail-value"><%=sdf.format(article.getDate()) %></div>
+											<div class="detail-value"><%=sdf.format(article.getDate())%></div>
 										</div>
 										<div class="detail-attr detail-view">
 											<div class="detail-name">조회</div>
-											<div class="detail-value"><%=article.getReadcount() %></div>
+											<div class="detail-value"><%=article.getReadcount()%></div>
 										</div>
 										<div class="detail-attr detail-file">
 											<div class="detail-name">파일</div>
 											<div class="detail-value">
 												<%
-										if(article.getFile() != null) {
-									%>
-												<a href="event/file_down.jsp?downFile=<%=article.getFile()%>"><%=article.getFile() %></a>
+													if (article.getFile() != null) {
+												%>
+												<a href="event/file_down.jsp?downFile=<%=article.getFile()%>"><%=article.getFile()%></a>
 												<%
-									}
-									%>
+													}
+												%>
 											</div>
 										</div>
 									</div>
 									<div class="bbs-content" itemprop="description">
 										<div class="content-view">
-											<% if(article.getFile()!=null){%>
+											<%
+												if (article.getFile() != null) {
+											%>
 											<img src="eventUpload/<%=article.getFile()%>" />
-											<%} %>
+											<%
+												}
+											%>
 											<br>
-											<%=article.getContent() %>
+											<%=article.getContent()%>
+											<%
+												if (article.getApply().equals("생성")) {
+											%>
+											
+											<div>
+												<script type="text/javascript">
+													function b() {
+														var b = confirm("응모하시겠습니까?");
+
+														if (b) {
+															fr.submit();
+														} else {
+															return false;
+														}
+													}
+												</script>
+												<form action="EventApplyButton.ev" name="fr" method="post">
+														<input type="hidden" name="num" value="<%=num%>" />
+														<input type="hidden" name="member_id" value="<%=member_id%>" />
+<!-- 														<input type="image" src="/img/btn_event.png" name="Submit" value="Submit"  align="absmiddle" onclick="return b()"> -->
+														<button input type="submit">
+														
+														<img alt="응모" src="img/btn_event.png" onclick="return b()"></button>													
+												</form>
+											</div>
+											<%
+												}
+											%>
 										</div>
 										<!-- 								<div class="bbs-document-action"> -->
 										<!--div class="left">
@@ -235,35 +269,35 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 											<a href="EventList.ev?page=<%=nowPage%>" target="_parent" class="bbs-button">목록보기</a>
 										</div>
 										<%
-									if(Member_id!=null){
-										if(Member_id.equals("admin")){%>
+											if (Member_id != null) {
+											if (Member_id.equals("admin")) {
+										%>
 										<div style="text-align: center;">
 											<a href="EventModifyForm.ev?num=<%=article.getNum()%>&page=<%=nowPage%>" target="_parent" class="bbs-button">수정하기</a>
 										</div>
-										<!-- 											<div style="text-align:center;"> -->
-										<%-- 												<a href="NoticeDeleteForm.no?num=<%=article.getNum()%>&page=<%=nowPage%>" target="_parent" class="bbs-button">삭제하기</a>  --%>
-										<!-- 																	</div>						 -->
+
 										<div>
 											<script type="text/javascript">
-   
-         function a(){
-             var a = confirm("삭제하시겠습니까?");
+												function a() {
+													var a = confirm("삭제하시겠습니까?");
 
-             if(a){
-            	 fr.submit();
-             }else{
-                return false;
-             }
-         }
-      
-   </script>
+													if (a) {
+														fr.submit();
+													} else {
+														return false;
+													}
+												}
+											</script>
 											<form action="EventDeletePro.ev" name="fr" method="post">
-												<input type="hidden" name="num" value="<%=num %>" /> <input type="hidden" name="page" value="<%=nowPage %>" /> <input type="submit" value="삭제하기" onclick="return a()" class="bbs-button">
+												<input type="hidden" name="num" value="<%=num%>" /> 
+												<input type="hidden" name="page" value="<%=nowPage%>" /> 
+												<input type="submit" value="삭제하기" onclick="return a()" class="bbs-button">
 											</form>
 										</div>
-										<%}
-									}
-								%>
+										<%
+											}
+										}
+										%>
 									</div>
 									<!-- 페이징 끝 -->
 								</div>

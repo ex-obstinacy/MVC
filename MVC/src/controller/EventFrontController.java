@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.EventApplyInsertAction;
 import action.EventDeleteProAction;
 import action.EventDetailAction;
 import action.EventListAction;
@@ -129,6 +130,15 @@ public class EventFrontController extends HttpServlet {
 		
 		else if(command.equals("/EventListSearch.ev")) {
 			action=new EventListSearchAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/EventApplyInsert.ev")) {
+			action=new EventApplyInsertAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

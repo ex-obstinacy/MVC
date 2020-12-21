@@ -57,7 +57,7 @@ public class EventDAO {
 
 			// 전달받은 NoticeBean 객체 내의 데이터를 사용하여 INSERT 작업 수행
 			// => 컬럼 중 date 항목(작성일)은 now() 함수 사용
-			sql = "INSERT INTO event(num,subject,content,readcount,date,file,member_id,thumbnail) values(?,?,?,?,?,?,?,?)";
+			sql = "INSERT INTO event(num,subject,content,readcount,date,file,member_id,thumbnail,apply) values(?,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			// NoticeBean 객체로부터 데이터를 꺼내서 쿼리문 ? 대체
 			pstmt.setInt(1, num); // 글번호
@@ -67,7 +67,8 @@ public class EventDAO {
 			pstmt.setTimestamp(5, eventBean.getDate());
 			pstmt.setString(6, eventBean.getFile());
 			pstmt.setString(7, eventBean.getMember_id());
-			pstmt.setNString(8, eventBean.getThumbnail());
+			pstmt.setString(8, eventBean.getThumbnail());
+			pstmt.setString(9, eventBean.getApply());
 			// -------------------------------------------------------------------
 			// 서비스 클래스를 통해 실제 글 등록 작업 수행을 위한 요청
 			// BoardWriteProService 클래스의 인스턴스 생성 후
@@ -166,6 +167,7 @@ public class EventDAO {
 				article.setFile(rs.getString("file"));
 				article.setMember_id(rs.getString("member_id"));
 				article.setThumbnail(rs.getString("thumbnail"));
+				article.setApply(rs.getString("apply"));
 				// 레코드 저장 확인용 코드
 //				System.out.println("제목 : " + article.getSubject());
 				
@@ -211,6 +213,7 @@ public class EventDAO {
 				article.setFile(rs.getString("file"));
 				article.setMember_id(rs.getString("member_id"));
 				article.setThumbnail(rs.getString("thumbnail"));
+				article.setApply(rs.getString("apply"));
 			}
 			
 		} catch (SQLException e) {
@@ -260,13 +263,14 @@ public class EventDAO {
 		PreparedStatement pstmt = null;
 		
 		try {
-			String sql = "UPDATE event SET subject=?,content=?,file=?,thumbnail=? WHERE num=?";
+			String sql = "UPDATE event SET subject=?,content=?,file=?,thumbnail=?,apply=? WHERE num=?";
 			pstmt =con.prepareStatement(sql);
 			pstmt.setString(1, article.getSubject());
 			pstmt.setString(2, article.getContent());
 			pstmt.setString(3, article.getFile());
 			pstmt.setString(4, article.getThumbnail());
-			pstmt.setInt(5, article.getNum());
+			pstmt.setString(5, article.getApply());
+			pstmt.setInt(6, article.getNum());
 			updateCount = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
@@ -375,6 +379,7 @@ public class EventDAO {
 				article.setFile(rs.getString("file"));
 				article.setMember_id(rs.getString("member_id"));
 				article.setThumbnail(rs.getString("thumbnail"));
+				article.setApply(rs.getString("apply"));
 			// ArrayList 객체 생성(while문 위에서 생성 필수!)
 				articleList.add(article);
 			}

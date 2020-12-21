@@ -100,6 +100,7 @@ public class EventWriteProAction implements Action {
 		// 전달할 데이터를 BoardBean 객체에 저장
 		EventBean eventBean = new EventBean();
 		eventBean.setMember_id(multi.getParameter("member_id"));
+		eventBean.setApply(multi.getParameter("apply"));
 		eventBean.setSubject(multi.getParameter("subject"));
 		eventBean.setContent(multi.getParameter("content"));
 		eventBean.setFile(multi.getOriginalFileName("file"));

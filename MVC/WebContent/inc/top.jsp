@@ -55,7 +55,7 @@
                                         이벤트
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="blog.jsp"> 영화</a>
+                                        <a class="dropdown-item" href="EventList.ev"> 영화</a>
                                         <a class="dropdown-item" href="PreviewList.pr">시사회/무대인사</a>
                                         <a class="dropdown-item" href="single-blog.jsp">당첨자 발표</a>
                                     </div>

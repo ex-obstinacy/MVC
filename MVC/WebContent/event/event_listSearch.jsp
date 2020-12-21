@@ -70,6 +70,32 @@ String member_id = (String) session.getAttribute("id");
 	}
 }
 
+
+/* 검색 */
+.search input[type=text] {
+	float: right;
+	padding: 6px;
+	border: none;
+	margin-top: 8px;
+	margin-right: 16px;
+	font-size: 17px;
+	background-color: #EAEAEA;
+}
+
+@media screen and (max-width: 600px) {
+	.search input[type=text] {
+		float: none;
+		display: block;
+		text-align: left;
+		width: 100%;
+		margin: 0;
+		padding: 14px;
+	}
+	.search input[type=text] {
+		border: 1px solid #ccc;
+	}
+}
+
 /*      .c { */
 /*         position: absolute; */
 /*         clip: rect( 20px, 220px, 220px, 20px ); */

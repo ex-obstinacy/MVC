@@ -51,6 +51,7 @@ public class EventModifyProAction implements Action {
 		article.setContent(multi.getParameter("content"));
 		article.setFile(multi.getOriginalFileName("file"));
 		article.setThumbnail(multi.getOriginalFileName("thumbnail"));
+		article.setApply(multi.getParameter("apply"));
 		
 		// NoticeModifyProService 클래스의 modifyArticle() 메서드를 호출하여
 		// 글 수정 작업 요청

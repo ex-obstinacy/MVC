@@ -25,6 +25,7 @@
 // 	String Member_id =(String)session.getAttribute("id");
 	
 	String member_id = (String)session.getAttribute("id"); 
+	
 	String id = (String)request.getAttribute("id");
 	
 	

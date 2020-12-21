@@ -154,6 +154,7 @@
 														<input type="text" name="subject" value="" placeholder="제목 입력란" class="form-control" required="required">
 													</td>
 												</tr>
+												
 												<tr>
 													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">I &nbsp; &nbsp; D</td>
@@ -161,7 +162,19 @@
 														<input type="text" name="member_id" placeholder="아이디" class="form-control" value="<%=member_id %>" readonly>
 													</td>
 													<td class="bbs-list-blank"></td>
-												</tr>
+												</tr>												
+												
+												<tr>
+													<td class="bbs-list-blank"></td>
+													<td class="bbs-list-a">응모 버튼 여부</td>
+													<td class="bbs-list-b">
+														
+														<input type="radio" name="apply" value="생성" class="form-control"><label for="버튼있음">버튼있음</label>
+														<input type="radio" name="apply" value="없음" class="form-control"><label for="버튼없음">버튼없음</label>
+													</td>
+													<td class="bbs-list-blank"></td>
+												</tr>												
+												
 												<tr>
 													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">본문 &nbsp; &nbsp; 파일</td>
@@ -170,6 +183,7 @@
 													</td>
 													<td class="bbs-list-blank"></td>
 												</tr>
+												
 												<tr>
 													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">미리보기 &nbsp; &nbsp; 파일</td>
@@ -178,6 +192,7 @@
 													</td>
 													<td class="bbs-list-blank"></td>
 												</tr>
+												
 												<tr>
 													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">본 문</td>

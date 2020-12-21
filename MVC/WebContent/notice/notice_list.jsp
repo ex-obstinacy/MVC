@@ -71,6 +71,7 @@
 	}
 }
 
+/* 검색 */
 .search input[type=text] {
 	float: right;
 	padding: 6px;
