@@ -302,6 +302,9 @@ div.reserveInfo .btnBox{text-align:center;}
 					width: 300px;}
 .product_list .active:hover {border-bottom: 2px solid black;}
 
+/* basket */
+.cat_product_area {margin-top: 20px;}
+
 /* orderResult  아니 이거 왜 안먹히지 */ 
 div.orderResult{width:80%; margin:0 auto;}
 div.orderResult h2{font-size:24px; text-align:center; margin-bottom:30px; background:url(../img/sub/reserve_finish.png) no-repeat 290px center/30px auto;}

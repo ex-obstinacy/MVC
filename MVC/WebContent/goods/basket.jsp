@@ -135,7 +135,7 @@
     <!-- breadcrumb start-->
 
     <!--================ 메뉴 영역 =================-->
-    <section class="cat_product_area section_padding">
+    <section class="cat_product_area">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
