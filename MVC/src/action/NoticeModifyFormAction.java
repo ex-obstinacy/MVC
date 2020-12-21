@@ -16,7 +16,7 @@ public class NoticeModifyFormAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// 특정 게시물 수정을 위해 기존 게시물 정보를 요청하는 Action 클래스
-		System.out.println("BoardModifyFormAction");
+		System.out.println("NoticeModifyFormAction");
 		
 		ActionForward forward = null;
 		

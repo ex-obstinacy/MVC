@@ -82,10 +82,10 @@
                                         <a href="GoodsList.go">스토어</a>
                                     </li>
                                     <li>
-                                        <a href="#">공지사항</a>
+                                        <a href="NoticeList.no">공지사항</a>
                                     </li>
                                     <li>
-                                        <a href="#">1대1 문의</a>
+                                        <a href="QnaList.qn">1대1 문의</a>
                                     </li>
                                     <li>
                                         <a href="AdminMemberList.ad">회원 목록</a>

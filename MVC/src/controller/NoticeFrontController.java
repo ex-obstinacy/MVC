@@ -13,14 +13,14 @@ import action.Action;
 import action.NoticeDeleteProAction;
 import action.NoticeDetailAction;
 import action.NoticeListAction;
-
+import action.NoticeListSearchAction;
 import action.NoticeModifyFormAction;
 import action.NoticeModifyProAction;
 import action.NoticeWriteProAction;
 
 import vo.ActionForward;
 
-@WebServlet("*.no") // 서블릿 주소 중 XXX.bo 주소에 대한 요청을 전달받아 처리
+@WebServlet("*.no") // 서블릿 주소 중 XXX.no 주소에 대한 요청을 전달받아 처리
 public class NoticeFrontController extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -102,11 +102,7 @@ public class NoticeFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} 
-		else if(command.equals("/NoticeDeleteForm.no")) {
-			forward = new ActionForward();
-			forward.setPath("/notice/notice_delete.jsp");
-			
-		}else if(command.equals("/NoticeDeletePro.no")){
+		else if(command.equals("/NoticeDeletePro.no")){
 			action = new NoticeDeleteProAction();
 			
 			try {
@@ -124,14 +120,14 @@ public class NoticeFrontController extends HttpServlet {
 		}
 		
 		
-//		else if(command.equals("/NoticeListSearch.no")) {
-//			action=new NoticeListSearchAction();
-//			try {
-//				forward = action.execute(request, response);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
+		else if(command.equals("/NoticeListSearch.no")) {
+			action=new NoticeListSearchAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		// ----------------------------------------------------------------
 		// 기본적인 작업 후 공통적으로 수행할 포워딩 작업

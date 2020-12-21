@@ -32,7 +32,7 @@ public class QnaWriteProAction implements Action {
 		
 		// 프로젝트 상에서 설정한 가상 업로드 폴더 경로 지정
 		// 현재 루트 위치가 webcontent 폴더이므로 하위 폴더를 "/하위폴더명" 지정
-		String saveFolder = "/noticeUpload";
+		String saveFolder = "/qnaUpload";
 		
 		// 가상 폴더에 대응하는 실제 폴더 위치를 가져오기 위해
 		// ServletContext 객체의 getRealPath() 메서드를 호출
@@ -98,6 +98,7 @@ public class QnaWriteProAction implements Action {
 		// 전달할 데이터를 BoardBean 객체에 저장
 		QnaBean qnaBean = new QnaBean();
 		qnaBean.setMember_id(multi.getParameter("member_id"));
+		
 		qnaBean.setSubject(multi.getParameter("subject"));
 		qnaBean.setContent(multi.getParameter("content"));
 		qnaBean.setFile(multi.getOriginalFileName("file"));

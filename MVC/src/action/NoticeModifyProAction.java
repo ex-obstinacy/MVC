@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.plaf.multi.MultiMenuItemUI;
+
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -19,7 +19,7 @@ public class NoticeModifyProAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// 특정 게시물 수정을 요청하는 Action 클래스
-		System.out.println("NoticeModifyProAction");
+//		System.out.println("NoticeModifyProAction");
 		
 		ActionForward forward = null;
 		
@@ -44,7 +44,7 @@ public class NoticeModifyProAction implements Action {
 		// 게시물 수정에 필요한 글번호(num) 가져오기
 		int num = Integer.parseInt(multi.getParameter("num"));
 		String nowPage = multi.getParameter("page");
-		System.out.println("게시물 페이지 : " +nowPage);
+//		System.out.println("게시물 페이지 : " +nowPage);
 		
 		NoticeModifyProService noticeModifyProService = new NoticeModifyProService();
 		
@@ -83,7 +83,7 @@ public class NoticeModifyProAction implements Action {
 									"&page=" + nowPage);
 			
 			
-			System.out.println("게시물 페이지 : " +nowPage);
+//			System.out.println("게시물 페이지 : " +nowPage);
 
 			forward.setRedirect(true);
 		}

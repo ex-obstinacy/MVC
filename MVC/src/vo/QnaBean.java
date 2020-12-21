@@ -4,9 +4,7 @@ import java.sql.Timestamp;
 
 public class QnaBean {
 
-	private int num;
-	
-	private String pass;
+	private int num;  
 	private String subject;
 	private String content;
 	private int readcount;
@@ -16,18 +14,25 @@ public class QnaBean {
 	private int re_seq;
 	private Timestamp date;
 	private String member_id;
+	private String p_member_id;  // 원글 글쓴이 (로그인한 회원에 따라 admin 일때는 본인글 조회, 
+								 //일반회원은 본인 글과 본인글의 답글만 조회하기 위해 추가함
+	
+	
+	
+	public String getP_member_id() {
+		return p_member_id;
+	}
+	public void setP_member_id(String p_member_id) {
+		this.p_member_id = p_member_id;
+	}
+	
 	public int getNum() {
 		return num;
 	}
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public String getPass() {
-		return pass;
-	}
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
+
 	public String getSubject() {
 		return subject;
 	}

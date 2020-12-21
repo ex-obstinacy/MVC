@@ -10,17 +10,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.NoticeDeleteProAction;
-import action.NoticeDetailAction;
-import action.NoticeListAction;
-import action.NoticeModifyFormAction;
-import action.NoticeModifyProAction;
-import action.NoticeWriteProAction;
+
+
+
+
+
+import action.QnaDeleteProAction;
+import action.QnaDetailAction;
 import action.QnaListAction;
+
+import action.QnaListSearchAction;
+import action.QnaModifyFormAction;
+import action.QnaModifyProAction;
+import action.QnaReplyFormAction;
+import action.QnaReplyProAction;
 import action.QnaWriteProAction;
 import vo.ActionForward;
 
-@WebServlet("*.qn") // 서블릿 주소 중 XXX.bo 주소에 대한 요청을 전달받아 처리
+@WebServlet("*.qn") // 서블릿 주소 중 XXX.qn 주소에 대한 요청을 전달받아 처리
 
 public class QnaFrontController extends HttpServlet {
 
@@ -78,37 +85,53 @@ public class QnaFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/NoticeDetail.no")) {
-			action = new NoticeDetailAction();
+		}else if(command.equals("/QnaDetail.qn")) {
+			action = new QnaDetailAction();
 			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/NoticeModifyForm.no")) {
-			action = new NoticeModifyFormAction();
+		} else if(command.equals("/QnaModifyForm.qn")) {
+			action = new QnaModifyFormAction();
 			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/NoticeModifyPro.no")) {
-			action = new NoticeModifyProAction();
+		} else if(command.equals("/QnaModifyPro.qn")) {
+			action = new QnaModifyProAction();
 			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} 
-		else if(command.equals("/NoticeDeleteForm.no")) {
+		} else if(command.equals("/QnaReplyForm.qn")) {
+			action = new QnaReplyFormAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/QnaReplyPro.qn")){
+			action = new QnaReplyProAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/QnaDeleteForm.qn")) {
 			forward = new ActionForward();
-			forward.setPath("/notice/notice_delete.jsp");
+			forward.setPath("/qna/qna_delete.jsp");
 			
-		}else if(command.equals("/NoticeDeletePro.no")){
-			action = new NoticeDeleteProAction();
+		}else if(command.equals("/QnaDeletePro.qn")){
+			action = new QnaDeleteProAction();
 			
 			try {
 				forward = action.execute(request, response);
@@ -117,22 +140,19 @@ public class QnaFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		}else if(command.equals("/NoticeFaq.no")){
-			// 1. ActionForward 객체 생성(변수는 이미 선언되어 있음)
-			forward = new ActionForward();
-			// 2. 포워딩 경로 설정
-			forward.setPath("/notice/notice_faq.jsp");
 		}
 		
 		
-//		else if(command.equals("/NoticeListSearch.no")) {
-//			action=new NoticeListSearchAction();
-//			try {
-//				forward = action.execute(request, response);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
+		else if(command.equals("/QnaListSearch.qn")) {
+			action=new QnaListSearchAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+
 		
 		// ----------------------------------------------------------------
 		// 기본적인 작업 후 공통적으로 수행할 포워딩 작업

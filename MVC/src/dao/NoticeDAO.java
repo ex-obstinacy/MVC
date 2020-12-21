@@ -310,6 +310,102 @@ public class NoticeDAO {
 		}
 		
 		return deleteCount;
+	}
+	// 전체 게시물 수 조회 (검색)
+	public int selectListCount(String search) {
+		
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int listCount = 0 ;
+		
+		try {
+			
+			
+			String sql = "SELECT COUNT(*) FROM notice where subject like ?";
+			pstmt =con.prepareStatement(sql);
+			pstmt.setString(1,"%"+search+"%");
+			rs = pstmt.executeQuery();
+			
+			// 조회 결과가 있을 경우(= 게시물이 하나라도 존재하는 경우)
+			// => 게시물 수를 listCount 에 저장
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectListCount() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			// 자원 반환
+			// 주의! DAO 클래스 내에서 Connection 객체 반환 금지!
+			close(rs);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	// 게시물 목록 조회(검색)
+	public ArrayList<NoticeBean> selectArticleList(int page, int limit, String search) {
+		// 지정된 갯수만큼의 게시물 조회 후 ArrayList 객체에 저장한 뒤 리턴
+		ArrayList<NoticeBean> articleList = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		// 조회를 시작할 레코드(행) 번호 계산
+		int startRow = (page - 1) * limit;
+		
+		try {
+			// 게시물 조회
+			// 참조글번호(board_re_ref) 번호를 기준으로 내림차순 정렬,
+			// 순서번호(board_re_seq) 번호를 기준으로 오름차순 정렬
+			// 조회 시작 게시물 번호(startRow)부터 limit 갯수만큼 조회
+			String sql = "SELECT * FROM notice where subject like ? "
+					+ "ORDER BY num DESC "
+					+ "LIMIT ?,?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,"%"+search+"%");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, limit);
+			rs = pstmt.executeQuery();
+			
+			// ArrayList 객체 생성(while문 위에서 생성 필수!)
+			articleList = new ArrayList<NoticeBean>();
+			
+			// 읽어올 게시물이 존재할 경우 다음 작업 반복
+			// => NoticeBean 객체를 생성하여 레코드 데이터 모두 저장 후
+			//    NoticeBean 객체를 다시 ArrayList 객체에 추가
+			
+			while(rs.next()) {
+				// 1개 게시물 정보를 저장할 NoticeBean 객체 생성 및 데이터 저장
+				NoticeBean article = new NoticeBean();
+				article.setNum(rs.getInt("num"));
+				article.setSubject(rs.getString("subject"));
+				article.setContent(rs.getString("content"));
+				article.setReadcount(rs.getInt("readcount"));
+				article.setDate(rs.getTimestamp("date")); // 여기 timestap 
+				article.setFile(rs.getString("file"));
+				article.setMember_id(rs.getString("member_id"));
+				
+				// 레코드 저장 확인용 코드
+//				System.out.println("제목 : " + article.getSubject());
+				
+				// 1개 게시물을 전체 게시물 저장 객체(ArrayList)에 추가
+				articleList.add(article);
+			}
+			
+			
+		} catch (SQLException e) {
+			System.out.println("selectArticleList() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return articleList;
 	}	
 	
 }
