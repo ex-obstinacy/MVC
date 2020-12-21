@@ -211,7 +211,7 @@ String member_id = request.getParameter("member_id");
 														} else {
 															return false;
 														}
-													}
+													} 
 												</script>
 												<form action="EventApplyButton.ev" name="fr" method="post">
 														<input type="hidden" name="num" value="<%=num%>" />
