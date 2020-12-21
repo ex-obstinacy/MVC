@@ -112,10 +112,10 @@
 </head>
 
 <body>
-    <!--::header part start::-->
+<!--::header part start::-->
     <jsp:include page="../inc/top.jsp"/>
-    <!-- Header part end-->
-
+<!-- Header part end-->
+	
     <!--================Home Banner Area =================-->
     <!-- breadcrumb start-->
     <section class="breadcrumb breadcrumb_bg">

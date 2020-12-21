@@ -301,6 +301,8 @@ div.reserveInfo .btnBox{text-align:center;}
 					margin-top: 20px;
 					width: 300px;}
 .product_list .active:hover {border-bottom: 2px solid black;}
+#originPrice {font-weight: bold;}
+.price{ text-decoration : line-through;}
 
 /* basket */
 .cat_product_area {margin-top: 20px;}

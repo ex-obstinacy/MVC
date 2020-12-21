@@ -38,9 +38,6 @@ ul.store-tab li{
 	box-sizing: border-box;
 }
 
-.price{
-	text-decoration : line-through;
-}
 
 </style>
 <!-- 탭메뉴 끝 -->
@@ -119,8 +116,12 @@ ul.store-tab li{
                   			<a href="GoodsDetail.go?goodsId=<%=articleList.get(i).getGoodsId() %>&page=<%=nowPage %>"><img src="goodsUpload/<%=articleList.get(i).getFile()%>" width="250"></a>
                   			<div class="single_product_text">
                   				<h4><%=articleList.get(i).getName() %></h4>
+                  				<%if(sale == 0){ %>
+                  				<h3 id="originPrice"><%=articleList.get(i).getPrice() %> 원</h3><Br>
+                  				<%} else { %>
                   				<h3 class = "price"><%=articleList.get(i).getPrice() %> 원</h3>
-                  				<h4><%=sumPrice%> 원</h4>
+                  				<h4><%=sumPrice%> 원</h4> 
+                  				<% } %>
                   				<a href="BasketAdd.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="add_cart">장바구니</a>
 <!-- 								<input type="button"> -->
                   				<a href="OrderForm.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="buy">구매하기</a>
@@ -162,8 +163,12 @@ ul.store-tab li{
                   			<a href="GoodsDetail.go?goodsId=<%=articleList.get(i).getGoodsId() %>&page=<%=nowPage %>"><img src="goodsUpload/<%=articleList.get(i).getFile()%>" width="250"></a>
                   			<div class="single_product_text">
                   				<h4><%=articleList.get(i).getName() %></h4>
+                  				<%if(sale == 0){ %>
+                  				<h3 id="originPrice"><%=articleList.get(i).getPrice() %> 원</h3><Br>
+                  				<%} else { %>
                   				<h3 class = "price"><%=articleList.get(i).getPrice() %> 원</h3>
-                  				<h4><%=sumPrice%> 원</h4>
+                  				<h4><%=sumPrice%> 원</h4> 
+                  				<% } %>
                   				<a href="BasketAdd.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="add_cart">장바구니</a>
                   				<a href="OrderForm.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="buy">구매하기</a>
                   				
@@ -204,8 +209,12 @@ ul.store-tab li{
                   			<a href="GoodsDetail.go?goodsId=<%=articleList.get(i).getGoodsId() %>&page=<%=nowPage %>"><img src="goodsUpload/<%=articleList.get(i).getFile()%>" width="250"></a>
                   			<div class="single_product_text">
                   				<h4><%=articleList.get(i).getName() %></h4>
+                  				<%if(sale == 0){ %>
+                  				<h3 id="originPrice"><%=articleList.get(i).getPrice() %> 원</h3><Br>
+                  				<%} else { %>
                   				<h3 class = "price"><%=articleList.get(i).getPrice() %> 원</h3>
-                  				<h4><%=sumPrice%> 원</h4>
+                  				<h4><%=sumPrice%> 원</h4> 
+                  				<% } %>
                   				<a href="BasketAdd.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="add_cart">장바구니</a>
                   				<a href="OrderForm.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="buy">구매하기</a>
                   				
