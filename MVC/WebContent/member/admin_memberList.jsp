@@ -102,7 +102,7 @@
                             <div class="widgets_inner">
                                 <ul class="list">
                                     <li>
-                                        <a href="#">영화</a>
+                                        <a href="AdminMovList.mo">영화</a>
                                     </li>
                                     <li>
                                         <a href="#">예매</a>

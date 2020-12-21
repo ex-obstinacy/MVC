@@ -83,6 +83,43 @@
   </section>
   <!-- breadcrumb start-->
   
+      <!--================ 메뉴 영역 =================-->
+    <section class="cat_product_area section_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="left_sidebar_area">
+                        <aside class="left_widgets p_filter_widgets">
+                            <div class="l_w_title">
+                            
+                            </div>
+                            <div class="widgets_inner">
+                                <ul class="list">
+                                    <li>
+                                        <a href="AdminMovList.mo">영화</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">예매</a>
+                                    </li>
+                                    <li>
+                                        <a href="GoodsList.go">스토어</a>
+                                    </li>
+                                    <li>
+                                        <a href="NoticeList.no">공지사항</a>
+                                    </li>
+                                    <li>
+                                        <a href="QnaList.qn">1대1 문의</a>
+                                    </li>
+                                    <li>
+                                        <a href="AdminMemberList.ad">회원 목록</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+          <!--================ 메뉴 영역 =================-->    
+  
 	<!-- 게시판 리스트 -->
 	<section id="list" class="checkout_area padding_top">
 		<div class="container">
@@ -166,7 +203,9 @@
 	<%
 	}
 	%>
-	
+	            </div>
+        </div>
+    </section>
   <!-- ================ goodsList section end ================= -->
 
   <!--::footer_part start::-->
