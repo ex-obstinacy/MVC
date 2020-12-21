@@ -239,6 +239,8 @@
 				</div><!-- .people_cont -->
 			</div>
 			<div id="tab-2" class="tab-content">평점 및 관람평</div>
+			
+			
 		</section><!-- .detail_box2 -->
 	</div><!-- .container -->
 	

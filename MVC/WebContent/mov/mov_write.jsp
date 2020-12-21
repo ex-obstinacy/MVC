@@ -1,9 +1,19 @@
+<%@page import="kr.or.kobis.kobisopenapi.consumer.soap.movie.MovieAPIServiceImplService"%>
+<%@page import="kr.or.kobis.kobisopenapi.consumer.soap.movie.MovieInfoResult"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
  <%
 	//session 객체에 저장된 id 값 가져와서 변수에 저장
-	String id = (String)session.getAttribute("id");
+String id = (String)session.getAttribute("id");
+ 	// 파라메터 설정	//20126674 설국열차
+String movieCd = request.getParameter("movieCd")==null?"20126673":request.getParameter("movieCd");						//영화코드
+	// 발급키
+String key = "9e0587d5d88c9c3ac140d5daeeee18bd";	
+	
+	// KOBIS 오픈 API SOAP Client를 통해 호출
+MovieInfoResult movieInfoResult = new MovieAPIServiceImplService().getMovieAPIServiceImplPort().searchMovieInfo(key, movieCd);
+request.setAttribute("movieInfoResult",movieInfoResult);	
 %>
 
 <!DOCTYPE html>
@@ -60,7 +70,7 @@
 	 
 	    });
 	</script>
-	
+	<script></script>
 </head>
 
 <body>
@@ -124,35 +134,40 @@
                 
                 <div class="col-lg-9">
                     <div class="row align-items-center latest_product_inner">
-	                    <form action="MovWritePro.mo" method="post" enctype="multipart/form-data">
+                    <c:if test="${not empty movieInfoResult.movieInfo }">
+	                    <form action="MovWrite.mo" enctype="multipart/form-data">
 	                    	<table class="table">
 	                    		<tr>
 	                    			<td>제목</td>
-	                    			<td><input type="text" class="single-input" name="subject"></td>
+	                    			<td><h2><c:out value="${movieInfoResult.movieInfo.movieNm}"/></h3></td>
 	                    			<td>영화 코드</td>
-	                    			<td><input type="text" class="single-input" placeholder="영화진흥위원회 코드" name=movieCd></td>
+	                    			<td>
+	                    			<form action="MovWrite.mo" >
+	                    			<input type="text" class="single-input" name=movieCd value="<%=movieInfoResult.getMovieInfo().getMovieCd()%>"><input type="submit" value="검색">
+	                    			</form>
+	                    			</td>
 	                    		</tr>
 	                    		<tr>
 	                    			<td>장르</td>
-	                    			<td><input type="text" class="single-input" name="genre"></td>
+	                    			<td><c:forEach items="${movieInfoResult.movieInfo.genres.genre}" var="genre"><c:out value="${genre.genreNm}"/> </c:forEach></td>
 	                    			<td>개봉일</td>
-	                    			<td><input type="date" class="single-input" name="openDt"></td>
+	                    			<td><c:forEach items="${movieInfoResult.movieInfo.genres.genre}" var="genre"><c:out value="${genre.genreNm}"/> </c:forEach></td>
 	                    		</tr>
 	                    		<tr>
 	                    			<td>상영시간</td>
-	                    			<td><input type="text" class="single-input" name="showTm"></td>
+	                    			<td><c:out value="${movieInfoResult.movieInfo.showTm }"/>분</td>
 	                    			<td>감독</td>
-	                    			<td><input type="text" class="single-input" name="director"></td>
+	                    			<td><c:forEach items="${movieInfoResult.movieInfo.directors.director}" var="director"><c:out value="${director.peopleNm}"/> </c:forEach></td>
 	                    		</tr>
 	                    		<tr>
 	                    			<td>출연</td>
-	                    			<td><input type="text" class="single-input" name="cast"></td>
+	                    			<td><c:forEach items="${movieInfoResult.movieInfo.actors.actor}" var="actor"><c:out value="${actor.peopleNm}"/> </c:forEach></td>
 	                    			<td>제작국가</td>
-	                    			<td><input type="text" class="single-input" name="nationNm"></td>
+	                    			<td><c:forEach items="${movieInfoResult.movieInfo.nations.nation}" var="nation"><c:out value="${nation.nationNm}"/> </c:forEach> </td>
 	                    		</tr>
 	                    		<tr>
 	                    			<td>영화사</td>
-	                    			<td><input type="text" class="single-input" name="companys"></td>
+	                    			<td><c:forEach items="${movieInfoResult.movieInfo.companys.company}" var="company"><c:out value="${company.companyNm}"/> </c:forEach></td>
 	                    			<td>관람등급</td>
 	                    			<td>
 	                    				<div class="default-select" id="default-select_2">
@@ -189,7 +204,7 @@
 	                    		
 	                    	</table>
 	                    </form>
-                    
+                    </c:if>
                     </div>
                 </div>
             </div>
