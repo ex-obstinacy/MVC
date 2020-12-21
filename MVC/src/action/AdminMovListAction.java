@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.MovListService;
+import svc.AdminMovListService;
 import vo.ActionForward;
 import vo.MovBean;
 import vo.PageInfo;
 
-public class MovListAction implements Action {
+public class AdminMovListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MovListAction");
+		System.out.println("AdminMovListAction");
 		
 		ActionForward forward = null;
 		
@@ -28,15 +28,15 @@ public class MovListAction implements Action {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		
-		MovListService movListService = new MovListService();
-		int listCount = movListService.getListCount();
+		AdminMovListService adminMovListService = new AdminMovListService();
+		int listCount = adminMovListService.getListCount();
 		
 		// 전체 게시물 목록을 저장할 ArrayList 객체(articleList) 생성
 		ArrayList<MovBean> articleList = new ArrayList<MovBean>();
 		// MovListService 클래스의 getArticleList() 메서드를 호출하여
 		// 전체 영화 목록 리턴받아 ArrayList 객체에 저장
 		// => 파라미터 : 현재 페이지번호(page), 페이지 당 게시물 수(limit)
-		articleList = movListService.getArticleList(page, limit);
+		articleList = adminMovListService.getArticleList(page, limit);
 		
 		// 페이지 계산 작업 수행
 		// 1. 전체 페이지 수 계산
@@ -68,7 +68,7 @@ public class MovListAction implements Action {
 		// => request 객체가 유지되어야 하며, 서블릿 주소가 유지되어야 하므로
 		//    Dispatcher 방식으로 포워딩 설정
 		forward = new ActionForward();
-		forward.setPath("/mov/mov_list.jsp");
+		forward.setPath("/mov/admin_mov_list.jsp");
 		
 		return forward;
 	}

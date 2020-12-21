@@ -9,10 +9,10 @@ import dao.MovDAO;
 import vo.MemberBean;
 import vo.MovBean;
 
-public class MovListService {
+public class AdminMovListService {
 
 	public int getListCount() {
-		System.out.println("MovListService - getListCount()");
+		System.out.println("AdminMovListService - getListCount()");
 		
 		int listCount = 0;
 		
@@ -29,7 +29,7 @@ public class MovListService {
 	}
 
 	public ArrayList<MovBean> getArticleList(int page, int limit) {
-		System.out.println("MovListService - getArticleList()");
+		System.out.println("AdminMovListService - getArticleList()");
 		
 		ArrayList<MovBean> articleList = null;
 		

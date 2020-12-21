@@ -12,12 +12,14 @@ import action.Action;
 import action.AdminDeleteProAction;
 import action.MemberInfoAction;
 import action.AdminMemberListAction;
+import action.AdminMovDeleteProAction;
+import action.AdminMovDetailAction;
 import action.MemberLoginProAction;
 import action.MemberLogoutAction;
 import action.MemberMainAction;
 import action.MemberWriteProAction;
-import action.MovListAction;
-import action.MovWriteProAction;
+import action.AdminMovListAction;
+import action.AdminMovWriteProAction;
 import vo.ActionForward;
 
 @WebServlet("*.mo") // 서블릿 주소 중 XXX.bo 주소에 대한 요청을 전달받아 처리
@@ -41,12 +43,12 @@ public class MovFrontController extends HttpServlet {
 		
 		// if문을 사용하여 각 서블릿 주소 판별 및 각 요청 처리를 위한 작업 요청
 		// 1. MemberWriteForm.bo 요청에 대한 처리
-		if (command.equals("/MovWrite.mo")) { // 영화 등록 화면
+		if (command.equals("/AdminMovWrite.mo")) { // 관리자 영화 등록 화면
 			forward = new ActionForward();
-			forward.setPath("/mov/mov_write.jsp");
+			forward.setPath("/mov/admin_mov_write.jsp");
 			
-		} else if (command.equals("/MovWritePro.mo")) { // 영화등록
-			action = new MovWriteProAction();
+		} else if (command.equals("/AdminMovWritePro.mo")) { // 관리자 영화등록
+			action = new AdminMovWriteProAction();
 			
 			try {
 				forward = action.execute(request, response);
@@ -55,8 +57,8 @@ public class MovFrontController extends HttpServlet {
 				e.printStackTrace();
 				
 			}
-		} else if (command.equals("/MovList.mo")) { // 영화 리스트 조회
-			action = new MovListAction();
+		} else if (command.equals("/AdminMovList.mo")) { // 관리자 영화 리스트 조회
+			action = new AdminMovListAction();
 			
 			try {
 				forward = action.execute(request, response);
@@ -70,7 +72,17 @@ public class MovFrontController extends HttpServlet {
 			forward.setPath("/mov/mov_detail.jsp");
 			
 		} else if (command.equals("/AdminMovDetail.mo")) { // 관리자 영화 상세 정보 조회
-			action = new MovListAction();
+			action = new AdminMovDetailAction();
+			
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
+		} else if (command.equals("/AdminMovDeletePro.mo")) { // 관리자 영화 삭제
+			action = new AdminMovDeleteProAction();
 			
 			try {
 				forward = action.execute(request, response);
@@ -80,10 +92,6 @@ public class MovFrontController extends HttpServlet {
 				
 			}
 		} 
-		
-		
-		
-		
 		
 		
 		

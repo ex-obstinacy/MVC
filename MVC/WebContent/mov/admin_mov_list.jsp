@@ -53,13 +53,13 @@
     
     <link rel="stylesheet" href="css/common.css"> 
         
-    <!-- 회원 삭제 -->
+    <!-- 영화 삭제 -->
     <script type="text/javascript">
-		function chDelete(id){
+		function chDelete(movieCd){
              var check = confirm("삭제하시겠습니까?");
 
              if(check){
-            	 location.href="AdminDeletePro.ad?id=" + id;
+            	 location.href="AdminMovDeletePro.mo?movieCd=" + movieCd;
             	 
              }
          }
@@ -103,7 +103,7 @@
                             <div class="widgets_inner">
                                 <ul class="list">
                                     <li>
-                                        <a href="#">영화</a>
+                                        <a href="AdminMovList.mo">영화</a>
                                     </li>
                                     <li>
                                         <a href="#">예매</a>
@@ -153,7 +153,7 @@
 												for (int i = 0; i < articleList.size(); i++) {
 											%>
 											<tr>
-												<td align="center"><a href="MovDetail.mo?movieCd=<%=articleList.get(i).getMovieCd() %>&page=<%=nowPage %>"><%=articleList.get(i).getSubjet() %></a></td>
+												<td align="center"><a href="AdminMovDetail.mo?movieCd=<%=articleList.get(i).getMovieCd() %>&page=<%=nowPage %>"><%=articleList.get(i).getSubjet() %></a></td>
 												<td align="center"><%=articleList.get(i).getMovieCd() %></td>
 												<td align="center"><%=articleList.get(i).getGenre() %></td>
 												<td align="center"><%=articleList.get(i).getOpenDt() %></td>
@@ -179,7 +179,7 @@
 								<%
 									} else {
 								%>
-								<input type="button" value="이전" class="btn_3" onclick="location.href='MovDetail.mo?page=<%=nowPage - 1%>'">&nbsp;
+								<input type="button" value="이전" class="btn_3" onclick="location.href='AdminMovList.mo?page=<%=nowPage - 1%>'">&nbsp;
 								<%
 									}
 								%>
@@ -192,7 +192,7 @@
 								<%
 									} else {
 								%>
-								<a href="MovDetail.mo?page=<%=i%>">[<%=i%>]
+								<a href="AdminMovList.mo?page=<%=i%>">[<%=i%>]
 								</a>&nbsp;
 								<%
 									}
@@ -209,7 +209,7 @@
 									} else {
 								%>
 								<input type="button" value="다음" class="btn_3"
-									onclick="location.href='MovDetail.mo?page=<%=nowPage + 1%>'">
+									onclick="location.href='AdminMovList.mo?page=<%=nowPage + 1%>'">
 								<%
 									}
 								%>

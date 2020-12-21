@@ -7,15 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import svc.MovWriteProService;
+import svc.AdminMovWriteProService;
 import vo.ActionForward;
 import vo.MovBean;
 
-public class MovWriteProAction implements Action {
+public class AdminMovWriteProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MovWriteProAction");
+		System.out.println("AdminMovWriteProAction");
 		
 		// MultiPartRequest 객체를 가져와서
 		// 전달받은 파라미터(글쓴이, 비밀번호, 글제목, 내용, 작성일) 가져오기
@@ -76,13 +76,13 @@ public class MovWriteProAction implements Action {
 //		System.out.println("Trailer : " + movBean.getTrailer());
 //		System.out.println("Content : " + movBean.getContent());
 		
-		MovWriteProService movWriteProSevice = new MovWriteProService();
-		boolean isWriteSuccess = movWriteProSevice.registArticle(movBean);
+		AdminMovWriteProService adminMovWriteProSevice = new AdminMovWriteProService();
+		boolean isWriteSuccess = adminMovWriteProSevice.registArticle(movBean);
 		
 		ActionForward forward = new ActionForward();
 		
 		if (isWriteSuccess) {
-			forward.setPath("MovList.mo");
+			forward.setPath("AdminMovList.mo");
 			forward.setRedirect(true);
 			
 		} else {

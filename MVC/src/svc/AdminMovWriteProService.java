@@ -7,10 +7,10 @@ import java.sql.Connection;
 import dao.MovDAO;
 import vo.MovBean;
 
-public class MovWriteProService {
+public class AdminMovWriteProService {
 
 	public boolean registArticle(MovBean movBean) {
-		System.out.println("MovWriteProService - registArticle()");
+		System.out.println("AdminMovWriteProService - registArticle()");
 		boolean isWriteSuccess = false;
 		
 		// DB 작업을 위한 비즈니스 로직 수행 준비

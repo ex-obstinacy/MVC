@@ -1,3 +1,4 @@
+<%@page import="vo.MovBean"%>
 <%@page import="kr.or.kobis.kobisopenapi.consumer.soap.movie.MovieAPIServiceImplService"%>
 <%@page import="kr.or.kobis.kobisopenapi.consumer.soap.movie.MovieInfoResult"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -5,15 +6,12 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
  <%
 	//session 객체에 저장된 id 값 가져와서 변수에 저장
-String id = (String)session.getAttribute("id");
- 	// 파라메터 설정	//20126674 설국열차
-String movieCd = request.getParameter("movieCd")==null?"20126673":request.getParameter("movieCd");						//영화코드
-	// 발급키
-String key = "9e0587d5d88c9c3ac140d5daeeee18bd";	
+	String id = (String)session.getAttribute("id");
+ 
+	// MovBean 객체 가져오기
+	MovBean article = (MovBean)request.getAttribute("article");
 	
-	// KOBIS 오픈 API SOAP Client를 통해 호출
-MovieInfoResult movieInfoResult = new MovieAPIServiceImplService().getMovieAPIServiceImplPort().searchMovieInfo(key, movieCd);
-request.setAttribute("movieInfoResult",movieInfoResult);	
+	String nowPage = request.getParameter("page");
 %>
 
 <!DOCTYPE html>
@@ -46,31 +44,6 @@ request.setAttribute("movieInfoResult",movieInfoResult);
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
     
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script>
-    
-    	var fileName;
-	    $(document).ready( function() {
-	 
-	        $("input[type=file]").change(function () {
-	            
-	            var fileInput = document.getElementById("stillCut");
-	            
-	            var files = fileInput.files;
-	            var file;
-	            
-	            for (var i = 0; i < files.length; i++) {
-	                
-	                file = files[i];
-	 
-	                alert(file.name);
-	            }
-	            
-	        });
-	 
-	    });
-	</script>
-	<script></script>
 </head>
 
 <body>
@@ -108,7 +81,7 @@ request.setAttribute("movieInfoResult",movieInfoResult);
                             <div class="widgets_inner">
                                 <ul class="list">
                                     <li>
-                                        <a href="#">영화</a>
+                                        <a href="AdminMovList.mo">영화</a>
                                     </li>
                                     <li>
                                         <a href="#">예매</a>
@@ -134,77 +107,69 @@ request.setAttribute("movieInfoResult",movieInfoResult);
                 
                 <div class="col-lg-9">
                     <div class="row align-items-center latest_product_inner">
-                    <c:if test="${not empty movieInfoResult.movieInfo }">
-	                    <form action="MovWrite.mo" enctype="multipart/form-data">
-	                    	<table class="table">
-	                    		<tr>
-	                    			<td>제목</td>
-	                    			<td><c:out value="${movieInfoResult.movieInfo.movieNm}"/></td>
-	                    			<td>영화 코드</td>
-	                    			<td>
-	                    			<form action="MovWrite.mo" method="post" >
-	                    			<input type="text" class="single-input" name=movieCd value="<%=movieInfoResult.getMovieInfo().getMovieCd()%>"><input type="submit" value="검색">
-	                    			</form>
-	                    			</td>
-	                    		</tr>
-	                    		<tr>
-	                    			<td>장르</td>
-	                    			<td><c:forEach items="${movieInfoResult.movieInfo.genres.genre}" var="genre"><c:out value="${genre.genreNm}"/> </c:forEach></td>
-	                    			<td>개봉일</td>
-	                    			<td><c:forEach items="${movieInfoResult.movieInfo.genres.genre}" var="genre"><c:out value="${genre.genreNm}"/> </c:forEach></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<td>상영시간</td>
-	                    			<td><c:out value="${movieInfoResult.movieInfo.showTm }"/>분</td>
-	                    			<td>감독</td>
-	                    			<td><c:forEach items="${movieInfoResult.movieInfo.directors.director}" var="director"><c:out value="${director.peopleNm}"/> </c:forEach></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<td>출연</td>
-	                    			<td><c:forEach items="${movieInfoResult.movieInfo.actors.actor}" var="actor"><c:out value="${actor.peopleNm}"/> </c:forEach></td>
-	                    			<td>제작국가</td>
-	                    			<td><c:forEach items="${movieInfoResult.movieInfo.nations.nation}" var="nation"><c:out value="${nation.nationNm}"/> </c:forEach> </td>
-	                    		</tr>
-	                    		<tr>
-	                    			<td>영화사</td>
-	                    			<td><c:forEach items="${movieInfoResult.movieInfo.companys.company}" var="company"><c:out value="${company.companyNm}"/> </c:forEach></td>
-	                    			<td>관람등급</td>
-	                    			<td>
-	                    				<div class="default-select" id="default-select_2">
-											<select name="grade">
-												<option value="ALL">전체관람가</option>
-												<option value="12">12세이상관람가</option>
-												<option value="15">15세이상관람가</option>
-												<option value="18">청소년관람불가</option>
-											</select>
-										</div>
-	                    			</td>
-	                    		</tr>
-	                    		<tr>
-	                    			<td>포스터</td>
-	                    			<td><input type="file" name="post"></td>
-	                    			<td>스틸컷</td>
-	                    			<td><input type="file" multiple="multiple" name="stillCut" id="stillCut"></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<td>트레일러</td>
-	                    			<td colspan="3"><input type="text" class="single-input" name="trailer"></td>
-	                    		</tr>
-	                    		<tr>
-	                    			<td colspan="4">
-	                    				<textarea class="single-textarea" placeholder="영화정보" name="content"></textarea>
-	                    			</td>
-	                    		</tr>
-	                    		<tr>
-	                    			<td colspan="4">
-	                    				<input type="submit" value="등록" class="genric-btn primary circle">
-	                    				<input type="reset" value="취소" class="genric-btn success circle">
-	                    			</td>
-	                    		</tr>
-	                    		
-	                    	</table>
-	                    </form>
-                    </c:if>
+                    	<table class="table">
+                    		<tr>
+                    			<td>제목</td>
+                    			<td><%=article.getSubjet() %></td>
+                    			<td>영화 코드</td>
+                    			<td><%=article.getMovieCd() %></td>
+                    		</tr>
+                    		<tr>
+                    			<td>장르</td>
+                    			<td><%=article.getGenre() %></td>
+                    			<td>개봉일</td>
+                    			<td><%=article.getOpenDt() %></td>
+                    		</tr>
+                    		<tr>
+                    			<td>상영시간</td>
+                    			<td><%=article.getShowTm() %></td>
+                    			<td>감독</td>
+                    			<td><%=article.getDirector() %></td>
+                    		</tr>
+                    		<tr>
+                    			<td>출연</td>
+                    			<td><%=article.getCast() %></td>
+                    			<td>제작국가</td>
+                    			<td><%=article.getNationNm() %></td>
+                    		</tr>
+                    		<tr>
+                    			<td>영화사</td>
+                    			<td><%=article.getCompanys() %></td>
+                    			<td>관람등급</td>
+                    			<td>
+                    				<% if (article.getGrade() == "ALL") { %>
+                    				전체관람가
+                    				<% } else if (article.getGrade() == "12") { %>
+                    				12세이상관람가
+                    				<% } else if (article.getGrade() == "15") { %>
+                    				15세이상관람가
+                    				<%} else { %>
+                    				청소년관람불가
+                    				<%} %>
+                    			</td>
+                    		</tr>
+                    		<tr>
+                    			<td>포스터</td>
+                    			<td><input type="file" name="post"></td>
+                    			<td>스틸컷</td>
+                    			<td><input type="file" multiple="multiple" name="stillCut" id="stillCut"></td>
+                    		</tr>
+                    		<tr>
+                    			<td>트레일러</td>
+                    			<td colspan="3"><%=article.getTrailer() %></td>
+                    		</tr>
+                    		<tr>
+                    			<td colspan="4">
+                    				<textarea class="single-textarea" placeholder="영화정보" name="content"><%=article.getContent() %></textarea>
+                    			</td>
+                    		</tr>
+                    		<tr>
+                    			<td colspan="4">
+                    				<input type="button" value="목록" class="genric-btn primary circle" onclick="location.href='AdminMovList.mo?page=<%=nowPage %>'">
+                    			</td>
+                    		</tr>
+                    		
+                    	</table>
                     </div>
                 </div>
             </div>

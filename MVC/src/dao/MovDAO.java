@@ -163,6 +163,77 @@ public class MovDAO {
 		
 		return articleList;
 	}
+
+	public MovBean selectArticle(String movieCd) {
+		System.out.println("MovDAO - selectArticle()");
+		
+		MovBean article = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT * FROM movie_board WHERE movCode=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, movieCd);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				article = new MovBean();
+				article.setMovieCd(rs.getInt(1));
+				article.setSubjet(rs.getString(2));
+				article.setGenre(rs.getString(3));
+				article.setOpenDt(rs.getDate(4));
+				article.setShowTm(rs.getString(5));
+				article.setDirector(rs.getString(6));
+				article.setCast(rs.getString(7));
+				article.setNationNm(rs.getString(8));
+				article.setCompanys(rs.getString(9));
+				article.setGrade(rs.getString(10));
+				article.setPost(rs.getString(11));
+				article.setStillCut(rs.getString(12));
+				article.setTrailer(rs.getString(13));
+				article.setContent(rs.getString(14));
+				
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectArticle() 오류! - " + e.getMessage());
+			e.printStackTrace();
+			
+		} finally {
+			close(pstmt);
+			close(rs);
+			
+		}
+		
+		return article;
+	}
+
+	public int deleteMov(String movieCd) {
+		System.out.println("MovDAO - deleteMember()");
+		
+		int deleteCount = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "DELETE FROM movie_board WHERE movCode=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, movieCd);
+			deleteCount = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("deleteMember() 오류! - " + e.getMessage());
+			e.printStackTrace();
+			
+		} finally {
+			// 자원 반환
+			close(pstmt);
+			
+		}
+		
+		return deleteCount;
+	}
 	
 
 }
