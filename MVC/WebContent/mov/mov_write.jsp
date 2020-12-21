@@ -139,10 +139,10 @@ request.setAttribute("movieInfoResult",movieInfoResult);
 	                    	<table class="table">
 	                    		<tr>
 	                    			<td>제목</td>
-	                    			<td><h2><c:out value="${movieInfoResult.movieInfo.movieNm}"/></h3></td>
+	                    			<td><c:out value="${movieInfoResult.movieInfo.movieNm}"/></td>
 	                    			<td>영화 코드</td>
 	                    			<td>
-	                    			<form action="MovWrite.mo" >
+	                    			<form action="MovWrite.mo" method="post" >
 	                    			<input type="text" class="single-input" name=movieCd value="<%=movieInfoResult.getMovieInfo().getMovieCd()%>"><input type="submit" value="검색">
 	                    			</form>
 	                    			</td>
