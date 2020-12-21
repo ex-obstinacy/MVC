@@ -48,7 +48,13 @@
 				$('#mldiv').append("<li class='ml_div "+item.movie_subject+"'><input type='radio' name='movie' id='"+item.movie_num+"' value='"+item.movie_num+"' class='rmovie'/><label for='"+item.movie_num+"'>"
 						+"<span id='span_m1'>["+item.cinema_name+"]</span> <span id='span_m2'>"+item.movie_subject+"</span><span id='span_m3'>"+item.showtime+"</span> <span id='span_m4'>"+item.showdate+"</span></label></li>");
 			});
-		})
+		});
+		// moive_board 상영중인 영화목록 가져오기
+		$.getJSON('ShowMovieListJson.re', function(rdata) {
+			$.each(rdata, function(index, item) {
+				$('#tdsubject').append("<li class='mdiv "+item.movie_code+"'><input type='radio' name='movie_subject' id='"+item.movie_code+"' value='"+item.movie_subject+"' class='rsmovie'/><label for='"+item.movie_code+"'>"+item.movie_subject+"</label></li>");
+			});
+		});
 		// cinema 목록 db에서 가져오기
 		$.getJSON('CinemaListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
@@ -65,12 +71,9 @@
 		
 		// 필수 조건
 		$('#movieform').submit(function() {
-			var subject = $('#txtsubject').val();
-			var time = $('#txttime').val();
-			
-			if(subject == "") {
-				alert("영화제목을 입력하세요.");
-				$('#tsubject').focus();
+			if($('.rsmovie').is(":checked") == false) {
+				alert("영화를 선택하세요.");
+				$('.rsmovie').focus();
 				return false;
 			}
 			if($('.rlocal').is(":checked") == false) {
@@ -88,9 +91,14 @@
 				$('.rdate').focus();
 				return false;
 			}
-			if(time == "") {
-				alert("시간과 관을 입력하세요.");
-				$('#ttime').focus();
+			if($('#seltime').val() == "") {
+				alert("시간을 선택하세요.");
+				$('#seltime').focus();
+				return false;
+			}
+			if($('#selguan').val() == "") {
+				alert("관을 선택하세요.");
+				$('#selguan').focus();
 				return false;
 			}
 		});
@@ -181,14 +189,9 @@
 			</tr>
 			<tr>
 				<td rowspan="2">
-					<!-- 영화게시판에서 영화목록 가져오기(실제) -->
-<!-- 					<ul id="tdsubject"> -->
-<!-- 						등록된 영화 리스트 표출 -->
-<!-- 					</ul> -->
-					<!-- 텍스트로 제목 입력하기(임시) -->
-					<div id="tsubject">
-						<input type="text" name="movie_subject" id="txtsubject" placeholder="영화제목을 입력해주세요."/>
-					</div>
+					<ul id="tdsubject">
+						<!-- moive_board의 영화 목록 -->
+					</ul>
 				</td>
 				<td rowspan="2">
 					<ul id="tdlocal">
@@ -233,7 +236,7 @@
 					<ul id="ultime">
 						<li>
 							<select name="seltime" id="seltime">
-								<option>시간</option>
+								<option value="">시간</option>
 								<optgroup label="오전">
 									<option>08:00</option><option>08:30</option>
 									<option>09:00</option><option>09:30</option>
@@ -262,7 +265,7 @@
 						</li>
 						<li>
 							<select name="selguan" id="selguan">
-								<option>관</option>
+								<option value="">관</option>
 								<option>1관</option>
 								<option>2관</option>
 								<option>3관</option>

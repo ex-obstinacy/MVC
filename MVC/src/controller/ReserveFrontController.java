@@ -22,6 +22,7 @@ import action.PayFormAction;
 import action.PayProAction;
 import action.ReserveResultAction;
 import action.SelectSeatAction;
+import action.ShowMovieListJsonAction;
 import action.TimeListJsonAction;
 import vo.ActionForward;
 
@@ -110,6 +111,13 @@ public class ReserveFrontController extends HttpServlet {
 			}
 		} else if (command.equals("/MovieNumFind.re")) { // 사용자 - 영화 등록번호 찾아서 Seat로 넘기기
 			action = new MovieNumFindAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/ShowMovieListJson.re")) { // JSON - moive_board 의 상영중인 영화 제목만 가져오기
+			action = new ShowMovieListJsonAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

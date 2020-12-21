@@ -621,7 +621,45 @@ public class ReserveDAO {
 			return allMovieList;
 			
 		}
-
+		
+		public JSONArray getShowMovieList() {
+			
+			JSONArray showMovieList = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				
+				String sql = "select * from movie_board order by subject";
+				pstmt = con.prepareStatement(sql);
+				
+				rs = pstmt.executeQuery();
+				
+				showMovieList = new JSONArray();
+				
+				while(rs.next()) {
+					JSONObject jo = new JSONObject();
+					jo.put("movie_code", rs.getInt("movCode"));
+					jo.put("movie_subject", rs.getString("subject"));
+					
+					showMovieList.add(jo);
+				}
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+				
+			} finally {
+				
+				close(rs);
+				close(pstmt);
+				
+			}
+			
+			return showMovieList;
+		}
+		
+		
 		// 은주 끝
 	
 } // ReserveDAO 
