@@ -121,6 +121,7 @@
           <!--================ 메뉴 영역 =================-->    
   
 	<!-- 게시판 리스트 -->
+	<div class="col-lg-9">
 	<section id="list" class="checkout_area padding_top">
 		<div class="container">
       	  <div class="cart_inner">
@@ -203,6 +204,7 @@
 	<%
 	}
 	%>
+	</div>
 	            </div>
         </div>
     </section>
