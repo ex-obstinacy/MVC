@@ -3,6 +3,7 @@ package action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import svc.AdminMovInfoService;
+import svc.StillCutFileNameService;
 import vo.ActionForward;
 import vo.MovBean;
 
@@ -16,6 +17,9 @@ public class AdminMovDetailAction implements Action {
 		
 		AdminMovInfoService adminMovInfoService = new AdminMovInfoService();
 		MovBean article = adminMovInfoService.getArticle(movieCd);
+		
+		StillCutFileNameService stillCutFileNameService = new StillCutFileNameService();
+		article.setStillCutFileName(stillCutFileNameService.replace(article.getStillCut()));
 		
 		request.setAttribute("article", article);
 		
