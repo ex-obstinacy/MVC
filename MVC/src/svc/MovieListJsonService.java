@@ -10,7 +10,7 @@ import java.sql.Connection;
 
 public class MovieListJsonService {
 
-	public JSONArray getMovieListJson() {
+	public JSONArray getMovieListJson(String today) {
 		
 		JSONArray movieList = null;
 		
@@ -20,7 +20,7 @@ public class MovieListJsonService {
 		
 		reserveDAO.setConnection(con);
 		
-		movieList = reserveDAO.getMovieList();
+		movieList = reserveDAO.getMovieList(today);
 		
 		close(con);
 		
