@@ -139,6 +139,11 @@ position:relative;
   <link rel="stylesheet" href="css/magnific-popup.css">
   <!-- style CSS -->
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/common.css">  
+	<link rel="stylesheet" href="css/sub.css">  
+  <link rel="stylesheet" href="css/slick.css"/>
+	<link rel="stylesheet" href="css/slick-theme.css"/>
+
 </head>
 
 <body>
@@ -148,7 +153,6 @@ position:relative;
   
   <!--================Single Product Area =================-->
 <!--   폼태그 추가 -->
-<%--   <form action="OrderForm.go?goodsId=<%=article.getGoodsId()%>" name="basket" method="post" id="OrderForm"> --%>
   <div class="product_image_area section_padding">
     <div class="container">
       <div class="row s_product_inner justify-content-between">
@@ -182,7 +186,6 @@ position:relative;
               <div class="product_count">
                 <span class="inumber-decrement"> <i class="ti-minus"></i></span>
                 <input class="input-number" type="text" value="1" id="basketCount" min="0" max="10"> 
-<!--                 name 은 배열 ? -->
                 <span class="number-increment"> <i class="ti-plus"></i></span>
               </div>
             </div>
@@ -190,9 +193,6 @@ position:relative;
                <span>총 상품금액</span> :<%=sumPrice%>원</a> <!-- price * count -->
               </h2>
               <br>
-<!--               버튼으로 만들어서 버튼 클릭햇을때 스크립트 받아서 bassketCount 받아와라..넘어가게 -->
-<%--               <a href="BasketAdd.go?goodsId=<%=article.getGoodsId()%> & basketCount=" class="btn_3">장바구니</a> --%>
-<!--               <input type ="submit" class="btn_3" value ="구매하기"> -->
             <input type="button" class="btn_3" value = "장바구니" id="basket" onclick="basket(<%=goodsId%>)">
             <input type="button" class="btn_3" value = "구매하기" id="order" onclick="order(<%=goodsId%>)">
 
@@ -201,7 +201,6 @@ position:relative;
       </div>
     </div>
   </div>
-  </form>
   <!--================End Single Product Area =================-->
 
   <!--================Product Description Area =================-->

@@ -884,7 +884,7 @@ public class StoreDAO {
 		return reserveNum;
 	}
 
-	//개별 구매번호 --- 리저브넘 배열 !!!!!
+	 //개별 구매번호 --- 리저브넘 배열 !!!!!
     public String[] createReserveNum(int count) {
        System.out.println("StoreDAO - createReserveNum() 배열 !");
        System.out.println(count);
@@ -901,23 +901,38 @@ public class StoreDAO {
           SimpleDateFormat format1 = new SimpleDateFormat ( "yyyyMMdd");
           Date time = new Date();
           String today = format1.format(time);
+          
           if (rs.next()) {
-        	  System.out.println(rs.getString(1));
-             int num = Integer.parseInt(rs.getString(1).substring(8));
-             if (rs.getString(1).contains(today)) {
-                for (int i = 0; i < count; i++) {
-                	reserveNum2[i] = today + (num + i + 1);
+             System.out.println(rs.getString(1));
+             
+             if (rs.getNString(1) != null) {
+                if (rs.getString(1).contains(today)) {
+                   int num = Integer.parseInt(rs.getString(1).substring(8));
+                   
+                   for (int i = 0; i < count; i++) {
+                      reserveNum2[i] = today + (num + i + 1);
+                   }
+                   
+                } else {
+                   for (int i = 0; i < count; i++) {
+                      reserveNum2[i] = today + "000" + i;
+                      
+                   }
+                   
                 }
+                
              } else {
                 for (int i = 0; i < count; i++) {
-                	reserveNum2[i] = today + "000" + i;
+                   reserveNum2[i] = today + "000" + i;
                 }
+                
              }
+             
           }
           
           //값 확인
           for(String reserve : reserveNum2) {
-        	  System.out.println(reserve);
+             System.out.println(reserve);
           }
           
        } catch (NumberFormatException e) {
