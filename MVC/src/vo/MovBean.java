@@ -16,6 +16,7 @@ public class MovBean {
 	private String grade;
 	private String post;
 	private String stillCut;
+	private String[] stillCutFileName;
 	private String trailer;
 	private String content;
 	private String ticketing;
@@ -88,6 +89,12 @@ public class MovBean {
 	}
 	public String getStillCut() {
 		return stillCut;
+	}
+	public String[] getStillCutFileName() {
+		return stillCutFileName;
+	}
+	public void setStillCutFileName(String[] stillCutFileName) {
+		this.stillCutFileName = stillCutFileName;
 	}
 	public void setStillCut(String stillCut) {
 		this.stillCut = stillCut;

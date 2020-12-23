@@ -2,18 +2,20 @@
 <%@page import="kr.or.kobis.kobisopenapi.consumer.soap.movie.MovieInfoResult"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
  <%
 	//session 객체에 저장된 id 값 가져와서 변수에 저장
-String id = (String)session.getAttribute("id");
- 	// 파라메터 설정	//20126674 설국열차
-String movieCd = request.getParameter("movieCd")==null?"20126673":request.getParameter("movieCd");						//영화코드
+	String id = (String)session.getAttribute("id");
+ 
+	// 파라메터 설정	//20126674 설국열차
+	String movieCd = request.getParameter("movieCd")==null?"":request.getParameter("movieCd");						//영화코드
 	// 발급키
-String key = "9e0587d5d88c9c3ac140d5daeeee18bd";	
+	String key = "9e0587d5d88c9c3ac140d5daeeee18bd";	
 	
 	// KOBIS 오픈 API SOAP Client를 통해 호출
-MovieInfoResult movieInfoResult = new MovieAPIServiceImplService().getMovieAPIServiceImplPort().searchMovieInfo(key, movieCd);
-request.setAttribute("movieInfoResult",movieInfoResult);	
+	MovieInfoResult movieInfoResult = new MovieAPIServiceImplService().getMovieAPIServiceImplPort().searchMovieInfo(key, movieCd);
+	request.setAttribute("movieInfoResult",movieInfoResult);
 %>
 
 <!DOCTYPE html>
@@ -48,29 +50,41 @@ request.setAttribute("movieInfoResult",movieInfoResult);
     
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script>
-    
-    	var fileName;
+    	
 	    $(document).ready( function() {
 	 
-	        $("input[type=file]").change(function () {
+	        $("#stillCut").change(function () {
 	            
 	            var fileInput = document.getElementById("stillCut");
 	            
 	            var files = fileInput.files;
 	            var file;
+	            var fileName = files[0].name;
 	            
-	            for (var i = 0; i < files.length; i++) {
-	                
+	            for (var i = 1; i < files.length; i++) {
 	                file = files[i];
-	 
-	                alert(file.name);
+// 	                alert(file.name);
+	                fileName = fileName + "&" + file.name;
+	                
 	            }
+// 	            alert(fileName);
+	            document.getElementById('stillCutFileName').setAttribute('value', fileName);
 	            
 	        });
 	 
 	    });
 	</script>
-	<script></script>
+	
+	<!-- 영화 코드 검색 -->
+	<script type="text/javascript">
+		function searchMov() {
+			var movieCd = document.getElementById('movieCd').value;
+			
+			location.href="AdminMovWrite.mo?movieCd=" + movieCd;
+			
+		}
+	</script>
+	
 </head>
 
 <body>
@@ -134,40 +148,38 @@ request.setAttribute("movieInfoResult",movieInfoResult);
                 
                 <div class="col-lg-9">
                     <div class="row align-items-center latest_product_inner">
-                    <c:if test="${not empty movieInfoResult.movieInfo }">
-	                    <form action="AdminMovWritePro.mo" enctype="multipart/form-data">
+	                    <form action="AdminMovWritePro.mo" method="post" enctype="multipart/form-data">
 	                    	<table class="table">
 	                    		<tr>
 	                    			<td>제목</td>
-	                    			<td><c:out value="${movieInfoResult.movieInfo.movieNm}"/></td>
+	                    			<td><input type="text" readonly="readonly" class="single-input" name="subject" value="<c:out value="${movieInfoResult.movieInfo.movieNm}"/>"></td>
 	                    			<td>영화 코드</td>
 	                    			<td>
-		                    			<form action="AdminMovWrite.mo" method="post" >
-		                    				<input type="text" class="single-input" name=movieCd value="<%=movieInfoResult.getMovieInfo().getMovieCd()%>"><input type="submit" value="검색">
-	                    				</form>
+	                    				<input type="text" class="single-input" placeholder="영화진흥위원회 코드" name=movieCd id=movieCd value="<%=movieCd %>">
+	                    				<input type="button" value="검색" onclick="searchMov()">
 	                    			</td>
 	                    		</tr>
 	                    		<tr>
 	                    			<td>장르</td>
-	                    			<td><c:forEach items="${movieInfoResult.movieInfo.genres.genre}" var="genre"><c:out value="${genre.genreNm}"/> </c:forEach></td>
+	                    			<td><input type="text" readonly="readonly" class="single-input" name="genre" value="<c:forEach items="${movieInfoResult.movieInfo.genres.genre}" var="genre"><c:out value="${genre.genreNm}"/>  </c:forEach>"></td>
 	                    			<td>개봉일</td>
-	                    			<td><c:forEach items="${movieInfoResult.movieInfo.genres.genre}" var="genre"><c:out value="${genre.genreNm}"/> </c:forEach></td>
+	                    			<td><input type="date" class="single-input" name="openDt"></td>
 	                    		</tr>
 	                    		<tr>
 	                    			<td>상영시간</td>
-	                    			<td><c:out value="${movieInfoResult.movieInfo.showTm }"/>분</td>
+	                    			<td><input type="text" readonly="readonly" class="single-input" name="showTm" value="<c:out value="${movieInfoResult.movieInfo.showTm }"/>"></td>
 	                    			<td>감독</td>
-	                    			<td><c:forEach items="${movieInfoResult.movieInfo.directors.director}" var="director"><c:out value="${director.peopleNm}"/> </c:forEach></td>
+	                    			<td><input type="text" readonly="readonly" class="single-input" name="director" value="<c:forEach items="${movieInfoResult.movieInfo.directors.director}" var="director"><c:out value="${director.peopleNm}"/>  </c:forEach>"></td>
 	                    		</tr>
 	                    		<tr>
 	                    			<td>출연</td>
-	                    			<td><c:forEach items="${movieInfoResult.movieInfo.actors.actor}" var="actor"><c:out value="${actor.peopleNm}"/> </c:forEach></td>
+	                    			<td><input type="text" readonly="readonly" class="single-input" name="cast" value="<c:forEach items="${movieInfoResult.movieInfo.actors.actor}" var="actor"><c:out value="${actor.peopleNm}"/>  </c:forEach>"></td>
 	                    			<td>제작국가</td>
-	                    			<td><c:forEach items="${movieInfoResult.movieInfo.nations.nation}" var="nation"><c:out value="${nation.nationNm}"/> </c:forEach> </td>
+	                    			<td><input type="text" readonly="readonly" class="single-input" name="nationNm" value="<c:forEach items="${movieInfoResult.movieInfo.nations.nation}" var="nation"><c:out value="${nation.nationNm}"/>  </c:forEach>"></td>
 	                    		</tr>
 	                    		<tr>
 	                    			<td>영화사</td>
-	                    			<td><c:forEach items="${movieInfoResult.movieInfo.companys.company}" var="company"><c:out value="${company.companyNm}"/> </c:forEach></td>
+	                    			<td><input type="text" readonly="readonly" class="single-input" name="companys" value="<c:forEach items="${movieInfoResult.movieInfo.companys.company}" var="company"><c:out value="${company.companyNm}"/>  </c:forEach>"></td>
 	                    			<td>관람등급</td>
 	                    			<td>
 	                    				<div class="default-select" id="default-select_2">
@@ -184,15 +196,18 @@ request.setAttribute("movieInfoResult",movieInfoResult);
 	                    			<td>포스터</td>
 	                    			<td><input type="file" name="post"></td>
 	                    			<td>스틸컷</td>
-	                    			<td><input type="file" multiple="multiple" name="stillCut" id="stillCut"></td>
+	                    			<td>
+	                    				<input type="file" multiple="multiple" name="stillCut" id="stillCut">
+	                    				<input type="hidden" name="stillCutFileName" id="stillCutFileName">
+	                    			</td>
 	                    		</tr>
 	                    		<tr>
 	                    			<td>트레일러</td>
-	                    			<td colspan="3"><input type="text" class="single-input" name="trailer"></td>
+	                    			<td colspan="3"><input type="text" class="single-input" name="trailer" id="trailer"></td>
 	                    		</tr>
 	                    		<tr>
 	                    			<td colspan="4">
-	                    				<textarea class="single-textarea" placeholder="영화정보" name="content"></textarea>
+	                    				<textarea class="single-textarea" placeholder="영화정보" name="content" id="content"></textarea>
 	                    			</td>
 	                    		</tr>
 	                    		<tr>
@@ -204,7 +219,7 @@ request.setAttribute("movieInfoResult",movieInfoResult);
 	                    		
 	                    	</table>
 	                    </form>
-                    </c:if>
+                    
                     </div>
                 </div>
             </div>

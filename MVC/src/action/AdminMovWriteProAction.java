@@ -29,6 +29,7 @@ public class AdminMovWriteProAction implements Action {
 		// ServletContext 객체의 getRealPath() 메서드를 호출
 		// => 파라미터 : 가상 업로드 폴더 경로
 		String realFolder = context.getRealPath(saveFolder);
+		System.out.println("실제 업로드 폴더 : " + realFolder);
 		// 업로드 할 최대 파일 크기 지정(Byte 단위)
 		// ex) 1MByte = 1,024KByte = 1,048,576Byte  
 		// 작은 단위로 분할해서 해당 크기에 맞게 연산 수행하도록 지정해야 수정 쉬움
@@ -57,24 +58,9 @@ public class AdminMovWriteProAction implements Action {
 		movBean.setCompanys(multi.getParameter("companys"));
 		movBean.setGrade(multi.getParameter("grade"));
 		movBean.setPost(multi.getOriginalFileName("post"));
-		movBean.setStillCut(multi.getOriginalFileName("stillCut"));
+		movBean.setStillCut(multi.getParameter("stillCutFileName"));
 		movBean.setTrailer(multi.getParameter("trailer"));
 		movBean.setContent(multi.getParameter("content"));
-		
-//		System.out.println("Subject : " + movBean.getSubjet());
-//		System.out.println("MovieCd : " + movBean.getMovieCd());
-//		System.out.println("Genre : " + movBean.getGenre());
-//		System.out.println("OpenDt : " + movBean.getOpenDt());
-//		System.out.println("ShowTm : " + movBean.getShowTm());
-//		System.out.println("Director : " + movBean.getDirector());
-//		System.out.println("Cast : " + movBean.getCast());
-//		System.out.println("NationNm : " + movBean.getNationNm());
-//		System.out.println("Companys : " + movBean.getCompanys());
-//		System.out.println("Grade : " + movBean.getGrade());
-//		System.out.println("Post : " + movBean.getPost());
-//		System.out.println("StillCut : " + movBean.getStillCut());
-//		System.out.println("Trailer : " + movBean.getTrailer());
-//		System.out.println("Content : " + movBean.getContent());
 		
 		AdminMovWriteProService adminMovWriteProSevice = new AdminMovWriteProService();
 		boolean isWriteSuccess = adminMovWriteProSevice.registArticle(movBean);

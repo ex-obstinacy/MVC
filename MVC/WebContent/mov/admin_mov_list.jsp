@@ -165,6 +165,9 @@
 											<%
 												}
 											%>
+											<tr>
+												<td colspan="8" align="right"><input type="button" value="등록" class="btn_3" onclick="location.href='AdminMovWrite.mo'"></td>
+											</tr>
 										</table>
 									</div>
 								</div>
@@ -220,6 +223,7 @@
 						%>
 						<section id="emptyArea">
 							<div class="container">등록된 글이 없습니다</div>
+							<input type="button" value="등록" class="btn_3" onclick="location.href='AdminMovWrite.mo'">
 						</section>
 						<%
 							}

@@ -462,7 +462,7 @@ public class ReserveDAO {
 		}
 		
 		// JSON 처리 메서드
-		public JSONArray getMovieList() {
+		public JSONArray getMovieList(String today) {
 			
 			JSONArray movieList = null;
 			PreparedStatement pstmt = null;
@@ -470,8 +470,9 @@ public class ReserveDAO {
 			
 			try {
 				
-				String sql = "select distinct movie_subject from admin_reservation";
+				String sql = "select distinct movie_subject from admin_reservation where showdate >= ?";
 				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, today);
 
 				rs = pstmt.executeQuery();
 
