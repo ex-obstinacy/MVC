@@ -304,6 +304,22 @@ div.reserveInfo .btnBox{text-align:center;}
 #originPrice {font-weight: bold;}
 .price{ text-decoration : line-through;}
 
+/* store_detail */
+.contents_mall_detail .pd_wrap {position: relative; min-height: 650px; margin: 40px 0 80px;}
+.contents_mall_detail .pd_wrap .pd_img {float: left; width: 500px;}
+.contents_mall_detail .pd_wrap .pd_detail {margin-left: 550px;}
+.contents_mall_detail .pd_wrap .pd_detail .pd_table {text-align: left; margin-bottom: 30px; width: 100%; border-collapse: collapse; border-spacing: 0; border: 0;}
+.contents_mall_detail .pd_wrap .pd_detail .pd_table {text-align: left; margin-bottom: 30px;}
+.contents_mall_detail .pd_wrap .pd_detail .pd_table .tit {padding: 10px 0 22px; font-size: 28px; text-align: left; border-bottom: 1px solid #eeeeee; padding: 20px 0; display: table-cell; vertical-align: inherit; font-weight: bold; text-align: -internal-center;}
+.contents_mall_detail .pd_wrap .pd_detail .pd_table .txt_price {margin-right: 20px; font-size: 25px; display: inline-block; font-family: 'Roboto', 'Noto Sans KR'; font-weight: bold; color: #000;}
+.contents_mall_detail .pd_wrap .pd_detail .pd_table .txt_price_ins {font-size: 16px; font-family: 'Roboto', 'Noto Sans KR'; font-size: 13px; font-weight: bold; text-decoration: line-through; opacity: .4; vertical-align: middle;}
+.contents_mall_detail .pd_wrap .pd_detail .pd_table th {text-align: left; border-bottom: 1px solid #eeeeee; padding: 20px 0; font-size: 15px;}
+.contents_mall_detail .pd_wrap .pd_detail .pd_table td {color: #666666; border-bottom: 1px solid #eeeeee; padding: 20px 0; font-size: 15px; display: table-cell; vertical-align: inherit;}
+.txt_sale {display: inline-block; font-family: 'Roboto', 'Noto Sans KR'; color: #FF243E; font-weight: bold;}
+.contents_mall_detail .pd_wrap .pd_detail .txt_price_wrap { font-size: 15px; text-align: right; margin-bottom: 10px;}
+.contents_mall_detail .pd_wrap .pd_detail .txt_price_wrap strong {margin-left: 20px; font-size: 30px;}
+.txt_price_str {display: inline-block; font-family: 'Roboto', 'Noto Sans KR'; font-weight: bold; color: #FF243E;}
+
 /* basket */
 .cat_product_area {margin-top: 20px;}
 

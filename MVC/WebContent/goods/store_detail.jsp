@@ -153,54 +153,108 @@ position:relative;
   
   <!--================Single Product Area =================-->
 <!--   폼태그 추가 -->
-  <div class="product_image_area section_padding">
-    <div class="container">
-      <div class="row s_product_inner justify-content-between">
-        <div class="col-lg-7 col-xl-7">
-          <div class="product_slider_img">
-            <div id="vertical">
-              <!-- 사진이미지 -->
-              <div data-thumb="img/store/couple_set.jpg">
-                <img src="goodsUpload/<%=article.getFile()%>" weight="300px" height="300px" />
-              </div>
-              </div>
-          </div>
-        </div>
-        <div class="col-lg-5 col-xl-4">
-          <div class="s_product_text">
-            <h3> <%=article.getName() %></h3>
-            <h2 class = "price"><%=article.getPrice()%>원</h2>
-            <h2><%=sumPrice%>원</h2>
-            <ul class="list">
-              <li>
-                <a class="active"> <span>구성품</span> :<%=article.getComponent() %></a>
-              </li>
-              <li>
-                <a class="active"> <span>유효기간</span> :구매 후 1년 이내 </a>
-              </li>
-              <li>
-                <a class="active"> <span>상품교환</span> :전 영화관</a>
-              </li>
-            </ul>
-            <div class="card_area d-flex justify-content-between align-items-center">
+<div id="content" class="contents_mall_detail" style="margin-top:120px;">
+ <div class="container">
+	<div class="pd_wrap">
+		<div class="pd_img">
+			<div class="main_img">
+				<img class="" src="goodsUpload/<%=article.getFile()%>" />
+			</div>
+		</div>
+		<div class="pd_detail">
+			<table class="pd_table" summary="상품 상세설명에 대한 표입니다">
+			<colgroup><col style="width: 30%;"><col style="width: auto;"></colgroup>
+				<tbody>
+					<tr>
+						<th scope="row" class="tit" colspan="2"><%=article.getName() %></th>
+					</tr>
+					<tr>
+						<td><span class="txt_sale"><%=article.getSale() %>%</span></td>
+						<td><span class="txt_price"><%=sumPrice %><em>원</em></span><span
+							class="txt_price_ins"><%=article.getPrice() %>원</span></td>
+					</tr>
+					<tr>
+						<th scope="row">구성품</th>
+						<td><%=article.getComponent() %></td>
+					</tr>
+					<tr>
+						<th scope="row">유효기간</th>
+						<td>구매 후 1년 이내</td>
+					</tr>
+					<tr>
+						<th scope="row">사용가능 영화관</th>
+						<td>전 영화관</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="card_area d-flex justify-content-between align-items-center">
               <div class="product_count">
                 <span class="inumber-decrement"> <i class="ti-minus"></i></span>
                 <input class="input-number" type="text" value="1" id="basketCount" min="0" max="10"> 
                 <span class="number-increment"> <i class="ti-plus"></i></span>
               </div>
             </div>
-           	 <h2>
-               <span>총 상품금액</span> :<%=sumPrice%>원</a> <!-- price * count -->
-              </h2>
-              <br>
-            <input type="button" class="btn_3" value = "장바구니" id="basket" onclick="basket(<%=goodsId%>)">
+			<div class="txt_price_wrap">
+				총 상품금액<strong class="txt_price_str"><%=sumPrice%>원</em></strong>
+			</div>
+			<div class="btn_wrap">
+			<input type="button" class="btn_3" value = "장바구니" id="basket" onclick="basket(<%=goodsId%>)">
             <input type="button" class="btn_3" value = "구매하기" id="order" onclick="order(<%=goodsId%>)">
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
 
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
+<!-- 	<div class="product_image_area section_padding"> -->
+<!--     <div class="container"> -->
+<!--       <div class="row s_product_inner justify-content-between"> -->
+<!--         <div class="col-lg-7 col-xl-7"> -->
+<!--           <div class="product_slider_img"> -->
+<!--             <div id="vertical"> -->
+<!--               사진이미지 -->
+<!--               <div data-thumb="img/store/couple_set.jpg"> -->
+<%--                 <img src="goodsUpload/<%=article.getFile()%>" weight="300px" height="300px" /> --%>
+<!--               </div> -->
+<!--               </div> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--         <div class="col-lg-5 col-xl-4"> -->
+<!--           <div class="s_product_text"> -->
+<%--             <h3> <%=article.getName() %></h3> --%>
+<%--             <h2 class = "price"><%=article.getPrice()%>원</h2> --%>
+<%--             <h2><%=sumPrice%>원</h2> --%>
+<!--             <ul class="list"> -->
+<!--               <li> -->
+<%--                 <a class="active"> <span>구성품</span> :<%=article.getComponent() %></a> --%>
+<!--               </li> -->
+<!--               <li> -->
+<!--                 <a class="active"> <span>유효기간</span> :구매 후 1년 이내 </a> -->
+<!--               </li> -->
+<!--               <li> -->
+<!--                 <a class="active"> <span>상품교환</span> :전 영화관</a> -->
+<!--               </li> -->
+<!--             </ul> -->
+<!--             <div class="card_area d-flex justify-content-between align-items-center"> -->
+<!--               <div class="product_count"> -->
+<!--                 <span class="inumber-decrement"> <i class="ti-minus"></i></span> -->
+<!--                 <input class="input-number" type="text" value="1" id="basketCount" min="0" max="10">  -->
+<!--                 <span class="number-increment"> <i class="ti-plus"></i></span> -->
+<!--               </div> -->
+<!--             </div> -->
+<!--            	 <h2> -->
+<%--                <span>총 상품금액</span> :<%=sumPrice%>원</a> <!-- price * count --> --%>
+<!--               </h2> -->
+<!--               <br> -->
+<%--             <input type="button" class="btn_3" value = "장바구니" id="basket" onclick="basket(<%=goodsId%>)"> --%>
+<%--             <input type="button" class="btn_3" value = "구매하기" id="order" onclick="order(<%=goodsId%>)"> --%>
+
+<!--           </div> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--   </div> -->
   <!--================End Single Product Area =================-->
 
   <!--================Product Description Area =================-->
@@ -212,8 +266,7 @@ position:relative;
 	</ul>
 
 	<div id="tab-1" class="tab-content current">
-	 <p>
-        <h4>본 상품의 사용 기한은 구매 후 1년 입니다.</h4>
+	 <p><h4>본 상품의 사용 기한은 구매 후 1년 입니다.</h4>
 		- 영화관에서 스토어 예매번호 제시 후 상품으로 교환하실 수 있습니다. <br>
 		- 본 상품은 온라인 전용 판매 상품으로 현장 구매는 불가합니다. <br>
 		- 구매한 상품은 “마이페이지 > 구매내역”에서 확인할 수 있습니다. <br>
