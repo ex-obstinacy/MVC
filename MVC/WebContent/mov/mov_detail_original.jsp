@@ -1,15 +1,5 @@
-<%@page import="vo.MovBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
- <%
-	//session 객체에 저장된 id 값 가져와서 변수에 저장
-	String id = (String)session.getAttribute("id");
- 
-	// MovBean 객체 가져오기
-	MovBean article = (MovBean)request.getAttribute("article");
-	
-%>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -17,7 +7,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MVC</title>
+  <title>aranaz</title>
   <link rel="icon" href="img/favicon.png">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -120,22 +110,13 @@
 			<button class="next">next</button>
 		</div>
 		<ul class="stillcut_slider">
-			<%
-			for (int i=0; i < article.getStillCutFileName().length; i++) {
-			%>
-			<li><img src="movUpload/<%=article.getStillCutFileName()[i] %>"></li>
-			<%
-			}
-			
-			%>
-		
-<!-- 			<li><img src="img/sub/mov_detail/stillcut1.jpg"></li> -->
-<!-- 			<li><img src="img/sub/mov_detail/stillcut2.jpg"></li> -->
-<!-- 			<li><img src="img/sub/mov_detail/stillcut3.jpg"></li> -->
-<!-- 			<li><img src="img/sub/mov_detail/stillcut4.jpg"></li> -->
-<!-- 			<li><img src="img/sub/mov_detail/stillcut5.jpg"></li> -->
-<!-- 			<li><img src="img/sub/mov_detail/stillcut6.jpg"></li> -->
-<!-- 			<li><img src="img/sub/mov_detail/stillcut7.jpg"></li> -->
+			<li><img src="img/sub/mov_detail/stillcut1.jpg"></li>
+			<li><img src="img/sub/mov_detail/stillcut2.jpg"></li>
+			<li><img src="img/sub/mov_detail/stillcut3.jpg"></li>
+			<li><img src="img/sub/mov_detail/stillcut4.jpg"></li>
+			<li><img src="img/sub/mov_detail/stillcut5.jpg"></li>
+			<li><img src="img/sub/mov_detail/stillcut6.jpg"></li>
+			<li><img src="img/sub/mov_detail/stillcut7.jpg"></li>
 		</ul>
 		<div class="stillcut_control">
 			<span class="start_btn">start</span>
@@ -145,11 +126,9 @@
 	
 	<div class="container">
 		<section class="detail_box1">
-			<img src="movUpload/<%=article.getPost() %>">
+			<img src="img/sub/poster.jpg">
 			<div class="detail_top">
-				<h2 class="grade_<%=article.getGrade() %>">
-					<%=article.getSubjet() %><%=article.getGrade() %>
-				</h2>
+				<h2 class="grade_15">조제</h2>
 				<ul class="detail_info1">
 					<li>
 						<span>관람객 평점</span>

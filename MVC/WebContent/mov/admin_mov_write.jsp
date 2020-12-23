@@ -155,7 +155,7 @@
 	                    	<table class="table">
 	                    		<tr>
 	                    			<td>제목</td>
-	                    			<td><input type="text" readonly="readonly" class="single-input" name="subject" value="<c:out value="${movieInfoResult.movieInfo.movieNm}"/>"></td>
+	                    			<td><input type="text" class="single-input" name="subject" value="<c:out value="${movieInfoResult.movieInfo.movieNm}"/>"></td>
 	                    			<td>영화 코드</td>
 	                    			<td>
 	                    				<input type="text" class="single-input" placeholder="영화진흥위원회 코드" name=movieCd id=movieCd value="<%=movieCd %>">
@@ -164,25 +164,25 @@
 	                    		</tr>
 	                    		<tr>
 	                    			<td>장르</td>
-	                    			<td><input type="text" readonly="readonly" class="single-input" name="genre" value="<c:forEach items="${movieInfoResult.movieInfo.genres.genre}" var="genre"><c:out value="${genre.genreNm}"/>  </c:forEach>"></td>
+	                    			<td><input type="text" class="single-input" name="genre" value="<c:forEach items="${movieInfoResult.movieInfo.genres.genre}" var="genre"><c:out value="${genre.genreNm}"/>  </c:forEach>"></td>
 	                    			<td>개봉일</td>
 	                    			<td><input type="date" class="single-input" name="openDt"></td>
 	                    		</tr>
 	                    		<tr>
 	                    			<td>상영시간</td>
-	                    			<td><input type="text" readonly="readonly" class="single-input" name="showTm" value="<c:out value="${movieInfoResult.movieInfo.showTm }"/>"></td>
+	                    			<td><input type="text" class="single-input" name="showTm" value="<c:out value="${movieInfoResult.movieInfo.showTm }"/>"></td>
 	                    			<td>감독</td>
-	                    			<td><input type="text" readonly="readonly" class="single-input" name="director" value="<c:forEach items="${movieInfoResult.movieInfo.directors.director}" var="director"><c:out value="${director.peopleNm}"/>  </c:forEach>"></td>
+	                    			<td><input type="text" class="single-input" name="director" value="<c:forEach items="${movieInfoResult.movieInfo.directors.director}" var="director"><c:out value="${director.peopleNm}"/>  </c:forEach>"></td>
 	                    		</tr>
 	                    		<tr>
 	                    			<td>출연</td>
-	                    			<td><input type="text" readonly="readonly" class="single-input" name="cast" value="<c:forEach items="${movieInfoResult.movieInfo.actors.actor}" var="actor"><c:out value="${actor.peopleNm}"/>  </c:forEach>"></td>
+	                    			<td><input type="text" class="single-input" name="cast" value="<c:forEach items="${movieInfoResult.movieInfo.actors.actor}" var="actor"><c:out value="${actor.peopleNm}"/>  </c:forEach>"></td>
 	                    			<td>제작국가</td>
-	                    			<td><input type="text" readonly="readonly" class="single-input" name="nationNm" value="<c:forEach items="${movieInfoResult.movieInfo.nations.nation}" var="nation"><c:out value="${nation.nationNm}"/>  </c:forEach>"></td>
+	                    			<td><input type="text" class="single-input" name="nationNm" value="<c:forEach items="${movieInfoResult.movieInfo.nations.nation}" var="nation"><c:out value="${nation.nationNm}"/>  </c:forEach>"></td>
 	                    		</tr>
 	                    		<tr>
 	                    			<td>영화사</td>
-	                    			<td><input type="text" readonly="readonly" class="single-input" name="companys" value="<c:forEach items="${movieInfoResult.movieInfo.companys.company}" var="company"><c:out value="${company.companyNm}"/>  </c:forEach>"></td>
+	                    			<td><input type="text" class="single-input" name="companys" value="<c:forEach items="${movieInfoResult.movieInfo.companys.company}" var="company"><c:out value="${company.companyNm}"/>  </c:forEach>"></td>
 	                    			<td>관람등급</td>
 	                    			<td>
 	                    				<div class="default-select" id="default-select_2">

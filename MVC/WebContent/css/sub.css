@@ -359,7 +359,10 @@ section.detail_box1 > img{width:20%; float:left; margin-right:3%;}
 section.detail_box1 > div.detail_top{width:77%; float:left; padding-top:4px;}
 section.detail_box1 > div.detail_top h2{font-size:25px; font-weight:600; position:relative; margin:0 0 20px 40px;}
 section.detail_box1 > div.detail_top h2:before{position:absolute; top:-4px; left:-40px; display:block; font-size:18px; line-height:35px; width:35px; height:35px; color:#fff; border-radius:50%; text-align:center; }
+section.detail_box1 > div.detail_top h2.grade_ALL:before{content:"A"; background:#5BC77E;}
+section.detail_box1 > div.detail_top h2.grade_12:before{content:"12"; background:#4DD6FF;}
 section.detail_box1 > div.detail_top h2.grade_15:before{content:"15"; background:#FFC134;}
+section.detail_box1 > div.detail_top h2.grade_18:before{content:"불"; background:#ED4C6B;}
 section.detail_box1 > div.detail_top ul.detail_info1{padding-bottom:20px; border-bottom:1px solid #ccc; margin-bottom:20px;}
 section.detail_box1 > div.detail_top ul.detail_info1 li{display:inline-block; margin-right:30px;} 
 section.detail_box1 > div.detail_top ul.detail_info1 li span{font-size:15px; line-height:20px; font-weight:400; margin-right:10px;}
