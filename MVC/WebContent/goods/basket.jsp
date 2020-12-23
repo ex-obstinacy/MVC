@@ -167,7 +167,7 @@
         <h3>장바구니상품 정보</h3>
          <hr>
          <%
-          if(basketList != null){
+          if(basketList != null && basketList.size() >0){
            %>
          <form action="OrderForm2.go" name="basketform" method="post">
           <table class="table">
