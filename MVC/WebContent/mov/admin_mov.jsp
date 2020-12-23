@@ -84,16 +84,19 @@
                                         <a href="AdminMovList.mo">영화</a>
                                     </li>
                                     <li>
-                                        <a href="#">예매</a>
+                                    	<a href="CinemaAddForm.re">영화관</a>
+                                    </li>
+                                    <li>
+                                    	<a href="MovieAddForm.re">영화관 - 영화</a><br>
                                     </li>
                                     <li>
                                         <a href="GoodsList.go">스토어</a>
                                     </li>
                                     <li>
-                                        <a href="#">공지사항</a>
+                                        <a href="NoticeList.no">공지사항</a>
                                     </li>
                                     <li>
-                                        <a href="#">1대1 문의</a>
+                                        <a href="QnaList.qn">1대1 문의</a>
                                     </li>
                                     <li>
                                         <a href="AdminMemberList.ad">회원 목록</a>

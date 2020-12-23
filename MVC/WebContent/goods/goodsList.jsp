@@ -99,7 +99,10 @@
                                         <a href="AdminMovList.mo">영화</a>
                                     </li>
                                     <li>
-                                        <a href="#">예매</a>
+                                    	<a href="CinemaAddForm.re">영화관</a>
+                                    </li>
+                                    <li>
+                                    	<a href="MovieAddForm.re">영화관 - 영화</a><br>
                                     </li>
                                     <li>
                                         <a href="GoodsList.go">스토어</a>
