@@ -284,7 +284,7 @@ public class StoreDAO {
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, basketId);
 				pstmt.setInt(2, goodsId);
-				pstmt.setInt(3, 1);
+				pstmt.setInt(3, basketCount);
 				pstmt.setString(4, id);
 				pstmt.setTimestamp(5, date);
 				addCount = pstmt.executeUpdate();
@@ -300,7 +300,7 @@ public class StoreDAO {
             close(pstmt);
             
          }
-         
+         System.out.println("addBasketDAO basketCount : " + basketCount);
          return addCount;
       }
 
@@ -901,7 +901,6 @@ public class StoreDAO {
           SimpleDateFormat format1 = new SimpleDateFormat ( "yyyyMMdd");
           Date time = new Date();
           String today = format1.format(time);
-          
           if (rs.next()) {
         	  System.out.println(rs.getString(1));
              int num = Integer.parseInt(rs.getString(1).substring(8));

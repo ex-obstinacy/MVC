@@ -31,18 +31,27 @@ ul.tabs{
 	margin: 0px;
 	padding: 0px;
 	list-style: none;
+	
 }
 ul.tabs li{
 	background: none;
-	color: #222;
+	font-size: 17px;
+	text-align: center;
+	color: #7F7F7F;
 	display: inline-block;
 	padding: 10px 15px;
 	cursor: pointer;
+	border-bottom: 1px solid #ccc;
+	width: 50%;
+	float: left;
+	
 }
 
 ul.tabs li.current{
 	background: #ffffff;
-	color: #222;
+	color: #000;
+	border-bottom: 2px solid black;
+	
 }
 
 .tab-content{
@@ -53,6 +62,20 @@ ul.tabs li.current{
 
 .tab-content.current{
 	display: inherit;
+}
+
+.tab-content p{
+	padding: 30px 0;
+	font-size:15px; 
+/* 	font-weight:600;  */
+ 	margin-bottom:20px;
+}
+
+.tab-content h4{
+font-size:18px; 
+font-weight:500; 
+position:relative; 
+/* margin:0 0 20px 40px; */
 }
 
 .price{
@@ -185,13 +208,13 @@ ul.tabs li.current{
   <div class="container">
 
 	<ul class="tabs">
-		<li class="tab-link current" data-tab="tab-1">이용안내</li>
-		<li class="tab-link" data-tab="tab-2">유의사항</li>
+		<li class="tab-link current" data-tab="tab-1" >이용안내</li>
+		<li class="tab-link" data-tab="tab-2" >유의사항</li>
 	</ul>
 
 	<div id="tab-1" class="tab-content current">
 	 <p>
-        본 상품의 사용 기한은 구매 후 1년 입니다. <br>
+        <h4>본 상품의 사용 기한은 구매 후 1년 입니다.</h4>
 		- 영화관에서 스토어 예매번호 제시 후 상품으로 교환하실 수 있습니다. <br>
 		- 본 상품은 온라인 전용 판매 상품으로 현장 구매는 불가합니다. <br>
 		- 구매한 상품은 “마이페이지 > 구매내역”에서 확인할 수 있습니다. <br>
@@ -202,25 +225,27 @@ ul.tabs li.current{
 	<div id="tab-2" class="tab-content">
 	 <p>
             
-        취소/환불 <br>
+       <h4> 취소/환불 </h4>
 		- 스토어 상품의 취소기한은 구매일로부터 70일 입니다. <br>
 		- 구매하신 상품은 부분환불 및 현금환불이 되지 않습니다. <br>
 		- 패키지 상품 중 1장이라도 사용한 경우 환불이 불가합니다. <br>
 		- 영화 상영 후 환불 및 반품은 불가합니다. <br>
 		<br>
-		기타 <br>
+		<br>
+		<h4>기타 </h4>
 		- 상품 확인은 마이페이지 > 구매내역에서 가능합니다. <br>
 		- 이벤트로 판매되는 상품의 구매/사용/취소 규정은 해당 이벤트 상세 페이지를 확인해주시기 바랍니다. <br>
 		- 고객센터: 1234-1234 <br>
 		<br>
-		미성년자 권리보호 안내 <br>
+		<br>
+		<h4> 미성년자 권리보호 안내 </h4>
 		- 미성년자인 고객께서 계약을 체결하시는 경우 법정대리인이 그 계약에 동의하지 아니하면 미성년자 본인 또는 법정대리인이 그 계약을 취소할 수 있습니다. <br>
 		<br>
-		분쟁 해결 <br>
-		- 회사는 이용자가 제기하는 정당한 의견이나 불만을 반영하고 그 피해의 보상 등에 관한 처리를 위하여 <br>
- 		  고객센터(1234-1234)를 설치 운영하고 있습니다. <br>
+		<br>
+		<h4>분쟁 해결 </h4>
+		- 회사는 이용자가 제기하는 정당한 의견이나 불만을 반영하고 그 피해의 보상 등에 관한 처리를 위하여  고객센터(1234-1234)를 설치 운영하고 있습니다. <br>
 		- 회사는 고객센터를 통하여 이용자로부터 제출되는 불만사항 및 의견을 처리합니다. <br>
- 		  다만, 신속한 처리가 곤란한 경우에는 이용자에게 그 사유와 처리일정을 즉시 통보합니다. <br>
+ 		  　  다만, 신속한 처리가 곤란한 경우에는 이용자에게 그 사유와 처리일정을 즉시 통보합니다. <br>
 		- 전자상거래 분쟁(청약철회등)과 관련한 이용자의 피해구제는 이용약관 및 전자상거래법 등 관련 법령에 따릅니다. <br>
 		<br>
             </p>
