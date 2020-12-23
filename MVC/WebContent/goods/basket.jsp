@@ -167,7 +167,7 @@
         <h3>장바구니상품 정보</h3>
          <hr>
          <%
-          if(basketList != null && basketList.size() >0){
+          if(basketList.size() != 0 && basketList.size() >0){
            %>
          <form action="OrderForm2.go" name="basketform" method="post">
           <table class="table">
@@ -257,7 +257,7 @@
           }
           %>
          <%
-          if(basketList != null){
+          if(basketList.size() == 0){
            %>
            <section class="emptyBasket">
             장바구니에 담긴 상품이 없습니다. <br>
