@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="css/slick.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/common.css">
     
     <!-- 동의 유무 확인 -->
     <script src="js/jquery-3.5.1.js"></script>
