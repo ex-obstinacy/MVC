@@ -114,6 +114,15 @@ position:relative;
       
          location.href = "OrderForm.go?goodsId="+goodsId+"&basketCount="+basketCount.value;
    }
+   
+// 수량이 변경될때마다 basketCount check
+	function countChk(count) {
+// 		alert(count.value);
+		basketCount = count.value;
+// 		alert(basketCount)
+		return basketCount;
+	}
+	
 
 </script>
 <!-- 탭메뉴 끝 -->
@@ -172,7 +181,7 @@ position:relative;
 						<th scope="row">가격</th>
 						<td><%if(sale != 0){ %><span class="txt_price"><%=sumPrice %><em>원</em></span>
 						<span class="txt_price_ins"><%=article.getPrice() %>원</span>
-						<span class="txt_sale"><%=article.getSale() %>%</span><%} else {  %>
+						<span class="txt_sale"><%=article.getSale() %></span><%} else {  %>
 						<span class="txt_price"><%=sumPrice %><em>원</em></span><%} %></td>
 					</tr>
 					<tr>
@@ -191,12 +200,11 @@ position:relative;
 			</table>
 			<div class="card_area d-flex justify-content-between align-items-center">
               <div class="product_count">
-                <span class="inumber-decrement"> <i class="ti-minus"></i></span>
-                <input class="input-number" type="text" value="1" id="basketCount" min="0" max="10"> 
-                <span class="number-increment"> <i class="ti-plus"></i></span>
+                <input type="number" value="1" id="basketCount" min="0" max="100" onchange="countChk(this)"> 
               </div>
             </div>
 			<div class="txt_price_wrap">
+			<%int totalPrice = sumPrice * basketCount; %>
 				총 상품금액<strong class="txt_price_str"><%=sumPrice%>원</em></strong>
 			</div>
 			<div class="btn_wrap">
