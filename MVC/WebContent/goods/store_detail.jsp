@@ -184,7 +184,7 @@ position:relative;
 						<th scope="row">가격</th>
 						<td><%if(sale != 0){ %><span class="txt_price"><%=sumPrice %><em>원</em></span>
 						<span class="txt_price_ins"><%=article.getPrice() %>원</span>
-						<span class="txt_sale"><%=article.getSale() %></span><%} else {  %>
+						<span class="txt_sale"><%=article.getSale() %>%</span><%} else {  %>
 						<span class="txt_price"><%=sumPrice %><em>원</em></span><%} %></td>
 					</tr>
 					<tr>
@@ -195,7 +195,7 @@ position:relative;
 						<th scope="row">유효기간</th>
 						<td>구매 후 1년 이내</td>
 					</tr>
-					<tr>k
+					<tr>
 						<th scope="row">사용가능 영화관</th>
 						<td>전 영화관</td>
 					</tr>
@@ -207,7 +207,6 @@ position:relative;
               </div>
             </div>
 			<div class="txt_price_wrap">
-<%-- 			<%int totalPrice = sumPrice * basketCount; %> --%>
 				총 상품금액<strong class="txt_price_str"><span id="totalPrice"><%=sumPrice%></span><em>원</em></strong>
 			</div>
 			<div class="btn_wrap">
@@ -219,55 +218,6 @@ position:relative;
 	</div>
 </div>
 
-
-<!-- 	<div class="product_image_area section_padding"> -->
-<!--     <div class="container"> -->
-<!--       <div class="row s_product_inner justify-content-between"> -->
-<!--         <div class="col-lg-7 col-xl-7"> -->
-<!--           <div class="product_slider_img"> -->
-<!--             <div id="vertical"> -->
-<!--               사진이미지 -->
-<!--               <div data-thumb="img/store/couple_set.jpg"> -->
-<%--                 <img src="goodsUpload/<%=article.getFile()%>" weight="300px" height="300px" /> --%>
-<!--               </div> -->
-<!--               </div> -->
-<!--           </div> -->
-<!--         </div> -->
-<!--         <div class="col-lg-5 col-xl-4"> -->
-<!--           <div class="s_product_text"> -->
-<%--             <h3> <%=article.getName() %></h3> --%>
-<%--             <h2 class = "price"><%=article.getPrice()%>원</h2> --%>
-<%--             <h2><%=sumPrice%>원</h2> --%>
-<!--             <ul class="list"> -->
-<!--               <li> -->
-<%--                 <a class="active"> <span>구성품</span> :<%=article.getComponent() %></a> --%>
-<!--               </li> -->
-<!--               <li> -->
-<!--                 <a class="active"> <span>유효기간</span> :구매 후 1년 이내 </a> -->
-<!--               </li> -->
-<!--               <li> -->
-<!--                 <a class="active"> <span>상품교환</span> :전 영화관</a> -->
-<!--               </li> -->
-<!--             </ul> -->
-<!--             <div class="card_area d-flex justify-content-between align-items-center"> -->
-<!--               <div class="product_count"> -->
-<!--                 <span class="inumber-decrement"> <i class="ti-minus"></i></span> -->
-<!--                 <input class="input-number" type="text" value="1" id="basketCount" min="0" max="10">  -->
-<!--                 <span class="number-increment"> <i class="ti-plus"></i></span> -->
-<!--               </div> -->
-<!--             </div> -->
-<!--            	 <h2> -->
-<%--                <span>총 상품금액</span> :<%=sumPrice%>원</a> <!-- price * count --> --%>
-<!--               </h2> -->
-<!--               <br> -->
-<%--             <input type="button" class="btn_3" value = "장바구니" id="basket" onclick="basket(<%=goodsId%>)"> --%>
-<%--             <input type="button" class="btn_3" value = "구매하기" id="order" onclick="order(<%=goodsId%>)"> --%>
-
-<!--           </div> -->
-<!--         </div> -->
-<!--       </div> -->
-<!--     </div> -->
-<!--   </div> -->
   <!--================End Single Product Area =================-->
 
   <!--================Product Description Area =================-->

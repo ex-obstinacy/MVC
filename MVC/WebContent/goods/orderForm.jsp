@@ -21,6 +21,10 @@ String reserveNum = (String)request.getAttribute("reserveNum");
 <html lang="zxx">
 
 <head>
+	<style type="text/css">
+	.oldprice {text-decoration : line-through;
+			   color: #BDBDBD;}
+	</style>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -200,7 +204,10 @@ function requestPay() {
                   </div>
                 </td>
                 <td>
-                  <h5><%=goodsPrice %>원</h5>
+                  <%if(sale == 0){ %>
+                  <h5><%=goodsPrice %>원</h5> <%} else { %>
+                  <h5 class=oldprice><%=goodsPrice %>원</h5>
+                  <h5><%=sumPrice %>원</h5> <%} %>
                 </td>
               </tr>
             <%   

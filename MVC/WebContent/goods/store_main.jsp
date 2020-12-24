@@ -20,7 +20,7 @@
 <html lang="zxx">
 <head>
 <!-- 탭메뉴 -->
-<style>
+<style type="text/css">
 ul.store-tab{
 	margin: 0px;
 	padding: 0 50px 50px 10%;
