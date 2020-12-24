@@ -111,8 +111,8 @@ public class ReserveDAO {
 		try {
 			String sql = "select coupon_1000,coupon_2000,coupon_3000,free_ticket from member where id=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "kim"); // 임시확인용
-//			pstmt.setString(1, member_id); // 원래코드
+//			pstmt.setString(1, "kim"); // 임시확인용
+			pstmt.setString(1, member_id); // 원래코드
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				memberInfo.setCoupon_1000(rs.getInt("coupon_1000"));
