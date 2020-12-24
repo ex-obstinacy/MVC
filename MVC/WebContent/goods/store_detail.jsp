@@ -169,9 +169,11 @@ position:relative;
 						<th scope="row" class="tit" colspan="2"><%=article.getName() %></th>
 					</tr>
 					<tr>
-						<td><span class="txt_sale"><%=article.getSale() %>%</span></td>
-						<td><span class="txt_price"><%=sumPrice %><em>원</em></span><span
-							class="txt_price_ins"><%=article.getPrice() %>원</span></td>
+						<th scope="row">가격</th>
+						<td><%if(sale != 0){ %><span class="txt_price"><%=sumPrice %><em>원</em></span>
+						<span class="txt_price_ins"><%=article.getPrice() %>원</span>
+						<span class="txt_sale"><%=article.getSale() %>%</span><%} else {  %>
+						<span class="txt_price"><%=sumPrice %><em>원</em></span><%} %></td>
 					</tr>
 					<tr>
 						<th scope="row">구성품</th>
