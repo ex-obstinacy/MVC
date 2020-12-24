@@ -119,8 +119,11 @@ position:relative;
 	function countChk(count) {
 // 		alert(count.value);
 		basketCount = count.value;
-// 		alert(basketCount)
-		return basketCount;
+// 		alert(basketCount);
+		var element = document.getElementById('totalPrice');
+		var total = <%=sumPrice%> * basketCount;
+// 		alert(total);
+		element.innerHTML = total;
 	}
 	
 
@@ -205,7 +208,7 @@ position:relative;
             </div>
 			<div class="txt_price_wrap">
 <%-- 			<%int totalPrice = sumPrice * basketCount; %> --%>
-				총 상품금액<strong class="txt_price_str"><%=sumPrice%><em>원</em></strong>
+				총 상품금액<strong class="txt_price_str"><span id="totalPrice"><%=sumPrice%></span><em>원</em></strong>
 			</div>
 			<div class="btn_wrap">
 			<input type="button" class="btn_3" value = "장바구니" id="basket" onclick="basket(<%=goodsId%>)">
