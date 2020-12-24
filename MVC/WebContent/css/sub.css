@@ -111,7 +111,7 @@
 
 #movieform > table ul#tdtime li.tdiv{margin-right:10px; margin-bottom:10px; border-bottom:0;}
 #movieform > table ul#tdtime li.tdiv label{width:98px; text-align:center; box-sizing:border-box; border:1px solid #ddd; padding:10px 10px; border-radius:5px; cursor:pointer;}
-#movieform > table ul#tdtime input:checked+label{background:#555; color:#fff;}
+#movieform > table ul#tdtime input:checked+label{background:#FF243E; color:#fff; border-color:#FF243E;}
 #movieform > table ul#tdtime input{
 	display: none;
 }
@@ -129,6 +129,11 @@
 #movieform > table #tdtime .show{
 	display: inline-block;
 }
+#movieform > table #tdtime .noshow{
+	display: none;
+}
+#movieform > table #tdtime li.notimelist{border: none; text-align:center; font-size: 16px;}
+#movieform > table #tdtime li.notimelist > img{width: 50px; margin: 40px 0 20px 0;}
 
 #movieform div.btnBox{text-align:right;}
 

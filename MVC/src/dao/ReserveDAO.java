@@ -291,130 +291,129 @@ public class ReserveDAO {
 		return ticketnum;
 	}
 	// 경환 끝
-
-			
-			
+	
+	
 	// 은주 시작
 	// 관리자 페이지용
-		public int insertCinema(ReserveBean cinema) {
+	public int insertCinema(ReserveBean cinema) {
+		
+		System.out.println("ReserveDAO - insertCinema()");
+		
+		int addCount = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
 			
-			System.out.println("ReserveDAO - insertCinema()");
+			String sql = "insert into cinema values(?, ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, cinema.getCinema_name());
+			pstmt.setString(2, cinema.getLocal());
+			addCount = pstmt.executeUpdate();
 			
-			int addCount = 0;
-			PreparedStatement pstmt = null;
+		} catch (Exception e) {
 			
-			try {
-				
-				String sql = "insert into cinema values(?, ?)";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, cinema.getCinema_name());
-				pstmt.setString(2, cinema.getLocal());
-				addCount = pstmt.executeUpdate();
-				
-			} catch (Exception e) {
-				
-				System.out.println("insertCinema() 오류! - " + e.getMessage());
-				e.printStackTrace();
-				
-			} finally {
-				
-				close(pstmt);
-				
-			}
+			System.out.println("insertCinema() 오류! - " + e.getMessage());
+			e.printStackTrace();
 			
-			return addCount;
+		} finally {
+			
+			close(pstmt);
 			
 		}
 		
-		public String getMovieSubject(int movie_code) {
+		return addCount;
+		
+	}
+	
+	public String getMovieSubject(int movie_code) {
+		
+		String subject = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
 			
-			String subject = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			
-			try {
-				
-				String sql = "select subject from movie_board where movCode=?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, movie_code);
-				rs = pstmt.executeQuery();
-				if(rs.next()) {
-					subject = rs.getString("subject");
-				}
-				
-			} catch (Exception e) {
-				
-				e.printStackTrace();
-				
-			} finally {
-				
-				close(rs);
-				close(pstmt);
-				
+			String sql = "select subject from movie_board where movCode=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, movie_code);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				subject = rs.getString("subject");
 			}
 			
-			return subject;
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(rs);
+			close(pstmt);
 			
 		}
 		
-		public String getMovieGrade(int movie_code) {
+		return subject;
+		
+	}
+	
+	public String getMovieGrade(int movie_code) {
+		
+		String grade = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
 			
-			String grade = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			
-			try {
-				
-				String sql = "select grade from movie_board where movCode=?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, movie_code);
-				rs = pstmt.executeQuery();
-				if(rs.next()) {
-					grade = rs.getString("grade");
-				}
-				
-			} catch (Exception e) {
-				
-				e.printStackTrace();
-				
-			} finally {
-				
-				close(rs);
-				close(pstmt);
-				
+			String sql = "select grade from movie_board where movCode=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, movie_code);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				grade = rs.getString("grade");
 			}
 			
-			return grade;
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(rs);
+			close(pstmt);
 			
 		}
+		
+		return grade;
+		
+	}
 
-		public int insertMovie(ReserveBean movie) {
+	public int insertMovie(ReserveBean movie) {
+		
+		int num = 1;
+		int addCount = 0;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		ResultSet rs = null;
+		
+		try {
 			
-			int num = 1;
-			int addCount = 0;
-			PreparedStatement pstmt = null;
-			PreparedStatement pstmt2 = null;
-			ResultSet rs = null;
+			String sql = "select max(num) from admin_reservation";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				num = rs.getInt("max(num)") + 1;
+			}
 			
-			try {
-				
-				String sql = "select max(num) from admin_reservation";
-				pstmt = con.prepareStatement(sql);
-				rs = pstmt.executeQuery();
-				if(rs.next()) {
-					num = rs.getInt("max(num)") + 1;
-				}
-				
-				String sql2 = "insert into admin_reservation values(?, ?, ?, ?, ?, ?, ?)";
-				pstmt2 = con.prepareStatement(sql2);
-				pstmt2.setInt(1, num);
-				pstmt2.setInt(2, movie.getMovie_code());
-				pstmt2.setString(3, movie.getMovie_subject());
-				pstmt2.setString(4, movie.getMovie_grade());
-				pstmt2.setString(5, movie.getCinema_name());
-				pstmt2.setString(6, movie.getShowdate());
-				pstmt2.setString(7, movie.getShowtime());
-				// 통합DB에서 쓰는 실제 코드 순서
+			String sql2 = "insert into admin_reservation values(?, ?, ?, ?, ?, ?, ?)";
+			pstmt2 = con.prepareStatement(sql2);
+			pstmt2.setInt(1, num);
+			pstmt2.setInt(2, movie.getMovie_code());
+			pstmt2.setString(3, movie.getMovie_subject());
+			pstmt2.setString(4, movie.getMovie_grade());
+			pstmt2.setString(5, movie.getCinema_name());
+			pstmt2.setString(6, movie.getShowdate());
+			pstmt2.setString(7, movie.getShowtime());
+			// 통합DB에서 쓰는 실제 코드 순서
 //				pstmt2.setInt(1, num);
 //				pstmt2.setInt(2, movie.getMovie_code());
 //				pstmt2.setString(2, movie.getCinema_name());
@@ -422,325 +421,329 @@ public class ReserveDAO {
 //				pstmt2.setString(4, movie.getShowtime());
 //				pstmt2.setString(5, movie.getMovie_subject());
 //				pstmt2.setString(6, movie.getMovie_grade());
-				addCount = pstmt2.executeUpdate();
-				
-			} catch (Exception e) {
-				
-				e.printStackTrace();
-				
-			} finally {
-				
-				close(rs);
-				close(pstmt);
-				close(pstmt2);
-				
-			}
+			addCount = pstmt2.executeUpdate();
 			
-			return addCount;
+		} catch (Exception e) {
 			
-		}
-
-		public int deleteCinema(String cinema_name) {
+			e.printStackTrace();
 			
-			int deleteCount = 0;
-			PreparedStatement pstmt = null;
+		} finally {
 			
-			try {
-				
-				String sql = "delete from cinema where name=?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, cinema_name);
-				deleteCount = pstmt.executeUpdate();
-				
-			} catch (SQLException e) {
-				
-				e.printStackTrace();
-				
-			} finally {
-				
-				close(pstmt);
-				
-			}
-			
-			return deleteCount;
-			
-		}
-
-		public int deleteMovie(int movie_num) {
-			
-			int deleteCount = 0;
-			PreparedStatement pstmt = null;
-			
-			try {
-				
-				String sql = "delete from admin_reservation where num=?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, movie_num);
-				deleteCount = pstmt.executeUpdate();
-				
-				String sql2 = "delete from reserved_seat where reservation_num=?"; // 영화 삭제시 해당 영화번호에 예약되있는 좌석 삭제 - 경환 추가
-				pstmt = con.prepareStatement(sql2);
-				pstmt.setInt(1, movie_num);
-				pstmt.executeUpdate();
-				
-			} catch (SQLException e) {
-				
-				e.printStackTrace();
-				
-			} finally {
-				
-				close(pstmt);
-				
-			}
-			
-			return deleteCount;
-			
-		}
-
-		public int findMovieNum(String movie, String local, String cinema, String date, String time) {
-			
-			int movienum = 0;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			
-			try {
-				
-				String sql = "select num from admin_reservation where movie_subject=? and cinema_name=? and showdate=? and showtime=?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, movie);
-				pstmt.setString(2, cinema);
-				pstmt.setString(3, date);
-				pstmt.setString(4, time);
-				
-				rs = pstmt.executeQuery();
-				
-				if(rs.next()) {
-					movienum = rs.getInt("num");
-				}
-				
-				System.out.println(movienum);
-				
-			} catch (Exception e) {
-				
-				e.printStackTrace();
-				
-			} finally {
-				
-				close(rs);
-				close(pstmt);
-				
-			}
-			
-			return movienum;
+			close(rs);
+			close(pstmt);
+			close(pstmt2);
 			
 		}
 		
-		// JSON 처리 메서드
-		public JSONArray getMovieList(String today) {
-			
-			JSONArray movieList = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			
-			try {
-				
-				String sql = "select num, movie_board_movCode, movie_subject, movie_grade, max(showdate) from admin_reservation group by movie_subject having max(showdate)>=?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, today);
+		return addCount;
+		
+	}
 
-				rs = pstmt.executeQuery();
-				
-				movieList = new JSONArray();
-
-				while(rs.next()) {
-					
-					JSONObject jo = new JSONObject();
-					jo.put("movie_num", rs.getInt("num"));
-					jo.put("movie_code", rs.getInt("movie_board_movCode"));
-					jo.put("movie_subject", rs.getString("movie_subject"));
-					jo.put("movie_grade", rs.getString("movie_grade"));
-						
-					movieList.add(jo);
-					
-				}
-				
-			} catch (Exception e) {
-				
-				e.printStackTrace();
-				
-			} finally {
-				
-				close(rs);
-				close(pstmt);
-				
-			}
+	public int deleteCinema(String cinema_name) {
+		
+		int deleteCount = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
 			
-			return movieList;
+			String sql = "delete from cinema where name=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, cinema_name);
+			deleteCount = pstmt.executeUpdate();
 			
-		}
-
-		public JSONArray getCinemaList() {
+		} catch (SQLException e) {
 			
-			JSONArray cinemaList = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
+			e.printStackTrace();
 			
-			try {
-				
-				String sql = "select * from cinema order by local";
-				pstmt = con.prepareStatement(sql);
-
-				rs = pstmt.executeQuery();
-
-				cinemaList = new JSONArray();
-
-				while(rs.next()) {
-					JSONObject jo = new JSONObject();
-					jo.put("cinema_name", rs.getString("name"));
-					jo.put("cinema_localfull", rs.getString("local"));
-					String slocal = rs.getString("local").substring(0, 2);
-					jo.put("cinema_local", slocal);
-					
-					cinemaList.add(jo);
-				}
-				
-			} catch (Exception e) {
-				
-				e.printStackTrace();
-				
-			} finally {
-				
-				close(rs);
-				close(pstmt);
-				
-			}
+		} finally {
 			
-			return cinemaList;
-			
-		}
-
-		public JSONArray getTimeList() {
-			
-			JSONArray timeList = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			
-			try {
-				
-				String sql = "select * from admin_reservation";
-				pstmt = con.prepareStatement(sql);
-
-				rs = pstmt.executeQuery();
-
-				timeList = new JSONArray();
-
-				while(rs.next()) {
-					JSONObject jo = new JSONObject();
-					jo.put("movie_code", rs.getInt("movie_board_movCode"));
-					jo.put("movie_subject", rs.getString("movie_subject"));
-					jo.put("cinema_name", rs.getString("cinema_name"));
-					jo.put("showdate", rs.getString("showdate"));
-					jo.put("showtime", rs.getString("showtime"));
-					
-					timeList.add(jo);
-				}
-				
-			} catch (Exception e) {
-				
-				e.printStackTrace();
-				
-			} finally {
-				
-				close(rs);
-				close(pstmt);
-				
-			}
-			
-			return timeList;
-			
-		}
-
-		public JSONArray getAllMovieList(String today) {
-			
-			JSONArray allMovieList = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			
-			try {
-				
-				String sql = "select * from admin_reservation where showdate >= ? order by cinema_name, showdate, showtime";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, today);
-
-				rs = pstmt.executeQuery();
-
-				allMovieList = new JSONArray();
-
-				while(rs.next()) {
-					JSONObject jo = new JSONObject();
-					jo.put("movie_num", rs.getInt("num"));
-					jo.put("movie_code", rs.getInt("movie_board_movCode"));
-					jo.put("movie_subject", rs.getString("movie_subject"));
-					jo.put("cinema_name", rs.getString("cinema_name"));
-					jo.put("showdate", rs.getString("showdate"));
-					jo.put("showtime", rs.getString("showtime"));
-					
-					allMovieList.add(jo);
-				}
-				
-			} catch (Exception e) {
-				
-				e.printStackTrace();
-				
-			} finally {
-				
-				close(rs);
-				close(pstmt);
-				
-			}
-			
-			return allMovieList;
+			close(pstmt);
 			
 		}
 		
-		public JSONArray getShowMovieList() {
+		return deleteCount;
+		
+	}
+
+	public int deleteMovie(int movie_num) {
+		
+		int deleteCount = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
 			
-			JSONArray showMovieList = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
+			String sql = "delete from admin_reservation where num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, movie_num);
+			deleteCount = pstmt.executeUpdate();
 			
-			try {
+			String sql2 = "delete from reserved_seat where reservation_num=?"; // 영화 삭제시 해당 영화번호에 예약되있는 좌석 삭제 - 경환 추가
+			pstmt = con.prepareStatement(sql2);
+			pstmt.setInt(1, movie_num);
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(pstmt);
+			
+		}
+		
+		return deleteCount;
+		
+	}
+
+	public int findMovieNum(String movie, String local, String cinema, String date, String time) {
+		
+		int movienum = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			String sql = "select num from admin_reservation where movie_subject=? and cinema_name=? and showdate=? and showtime=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, movie);
+			pstmt.setString(2, cinema);
+			pstmt.setString(3, date);
+			pstmt.setString(4, time);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				movienum = rs.getInt("num");
+			}
+			
+			System.out.println(movienum);
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+			
+		}
+		
+		return movienum;
+		
+	}
+	
+	// JSON 처리 메서드
+	public JSONArray getMovieList(String today) {
+		
+		JSONArray movieList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			String sql = "select num, movie_board_movCode, movie_subject, movie_grade, max(showdate) from admin_reservation group by movie_subject having max(showdate)>=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, today);
+
+			rs = pstmt.executeQuery();
+			
+			movieList = new JSONArray();
+
+			while(rs.next()) {
 				
-				String sql = "select * from movie_board order by subject";
-				pstmt = con.prepareStatement(sql);
-				
-				rs = pstmt.executeQuery();
-				
-				showMovieList = new JSONArray();
-				
-				while(rs.next()) {
-					JSONObject jo = new JSONObject();
-					jo.put("movie_code", rs.getInt("movCode"));
-					jo.put("movie_subject", rs.getString("subject"));
+				JSONObject jo = new JSONObject();
+				jo.put("movie_num", rs.getInt("num"));
+				jo.put("movie_code", rs.getInt("movie_board_movCode"));
+				jo.put("movie_subject", rs.getString("movie_subject"));
+				jo.put("movie_grade", rs.getString("movie_grade"));
 					
-					showMovieList.add(jo);
-				}
-				
-			} catch (Exception e) {
-				
-				e.printStackTrace();
-				
-			} finally {
-				
-				close(rs);
-				close(pstmt);
+				movieList.add(jo);
 				
 			}
 			
-			return showMovieList;
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+			
 		}
 		
+		return movieList;
 		
-		// 은주 끝
+	}
+
+	public JSONArray getCinemaList() {
+		
+		JSONArray cinemaList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			String sql = "select * from cinema order by local";
+			pstmt = con.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			cinemaList = new JSONArray();
+
+			while(rs.next()) {
+				JSONObject jo = new JSONObject();
+				jo.put("cinema_name", rs.getString("name"));
+				jo.put("cinema_localfull", rs.getString("local"));
+				String jlocal = rs.getString("local").substring(0, 2);
+				jo.put("cinema_local", jlocal);
+				
+				cinemaList.add(jo);
+			}
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+			
+		}
+		
+		return cinemaList;
+		
+	}
+
+	public JSONArray getTimeList() {
+		
+		JSONArray timeList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			String sql = "select * from admin_reservation";
+			pstmt = con.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+
+			timeList = new JSONArray();
+
+			while(rs.next()) {
+				JSONObject jo = new JSONObject();
+				jo.put("movie_code", rs.getInt("movie_board_movCode"));
+				jo.put("movie_subject", rs.getString("movie_subject"));
+				jo.put("cinema_name", rs.getString("cinema_name"));
+				jo.put("showdate", rs.getString("showdate"));
+				jo.put("showtime", rs.getString("showtime"));
+				String jtime = rs.getString("showtime").substring(0, 5);
+				String jguan = rs.getString("showtime").substring(5, 9);
+				jo.put("showtime_t", jtime);
+				jo.put("showtime_g", jguan);
+				
+				timeList.add(jo);
+			}
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+			
+		}
+		
+		return timeList;
+		
+	}
+
+	public JSONArray getAllMovieList(String today) {
+		
+		JSONArray allMovieList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			String sql = "select * from admin_reservation where showdate >= ? order by cinema_name, showdate, showtime";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, today);
+
+			rs = pstmt.executeQuery();
+
+			allMovieList = new JSONArray();
+
+			while(rs.next()) {
+				JSONObject jo = new JSONObject();
+				jo.put("movie_num", rs.getInt("num"));
+				jo.put("movie_code", rs.getInt("movie_board_movCode"));
+				jo.put("movie_subject", rs.getString("movie_subject"));
+				jo.put("cinema_name", rs.getString("cinema_name"));
+				jo.put("showdate", rs.getString("showdate"));
+				jo.put("showtime", rs.getString("showtime"));
+				
+				allMovieList.add(jo);
+			}
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+			
+		}
+		
+		return allMovieList;
+		
+	}
+	
+	public JSONArray getShowMovieList() {
+		
+		JSONArray showMovieList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			String sql = "select * from movie_board order by subject";
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			showMovieList = new JSONArray();
+			
+			while(rs.next()) {
+				JSONObject jo = new JSONObject();
+				jo.put("movie_code", rs.getInt("movCode"));
+				jo.put("movie_subject", rs.getString("subject"));
+				
+				showMovieList.add(jo);
+			}
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+			
+		}
+		
+		return showMovieList;
+	}
+	
+	
+	// 은주 끝
 	
 } // ReserveDAO 

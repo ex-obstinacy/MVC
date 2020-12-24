@@ -59,7 +59,8 @@
 		$.getJSON('TimeListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
 				$('#tdtime').append("<li class='tdiv "+item.movie_code+" "+item.cinema_name+" "+item.showdate+"'><input type='radio' name='time' id='"+item.movie_code+"/"+item.cinema_name+"/"+item.showdate+"/"+item.showtime+"' value='"+item.showtime+
-						"' class='rtime'/><label for='"+item.movie_code+"/"+item.cinema_name+"/"+item.showdate+"/"+item.showtime+"' value='"+item.showtime+"'>"+item.showtime+"</label></li>");
+						"' class='rtime'/><label for='"+item.movie_code+"/"+item.cinema_name+"/"+item.showdate+"/"+item.showtime+"'>"
+						+item.showtime_t+" "+item.showtime_g+"</label></li>");
 			});
 		});
 		// 지역 선택
@@ -85,8 +86,14 @@
 				var movie_id = $('#tdsubject input[name="movie"]:checked').attr('id');
 				var cinema_id = $('#tdcinema input[name="cinema"]:checked').attr('id');
 				var date_id = $(this).attr('id');
-				$('#tdtime .tdiv').removeClass('show');
-				$('#tdtime .'+movie_id+'.'+cinema_id+'.'+date_id).addClass('show');
+				if($('#tdtime li').hasClass(movie_id+' '+cinema_id+' '+date_id)) {
+					$('#tdtime .tdiv').removeClass('show');
+					$('#tdtime .'+movie_id+'.'+cinema_id+'.'+date_id).addClass('show');
+					$('#tdtime li.notimelist').addClass('noshow');
+				} else {
+					$('#tdtime .tdiv').removeClass('show');
+					$('#tdtime li.notimelist').removeClass('noshow');
+				}
 			}
 		});
 		// 날짜는 3일뒤까지만 예약 가능
@@ -97,6 +104,7 @@
 		$('#movieform > table td>ul#tddate li:nth-child(4)').removeClass('reserveNo');
 		
 		$('#movieform > table td>ul#tddate li.reserveNo').click(function() {
+			alert("예매하실 수 없는 날짜입니다.")
 			$('#tddate input').prop("checked", false);
 			$('#tdtime input').prop("checked", false);
 			$('#tdtime .tdiv').removeClass('show');
@@ -139,17 +147,23 @@
 			$('#tddate input').prop("checked", false);
 			$('#tdtime input').prop("checked", false);
 			$('#tdtime .tdiv').removeClass('show');
+			$('#tdtime li.notimelist').removeClass('noshow');
 		});
 		$('#tdlocal').click(function() {
 			$('#tdcinema input').prop("checked", false);
 			$('#tddate input').prop("checked", false);
 			$('#tdtime input').prop("checked", false);
 			$('#tdtime .tdiv').removeClass('show');
+			$('#tdtime li.notimelist').removeClass('noshow');
 		});
 		$('#tdcinema').click(function() {
 			$('#tddate input').prop("checked", false);
 			$('#tdtime input').prop("checked", false);
 			$('#tdtime .tdiv').removeClass('show');
+			$('#tdtime li.notimelist').removeClass('noshow');
+		});
+		$('#tddate').click(function() {
+			$('#tdtime input').prop("checked", false);
 		});
 		
 		// 날짜 슬라이더
@@ -247,6 +261,9 @@
 			<tr>
 				<td>
 					<ul id="tdtime">
+						<li class="notimelist"><img src="img/sub/notimelist.png" alt="film"></li>
+						<li class="notimelist">조회 가능한 상영시간이 없습니다.</li>
+						<li class="notimelist">조건을 변경해주세요.</li>
 						<!-- 등록된 시간 리스트 표출 -->
 					</ul>
 				</td>
