@@ -20,6 +20,10 @@ String[] reserveNum = (String [])request.getAttribute("reserveNum");
 <html lang="zxx">
 
 <head>
+	<style type="text/css">
+	.oldprice {text-decoration : line-through;
+			   color: #BDBDBD;}
+	</style>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -184,7 +188,8 @@ function requestPay() {
             totalPrice += goodsPrice; // 할인 전 상품금액 += 상품 개 당 가격
             int sale = (int)(basketList.get(i).getPrice() * basketList.get(i).getSale() * basketList.get(i).getBasketCount() * 0.01); // 할인가격
             sale2 += sale; // 총 할인가격 += 할인가격
-            sumPrice = totalPrice - sale2; // 할인 후 상품금액 = 할인 전 상품금액 - 총 할인가격
+            int nowPrice = goodsPrice - sale; // 할인 후 상품금액 = 할인 전 상품금액 - 할인금액
+            sumPrice = totalPrice - sale2; // 할인 후 총 상품금액 = 할인 전 총 상품금액 - 총 할인가격
             int goods_goodsId = basketList.get(i).getGoods_goodsId();
          %>
             <tbody>
@@ -215,7 +220,7 @@ function requestPay() {
                   <%if(sale == 0){ %>
                   <h5><%=goodsPrice %>원</h5> <%} else { %>
                   <h5 class=oldprice><%=goodsPrice %>원</h5>
-                  <h5><%=sumPrice %>원</h5> <%} %>
+                  <h5><%=nowPrice %>원</h5> <%} %>
                 </td>
               </tr>
             <%   
