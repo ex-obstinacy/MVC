@@ -192,7 +192,7 @@ position:relative;
 						<th scope="row">유효기간</th>
 						<td>구매 후 1년 이내</td>
 					</tr>
-					<tr>
+					<tr>k
 						<th scope="row">사용가능 영화관</th>
 						<td>전 영화관</td>
 					</tr>
