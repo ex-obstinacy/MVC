@@ -16,18 +16,29 @@ public class MovieAddProAction implements Action {
 		
 		ActionForward forward = null;
 		
+		int movie_code = Integer.parseInt(request.getParameter("movie_code"));
 		String seltime = request.getParameter("seltime");
 		String selguan = request.getParameter("selguan");
 		String time = seltime + "(" +selguan + ")";
 		
 		ReserveBean movie = new ReserveBean();
-		movie.setMovie_subject(request.getParameter("movie_subject"));
+		movie.setMovie_code(movie_code);
 		movie.setCinema_name(request.getParameter("cinema"));
 		movie.setShowdate(request.getParameter("date"));
 		movie.setShowtime(time);
 		
 		MovieAddProService movieAddProService = new MovieAddProService();
 		
+		// 영화 코드로 영화 제목, 연령제한 가져오기
+		String movie_subject = movieAddProService.getMovieSubject(movie_code);
+		String movie_grade = movieAddProService.getMovieGrade(movie_code);
+//		System.out.println(movie_subject);
+//		System.out.println(movie_grade);
+		System.out.println(movie_grade);
+		movie.setMovie_subject(movie_subject);
+		movie.setMovie_grade(movie_grade);
+		
+		// 영화 등록하기
 		boolean isMovieAddSuccess = movieAddProService.addMovie(movie);
 		
 		if(isMovieAddSuccess) {

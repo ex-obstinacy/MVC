@@ -45,7 +45,8 @@
 		// 등록되어있는 영화목록 가져오기
 		$.getJSON('MovieListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
-				$('#tdsubject').append("<li class='"+item.movie_subject+"'><input type='radio' name='movie' id='"+item.movie_subject+"' value='"+item.movie_subject+"' class='rmovie'/><label for='"+item.movie_subject+"'>"+item.movie_subject+"</label></li>");
+				$('#tdsubject').append("<li class='"+item.movie_subject+"'><input type='radio' name='movie' id='"+item.movie_code+"' value='"+item.movie_subject+"' class='rmovie'/><label for='"+item.movie_code+"'>"
+						+"<span id='span_r1' class='g"+item.movie_grade+"'>"+item.movie_grade+"</span><span id='span_r2'>"+item.movie_subject+"</span></label></li>");
 			});
 		});
 		// cinema 목록 db에서 가져오기(admin_reserve랑 동일)
@@ -57,8 +58,8 @@
 		// showtime 목록 db에서 가져오기
 		$.getJSON('TimeListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
-				$('#tdtime').append("<li class='tdiv "+item.movie_subject+" "+item.cinema_name+" "+item.showdate+"'><input type='radio' name='time' id='"+item.movie_subject+"/"+item.cinema_name+"/"+item.showdate+"/"+item.showtime+"' value='"+item.showtime+
-						"' class='rtime'/><label for='"+item.movie_subject+"/"+item.cinema_name+"/"+item.showdate+"/"+item.showtime+"' value='"+item.showtime+"'>"+item.showtime+"</label></li>");
+				$('#tdtime').append("<li class='tdiv "+item.movie_code+" "+item.cinema_name+" "+item.showdate+"'><input type='radio' name='time' id='"+item.movie_code+"/"+item.cinema_name+"/"+item.showdate+"/"+item.showtime+"' value='"+item.showtime+
+						"' class='rtime'/><label for='"+item.movie_code+"/"+item.cinema_name+"/"+item.showdate+"/"+item.showtime+"' value='"+item.showtime+"'>"+item.showtime+"</label></li>");
 			});
 		});
 		// 지역 선택

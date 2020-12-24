@@ -70,6 +70,17 @@
 #movieform > table td>ul li label{width:100%; cursor:pointer; font-size:12px; padding:10px 10px; background:#fff; margin:0;}
 #movieform > table td>ul li input{display:none;}
 
+#movieform > table td>ul#tdsubject li span{vertical-align: middle;}
+#movieform > table td>ul#tdsubject li span#span_r1{
+	font-size:12px; font-weight:bold; margin: 0 10px; color: #FFF;
+	display:inline-block; border-radius: 100px; width: 25px; height: 25px; text-align: center; padding-top: 3px;
+}
+#movieform > table td>ul#tdsubject li span.gALL{background-color: #5BC77E;}
+#movieform > table td>ul#tdsubject li span.g12{background-color: #4DD6FF;}
+#movieform > table td>ul#tdsubject li span.g15{background-color: #FFC134;}
+#movieform > table td>ul#tdsubject li span.g18{background-color: #ED4C6B;}
+#movieform > table td>ul#tdsubject li span#span_r2{display:inline-block;}
+
 #movieform > table td>ul#tdsubject li label{border:2px solid transparent; box-sizing:border-box; font-size:14px; }
 #movieform > table td>ul#tdsubject li input:checked+label{border:2px solid #FF243E; background:#fff url(../img/sub/check.png) no-repeat 96% center/15px auto;}
 

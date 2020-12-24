@@ -3,7 +3,9 @@ package vo;
 public class ReserveBean {
 	
 	private int movienum;
+	private int movie_code;
 	private String movie_subject;
+	private String movie_grade;
 	private String local;
 	private String cinema_name;
 	private String showdate;
@@ -31,11 +33,23 @@ public class ReserveBean {
 	public void setMovienum(int movienum) {
 		this.movienum = movienum;
 	}
+	public int getMovie_code() {
+		return movie_code;
+	}
+	public void setMovie_code(int movie_code) {
+		this.movie_code = movie_code;
+	}
 	public String getMovie_subject() {
 		return movie_subject;
 	}
 	public void setMovie_subject(String movie_subject) {
 		this.movie_subject = movie_subject;
+	}
+	public String getMovie_grade() {
+		return movie_grade;
+	}
+	public void setMovie_grade(String movie_grade) {
+		this.movie_grade = movie_grade;
 	}
 	public String getLocal() {
 		return local;

@@ -45,14 +45,14 @@
 		// 등록되어있는 영화목록 가져오기
 		$.getJSON('AllMovieListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
-				$('#mldiv').append("<li class='ml_div "+item.movie_subject+"'><input type='radio' name='movie' id='"+item.movie_num+"' value='"+item.movie_num+"' class='rmovie'/><label for='"+item.movie_num+"'>"
+				$('#mldiv').append("<li class='ml_div "+item.movie_code+"'><input type='radio' name='movie' id='"+item.movie_num+item.cinema_name+"' value='"+item.movie_num+"' class='rmovie'/><label for='"+item.movie_num+item.cinema_name+"'>"
 						+"<span id='span_m1'>["+item.cinema_name+"]</span> <span id='span_m2'>"+item.movie_subject+"</span><span id='span_m3'>"+item.showtime+"</span> <span id='span_m4'>"+item.showdate+"</span></label></li>");
 			});
 		});
 		// moive_board 상영중인 영화목록 가져오기
 		$.getJSON('ShowMovieListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
-				$('#tdsubject').append("<li class='mdiv "+item.movie_code+"'><input type='radio' name='movie_subject' id='"+item.movie_code+"' value='"+item.movie_subject+"' class='rsmovie'/><label for='"+item.movie_code+"'>"+item.movie_subject+"</label></li>");
+				$('#tdsubject').append("<li class='mdiv "+item.movie_code+"'><input type='radio' name='movie_code' id='"+item.movie_code+"' value='"+item.movie_code+"' class='rsmovie'/><label for='"+item.movie_code+"'>"+item.movie_subject+"</label></li>");
 			});
 		});
 		// cinema 목록 db에서 가져오기

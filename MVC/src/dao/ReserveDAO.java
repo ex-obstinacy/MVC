@@ -325,12 +325,75 @@ public class ReserveDAO {
 			return addCount;
 			
 		}
+		
+		public String getMovieSubject(int movie_code) {
+			
+			String subject = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				
+				String sql = "select subject from movie_board where movCode=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, movie_code);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					subject = rs.getString("subject");
+				}
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+				
+			} finally {
+				
+				close(rs);
+				close(pstmt);
+				
+			}
+			
+			return subject;
+			
+		}
+		
+		public String getMovieGrade(int movie_code) {
+			
+			String grade = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				
+				String sql = "select grade from movie_board where movCode=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, movie_code);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					grade = rs.getString("grade");
+				}
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+				
+			} finally {
+				
+				close(rs);
+				close(pstmt);
+				
+			}
+			
+			return grade;
+			
+		}
 
 		public int insertMovie(ReserveBean movie) {
 			
 			int num = 1;
 			int addCount = 0;
 			PreparedStatement pstmt = null;
+			PreparedStatement pstmt2 = null;
 			ResultSet rs = null;
 			
 			try {
@@ -342,14 +405,24 @@ public class ReserveDAO {
 					num = rs.getInt("max(num)") + 1;
 				}
 				
-				sql = "insert into admin_reservation values(?, ?, ?, ?, ?)";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, num);
-				pstmt.setString(2, movie.getMovie_subject());
-				pstmt.setString(3, movie.getCinema_name());
-				pstmt.setString(4, movie.getShowdate());
-				pstmt.setString(5, movie.getShowtime());
-				addCount = pstmt.executeUpdate();
+				String sql2 = "insert into admin_reservation values(?, ?, ?, ?, ?, ?, ?)";
+				pstmt2 = con.prepareStatement(sql2);
+				pstmt2.setInt(1, num);
+				pstmt2.setInt(2, movie.getMovie_code());
+				pstmt2.setString(3, movie.getMovie_subject());
+				pstmt2.setString(4, movie.getMovie_grade());
+				pstmt2.setString(5, movie.getCinema_name());
+				pstmt2.setString(6, movie.getShowdate());
+				pstmt2.setString(7, movie.getShowtime());
+				// 통합DB에서 쓰는 실제 코드 순서
+//				pstmt2.setInt(1, num);
+//				pstmt2.setInt(2, movie.getMovie_code());
+//				pstmt2.setString(2, movie.getCinema_name());
+//				pstmt2.setString(3, movie.getShowdate());
+//				pstmt2.setString(4, movie.getShowtime());
+//				pstmt2.setString(5, movie.getMovie_subject());
+//				pstmt2.setString(6, movie.getMovie_grade());
+				addCount = pstmt2.executeUpdate();
 				
 			} catch (Exception e) {
 				
@@ -359,6 +432,7 @@ public class ReserveDAO {
 				
 				close(rs);
 				close(pstmt);
+				close(pstmt2);
 				
 			}
 			
@@ -470,19 +544,24 @@ public class ReserveDAO {
 			
 			try {
 				
-				String sql = "select distinct movie_subject from admin_reservation where showdate >= ?";
+				String sql = "select num, movie_board_movCode, movie_subject, movie_grade, max(showdate) from admin_reservation group by movie_subject having max(showdate)>=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, today);
 
 				rs = pstmt.executeQuery();
-
+				
 				movieList = new JSONArray();
 
 				while(rs.next()) {
-					JSONObject jo = new JSONObject();
-					jo.put("movie_subject", rs.getString("movie_subject"));
 					
+					JSONObject jo = new JSONObject();
+					jo.put("movie_num", rs.getInt("num"));
+					jo.put("movie_code", rs.getInt("movie_board_movCode"));
+					jo.put("movie_subject", rs.getString("movie_subject"));
+					jo.put("movie_grade", rs.getString("movie_grade"));
+						
 					movieList.add(jo);
+					
 				}
 				
 			} catch (Exception e) {
@@ -557,6 +636,7 @@ public class ReserveDAO {
 
 				while(rs.next()) {
 					JSONObject jo = new JSONObject();
+					jo.put("movie_code", rs.getInt("movie_board_movCode"));
 					jo.put("movie_subject", rs.getString("movie_subject"));
 					jo.put("cinema_name", rs.getString("cinema_name"));
 					jo.put("showdate", rs.getString("showdate"));
@@ -588,8 +668,7 @@ public class ReserveDAO {
 			
 			try {
 				
-//				String sql = "select * from admin_reservation order by cinema_name, movie_subject, showdate, showtime";
-				String sql = "select * from admin_reservation where showdate >= ? order by cinema_name, movie_subject, showdate, showtime";
+				String sql = "select * from admin_reservation where showdate >= ? order by cinema_name, showdate, showtime";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, today);
 
@@ -600,6 +679,7 @@ public class ReserveDAO {
 				while(rs.next()) {
 					JSONObject jo = new JSONObject();
 					jo.put("movie_num", rs.getInt("num"));
+					jo.put("movie_code", rs.getInt("movie_board_movCode"));
 					jo.put("movie_subject", rs.getString("movie_subject"));
 					jo.put("cinema_name", rs.getString("cinema_name"));
 					jo.put("showdate", rs.getString("showdate"));
