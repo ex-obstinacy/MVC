@@ -12,7 +12,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="logo" href="./"> <img src="img/logo.png" alt="logo"> </a>
+                        <a class="logo" href="#"> <img src="img/logo.png" alt="logo"> </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +55,7 @@
                                         이벤트
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="EventList.ev"> 영화</a>
+                                        <a class="dropdown-item" href="blog.jsp"> 영화</a>
                                         <a class="dropdown-item" href="PreviewList.pr">시사회/무대인사</a>
                                         <a class="dropdown-item" href="single-blog.jsp">당첨자 발표</a>
                                     </div>
@@ -77,39 +77,29 @@
                             </ul>
                         </div>
                         <div class="hearer_icon d-flex">
-                            <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
+<!--                             <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a> -->
                             
                             <!-- 세션값에 따라서 로그인 또는 마이페이지 이동 -->
                             <%
                           	if (id == null) {
                             %>
-                            <a href="MemberLogin.me"><i class="ti-heart"></i></a>
+                            <a href="MemberLogin.me" class="btn_mypage"><img src="img/user.png"></a>
                             <%
                           	} else {
                           		if (id.equals("admin")) {
                           	%>
-                          	<a href="AdminMain.ad"><i class="ti-heart"></i></a><a href="MemberLogout.me"><i class="ti-heart"></i></a>
+                          	<a href="AdminMain.ad" class="btn_mypage"><img src="img/user.png"></a><a href="MemberLogout.me" class="btn_logout"><img src="img/logout.png"></a>
                           	<%
                           		} else {
                             %>
-                            <a href="MemberMain.me"><i class="ti-heart"></i></a><a href="MemberLogout.me"><i class="ti-heart"></i></a>
+                            <a href="MemberMain.me" class="btn_mypage"><img src="img/user.png"></a><a href="MemberLogout.me" class="btn_logout"><img src="img/logout.png"></a>
                             <%
                           		}
                           	}
                             %>
                             
-                            <div class="dropdown cart">
-                                <a class="dropdown-toggle" href="#" id="navbarDropdown3" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-cart-plus"></i>
-                                </a>
-                                <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <div class="single_product">
-    
-                                    </div>
-                                </div> -->
-                                
-                            </div>
+                            <a href="#" class="btn_cart"><img src="img/cart.png"></a>
+                            
                         </div>
                     </nav>
                 </div>
