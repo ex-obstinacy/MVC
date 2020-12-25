@@ -98,7 +98,10 @@ public class MovFrontController extends HttpServlet {
 				e.printStackTrace();
 				
 			}
-		} 
+		} else if (command.equals("/MovDetail_Original.mo")) { // 경환이가 만든 페이지 확인용
+			forward = new ActionForward();
+			forward.setPath("/mov/mov_detail_original.jsp");
+		}
 		
 		
 		

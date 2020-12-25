@@ -148,7 +148,7 @@
 			<img src="movUpload/<%=article.getPost() %>">
 			<div class="detail_top">
 				<h2 class="grade_<%=article.getGrade() %>">
-					<%=article.getSubjet() %><%=article.getGrade() %>
+					<%=article.getSubjet() %>
 				</h2>
 				<ul class="detail_info1">
 					<li>
@@ -169,21 +169,21 @@
 					<dl>
 						<dt>장르</dt>
 						<dd>
-							<span>멜로/로맨스, 드라마 / 한국</span>
-							<span>2020.12.10 개봉</span>
-							<span>117분</span>
+							<span><%=article.getGenre() %></span>
+							<span><%=article.getOpenDt() %> 개봉</span>
+							<span><%=article.getShowTm() %>분</span>
 						</dd>
 					</dl>
 					<dl>
 						<dt>감독</dt>
 						<dd>
-							<span>김종관</span>
+							<span><%=article.getDirector() %></span>
 						</dd>
 					</dl>
 					<dl>
 						<dt>출연</dt>
 						<dd>
-							<span>한지민, 남주혁</span>
+							<span><%=article.getCast() %></span>
 						</dd>
 					</dl>
 				</div><!-- .detail_info2 -->
@@ -200,7 +200,7 @@
 			<div id="tab-1" class="tab-content current">
 				<div class="story_cont">
 					<h3>줄거리</h3>
-					<p>할머니와 단둘이 사는 집, 그곳에서 책을 읽고 상상하며 자신만의 세계를 살고 있는 ‘조제’. 우연히 만난 그녀에게 특별한 감정을 느끼기 시작한 ‘영석’은 천천히, 그리고 솔직하게 다가가기 시작한다. 하지만 처음 경험해보는 사랑이 설레는 한편 가슴 아픈 ‘조제’는 자신에게 찾아온 낯선 감정을 밀어내는데… 기억할 거야 너와 함께한 모든 순간을</p>
+					<p><%=article.getContent() %></p>
 				</div><!-- .story_cont -->
 				<div class="trailer_cont">
 					<h3>트레일러</h3>
@@ -238,26 +238,6 @@
 						</li>
 					</ul>
 				</div><!-- .trailer_cont -->
-				<div class="people_cont">
-					<h3>감독 및 배우</h3>
-					<ul>
-						<li>
-							<div><img src="img/sub/mov_detail/director_kim.jpg"></div>
-							<strong>김종관<span>감독</span></strong>
-							
-						</li>
-						<li>
-							<div><img src="img/sub/mov_detail/actress_han.jpg"></div>
-							<strong>한지민<span>배우</span></strong>
-							
-						</li>
-						<li>
-							<div><img src="img/sub/mov_detail/actor_nam.jpg"></div>
-							<strong>남주혁<span>배우</span></strong>
-							
-						</li>
-					</ul>
-				</div><!-- .people_cont -->
 			</div>
 			<div id="tab-2" class="tab-content">평점 및 관람평</div>
 			
