@@ -157,11 +157,7 @@
 					</li>
 					<li>
 						<span>예매율</span>
-						<strong>3.9%</strong>
-					</li>
-					<li>
-						<span>누적관객수</span>
-						<strong>115,964<span>명</span></strong>
+						<strong><%=article.getBookingRate() %>%</strong>
 					</li>
 				</ul><!-- .detail_info1 -->
 				
@@ -187,7 +183,7 @@
 						</dd>
 					</dl>
 				</div><!-- .detail_info2 -->
-				<a href="http://localhost:8080/MVC/ReserveMain.re"  class="genric-btn primary circle">예매하기</a>
+				<a href="http://localhost:8080/MVC/ReserveMain.re" class="genric-btn primary circle">예매하기</a>
 			</div><!-- .detail_top -->
 		</section><!-- .detail_box1 -->
 		
@@ -239,7 +235,21 @@
 					</ul>
 				</div><!-- .trailer_cont -->
 			</div>
-			<div id="tab-2" class="tab-content">평점 및 관람평</div>
+			<div id="tab-2" class="tab-content">
+				평점 및 관람평
+				<div class="formdiv">
+					<form action="MovCommentWritePro.mo" method="post" >
+						<input type="hidden" name="movie_board_movCode" value="<%=article.getMovieCd()%>">
+						<table class="table">
+							<tr>
+								<td>별점</td>
+								<td><textarea placeholder="리뷰를 작성해주세요" name="content" class="single-textarea"></textarea></td>
+								<td><input type="submit" value="관람평 작성" class="genric-btn primary circle"></td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</div>
 			
 			
 		</section><!-- .detail_box2 -->

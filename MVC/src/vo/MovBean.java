@@ -19,7 +19,8 @@ public class MovBean {
 	private String[] stillCutFileName;
 	private String trailer;
 	private String content;
-	private String ticketing;
+	private int ticketing;
+	private float bookingRate;
 	
 	public String getSubjet() {
 		return subjet;
@@ -111,11 +112,17 @@ public class MovBean {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getTicketing() {
+	public int getTicketing() {
 		return ticketing;
 	}
-	public void setTicketing(String ticketing) {
+	public void setTicketing(int ticketing) {
 		this.ticketing = ticketing;
+	}
+	public float getBookingRate() {
+		return bookingRate;
+	}
+	public void setBookingRate(float bookingRate) {
+		this.bookingRate = bookingRate;
 	}
 
 }

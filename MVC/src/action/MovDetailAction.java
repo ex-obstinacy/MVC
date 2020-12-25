@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import svc.AdminMovInfoService;
+import svc.BookingRateService;
 import svc.StillCutFileNameService;
 import vo.ActionForward;
 import vo.MovBean;
@@ -21,6 +22,9 @@ public class MovDetailAction implements Action {
 		
 		StillCutFileNameService stillCutFileNameService = new StillCutFileNameService();
 		article.setStillCutFileName(stillCutFileNameService.replace(article.getStillCut()));
+		
+		BookingRateService bookingRateService = new BookingRateService();
+		article.setBookingRate(bookingRateService.insertBookingRate(article.getTicketing()));
 		
 		request.setAttribute("article", article);
 		

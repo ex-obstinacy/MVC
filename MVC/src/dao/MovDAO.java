@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import vo.MemberBean;
 import vo.MovBean;
+import vo.MovCommentBean;
 
 import static db.JdbcUtil.*;
 
@@ -59,7 +60,7 @@ public class MovDAO {
 			pstmt.setString(12, movBean.getStillCut());
 			pstmt.setString(13, movBean.getTrailer());
 			pstmt.setString(14, movBean.getContent());
-			pstmt.setString(15, movBean.getTicketing());
+			pstmt.setInt(15, movBean.getTicketing());
 			
 			insertCount = pstmt.executeUpdate();
 			
@@ -193,6 +194,7 @@ public class MovDAO {
 				article.setStillCut(rs.getString(12));
 				article.setTrailer(rs.getString(13));
 				article.setContent(rs.getString(14));
+				article.setTicketing(rs.getInt(15));
 				
 			}
 			
@@ -234,6 +236,80 @@ public class MovDAO {
 		
 		return deleteCount;
 	}
-	
 
+	public int selectTicketing() {
+		System.out.println("MovDAO - selectTicketing()");
+		
+		int sumTicketing = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT SUM(ticketing) FROM movie_board";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				sumTicketing = rs.getInt(1);
+				
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectTicketing() 오류! - " + e.getMessage());
+			e.printStackTrace();
+			
+		} finally {
+			close(pstmt);
+			close(rs);
+			
+		}
+		
+		return sumTicketing;
+	}
+
+	// 댓글 등록
+	public int insertMovCommentArticle(MovCommentBean movCommentBean) {
+		System.out.println("MovDAO - insertMovCommentArticle()");
+		
+		int insertCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int num = 1;
+		
+		try {
+			String sql = "SELECT MAX(num) FROM mb_comment";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				num = rs.getInt(1) + 1; // 새 글 번호 만들기
+			}
+			
+			sql = "INSERT INTO mb_comment VALUES (?, ?, ?, now(), ?, ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setString(2, movCommentBean.getMember_id());
+			pstmt.setString(3, movCommentBean.getContent());
+			pstmt.setInt(4, movCommentBean.getCmgrade());
+			pstmt.setInt(5, movCommentBean.getMovie_board_movCode());
+			
+			insertCount = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("insertArticle() 오류! - " + e.getMessage());
+			e.printStackTrace();
+			
+		} finally {
+			// 자원 반환
+			close(pstmt);
+			
+		}
+		
+		return insertCount;
+		
+	}
+	
 }
