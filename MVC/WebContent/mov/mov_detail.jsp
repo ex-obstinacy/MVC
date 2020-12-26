@@ -1,3 +1,6 @@
+<%@page import="vo.PageInfo"%>
+<%@page import="vo.MovCommentBean"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="vo.MovBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -8,6 +11,14 @@
  
 	// MovBean 객체 가져오기
 	MovBean article = (MovBean)request.getAttribute("article");
+	
+	ArrayList<MovCommentBean> articleList = (ArrayList<MovCommentBean>) request.getAttribute("articleList");
+	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	int nowPage = pageInfo.getPage();
+	int maxPage = pageInfo.getMaxPage();
+	int startPage = pageInfo.getStartPage();
+	int endPage = pageInfo.getEndPage();
+	int listCount = pageInfo.getListCount();
 	
 %>
 <!DOCTYPE html>
@@ -44,6 +55,8 @@
 	<link rel="stylesheet" href="css/sub.css">  
   <link rel="stylesheet" href="css/slick.css"/>
 	<link rel="stylesheet" href="css/slick-theme.css"/>
+	
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
 	<script src="js/jquery-3.5.1.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -236,18 +249,85 @@
 				</div><!-- .trailer_cont -->
 			</div>
 			<div id="tab-2" class="tab-content">
-				평점 및 관람평
+				총 평점 X / 10
 				<div class="formdiv">
 					<form action="MovCommentWritePro.mo" method="post" >
 						<input type="hidden" name="movie_board_movCode" value="<%=article.getMovieCd()%>">
 						<table class="table">
 							<tr>
-								<td>별점</td>
+								<td>
+									X 점<br>
+									<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i>
+								</td>
 								<td><textarea placeholder="리뷰를 작성해주세요" name="content" class="single-textarea"></textarea></td>
 								<td><input type="submit" value="관람평 작성" class="genric-btn primary circle"></td>
 							</tr>
 						</table>
+						<table class="table">
+							<tr>
+								<td colspan="2">총 <%=listCount %> 건</td>
+							</tr>
+							<%for (int i = 0; i < articleList.size(); i++) { %>
+							<tr>
+								<td>
+									<%=articleList.get(i).getMember_id() %> | <i class='fas fa-star'></i><%=articleList.get(i).getCmgrade() %><br>
+									<%=articleList.get(i).getContent() %><br>
+									<%=articleList.get(i).getDate() %>
+								</td>
+								<td>
+									<%if (articleList.get(i).getMember_id().equals(id)) { %>
+									<input type="button" value="삭제" class="genric-btn primary circle" onclick="deleteMovComment('<%=articleList.get(i).getNum() %>')">
+									<%} %>
+								</td>
+							</tr>
+							<%} %>
+						</table>
 					</form>
+					<section id="pageList">
+						<div class="container">
+							<%
+								if (nowPage <= 1) {
+							%>
+							<input type="button" value="이전" class="btn_3">&nbsp;
+							<%
+								} else {
+							%>
+							<input type="button" value="이전" class="btn_3" onclick="location.href='MovDetail.mo?movieCd=<%=article.getMovieCd() %>&page=<%=nowPage - 1%>'">&nbsp;
+							<%
+								}
+							%>
+				
+							<%
+								for (int i = startPage; i <= endPage; i++) {
+								if (i == nowPage) {
+							%>
+							[<%=i%>]&nbsp;
+							<%
+								} else {
+							%>
+							<a href="MovDetail.mo?movieCd=<%=article.getMovieCd() %>&page=<%=i%>">[<%=i%>]
+							</a>&nbsp;
+							<%
+								}
+							%>
+							<%
+								}
+							%>
+				
+							<%
+								if (nowPage >= maxPage) {
+							%>
+							<input type="button" value="다음" class="btn_3">
+							<%
+								} else {
+							%>
+							<input type="button" value="다음" class="btn_3"
+								onclick="location.href='MovDetail.mo?movieCd=<%=article.getMovieCd() %>&page=<%=nowPage + 1%>'">
+							<%
+								}
+							%>
+						</div>
+					</section>
 				</div>
 			</div>
 			
