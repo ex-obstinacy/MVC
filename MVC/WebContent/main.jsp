@@ -120,6 +120,7 @@
 		        	<i class="fas fa-chevron-right next"></i>
 		    		<ul class="rank_slider">
 		    			<li>
+		    				<span class="grade gr_15">15</span>
 		    				<img src="img/main/main_poster1.jpg" alt="">
 		    				<div>
 		    					<span class="rank_subject">조제</span>
@@ -127,6 +128,7 @@
 		    				</div>
 		    			</li>
 		    			<li>
+		    				<span class="grade gr_12">12</span>
 		    				<img src="img/main/main_poster2.jpg" alt="">
 		    				<div>
 		    					<span class="rank_subject">도굴</span>
@@ -134,6 +136,7 @@
 		    				</div>
 		    			</li>
 		    			<li>
+		    				<span class="grade gr_18">청불</span>
 		    				<img src="img/main/main_poster3.jpg" alt="">
 		    				<div>
 		    					<span class="rank_subject">런</span>
@@ -141,6 +144,7 @@
 		    				</div>
 		    			</li>
 		    			<li>
+		    				<span class="grade gr_all">전체</span>
 		    				<img src="img/main/main_poster4.jpg" alt="">
 		    				<div>
 		    					<span class="rank_subject">이웃사촌</span>
@@ -148,6 +152,7 @@
 		    				</div>
 		    			</li>
 		    			<li>
+		    				<span class="grade gr_12">12</span>
 		    				<img src="img/main/main_poster5.jpg" alt="">
 		    				<div>
 		    					<span class="rank_subject">리플레이</span>
@@ -155,6 +160,7 @@
 		    				</div>
 		    			</li>
 		    			<li>
+		    				<span class="grade gr_15">15</span>
 		    				<img src="img/main/main_poster6.jpg" alt="">
 		    				<div>
 		    					<span class="rank_subject">존윅3</span>
@@ -162,6 +168,7 @@
 		    				</div>
 		    			</li>
 		    			<li>
+		    				<span class="grade gr_15">15</span>
 		    				<img src="img/main/main_poster7.jpg" alt="">
 		    				<div>
 		    					<span class="rank_subject">러브액츄얼리</span>

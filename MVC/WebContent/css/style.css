@@ -2563,11 +2563,11 @@ ul {
   font-weight: 700 !important;
   background-repeat:no-repeat !important;
   background-position:center !important;
-  background-size:25px auto !important;
-  background-color:rgba(255,255,255,0.5) !important;
+  background-size:40px auto !important;
   text-indent:-9999px;
-  width:60px;
-  height:60px;
+  width:40px;
+  height:40px;
+  opacity:0.7;
 }
 
 /* line 94, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_banner.scss */
@@ -5627,13 +5627,13 @@ ul {
 }
 
 /* line 85, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_elements.scss */
-b,
-sup,
-sub,
-u,
-del {
-  color: #ff3368;
-}
+/* b, */
+/* sup, */
+/* sub, */
+/* u, */
+/* del { */
+/*   color: #ff3368; */
+/* } */
 
 /* line 93, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_elements.scss */
 h1 {

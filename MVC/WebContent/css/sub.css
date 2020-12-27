@@ -359,6 +359,58 @@ div.orderResult .btnBox{text-align:center;}
 
 /******************** 영화쪽 서브페이지 시작 ********************/
 
+/* mov_main 영화메인 */
+.mov_main{}
+.mov_trailer{position:relative;}
+.mov_trailer .trailer_pager{width:100%; position:absolute; top:50%; transform:translateY(-50%); z-index:1; padding:0 20px;}
+.mov_trailer .trailer_pager:after{content:""; display:block; clear:both;}
+.mov_trailer .trailer_pager span{display:block; width:40px; height:40px; text-indent:-9999px; border:0; background-repeat:no-repeat !important; background-position:center; background-size:40px auto; opacity:0.7; cursor:pointer;}
+.mov_trailer .trailer_pager span.prev{float:left; background-image:url(../img/sub/mov/prev.png); }
+.mov_trailer .trailer_pager span.next{float:right; background-image:url(../img/sub/mov/next.png); }
+
+.mov_trailer ul.trailer_slider{}
+.mov_trailer ul.trailer_slider li.slick-slide{}
+
+.mov_trailer ul.trailer_slider .slick-dots{position:absolute; bottom:10px; width:100%; text-align:center; line-height:10px;}
+.mov_trailer ul.trailer_slider .slick-dots > li{display:Inline-block; line-height:10px; margin:0 5px;}
+.mov_trailer ul.trailer_slider .slick-dots > li > button{text-indent:-9999px; width:10px; height:10px; background:rgba(255,255,255,0.5); border-radius:50%; border:0;}
+.mov_trailer ul.trailer_slider .slick-dots > li.slick-active button{background:rgba(255,255,255,1); }
+
+.mov_trailer .trailer_control{position:absolute; bottom:8px; left:52%;}
+.mov_trailer .trailer_control span{display:block; text-indent:-9999px; width:15px; height:15px; background-repeat:no-repeat; background-size:100% auto; }
+.mov_trailer .trailer_control span.start_btn{display:none; background-image:url(../img/sub/mov/start.png); }
+.mov_trailer .trailer_control span.stop_btn{background-image:url(../img/sub/mov/stop.png);}
+
+.mov_main{}
+.mov_main .ranking_box{margin-bottom:50px;}
+.mov_main .ranking_box h2{font-size:18px; margin-bottom:10px;}
+.mov_main .ranking_box h2 strong{font-size:18px; color:#ED4C6B;}
+.mov_main .ranking_box ul{}
+.mov_main .ranking_box ul:after{content:""; display:block; clear:both;}
+.mov_main .ranking_box ul li{float:left; width:18%; margin-right:2.5%;}
+.mov_main .ranking_box ul li:last-child{margin-right:0;}
+.mov_main .ranking_box ul li div.img_box{margin-bottom:10px; position:relative; border-radius:5px; overflow:hidden;}
+.mov_main .ranking_box ul li:hover div.img_box .black_box{display:block;}
+.mov_main .ranking_box ul li div.img_box .black_box{display:none ;width:100%; height:100%; background:rgba(0,0,0,0.6); position:absolute; top:0;left:0; z-index:50;}
+.mov_main .ranking_box ul li div.img_box .black_box a{display:block; color:#fff; width:70%; border:1px solid #fff; border-radius:5px; padding:5px 0; box-sizing:border-box; text-align:center; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); }
+.mov_main .ranking_box ul li div.img_box .grade{display:block; font-size:12px; font-weight:500; color:#fff; width:25px; height:25px; padding-top:3px; box-sizing:border-box; border-radius:50%; text-align:center; position:absolute; top:10px; right:10px;}
+.mov_main .ranking_box ul li div.img_box .gr_all{background:#5BC77E;}
+.mov_main .ranking_box ul li div.img_box .gr_12{background: #4DD6FF;}
+.mov_main .ranking_box ul li div.img_box .gr_15{background: #FFC134;}
+.mov_main .ranking_box ul li div.img_box .gr_18{background: #ED4C6B;}
+.mov_main .ranking_box ul li div.img_box img{}
+
+.mov_main .ranking_box ul li div.mov_info{}
+.mov_main .ranking_box ul li div.mov_info h3{display:block; font-size:14px; text-align:center; font-weight:500; margin-bottom:5px;}
+.mov_main .ranking_box ul li div.mov_info p{font-size:10px; line-height:10px; text-align:center;}
+.mov_main .ranking_box ul li div.mov_info p span{display:inline-block; font-weight:500; line-height:10px;}
+.mov_main .ranking_box ul li div.mov_info p span.rating{}
+.mov_main .ranking_box ul li div.mov_info p span.rating:after{content:""; display:inline-block; width:0.5px; height:8px; background:#999; margin:0 10px 0 10px;}
+.mov_main .ranking_box ul li div.mov_info p span.score{background:url(../img/sub/mov/starscore.png) no-repeat 0 center/10px auto; padding-left:14px;}
+
+.mov_main .under_banner{margin-bottom:80px;}
+.mov_main .under_banner img{width:100%;}
+
 /* mov_Detail 영화상세페이지 */
 .mov_detail{padding:0 !important;}
 .stillcut_box{position:relative; margin-bottom:30px;}
@@ -391,10 +443,7 @@ section.detail_box1 > img{width:20%; float:left; margin-right:3%;}
 section.detail_box1 > div.detail_top{width:77%; float:left; padding-top:4px;}
 section.detail_box1 > div.detail_top h2{font-size:25px; font-weight:600; position:relative; margin:0 0 20px 40px;}
 section.detail_box1 > div.detail_top h2:before{position:absolute; top:-4px; left:-40px; display:block; font-size:18px; line-height:35px; width:35px; height:35px; color:#fff; border-radius:50%; text-align:center; }
-section.detail_box1 > div.detail_top h2.grade_ALL:before{content:"A"; background:#5BC77E;}
-section.detail_box1 > div.detail_top h2.grade_12:before{content:"12"; background:#4DD6FF;}
 section.detail_box1 > div.detail_top h2.grade_15:before{content:"15"; background:#FFC134;}
-section.detail_box1 > div.detail_top h2.grade_18:before{content:"불"; background:#ED4C6B;}
 section.detail_box1 > div.detail_top ul.detail_info1{padding-bottom:20px; border-bottom:1px solid #ccc; margin-bottom:20px;}
 section.detail_box1 > div.detail_top ul.detail_info1 li{display:inline-block; margin-right:30px;} 
 section.detail_box1 > div.detail_top ul.detail_info1 li span{font-size:15px; line-height:20px; font-weight:400; margin-right:10px;}
@@ -447,5 +496,7 @@ section.detail_box2 .tab-content .people_cont ul li span{color:#999; margin: 0 0
 
 /* 트레일러 영상 재생시 검은배경 */
 .black_bg{display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:300;}
+
+
 
 /******************** 영화쪽 서브페이지 끝 ********************/
