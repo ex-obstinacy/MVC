@@ -101,7 +101,9 @@
 	<div id="sub_content" class="mov_main">
 		<div class="container">
 			<div class="now_ranking ranking_box">
-				<h2>현재 상영작 <strong>TOP 5</strong></h2>
+				<h2>현재 상영작 <strong>TOP 5</strong>
+					<a href="#">더보기 ></a>
+				</h2>
 				<ul>
 					<li>
 						<div class="img_box">
@@ -187,7 +189,9 @@
 			</div><!-- .now_ranking -->
 			
 			<div class="screen_ranking ranking_box">
-				<h2>상영 예정작 <strong>TOP 5</strong></h2>
+				<h2>상영 예정작 <strong>TOP 5</strong>
+					<a href="#">더보기 ></a>
+				</h2>
 				<ul>
 					<li>
 						<div class="img_box">

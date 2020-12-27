@@ -383,8 +383,9 @@ div.orderResult .btnBox{text-align:center;}
 
 .mov_main{}
 .mov_main .ranking_box{margin-bottom:50px;}
-.mov_main .ranking_box h2{font-size:18px; margin-bottom:10px;}
+.mov_main .ranking_box h2{font-size:18px; margin-bottom:10px; width:100%;}
 .mov_main .ranking_box h2 strong{font-size:18px; color:#ED4C6B;}
+.mov_main .ranking_box h2 a{display:block; float: right; font-size: 10px; line-height: 24px; color: #888;}
 .mov_main .ranking_box ul{}
 .mov_main .ranking_box ul:after{content:""; display:block; clear:both;}
 .mov_main .ranking_box ul li{float:left; width:18%; margin-right:2.5%;}
