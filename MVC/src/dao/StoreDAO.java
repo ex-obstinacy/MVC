@@ -1153,7 +1153,7 @@ public class StoreDAO {
 		return UseCount;
 }
 
-// 멤버십 추가 !!
+// 멤버십 추가 !! 
 public int createMembership(String id, StoreBean order) {
 	System.out.println("StoreDAO createMembership() !");
 	System.out.println(order.getOrderNum());
