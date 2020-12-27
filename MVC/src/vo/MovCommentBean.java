@@ -4,31 +4,24 @@ import java.sql.Timestamp;
 
 public class MovCommentBean {
 
-	private int movieCd; //가져올값
 	private int num; //댓글번호
-	private String name; //작성자
+	private String member_id; //작성자
 	private String content; //댓글내용
 	private Timestamp date;  //작성일
-	private int rating; //평점
+	private int cmgrade; //평점
+	private int movie_board_movCode; //가져올값
 	
-	
-	public int getMovieCd() {
-		return movieCd;
-	}
-	public void setMovieCd(int movieCd) {
-		this.movieCd = movieCd;
-	}
 	public int getNum() {
 		return num;
 	}
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public String getName() {
-		return name;
+	public String getMember_id() {
+		return member_id;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
 	public String getContent() {
 		return content;
@@ -42,15 +35,17 @@ public class MovCommentBean {
 	public void setDate(Timestamp date) {
 		this.date = date;
 	}
-	public int getRating() {
-		return rating;
+	public int getCmgrade() {
+		return cmgrade;
 	}
-	public void setRating(int rating) {
-		this.rating = rating;
+	public void setCmgrade(int cmgrade) {
+		this.cmgrade = cmgrade;
 	}
-
-	
-	
-	
+	public int getMovie_board_movCode() {
+		return movie_board_movCode;
+	}
+	public void setMovie_board_movCode(int movie_board_movCode) {
+		this.movie_board_movCode = movie_board_movCode;
+	}
 	
 }

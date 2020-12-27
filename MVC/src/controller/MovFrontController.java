@@ -18,6 +18,7 @@ import action.MemberLoginProAction;
 import action.MemberLogoutAction;
 import action.MemberMainAction;
 import action.MemberWriteProAction;
+import action.MovCommentWriteProAction;
 import action.MovDetailAction;
 import action.AdminMovListAction;
 import action.AdminMovWriteProAction;
@@ -98,7 +99,21 @@ public class MovFrontController extends HttpServlet {
 				e.printStackTrace();
 				
 			}
-		} 
+		} else if (command.equals("/MovDetail_Original.mo")) { // 경환이가 만든 페이지 확인용
+			forward = new ActionForward();
+			forward.setPath("/mov/mov_detail_original.jsp");
+			
+		} else if (command.equals("/MovCommentWritePro.mo")) { // 영화 댓글 등록
+			action = new MovCommentWriteProAction();
+			
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
+		}
 		
 		
 		

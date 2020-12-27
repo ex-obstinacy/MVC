@@ -1,3 +1,6 @@
+<%@page import="vo.PageInfo"%>
+<%@page import="vo.MovCommentBean"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="vo.MovBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -8,6 +11,14 @@
  
 	// MovBean 객체 가져오기
 	MovBean article = (MovBean)request.getAttribute("article");
+	
+	ArrayList<MovCommentBean> articleList = (ArrayList<MovCommentBean>) request.getAttribute("articleList");
+	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	int nowPage = pageInfo.getPage();
+	int maxPage = pageInfo.getMaxPage();
+	int startPage = pageInfo.getStartPage();
+	int endPage = pageInfo.getEndPage();
+	int listCount = pageInfo.getListCount();
 	
 %>
 <!DOCTYPE html>
@@ -44,6 +55,8 @@
 	<link rel="stylesheet" href="css/sub.css">  
   <link rel="stylesheet" href="css/slick.css"/>
 	<link rel="stylesheet" href="css/slick-theme.css"/>
+	
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
 	<script src="js/jquery-3.5.1.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -148,7 +161,7 @@
 			<img src="movUpload/<%=article.getPost() %>">
 			<div class="detail_top">
 				<h2 class="grade_<%=article.getGrade() %>">
-					<%=article.getSubjet() %><%=article.getGrade() %>
+					<%=article.getSubjet() %>
 				</h2>
 				<ul class="detail_info1">
 					<li>
@@ -157,11 +170,7 @@
 					</li>
 					<li>
 						<span>예매율</span>
-						<strong>3.9%</strong>
-					</li>
-					<li>
-						<span>누적관객수</span>
-						<strong>115,964<span>명</span></strong>
+						<strong><%=article.getBookingRate() %>%</strong>
 					</li>
 				</ul><!-- .detail_info1 -->
 				
@@ -169,25 +178,25 @@
 					<dl>
 						<dt>장르</dt>
 						<dd>
-							<span>멜로/로맨스, 드라마 / 한국</span>
-							<span>2020.12.10 개봉</span>
-							<span>117분</span>
+							<span><%=article.getGenre() %></span>
+							<span><%=article.getOpenDt() %> 개봉</span>
+							<span><%=article.getShowTm() %>분</span>
 						</dd>
 					</dl>
 					<dl>
 						<dt>감독</dt>
 						<dd>
-							<span>김종관</span>
+							<span><%=article.getDirector() %></span>
 						</dd>
 					</dl>
 					<dl>
 						<dt>출연</dt>
 						<dd>
-							<span>한지민, 남주혁</span>
+							<span><%=article.getCast() %></span>
 						</dd>
 					</dl>
 				</div><!-- .detail_info2 -->
-				<a href="http://localhost:8080/MVC/ReserveMain.re"  class="genric-btn primary circle">예매하기</a>
+				<a href="http://localhost:8080/MVC/ReserveMain.re" class="genric-btn primary circle">예매하기</a>
 			</div><!-- .detail_top -->
 		</section><!-- .detail_box1 -->
 		
@@ -200,7 +209,7 @@
 			<div id="tab-1" class="tab-content current">
 				<div class="story_cont">
 					<h3>줄거리</h3>
-					<p>할머니와 단둘이 사는 집, 그곳에서 책을 읽고 상상하며 자신만의 세계를 살고 있는 ‘조제’. 우연히 만난 그녀에게 특별한 감정을 느끼기 시작한 ‘영석’은 천천히, 그리고 솔직하게 다가가기 시작한다. 하지만 처음 경험해보는 사랑이 설레는 한편 가슴 아픈 ‘조제’는 자신에게 찾아온 낯선 감정을 밀어내는데… 기억할 거야 너와 함께한 모든 순간을</p>
+					<p><%=article.getContent() %></p>
 				</div><!-- .story_cont -->
 				<div class="trailer_cont">
 					<h3>트레일러</h3>
@@ -238,28 +247,89 @@
 						</li>
 					</ul>
 				</div><!-- .trailer_cont -->
-				<div class="people_cont">
-					<h3>감독 및 배우</h3>
-					<ul>
-						<li>
-							<div><img src="img/sub/mov_detail/director_kim.jpg"></div>
-							<strong>김종관<span>감독</span></strong>
-							
-						</li>
-						<li>
-							<div><img src="img/sub/mov_detail/actress_han.jpg"></div>
-							<strong>한지민<span>배우</span></strong>
-							
-						</li>
-						<li>
-							<div><img src="img/sub/mov_detail/actor_nam.jpg"></div>
-							<strong>남주혁<span>배우</span></strong>
-							
-						</li>
-					</ul>
-				</div><!-- .people_cont -->
 			</div>
-			<div id="tab-2" class="tab-content">평점 및 관람평</div>
+			<div id="tab-2" class="tab-content">
+				총 평점 X / 10
+				<div class="formdiv">
+					<form action="MovCommentWritePro.mo" method="post" >
+						<input type="hidden" name="movie_board_movCode" value="<%=article.getMovieCd()%>">
+						<table class="table">
+							<tr>
+								<td>
+									X 점<br>
+									<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i>
+								</td>
+								<td><textarea placeholder="리뷰를 작성해주세요" name="content" class="single-textarea"></textarea></td>
+								<td><input type="submit" value="관람평 작성" class="genric-btn primary circle"></td>
+							</tr>
+						</table>
+						<table class="table">
+							<tr>
+								<td colspan="2">총 <%=listCount %> 건</td>
+							</tr>
+							<%for (int i = 0; i < articleList.size(); i++) { %>
+							<tr>
+								<td>
+									<%=articleList.get(i).getMember_id() %> | <i class='fas fa-star'></i><%=articleList.get(i).getCmgrade() %><br>
+									<%=articleList.get(i).getContent() %><br>
+									<%=articleList.get(i).getDate() %>
+								</td>
+								<td>
+									<%if (articleList.get(i).getMember_id().equals(id)) { %>
+									<input type="button" value="삭제" class="genric-btn primary circle" onclick="deleteMovComment('<%=articleList.get(i).getNum() %>')">
+									<%} %>
+								</td>
+							</tr>
+							<%} %>
+						</table>
+					</form>
+					<section id="pageList">
+						<div class="container">
+							<%
+								if (nowPage <= 1) {
+							%>
+							<input type="button" value="이전" class="btn_3">&nbsp;
+							<%
+								} else {
+							%>
+							<input type="button" value="이전" class="btn_3" onclick="location.href='MovDetail.mo?movieCd=<%=article.getMovieCd() %>&page=<%=nowPage - 1%>'">&nbsp;
+							<%
+								}
+							%>
+				
+							<%
+								for (int i = startPage; i <= endPage; i++) {
+								if (i == nowPage) {
+							%>
+							[<%=i%>]&nbsp;
+							<%
+								} else {
+							%>
+							<a href="MovDetail.mo?movieCd=<%=article.getMovieCd() %>&page=<%=i%>">[<%=i%>]
+							</a>&nbsp;
+							<%
+								}
+							%>
+							<%
+								}
+							%>
+				
+							<%
+								if (nowPage >= maxPage) {
+							%>
+							<input type="button" value="다음" class="btn_3">
+							<%
+								} else {
+							%>
+							<input type="button" value="다음" class="btn_3"
+								onclick="location.href='MovDetail.mo?movieCd=<%=article.getMovieCd() %>&page=<%=nowPage + 1%>'">
+							<%
+								}
+							%>
+						</div>
+					</section>
+				</div>
+			</div>
 			
 			
 		</section><!-- .detail_box2 -->
