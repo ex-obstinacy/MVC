@@ -82,7 +82,7 @@
 				   checked += 1;
 // 				   basketIds[i]=checkRow[i].value;
 // 				   alert(basketIds[i]);
-				   alert(checkRow[i].value);
+// 				   alert(checkRow[i].value);
 			   }
 			}
 		   

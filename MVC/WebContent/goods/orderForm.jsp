@@ -117,7 +117,7 @@ function requestPay() {
          				   
                 })
                 
-                  alert("결제성공");
+//                   alert("결제성공");
                 	document.orderResult.submit();
                	
               } else {
@@ -131,26 +131,8 @@ function requestPay() {
 
   <!--::header part start::-->
    <jsp:include page="../inc/top.jsp"/>
-  <!-- Header part end-->
-
-
-  <!--================Home Banner Area =================-->
-  <!-- breadcrumb start-->
-  <section class="breadcrumb breadcrumb_bg">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div class="breadcrumb_iner">
-            <div class="breadcrumb_iner_item">
-              <h2>구매하기</h2>
-              <p>Home <span>-</span>구매하기</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- breadcrumb start-->
+<!-- 서브비주얼 -->
+<jsp:include page="/inc/sub_store1.jsp"/>
 
   <!--================Cart Area =================-->
   <section class="cart_area padding_top">

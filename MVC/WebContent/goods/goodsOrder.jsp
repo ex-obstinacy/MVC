@@ -51,7 +51,7 @@
     <script type="text/javascript">
 
 		function useCk(reserveNum, status){
-             var a = confirm("사용완료냐");
+             var a = confirm("사용완료 하시겠습니까");
              if(a){
             	 location.href="GoodsUsePro.go?reserveNum="+reserveNum;
              }else{
@@ -95,13 +95,11 @@
 			if(orderList != null && listCount > 0) {
 			%>
 				<tr>
+ 					<th>구매자</th>
 					<th>주문번호</th>
 					<th>카테고리</th>
 					<th>상품이름</th>
-<!-- 					<th>상품가격</th> -->
-<!-- 					<th>할인율</th> -->
 					<th>구성품</th>
-<!-- 					<th>상품이미지</th> -->
 					<th>교환권번호</th>
 					<th>사용여부</th>
 					<th>관리</th>
@@ -110,13 +108,11 @@
 				for(int i = 0; i < orderList.size(); i++) {
 				%>
 				<tr>
+					<td align="center"><%=orderList.get(i).getMember_id() %></td>
 					<td align="center"><%=orderList.get(i).getOrderNum() %></td>
 					<td align="center"><%=orderList.get(i).getCtg() %></td>
 					<td align="center"><%=orderList.get(i).getName() %></td>
-<%-- 					<td align="center"><%=orderList.get(i).getPrice() %></td> --%>
-<%-- 					<td align="center"><%=orderList.get(i).getSale() %></td> --%>
 					<td align="center"><%=orderList.get(i).getComponent() %></td>
-<%-- 					<td align="center"><%=orderList.get(i).getFile() %></td> --%>
 					<td align="center"><%=orderList.get(i).getReserveNum()%></td>
 					<td align="center" id="status"><% if (orderList.get(i).isStatus()) { %>Y <% } else { %>N<% } %></td>
 					<td><input type="button" value="사용완료" onclick="useCk('<%=orderList.get(i).getReserveNum()%>')"></td>

@@ -38,6 +38,8 @@ public class StoreDAO {
       this.con = con;
    }
    
+   // ---------------------- 관리자 ----------------------
+   
       // 글 등록 작업
       public int insertArticle(StoreBean storeBean) {
          // Service 클래스로 부터 BoardBean 객체를 전달받아
@@ -240,6 +242,244 @@ public class StoreDAO {
          return article;
       }
 
+      // 상품 수정
+      public int updateArticle(StoreBean article) {
+  		// StoreBean 객체에 저장된 수정 내용(작성자, 제목, 내용)을 사용하여
+  		// 상품번호(goodsId)에 해당하는 레코드를 수정 후 결과 리턴
+  		int updateCount =0;
+  		PreparedStatement pstmt = null;
+  		
+  		try {
+  			String sql = "update goods set ctg=?, name=?, price=?, sale=?, component=?, sellCount=?, file=?, content=? where goodsId=?";
+  			pstmt = con.prepareStatement(sql);
+  			pstmt.setString(1, article.getCtg());
+  			pstmt.setString(2, article.getName());
+  			pstmt.setInt(3, article.getPrice());
+            pstmt.setInt(4, article.getSale());
+            pstmt.setString(5, article.getComponent());
+            pstmt.setInt(6, article.getSellCount());
+            pstmt.setString(7, article.getFile());
+            pstmt.setString(8, article.getContent());
+            pstmt.setInt(9, article.getGoodsId());
+  			
+  			updateCount = pstmt.executeUpdate();
+  			
+  			//임시 확인용
+  			System.out.println("StoreDAO에서 check! 수정되었는가? : " + updateCount);
+  			
+  		} catch (SQLException e) {
+  			System.out.println("updateArticle() 오류!- "+e.getMessage());
+  			
+  			e.printStackTrace();
+  		} finally {
+  			close(pstmt);
+  		}
+  		
+  		
+  		return updateCount;
+  	}
+      
+      // 상품 삭제
+   		public int deleteArticle(int goodsId) {
+   			// StoreBean 객체에 저장된 내용을 사용하여
+   			// 상품번호(goodsId)에 해당하는 레코드를 삭제 후 결과 리턴
+   			int deleteCount =0;
+   			PreparedStatement pstmt = null;
+   			
+   			try {
+   				String sql = "delete from goods where goodsId=?";
+   				pstmt = con.prepareStatement(sql);
+   				pstmt.setInt(1, goodsId );
+   				
+   				deleteCount = pstmt.executeUpdate();
+   				
+   				//임시 확인용
+   				System.out.println("storeDAO - deleteArticle 에서 check! 삭제되었는가? : " + deleteCount);
+   				
+   			} catch (SQLException e) {
+   				System.out.println("deleteArticle() 오류!- "+e.getMessage());
+   				
+   				e.printStackTrace();
+   			} finally {
+   				close(pstmt);
+   			}
+   			  			
+   			return deleteCount;
+   		}
+   	
+   	   // 관리자 구매내역 전체 게시물 수 조회
+   	   public int selectOrderListCount() {
+   	      int listCount = 0;
+   	      
+   	      PreparedStatement pstmt = null;
+   	      ResultSet rs = null;
+   	      
+   	      try {
+   	         String sql= "select count(goods_goodsId) from goods_order";
+   	         pstmt = con.prepareStatement(sql);
+   	         rs= pstmt.executeQuery();
+   	         
+   	         if (rs.next()) {
+   	            listCount = rs.getInt(1);
+   	         }
+   	         
+   	         System.out.println("selectOrderListCount에서 check! 전체 게시물 수 : " + listCount);
+   	         
+   	      } catch (SQLException e) {
+   	         System.out.println("selectOrderListCount() 오류!- "+e.getMessage());
+   	         e.printStackTrace();
+   	      } finally {
+   	         close(rs);
+   	         close(pstmt);
+   	      }
+   	      
+   	      return listCount;
+   	   }
+
+   	   // 관리자 구매내역 조회
+   	   public ArrayList<StoreBean> selectOrderList(int page, int limit) {
+   	       System.out.println("selectOrderList DAO");
+   	         ArrayList<StoreBean> orderList = null;
+   	         
+   	         PreparedStatement pstmt = null;
+   	         ResultSet rs = null;
+   	         
+   	         PreparedStatement pstmt2 = null;
+   	         ResultSet rs2 = null;
+   	         
+   	         int startRow = (page - 1) * limit;
+   	         
+   	         try {
+   	            String sql = "SELECT o.orderNum, o.reserveNum, o.member_id, o.expiredate, o.status, " 
+   	                     + "g.name, g.component, g.file, g.ctg "
+   	                     + "FROM goods g JOIN goods_order o "
+   	                     + "ON g.goodsId = o.goods_goodsId "
+   	                     + "ORDER BY member_id, orderNum limit ?,?";
+   	            pstmt = con.prepareStatement(sql);
+   	            pstmt.setInt(1, startRow);
+   	            pstmt.setInt(2, limit);
+
+   	            rs = pstmt.executeQuery();
+   	            
+   	            System.out.println("확인");
+   	            
+   	            orderList = new ArrayList<StoreBean>();
+   	            
+   	            while(rs.next()) {
+   	               StoreBean order = new StoreBean(); 
+   	                 
+   	               order.setOrderNum(rs.getString("orderNum"));
+   	               order.setReserveNum(rs.getString("reserveNum"));
+   	               order.setMember_id(rs.getString("member_id"));
+   	               order.setExpiredate(rs.getString("expiredate"));
+   	               order.setStatus(rs.getBoolean("status"));
+
+   	               order.setName(rs.getString("name"));
+   	               order.setComponent(rs.getString("component"));
+   	               order.setFile(rs.getString("file"));
+   	               order.setCtg(rs.getString("ctg"));
+   	               
+   	               
+   	               String sql2 = "select name from member where id = ?";
+   	               pstmt2 = con.prepareStatement(sql2);
+   	               pstmt2.setString(1, order.getMember_id());
+   	               rs2 = pstmt2.executeQuery();
+   	               if(rs2.next()) {
+   	            	   order.setMember_name(rs2.getString("name"));
+   	               }
+   					
+   	               orderList.add(order);
+   	            }
+
+   	         } catch (SQLException e) {
+   	            System.out.println("selectOrderList() 오류!- "+e.getMessage());
+   	            e.printStackTrace();
+   	         } finally {
+   	            close(pstmt);
+   	            close(rs);
+   	            close(pstmt2);
+   	            close(rs2);
+   	         }
+   	         return orderList;
+   	      }
+
+   	   // 상품 사용여부 변경
+   	   public int UseArticle(String reserveNum) {
+   			int UseCount =0;
+   			
+   			PreparedStatement pstmt =null;
+   			
+   			try {
+   				
+   				String sql = "UPDATE goods_order SET status=1 WHERE reserveNum =?";
+   				pstmt = con.prepareStatement(sql);
+   				pstmt.setString(1, reserveNum);
+   				UseCount = pstmt.executeUpdate();
+   				
+   				System.out.println("storeDAO - UseArticle 에서 check! " + UseCount);
+   				
+   			} catch (SQLException e) {
+   				System.out.println("UseArticle() 오류!- "+e.getMessage());
+   				
+   				e.printStackTrace();
+   			} finally {
+   				close(pstmt);
+   			}
+   			  			
+   			return UseCount;
+   	}
+
+   	// 멤버십 포인트 추가
+   	public int createMembership(String id, StoreBean order) {
+   		System.out.println("StoreDAO createMembership() !");
+   		
+   		int membership = (int)(order.getSumPrice() * 0.01);
+   		
+   		System.out.println("가격 : " + order.getSumPrice() + ", membership : " + membership);
+   		
+   		PreparedStatement pstmt = null;
+   	    ResultSet rs = null;
+   	    int addCount = 0;
+
+   	    try {
+   			String sql = "SELECT membership FROM member WHERE id =?"; 
+   			pstmt = con.prepareStatement(sql);
+   			pstmt.setString(1, id);
+   			rs = pstmt.executeQuery();
+   			
+   				if(rs.next()) {
+   					sql = "UPDATE member SET membership = membership + ? WHERE id =?";
+   					pstmt = con.prepareStatement(sql);
+   					pstmt.setInt(1, membership);
+   					pstmt.setString(2, id);
+   					System.out.println("확인");
+   					addCount = pstmt.executeUpdate();
+   				} else {
+   					sql = "INSERT INTO member(membership) values(?) WHERE id =?";
+   					pstmt = con.prepareStatement(sql);
+   					pstmt.setInt(1, membership);
+   					pstmt.setString(2, id);
+   					System.out.println("확인2");
+   					addCount = pstmt.executeUpdate();
+   				}
+   				
+   		} catch (SQLException e) {
+   			System.out.println("createMembership() 오류!- "+e.getMessage());
+   	        e.printStackTrace();
+
+   		} finally {
+   	        close(pstmt);
+   	        close(rs);
+   	     }
+   		
+   		return addCount;
+   	}
+   		
+   		
+   	// ---------------------- 관리자 끝 ----------------------	
+   		
+   	// ---------------------- 장바구니 ----------------------	
+   		
       // 장바구니 담기
       public int addBasket(int basketCount, int goodsId, String id) {
          System.out.println("StoreDAO - addBasket()");
@@ -247,7 +487,6 @@ public class StoreDAO {
          PreparedStatement pstmt = null;
          ResultSet rs = null;
          int addCount = 0;
-//         null 1 basketCOunt
          Timestamp date = new Timestamp(System.currentTimeMillis());
          
          try {
@@ -360,6 +599,79 @@ public class StoreDAO {
             return basketList;
          }
       
+      // 장바구니 수량 수정
+      public int updateBasketCount(int basketCount, int basketId) {
+      	System.out.println("StoreDAO - updateBasketCount()");
+      	
+  		int updateCount =0;
+  		PreparedStatement pstmt = null;
+//          ResultSet rs = null;
+          Timestamp date = new Timestamp(System.currentTimeMillis());
+  		
+  		try {
+//  			String sql = "update basket set basketCount=?, date=? where goods_goodsId=? and member_id=?";
+  			String sql = "update basket set basketCount=?, date=? where basketId=?";
+  			pstmt = con.prepareStatement(sql);
+	        	pstmt.setInt(1, basketCount);
+//	        	pstmt.setInt(3, goodsId);
+//	        	pstmt.setString(4, id);
+	        	pstmt.setTimestamp(2, date);
+	        	pstmt.setInt(3, basketId);
+	        	
+	        	if(basketCount == 0) {
+	        		 basketCount = 1;
+	        	 }
+  			
+  			updateCount = pstmt.executeUpdate();
+  			
+  			//임시 확인용
+  			System.out.println("StoreDAO에서 check! 수정되었는가? : " + updateCount);
+  			
+  		} catch (SQLException e) {
+  			System.out.println("updateBasketCount() 오류!- "+e.getMessage());
+  			
+  			e.printStackTrace();
+  		} finally {
+  			close(pstmt);
+  		}
+  		
+  		return updateCount;
+  	}
+      
+      // 장바구니 상품 삭제
+ 		public int deleteBasket(int basketId) {
+ 			// StoreBean 객체에 저장된 내용을 사용하여
+ 			// 장바구니번호(basketId)에 해당하는 레코드를 삭제 후 결과 리턴
+ 			int deleteCount =0;
+ 			PreparedStatement pstmt = null;
+ 			
+ 			try {
+// 				String sql = "delete from basket where goods_goodsId=?and member_id";
+ 				String sql = "delete from basket where basketId=?";
+ 				pstmt = con.prepareStatement(sql);
+ 				pstmt.setInt(1, basketId );
+// 				pstmt.setString(2, id);
+ 				
+ 				deleteCount = pstmt.executeUpdate();
+ 				
+ 				//임시 확인용
+ 				System.out.println("storeDAO - deleteBasket 에서 check! 삭제되었는가? : " + deleteCount);
+ 				
+ 			} catch (SQLException e) {
+ 				System.out.println("deleteArticle() 오류!- "+e.getMessage());
+ 				
+ 				e.printStackTrace();
+ 			} finally {
+ 				close(pstmt);
+ 			}
+ 			  			
+ 			return deleteCount;
+ 		}
+ 		
+ 	// ---------------------- 장바구니  끝 ----------------------	
+ 		
+ 	// ---------------------- 구매하기 ----------------------	
+ 		
       // 1. store_main, store_detail 구매하기 목록 조회
       public ArrayList<StoreBean> selectBasketList(int basketCount, int goodsId) {
             System.out.println("selectBasketList DAO");
@@ -480,142 +792,8 @@ public class StoreDAO {
           }
           return basketList;
 		}
-      
-      // 상품 수정
-      public int updateArticle(StoreBean article) {
-  		// StoreBean 객체에 저장된 수정 내용(작성자, 제목, 내용)을 사용하여
-  		// 상품번호(goodsId)에 해당하는 레코드를 수정 후 결과 리턴
-  		int updateCount =0;
-  		PreparedStatement pstmt = null;
-  		
-  		try {
-  			String sql = "update goods set ctg=?, name=?, price=?, sale=?, component=?, sellCount=?, file=?, content=? where goodsId=?";
-  			pstmt = con.prepareStatement(sql);
-  			pstmt.setString(1, article.getCtg());
-  			pstmt.setString(2, article.getName());
-  			pstmt.setInt(3, article.getPrice());
-            pstmt.setInt(4, article.getSale());
-            pstmt.setString(5, article.getComponent());
-            pstmt.setInt(6, article.getSellCount());
-            pstmt.setString(7, article.getFile());
-            pstmt.setString(8, article.getContent());
-            pstmt.setInt(9, article.getGoodsId());
-  			
-  			updateCount = pstmt.executeUpdate();
-  			
-  			//임시 확인용
-  			System.out.println("StoreDAO에서 check! 수정되었는가? : " + updateCount);
-  			
-  		} catch (SQLException e) {
-  			System.out.println("updateArticle() 오류!- "+e.getMessage());
-  			
-  			e.printStackTrace();
-  		} finally {
-  			close(pstmt);
-  		}
-  		
-  		
-  		return updateCount;
-  	}
-      
-      // 상품 삭제
-   		public int deleteArticle(int goodsId) {
-   			// StoreBean 객체에 저장된 내용을 사용하여
-   			// 상품번호(goodsId)에 해당하는 레코드를 삭제 후 결과 리턴
-   			int deleteCount =0;
-   			PreparedStatement pstmt = null;
-   			
-   			try {
-   				String sql = "delete from goods where goodsId=?";
-   				pstmt = con.prepareStatement(sql);
-   				pstmt.setInt(1, goodsId );
-   				
-   				deleteCount = pstmt.executeUpdate();
-   				
-   				//임시 확인용
-   				System.out.println("storeDAO - deleteArticle 에서 check! 삭제되었는가? : " + deleteCount);
-   				
-   			} catch (SQLException e) {
-   				System.out.println("deleteArticle() 오류!- "+e.getMessage());
-   				
-   				e.printStackTrace();
-   			} finally {
-   				close(pstmt);
-   			}
-   			  			
-   			return deleteCount;
-   		}
-   		
-   	// 장바구니 수량 수정
-        public int updateBasketCount(int basketCount, int basketId) {
-        	System.out.println("StoreDAO - updateBasketCount()");
-        	
-    		int updateCount =0;
-    		PreparedStatement pstmt = null;
-//            ResultSet rs = null;
-            Timestamp date = new Timestamp(System.currentTimeMillis());
-    		
-    		try {
-//    			String sql = "update basket set basketCount=?, date=? where goods_goodsId=? and member_id=?";
-    			String sql = "update basket set basketCount=?, date=? where basketId=?";
-    			pstmt = con.prepareStatement(sql);
-	        	pstmt.setInt(1, basketCount);
-//	        	pstmt.setInt(3, goodsId);
-//	        	pstmt.setString(4, id);
-	        	pstmt.setTimestamp(2, date);
-	        	pstmt.setInt(3, basketId);
-	        	
-	        	if(basketCount == 0) {
-	        		 basketCount = 1;
-	        	 }
-    			
-    			updateCount = pstmt.executeUpdate();
-    			
-    			//임시 확인용
-    			System.out.println("StoreDAO에서 check! 수정되었는가? : " + updateCount);
-    			
-    		} catch (SQLException e) {
-    			System.out.println("updateBasketCount() 오류!- "+e.getMessage());
-    			
-    			e.printStackTrace();
-    		} finally {
-    			close(pstmt);
-    		}
-    		
-    		return updateCount;
-    	}
-        
-     // 장바구니 상품 삭제
-   		public int deleteBasket(int basketId) {
-   			// StoreBean 객체에 저장된 내용을 사용하여
-   			// 장바구니번호(basketId)에 해당하는 레코드를 삭제 후 결과 리턴
-   			int deleteCount =0;
-   			PreparedStatement pstmt = null;
-   			
-   			try {
-//   				String sql = "delete from basket where goods_goodsId=?and member_id";
-   				String sql = "delete from basket where basketId=?";
-   				pstmt = con.prepareStatement(sql);
-   				pstmt.setInt(1, basketId );
-//   				pstmt.setString(2, id);
-   				
-   				deleteCount = pstmt.executeUpdate();
-   				
-   				//임시 확인용
-   				System.out.println("storeDAO - deleteBasket 에서 check! 삭제되었는가? : " + deleteCount);
-   				
-   			} catch (SQLException e) {
-   				System.out.println("deleteArticle() 오류!- "+e.getMessage());
-   				
-   				e.printStackTrace();
-   			} finally {
-   				close(pstmt);
-   			}
-   			  			
-   			return deleteCount;
-   		}
-   		
-   	// 1. 스토어메인, 디테일 -> 구매내역 -> 결제내역 추가
+   	
+      // 1. 스토어메인, 디테일 -> 구매내역 -> 결제
         public int orderGoods(String id, StoreBean order) {
   			System.out.println("StoreDAO - orderGoods ----String id, StoreBean order");
   			
@@ -679,7 +857,7 @@ public class StoreDAO {
   			return addCount;
   		}	
         
-   	// 2. 장바구니 -> 구매내역 -> 결제내역 추가
+      // 2. 장바구니 -> 구매내역 -> 결제
         public int orderGoods(String[] goodsIds, String[] reserveNum, String id, StoreBean order) {
   			System.out.println("StoreDAO - orderGoods");
   			
@@ -796,7 +974,7 @@ public class StoreDAO {
   			return addCount;
   		}	
    		
-   	// 주문번호 생성
+    // 주문번호 생성
    	public String createOrderNum() {
    				System.out.println("StoreDAO - createOrderNum() !");
    				
@@ -840,7 +1018,7 @@ public class StoreDAO {
    				return orderNum;
    			}
    	
-	//개별 구매번호
+	// 1. 스토어메인, 디테일 -> 개별 구매번호
 	public String createReserveNum() {
 		System.out.println("StoreDAO - createReserveNum() !");
  				
@@ -884,7 +1062,7 @@ public class StoreDAO {
 		return reserveNum;
 	}
 
-	 //개별 구매번호 --- 리저브넘 배열 !!!!!
+	 // 2. 장바구니 -> 개별 구매번호
     public String[] createReserveNum(int count) {
        System.out.println("StoreDAO - createReserveNum() 배열 !");
        System.out.println(count);
@@ -997,15 +1175,6 @@ public class StoreDAO {
                System.out.println("확인2");
             }
             
-            for(int i=0; i<orderList.size(); i++) {
-               System.out.println(orderList.get(i).getName());
-               System.out.println(orderList.get(i).getOrderNum());
-               System.out.println(orderList.get(i).getExpiredate());
-               System.out.println(orderList.get(i).getComponent());
-               System.out.println(orderList.get(i).getMember_name());
-            }
-            System.out.println("확인3");
-            
          } catch (SQLException e) {
             System.out.println("selectOrderList() 오류!- "+e.getMessage());
             e.printStackTrace();
@@ -1018,187 +1187,6 @@ public class StoreDAO {
          return orderList;
       }
    
- //전체 게시물 수 조회
-   public int selectOrderListCount() {
-      int listCount = 0;
-      
-      PreparedStatement pstmt = null;
-      ResultSet rs = null;
-      
-      try {
-         String sql= "select count(goods_goodsId) from goods_order";
-         pstmt = con.prepareStatement(sql);
-         rs= pstmt.executeQuery();
-         
-         if (rs.next()) {
-            listCount = rs.getInt(1);
-         }
-         
-         System.out.println("selectOrderListCount에서 check! 전체 게시물 수 : " + listCount);
-         
-      } catch (SQLException e) {
-         System.out.println("selectOrderListCount() 오류!- "+e.getMessage());
-         e.printStackTrace();
-      } finally {
-         close(rs);
-         close(pstmt);
-      }
-      
-      return listCount;
-   }
-
-   // 관리자 구매내역 조회
-   public ArrayList<StoreBean> selectOrderList(int page, int limit) {
-       System.out.println("selectOrderList DAO");
-         ArrayList<StoreBean> orderList = null;
-         
-         PreparedStatement pstmt = null;
-         ResultSet rs = null;
-         
-         PreparedStatement pstmt2 = null;
-         ResultSet rs2 = null;
-         
-         // 조회를 시작할 레코드(행) 번호 계산
-         int startRow = (page - 1) * limit;
-
-         
-         try {
-            String sql = "SELECT o.orderNum, o.reserveNum, o.member_id, o.expiredate, o.status, " 
-                     + "g.name, g.component, g.file, g.ctg "
-                     + "FROM goods g JOIN goods_order o "
-                     + "ON g.goodsId = o.goods_goodsId "
-                     + "ORDER BY orderNum limit ?,?";
-            pstmt = con.prepareStatement(sql);
-            pstmt.setInt(1, startRow);
-            pstmt.setInt(2, limit);
-
-            rs = pstmt.executeQuery();
-            
-            System.out.println("확인");
-            
-            orderList = new ArrayList<StoreBean>();
-            
-            while(rs.next()) {
-               StoreBean order = new StoreBean(); 
-                 
-               order.setOrderNum(rs.getString("orderNum"));
-               order.setReserveNum(rs.getString("reserveNum"));
-               order.setMember_id(rs.getString("member_id"));
-               order.setExpiredate(rs.getString("expiredate"));
-               order.setStatus(rs.getBoolean("status"));
-
-               order.setName(rs.getString("name"));
-               order.setComponent(rs.getString("component"));
-               order.setFile(rs.getString("file"));
-               order.setCtg(rs.getString("ctg"));
-               
-               
-               String sql2 = "select name from member where id = ?";
-               pstmt2 = con.prepareStatement(sql2);
-               pstmt2.setString(1, order.getMember_id());
-               rs2 = pstmt2.executeQuery();
-               if(rs2.next()) {
-            	   order.setMember_name(rs2.getString("name"));
-               }
-				
-               orderList.add(order);
-            }
-            
-            for(int i=0; i<orderList.size(); i++) {
-            	System.out.println(orderList.get(i).isStatus());
-               System.out.println(orderList.get(i).getName());
-               System.out.println(orderList.get(i).getOrderNum());
-               System.out.println(orderList.get(i).getExpiredate());
-               System.out.println(orderList.get(i).getComponent());
-               System.out.println(orderList.get(i).getMember_name());
-               System.out.println(orderList.get(i).getMember_id());
-               
-            }
-            
-         } catch (SQLException e) {
-            System.out.println("selectOrderList() 오류!- "+e.getMessage());
-            e.printStackTrace();
-         } finally {
-            close(pstmt);
-            close(rs);
-            close(pstmt2);
-            close(rs2);
-         }
-         return orderList;
-      }
-
-   // 사용여부 변경
-   public int UseArticle(String reserveNum) {
-		int UseCount =0;
-		
-		PreparedStatement pstmt =null;
-		
-		try {
-			
-			String sql = "UPDATE goods_order SET status=1 WHERE reserveNum =?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, reserveNum);
-			UseCount = pstmt.executeUpdate();
-			
-			System.out.println("storeDAO - UseArticle 에서 check! " + UseCount);
-			
-		} catch (SQLException e) {
-			System.out.println("UseArticle() 오류!- "+e.getMessage());
-			
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		  			
-		return UseCount;
-}
-
-// 멤버십 추가 !! 
-public int createMembership(String id, StoreBean order) {
-	System.out.println("StoreDAO createMembership() !");
-	System.out.println(order.getOrderNum());
-	System.out.println(order.getSumPrice());
-	
-	int membership = (int)(order.getSumPrice() * 0.01);
-	
-	System.out.println("membership : " + membership);
-	
-	PreparedStatement pstmt = null;
-    ResultSet rs = null;
-    int addCount = 0;
-
-    try {
-		String sql = "SELECT membership FROM member WHERE id =?"; 
-		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, id);
-		rs = pstmt.executeQuery();
-		
-			if(rs.next()) {
-				sql = "UPDATE member SET membership = membership + ? WHERE id =?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, membership);
-				pstmt.setString(2, id);
-				System.out.println("확인");
-				addCount = pstmt.executeUpdate();
-			} else {
-				sql = "INSERT INTO member(membership) values(?) WHERE id =?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, membership);
-				pstmt.setString(2, id);
-				System.out.println("확인2");
-				addCount = pstmt.executeUpdate();
-			}
-			
-	} catch (SQLException e) {
-		System.out.println("createMembership() 오류!- "+e.getMessage());
-        e.printStackTrace();
-
-	} finally {
-        close(pstmt);
-        close(rs);
-     }
-	
-	return addCount;
-}
+// ---------------------- 구매하기 끝 ----------------------	
    
 } //메인메서드
