@@ -118,7 +118,7 @@
 		
 		
 		$('#writeComment').submit(function() {
-			alert(ratingPoint);
+// 			alert(ratingPoint);
 			$('#cmgrade').attr('value', ratingPoint);
 			
 			
@@ -195,7 +195,7 @@
 				<ul class="detail_info1">
 					<li>
 						<span>관람객 평점</span>
-						<strong>7.6</strong>
+						<strong><%=article.getTotalRating() %></strong>
 					</li>
 					<li>
 						<span>예매율</span>
@@ -278,7 +278,6 @@
 				</div><!-- .trailer_cont -->
 			</div>
 			<div id="tab-2" class="tab-content">
-				총 평점 X / 10
 				<div class="formdiv">
 					<form action="MovCommentWritePro.mo" method="post" id="writeComment">
 						<input type="hidden" name="movie_board_movCode" value="<%=article.getMovieCd()%>">

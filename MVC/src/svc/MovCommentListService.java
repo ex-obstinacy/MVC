@@ -11,7 +11,7 @@ import vo.MovCommentBean;
 
 public class MovCommentListService {
 
-	public int getListCount(String movieCd) {
+	public int getListCount(int movieCd) {
 		System.out.println("MovCommentListService - getListCount()");
 		
 		int listCount = 0;
@@ -29,7 +29,7 @@ public class MovCommentListService {
 		
 	}
 
-	public ArrayList<MovCommentBean> getArticleList(int page, int limit, String movieCd) {
+	public ArrayList<MovCommentBean> getArticleList(int page, int limit, int movieCd) {
 		System.out.println("MovCommentListService - getArticleList()");
 		
 		ArrayList<MovCommentBean> articleList = null;

@@ -13,7 +13,7 @@ public class AdminMovDetailAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("AdminMovDetailAction");
 		
-		String movieCd = request.getParameter("movieCd");
+		int movieCd = Integer.parseInt(request.getParameter("movieCd"));
 		
 		AdminMovInfoService adminMovInfoService = new AdminMovInfoService();
 		MovBean article = adminMovInfoService.getArticle(movieCd);

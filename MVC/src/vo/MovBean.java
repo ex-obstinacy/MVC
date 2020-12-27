@@ -21,6 +21,7 @@ public class MovBean {
 	private String content;
 	private int ticketing;
 	private float bookingRate;
+	private float totalRating;
 	
 	public String getSubjet() {
 		return subjet;
@@ -123,6 +124,12 @@ public class MovBean {
 	}
 	public void setBookingRate(float bookingRate) {
 		this.bookingRate = bookingRate;
+	}
+	public float getTotalRating() {
+		return totalRating;
+	}
+	public void setTotalRating(float totalRating) {
+		this.totalRating = totalRating;
 	}
 
 }

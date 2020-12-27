@@ -165,7 +165,7 @@ public class MovDAO {
 		return articleList;
 	}
 
-	public MovBean selectArticle(String movieCd) {
+	public MovBean selectArticle(int movieCd) {
 		System.out.println("MovDAO - selectArticle()");
 		
 		MovBean article = null;
@@ -175,7 +175,7 @@ public class MovDAO {
 		try {
 			String sql = "SELECT * FROM movie_board WHERE movCode=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, movieCd);
+			pstmt.setInt(1, movieCd);
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
@@ -312,7 +312,7 @@ public class MovDAO {
 		
 	}
 
-	public int selectMovCommentListCount(String movieCd) {
+	public int selectMovCommentListCount(int movieCd) {
 		System.out.println("MovDAO - selectMovCommentListCount()");
 		int listCount = 0;
 		
@@ -322,7 +322,7 @@ public class MovDAO {
 		try {
 			String sql = "SELECT COUNT(*) FROM mb_comment WHERE movie_board_movCode=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, movieCd);
+			pstmt.setInt(1, movieCd);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -342,7 +342,7 @@ public class MovDAO {
 		return listCount;
 	}
 
-	public ArrayList<MovCommentBean> selectMovCommentArticleList(int page, int limit, String movieCd) {
+	public ArrayList<MovCommentBean> selectMovCommentArticleList(int page, int limit, int movieCd) {
 		System.out.println("MovDAO - selectMovCommentArticleList()");
 		
 		ArrayList<MovCommentBean> articleList = null;
@@ -357,7 +357,7 @@ public class MovDAO {
 			// 회원 조회
 			String sql = "SELECT * FROM mb_comment WHERE movie_board_movCode=? ORDER BY date DESC LIMIT ?,?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, movieCd);
+			pstmt.setInt(1, movieCd);
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, limit);
 			rs = pstmt.executeQuery();
@@ -416,6 +416,40 @@ public class MovDAO {
 		}
 		
 		return deleteCount;
+	}
+
+	public float selectCmgrade(int movieCd) {
+		System.out.println("MovDAO - selectCmgrade()");
+		
+		float sumCmgrade = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT AVG(cmgrade) FROM mb_comment WHERE movie_board_movCode=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, movieCd);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				sumCmgrade = rs.getFloat(1);
+				sumCmgrade = Float.parseFloat(String.format("%.1f", sumCmgrade));
+				System.out.println("sumCmgrade : " + sumCmgrade);
+
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectCmgrade() 오류! - " + e.getMessage());
+			e.printStackTrace();
+			
+		} finally {
+			close(pstmt);
+			close(rs);
+			
+		}
+		
+		return sumCmgrade;
 	}
 	
 }

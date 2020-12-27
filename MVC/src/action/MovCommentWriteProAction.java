@@ -36,6 +36,7 @@ public class MovCommentWriteProAction implements Action {
 			
 			if (isWriteSuccess) {
 				forward.setPath("MovDetail.mo?movieCd="+movCommentBean.getMovie_board_movCode());
+				forward.setRedirect(true);
 				
 			} else {
 				response.setContentType("text/html; charset=UTF-8");

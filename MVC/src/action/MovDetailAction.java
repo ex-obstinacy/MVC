@@ -10,6 +10,7 @@ import svc.AdminMovListService;
 import svc.BookingRateService;
 import svc.MovCommentListService;
 import svc.StillCutFileNameService;
+import svc.TotalRatingService;
 import vo.ActionForward;
 import vo.MovBean;
 import vo.MovCommentBean;
@@ -21,7 +22,7 @@ public class MovDetailAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MovDetailAction");
 		
-		String movieCd = request.getParameter("movieCd");
+		int movieCd = Integer.parseInt(request.getParameter("movieCd"));
 		
 		AdminMovInfoService adminMovInfoService = new AdminMovInfoService();
 		MovBean article = adminMovInfoService.getArticle(movieCd);
@@ -31,6 +32,9 @@ public class MovDetailAction implements Action {
 		
 		BookingRateService bookingRateService = new BookingRateService();
 		article.setBookingRate(bookingRateService.insertBookingRate(article.getTicketing()));
+		
+		TotalRatingService totalRatingService = new TotalRatingService();
+		article.setTotalRating(totalRatingService.insertTotalRating(movieCd));
 		
 		request.setAttribute("article", article);
 		
