@@ -62,6 +62,9 @@
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 	
 	<script type="text/javascript">
+	
+	var ratingPoint = 10;
+	
 	$(document).ready(function(){ 
 		// 스틸컷 슬라이더
 		$('.stillcut_slider').slick({
@@ -114,9 +117,35 @@
 		});
 		
 		
+		$('#writeComment').submit(function() {
+			alert(ratingPoint);
+			$('#cmgrade').attr('value', ratingPoint);
+			
+			
+		});
+		
 		
 	});
-
+	
+	
+		function deleteMovComment(movieCd, nowPage, num){
+	        var check = confirm("삭제하시겠습니까?");
+	
+	        if(check){
+	       	 location.href="MovCommentDeletePro.mo?movieCd=" + movieCd + "&page=" + nowPage + "&num=" + num;
+	       	 
+	        }
+	    }
+		
+		function rating(rating) {
+			ratingPoint = rating + 1;
+// 			alert(rating);
+			var element = document.getElementById('rating_point');
+			element.innerHTML = ratingPoint;
+			
+			
+		}
+	
 	</script>
 </head>
 
@@ -251,13 +280,20 @@
 			<div id="tab-2" class="tab-content">
 				총 평점 X / 10
 				<div class="formdiv">
-					<form action="MovCommentWritePro.mo" method="post" >
+					<form action="MovCommentWritePro.mo" method="post" id="writeComment">
 						<input type="hidden" name="movie_board_movCode" value="<%=article.getMovieCd()%>">
+						<input type="hidden" name="cmgrade" id="cmgrade" value="10">
 						<table class="table">
 							<tr>
 								<td>
-									X 점<br>
-									<i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i>
+									<span id="rating_point">10</span> 점<br>
+									<%
+									for (int i = 0; i < 10; i++) {
+									%>
+									<i class='fas fa-star' onclick="rating(<%=i %>)"></i>
+									<%	
+									}
+									%>
 								</td>
 								<td><textarea placeholder="리뷰를 작성해주세요" name="content" class="single-textarea"></textarea></td>
 								<td><input type="submit" value="관람평 작성" class="genric-btn primary circle"></td>
@@ -276,7 +312,7 @@
 								</td>
 								<td>
 									<%if (articleList.get(i).getMember_id().equals(id)) { %>
-									<input type="button" value="삭제" class="genric-btn primary circle" onclick="deleteMovComment('<%=articleList.get(i).getNum() %>')">
+									<input type="button" value="삭제" class="genric-btn primary circle" onclick="deleteMovComment('<%=article.getMovieCd() %>', '<%=nowPage %>', '<%=articleList.get(i).getNum() %>')">
 									<%} %>
 								</td>
 							</tr>

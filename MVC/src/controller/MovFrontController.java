@@ -18,6 +18,7 @@ import action.MemberLoginProAction;
 import action.MemberLogoutAction;
 import action.MemberMainAction;
 import action.MemberWriteProAction;
+import action.MovCommentDeleteProAction;
 import action.MovCommentWriteProAction;
 import action.MovDetailAction;
 import action.AdminMovListAction;
@@ -105,6 +106,16 @@ public class MovFrontController extends HttpServlet {
 			
 		} else if (command.equals("/MovCommentWritePro.mo")) { // 영화 댓글 등록
 			action = new MovCommentWriteProAction();
+			
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
+		} else if (command.equals("/MovCommentDeletePro.mo")) { // 영화 댓글 삭제
+			action = new MovCommentDeleteProAction();
 			
 			try {
 				forward = action.execute(request, response);

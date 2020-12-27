@@ -355,7 +355,7 @@ public class MovDAO {
 		
 		try {
 			// 회원 조회
-			String sql = "SELECT * FROM mb_comment WHERE movie_board_movCode=? LIMIT ?,?";
+			String sql = "SELECT * FROM mb_comment WHERE movie_board_movCode=? ORDER BY date DESC LIMIT ?,?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, movieCd);
 			pstmt.setInt(2, startRow);
@@ -390,6 +390,32 @@ public class MovDAO {
 		}
 		
 		return articleList;
+	}
+
+	public int deleteMovComment(int num) {
+		System.out.println("MovDAO - deleteMovComment()");
+		
+		int deleteCount = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "DELETE FROM mb_comment WHERE num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			deleteCount = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("deleteMovComment() 오류! - " + e.getMessage());
+			e.printStackTrace();
+			
+		} finally {
+			// 자원 반환
+			close(pstmt);
+			
+		}
+		
+		return deleteCount;
 	}
 	
 }
