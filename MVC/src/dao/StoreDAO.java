@@ -1152,5 +1152,53 @@ public class StoreDAO {
 		  			
 		return UseCount;
 }
+
+// 멤버십 추가 !!
+public int createMembership(String id, StoreBean order) {
+	System.out.println("StoreDAO createMembership() !");
+	System.out.println(order.getOrderNum());
+	System.out.println(order.getSumPrice());
+	
+	int membership = (int)(order.getSumPrice() * 0.01);
+	
+	System.out.println("membership : " + membership);
+	
+	PreparedStatement pstmt = null;
+    ResultSet rs = null;
+    int addCount = 0;
+
+    try {
+		String sql = "SELECT membership FROM member WHERE id =?"; 
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, id);
+		rs = pstmt.executeQuery();
+		
+			if(rs.next()) {
+				sql = "UPDATE member SET membership = membership + ? WHERE id =?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, membership);
+				pstmt.setString(2, id);
+				System.out.println("확인");
+				addCount = pstmt.executeUpdate();
+			} else {
+				sql = "INSERT INTO member(membership) values(?) WHERE id =?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, membership);
+				pstmt.setString(2, id);
+				System.out.println("확인2");
+				addCount = pstmt.executeUpdate();
+			}
+			
+	} catch (SQLException e) {
+		System.out.println("createMembership() 오류!- "+e.getMessage());
+        e.printStackTrace();
+
+	} finally {
+        close(pstmt);
+        close(rs);
+     }
+	
+	return addCount;
+}
    
 } //메인메서드

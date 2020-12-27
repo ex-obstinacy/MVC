@@ -10,6 +10,29 @@ import vo.StoreBean;
 //////스토어메인, 디테일에서 넘어옴 //////
 public class OrderProService {
 
+	public boolean createMembership(String id, StoreBean order) {
+		System.out.println("OrderProService - createMembership !");
+		
+		boolean isMembershipSuccess = false;
+		
+		Connection con = getConnection();
+	    StoreDAO storeDAO = StoreDAO.getInstance();
+	    storeDAO.setConnection(con);
+	    
+	    int addCount = storeDAO.createMembership(id, order);
+	    
+	    if(addCount > 0) {
+	    	isMembershipSuccess = true;
+	         commit(con);
+	      } else {
+	         rollback(con);
+	      }
+	    
+	    close(con);
+	    
+	    return isMembershipSuccess;
+	}
+	
 	public boolean OrderGoods(String id, StoreBean order) {
 		System.out.println("OrderProService - OrderGoods() !");
 		boolean isOrderSuccess = false;

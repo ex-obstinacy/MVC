@@ -37,16 +37,15 @@ public class OrderProAction implements Action {
 	      
 	      System.out.println("goodsId : " + goodsId);
 	      
-	      // 선택한 상품번호 가져오기
-//	      String[] goodsIds = request.getParameterValues("goodsRow");
-//	      for(String goods: goodsIds) {
-//	    	  System.out.println("goods : " + goods);
-//	      }
-	      
 	      OrderProService orderProService = new OrderProService();
-		  boolean isOrderSuccess = orderProService.OrderGoods(id, order);
+	      
+	      boolean isOrderSuccess = orderProService.OrderGoods(id, order);
+	      
+	      //멤버십 추가
+	      boolean isMembershipSuccess = orderProService.createMembership(id, order);
+	      
 		  
-		  if(isOrderSuccess) {
+		  if(isOrderSuccess && isMembershipSuccess) {
 			  if(orderNum != null) {
 				  forward = new ActionForward();
 				  forward.setPath("OrderResult.go?orderNum=" + orderNum);

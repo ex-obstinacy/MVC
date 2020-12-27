@@ -28,6 +28,7 @@ public class StoreBean {
 	private String member_id; // 멤버아이디 
 	private int goods_goodsId; // 상품번호 (외래키) 
 	private String member_name; //멤버이름
+	private int membership;
 
 	public int getGoodsId() {
 		return goodsId;
@@ -174,11 +175,14 @@ public class StoreBean {
 	public void setMember_name(String member_name) {
 		this.member_name = member_name;
 	}
-//	public String[] getReserveNum2() {
-//		return reserveNum2;
-//	}
-//	public void setReserveNum2(String[] reserveNum2) {
-//		this.reserveNum2 = reserveNum2;
-//	}
+	
+	public int getMembership() {
+		return membership;
+	}
+	public void setMembership(int membership) {
+		this.membership = membership;
+	}
+
+	
 	
 }

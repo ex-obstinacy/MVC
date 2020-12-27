@@ -49,8 +49,10 @@ public class OrderProAction2 implements Action {
       OrderProService2 orderProService = new OrderProService2();
 	  boolean isOrderSuccess = orderProService.OrderGoods(goodsIds, reserveNum, id, order);
       
+	  //멤버십 추가
+      boolean isMembershipSuccess = orderProService.createMembership(id, order);
 	  
-	  if(isOrderSuccess) {
+	  if(isOrderSuccess && isMembershipSuccess) {
 		  if(orderNum != null) {
 			  forward = new ActionForward();
 			  forward.setPath("OrderResult.go?orderNum=" + orderNum);
