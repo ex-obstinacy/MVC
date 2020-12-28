@@ -22,6 +22,7 @@ public class MovBean {
 	private int ticketing;
 	private float bookingRate;
 	private float totalRating;
+	private String[] trailerFileName;
 	
 	public String getSubjet() {
 		return subjet;
@@ -106,6 +107,12 @@ public class MovBean {
 	}
 	public void setTrailer(String trailer) {
 		this.trailer = trailer;
+	}
+	public String[] getTrailerFileName() {
+		return trailerFileName;
+	}
+	public void setTrailerFileName(String[] trailerFileName) {
+		this.trailerFileName = trailerFileName;
 	}
 	public String getContent() {
 		return content;

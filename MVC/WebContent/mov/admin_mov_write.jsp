@@ -48,6 +48,8 @@
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
     
+    <link rel="stylesheet" href="css/common.css"> 
+    
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script>
     	
@@ -205,8 +207,9 @@
 	                    			</td>
 	                    		</tr>
 	                    		<tr>
-	                    			<td>트레일러</td>
-	                    			<td colspan="3"><input type="text" class="single-input" name="trailer" id="trailer"></td>
+	                    			<td colspan="4">
+	                    				<textarea class="single-textarea" placeholder="트레일러" name="trailer" id="trailer"></textarea>
+	                    			</td>
 	                    		</tr>
 	                    		<tr>
 	                    			<td colspan="4">

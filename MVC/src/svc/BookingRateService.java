@@ -19,7 +19,11 @@ public class BookingRateService {
 		
 		int sumTicketing = movDAO.selectTicketing();
 		
-		float bookingRate = (float) (ticketing / sumTicketing * 100);
+		float bookingRate = 0.0f;
+		if (sumTicketing != 0) {
+			bookingRate = (float) (ticketing / sumTicketing * 100);
+			
+		}
 		
 		close(con);
 		

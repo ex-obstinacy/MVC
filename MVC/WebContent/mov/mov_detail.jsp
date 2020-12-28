@@ -244,36 +244,21 @@
 					<h3>트레일러</h3>
 					<!-- iframe 가져오고나서 src 주소값 뒤에 ?enablejsapi=1 꼭 붙여야함 ! -->
 					<ul>
+					<%
+						for (int i = 0; i < article.getTrailerFileName().length;i++) {
+					%>
 						<li>
 							<div class="trailer_thumb">
-								<img src="img/sub/mov_detail/thumbnail1.jpg">
-								<span>1차 예고편</span>
+								<img src="movUpload/<%=article.getStillCutFileName()[i] %>">
 							</div>
 							<div class="trailer_popup">
 								<button class="close_btn">X</button>
-								<iframe src="https://www.youtube.com/embed/c7YepYEKK0c?enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+								<iframe src="<%=article.getTrailerFileName()[i] %>?enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 							</div>
 						</li>
-						<li>
-							<div class="trailer_thumb">
-								<img src="img/sub/mov_detail/thumbnail2.jpg">
-								<span>2차 예고편</span>
-							</div>
-							<div class="trailer_popup">
-								<button class="close_btn">X</button>
-								<iframe src="https://www.youtube.com/embed/M5tvXLIu2iE?enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-							</div>
-						</li>
-						<li>
-							<div class="trailer_thumb">
-								<img src="img/sub/mov_detail/thumbnail3.jpg">
-								<span>제작 다이어리 영상</span>
-							</div>
-							<div class="trailer_popup">
-								<button class="close_btn">X</button>
-								<iframe src="https://www.youtube.com/embed/ABm-pDyG_68?enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-							</div>
-						</li>
+					<%
+						}
+					%>
 					</ul>
 				</div><!-- .trailer_cont -->
 			</div>

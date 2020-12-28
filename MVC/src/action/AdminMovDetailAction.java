@@ -21,6 +21,8 @@ public class AdminMovDetailAction implements Action {
 		StillCutFileNameService stillCutFileNameService = new StillCutFileNameService();
 		article.setStillCutFileName(stillCutFileNameService.replace(article.getStillCut()));
 		
+		System.out.println(article.getTrailer());
+		
 		request.setAttribute("article", article);
 		
 		ActionForward forward = new ActionForward();

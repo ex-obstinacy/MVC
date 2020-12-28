@@ -11,6 +11,7 @@ import svc.BookingRateService;
 import svc.MovCommentListService;
 import svc.StillCutFileNameService;
 import svc.TotalRatingService;
+import svc.TrailerFileNameService;
 import vo.ActionForward;
 import vo.MovBean;
 import vo.MovCommentBean;
@@ -29,6 +30,15 @@ public class MovDetailAction implements Action {
 		
 		StillCutFileNameService stillCutFileNameService = new StillCutFileNameService();
 		article.setStillCutFileName(stillCutFileNameService.replace(article.getStillCut()));
+		for (int i = 0; i < article.getStillCutFileName().length; i++) {
+			System.out.println(i + " : " + article.getStillCutFileName()[i]);
+		}
+		
+		TrailerFileNameService trailerFileNameService = new TrailerFileNameService();
+		article.setTrailerFileName(trailerFileNameService.replace(article.getTrailer()));
+		for (int i = 0; i < article.getTrailerFileName().length; i++) {
+			System.out.println(i + " : " + article.getTrailerFileName()[i]);
+		}
 		
 		BookingRateService bookingRateService = new BookingRateService();
 		article.setBookingRate(bookingRateService.insertBookingRate(article.getTicketing()));

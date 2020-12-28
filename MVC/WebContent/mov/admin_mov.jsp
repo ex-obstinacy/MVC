@@ -44,6 +44,8 @@
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
     
+    <link rel="stylesheet" href="css/common.css"> 
+    
 </head>
 
 <body>
@@ -140,11 +142,11 @@
                     			<td><input type="text" readonly="readonly" class="single-input" value="<%=article.getCompanys() %>"></td>
                     			<td>관람등급</td>
                     			<td>
-                    				<% if (article.getGrade() == "ALL") { %>
+                    				<% if (article.getGrade().equals("ALL")) { %>
                     				전체관람가
-                    				<% } else if (article.getGrade() == "12") { %>
+                    				<% } else if (article.getGrade().equals("12")) { %>
                     				12세이상관람가
-                    				<% } else if (article.getGrade() == "15") { %>
+                    				<% } else if (article.getGrade().equals("15")) { %>
                     				15세이상관람가
                     				<%} else { %>
                     				청소년관람불가

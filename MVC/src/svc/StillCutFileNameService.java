@@ -8,6 +8,7 @@ public class StillCutFileNameService {
 		String[] stillCutFileName = stillCut.split("&");
 		
 		return stillCutFileName;
+		
 	}
 
 }
