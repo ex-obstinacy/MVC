@@ -120,59 +120,115 @@
 		        	<i class="fas fa-chevron-right next"></i>
 		    		<ul class="rank_slider">
 		    			<li>
-		    				<span class="grade gr_15">15</span>
-		    				<img src="img/main/main_poster1.jpg" alt="">
-		    				<div>
-		    					<span class="rank_subject">조제</span>
-		    					<p>예매율 : </p>
+		    				<div class="rank_img">
+		    					<div class="black_box">
+									<a href="#">상세정보</a>
+								</div><!-- .black_box -->
+		    					<span class="grade gr_15">15</span>
+		    					<img src="img/main/main_poster1.jpg" alt="">
+		    				</div>		    				
+		    				<div class="rank_info">
+		    					<h3 class="rank_subject">조제</h3>
+		    					<p>
+									<span class="rating">예매율 <b>66.2%</b></span>
+									<span class="score"><b>7.6</b></span>
+								</p>
 		    				</div>
 		    			</li>
 		    			<li>
-		    				<span class="grade gr_12">12</span>
-		    				<img src="img/main/main_poster2.jpg" alt="">
-		    				<div>
-		    					<span class="rank_subject">도굴</span>
-		    					<p>예매율 : </p>
+		    				<div class="rank_img">
+		    					<div class="black_box">
+									<a href="#">상세정보</a>
+								</div><!-- .black_box -->
+			    				<span class="grade gr_12">12</span>
+			    				<img src="img/main/main_poster2.jpg" alt="">
+		    				</div>
+		    				<div class="rank_info">
+		    					<h3 class="rank_subject">도굴</h3>
+		    					<p>
+									<span class="rating">예매율 <b>66.2%</b></span>
+									<span class="score"><b>7.6</b></span>
+								</p>
 		    				</div>
 		    			</li>
 		    			<li>
-		    				<span class="grade gr_18">청불</span>
-		    				<img src="img/main/main_poster3.jpg" alt="">
-		    				<div>
-		    					<span class="rank_subject">런</span>
-		    					<p>예매율 : </p>
+		    				<div class="rank_img">
+		    					<div class="black_box">
+									<a href="#">상세정보</a>
+								</div><!-- .black_box -->
+		    					<span class="grade gr_18">청불</span>
+		    					<img src="img/main/main_poster3.jpg" alt="">
+		    				</div>
+		    				<div class="rank_info">
+		    					<h3 class="rank_subject">런</h3>
+		    					<p>
+									<span class="rating">예매율 <b>66.2%</b></span>
+									<span class="score"><b>7.6</b></span>
+								</p>
 		    				</div>
 		    			</li>
 		    			<li>
-		    				<span class="grade gr_all">전체</span>
-		    				<img src="img/main/main_poster4.jpg" alt="">
-		    				<div>
-		    					<span class="rank_subject">이웃사촌</span>
-		    					<p>예매율 : </p>
+		    				<div class="rank_img">
+		    					<div class="black_box">
+									<a href="#">상세정보</a>
+								</div><!-- .black_box -->
+		    					<span class="grade gr_all">전체</span>
+		    					<img src="img/main/main_poster4.jpg" alt="">
+		    				</div>
+		    				<div class="rank_info">
+		    					<h3 class="rank_subject">이웃사촌</h3>
+		    					<p>
+									<span class="rating">예매율 <b>66.2%</b></span>
+									<span class="score"><b>7.6</b></span>
+								</p>
 		    				</div>
 		    			</li>
 		    			<li>
-		    				<span class="grade gr_12">12</span>
-		    				<img src="img/main/main_poster5.jpg" alt="">
-		    				<div>
-		    					<span class="rank_subject">리플레이</span>
-		    					<p>예매율 : </p>
+		    				<div class="rank_img">
+		    					<div class="black_box">
+									<a href="#">상세정보</a>
+								</div><!-- .black_box -->
+		    					<span class="grade gr_12">12</span>
+		    					<img src="img/main/main_poster5.jpg" alt="">
+		    				</div>
+		    				<div class="rank_info">
+		    					<h3 class="rank_subject">리플레이</h3>
+		    					<p>
+									<span class="rating">예매율 <b>66.2%</b></span>
+									<span class="score"><b>7.6</b></span>
+								</p>
 		    				</div>
 		    			</li>
 		    			<li>
-		    				<span class="grade gr_15">15</span>
-		    				<img src="img/main/main_poster6.jpg" alt="">
-		    				<div>
-		    					<span class="rank_subject">존윅3</span>
-		    					<p>예매율 : </p>
+		    				<div class="rank_img">
+		    					<div class="black_box">
+									<a href="#">상세정보</a>
+								</div><!-- .black_box -->
+		    					<span class="grade gr_15">15</span>
+		    					<img src="img/main/main_poster6.jpg" alt="">
+		    				</div>
+		    				<div class="rank_info">
+		    					<h3 class="rank_subject">존윅3</h3>
+		    					<p>
+									<span class="rating">예매율 <b>66.2%</b></span>
+									<span class="score"><b>7.6</b></span>
+								</p>
 		    				</div>
 		    			</li>
 		    			<li>
-		    				<span class="grade gr_15">15</span>
-		    				<img src="img/main/main_poster7.jpg" alt="">
-		    				<div>
-		    					<span class="rank_subject">러브액츄얼리</span>
-		    					<p>예매율 : </p>
+		    				<div class="rank_img">
+		    					<div class="black_box">
+									<a href="#">상세정보</a>
+								</div><!-- .black_box -->
+		    					<span class="grade gr_15">15</span>
+		    					<img src="img/main/main_poster7.jpg" alt="">
+		    				</div>
+		    				<div class="rank_info">
+		    					<h3 class="rank_subject">러브액츄얼리</h3>
+		    					<p>
+									<span class="rating">예매율 <b>66.2%</b></span>
+									<span class="score"><b>7.6</b></span>
+								</p>
 		    				</div>
 		    			</li>
 		    		</ul>
