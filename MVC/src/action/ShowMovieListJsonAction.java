@@ -1,6 +1,9 @@
 package action;
 
 import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,8 +19,6 @@ public class ShowMovieListJsonAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ActionForward forward = null;
-		
-		System.out.println("action도착");
 		
 		ShowMovieListJsonService showMovieListJsonService = new ShowMovieListJsonService();
 		JSONArray showMovieList = showMovieListJsonService.getShowMovieListJson();

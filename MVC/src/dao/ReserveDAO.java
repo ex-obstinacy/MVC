@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -408,19 +409,11 @@ public class ReserveDAO {
 			pstmt2 = con.prepareStatement(sql2);
 			pstmt2.setInt(1, num);
 			pstmt2.setInt(2, movie.getMovie_code());
-			pstmt2.setString(3, movie.getMovie_subject());
-			pstmt2.setString(4, movie.getMovie_grade());
-			pstmt2.setString(5, movie.getCinema_name());
-			pstmt2.setString(6, movie.getShowdate());
-			pstmt2.setString(7, movie.getShowtime());
-			// 통합DB에서 쓰는 실제 코드 순서
-//				pstmt2.setInt(1, num);
-//				pstmt2.setInt(2, movie.getMovie_code());
-//				pstmt2.setString(2, movie.getCinema_name());
-//				pstmt2.setString(3, movie.getShowdate());
-//				pstmt2.setString(4, movie.getShowtime());
-//				pstmt2.setString(5, movie.getMovie_subject());
-//				pstmt2.setString(6, movie.getMovie_grade());
+			pstmt2.setString(3, movie.getCinema_name());
+			pstmt2.setString(4, movie.getShowdate());
+			pstmt2.setString(5, movie.getShowtime());
+			pstmt2.setString(6, movie.getMovie_subject());
+			pstmt2.setString(7, movie.getMovie_grade());
 			addCount = pstmt2.executeUpdate();
 			
 		} catch (Exception e) {
@@ -687,6 +680,7 @@ public class ReserveDAO {
 				jo.put("cinema_name", rs.getString("cinema_name"));
 				jo.put("showdate", rs.getString("showdate"));
 				jo.put("showtime", rs.getString("showtime"));
+				jo.put("movie_grade", rs.getString("movie_grade"));
 				
 				allMovieList.add(jo);
 			}
@@ -714,7 +708,7 @@ public class ReserveDAO {
 		
 		try {
 			
-			String sql = "select * from movie_board order by subject";
+			String sql = "select * from movie_board where date(openDt) <= now() order by subject";
 			pstmt = con.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
@@ -725,6 +719,8 @@ public class ReserveDAO {
 				JSONObject jo = new JSONObject();
 				jo.put("movie_code", rs.getInt("movCode"));
 				jo.put("movie_subject", rs.getString("subject"));
+				jo.put("movie_grade", rs.getString("grade"));
+				
 				
 				showMovieList.add(jo);
 			}

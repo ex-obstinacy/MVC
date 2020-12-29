@@ -82,7 +82,7 @@
   <!--================Reservation Area =================-->
   <section id="sub_content" class="reserveMain">
 	  <div class="container">
-	  	<h3 class="sub_title">Admin - Management Cinema</h3>
+	  	<h3 class="sub_title"><b>관리자님! 영화관을 등록/삭제 해주세요.</b></h3>
 	  	<!-- 등록된 영화 목록 -->
 	  	<div id="cinemadiv">
 		  	<form action="CinemaDeletePro.re" method="post" id="clistform">

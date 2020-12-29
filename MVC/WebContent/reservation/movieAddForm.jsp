@@ -46,13 +46,14 @@
 		$.getJSON('AllMovieListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
 				$('#mldiv').append("<li class='ml_div "+item.movie_code+"'><input type='radio' name='movie' id='"+item.movie_num+item.cinema_name+"' value='"+item.movie_num+"' class='rmovie'/><label for='"+item.movie_num+item.cinema_name+"'>"
-						+"<span id='span_m1'>["+item.cinema_name+"]</span> <span id='span_m2'>"+item.movie_subject+"</span><span id='span_m3'>"+item.showtime+"</span> <span id='span_m4'>"+item.showdate+"</span></label></li>");
+						+"<span id='span_m1' class='"+item.cinema_name+"'>["+item.cinema_name+"]</span><span id='span_r1' class='g"+item.movie_grade+"'>"+item.movie_grade+"</span><span id='span_m2'>"+item.movie_subject+"</span><span id='span_m3'>"+item.showtime+"</span><span id='span_m4'>"+item.showdate+"</span></label></li>");
 			});
 		});
 		// moive_board 상영중인 영화목록 가져오기
 		$.getJSON('ShowMovieListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
-				$('#tdsubject').append("<li class='mdiv "+item.movie_code+"'><input type='radio' name='movie_code' id='"+item.movie_code+"' value='"+item.movie_code+"' class='rsmovie'/><label for='"+item.movie_code+"'>"+item.movie_subject+"</label></li>");
+				$('#tdsubject').append("<li class='mdiv "+item.movie_code+"'><input type='radio' name='movie_code' id='"+item.movie_code+"' value='"+item.movie_code+"' class='rsmovie'/><label for='"+item.movie_code+"'>"
+						+"<span id='span_r1' class='g"+item.movie_grade+"'>"+item.movie_grade+"</span><span id='span_r2'>"+item.movie_subject+"</span></label></li>");
 			});
 		});
 		// cinema 목록 db에서 가져오기
@@ -151,7 +152,7 @@
   <!--================Reservation Area =================-->
   <section id="sub_content" class="reserveMain">
 	  <div class="container">
-	  	<h3 class="sub_title">Admin - Management Movie</h3>
+	  	<h3 class="sub_title"><b>관리자님! 영화를 등록/삭제 해주세요.</b></h3>
 	  	<!-- 등록된 영화 목록 -->
 	  	<div id="mlistdiv">
 	  	<form action="MovieDeletePro.re" method="post" id="mlistform">

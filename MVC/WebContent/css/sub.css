@@ -24,21 +24,31 @@
 #mlistform > table td>ul li input{display:none;}
 #mlistform > table td>ul#mldiv li label{border:2px solid transparent; box-sizing:border-box; font-size:14px;}
 #mlistform > table td>ul#mldiv li input:checked+label{border:2px solid #FF243E; background:#fff url(../img/sub/check.png) no-repeat 96% center/15px auto;}
-#mlistform > table td>ul#mldiv li #span_m1{font-size:16px; font-weight:bold; margin: 0 20px;}
-#mlistform > table td>ul#mldiv li #span_m2{font-size:15px; font-weight: 600; margin-right: 10px;}
-#mlistform > table td>ul#mldiv li #span_m3{font-size:14px; font-weight: 500; color: #FF3368; float: right; margin: 0 20px;}
-#mlistform > table td>ul#mldiv li #span_m4{font-size:14px; font-weight: 500; color: #FF3368; float: right;}
+#mlistform > table td>ul#mldiv li span{vertical-align: middle;}
+#mlistform > table td>ul#mldiv li #span_m1{font-size:18px; font-weight:bold; margin: 0 20px;}
+#mlistform > table td>ul#mldiv li #span_m2{font-size:16px; font-weight: 500; margin-right: 10px;}
+#mlistform > table td>ul#mldiv li #span_m3{font-size:14px; font-weight: 600; color: #FF3368; float: right; margin: 0 80px 0 20px;}
+#mlistform > table td>ul#mldiv li #span_m4{font-size:14px; font-weight: 600; color: #FF3368; float: right;}
+
+#mlistform > table td>ul#mldiv li span#span_r1{
+	font-size:12px; font-weight:bold; margin: 0 10px; color: #FFF;
+	display:inline-block; border-radius: 100px; width: 25px; height: 25px; text-align: center; padding-top: 3px;
+}
+#mlistform > table td>ul#mldiv li span.gALL{background-color: #5BC77E;}
+#mlistform > table td>ul#mldiv li span.g12{background-color: #4DD6FF;}
+#mlistform > table td>ul#mldiv li span.g15{background-color: #FFC134;}
+#mlistform > table td>ul#mldiv li span.g18{background-color: #ED4C6B;}
 
 #movieform > table td>ul#ultime li{float:left; margin: 100px 60px;}
 #movieform > table td>ul#ultime li>#seltime, #selguan{width: 100px; height: 35px; text-align-last: center;}
 #movieform div.btnBox{text-align:right; margin-right: 30px;}
 
-#mformdiv{margin-top: 80px;}
+#mformdiv{margin: 50px 0;}
 
 /* 관리자 - 영화관 등록 페이지 */
-#clistform, #cinemaform{display: inline-block; vertical-align: top; text-align: center; margin: 0 100px;}
+#clistform, #cinemaform{display: inline-block; vertical-align: top; text-align: center;}
 
-#clistform{}
+#clistform{margin: 50px 0 50px 200px;}
 #clistform > table{width:100%; border:1px solid #ccc; border-top:2px solid #121212; border-spacing:0px; margin-bottom:20px;}
 #clistform > table th, #clistform > table td{border-right: 1px solid #ccc;}
 #clistform > table th{background:#fff; border-bottom:1px solid #121212; padding:20px 0; font-size:17px; text-align:center;}
@@ -49,14 +59,15 @@
 #clistform > table td>ul li input{display:none;}
 #clistform > table td>ul#cldiv li label{border:2px solid transparent; box-sizing:border-box; font-size:14px;}
 #clistform > table td>ul#cldiv li input:checked+label{border:2px solid #FF243E; background:#fff url(../img/sub/check.png) no-repeat 96% center/15px auto;}
-#clistform > table td>ul#cldiv li #span_c1{font-size:15px; font-weight:600; margin: 0 20px 0 0;}
-#clistform > table td>ul#cldiv li #span_c2{font-size:16px; font-weight:bold; color: #FF3368;}
+#clistform > table td>ul#cldiv li #span_c1{font-size:15px; font-weight:bold; margin: 0 20px 0 0;}
+#clistform > table td>ul#cldiv li #span_c2{font-size:16px; font-weight:500; color: #FF3368;}
 #clistform > table td#tdBox{height: 40px; padding: 10px 0; background-color: #f2f2f2;}
 #clistform div.btnBox{text-align:right;}
 
-#cinemaform{height:385px; border:1px solid #ccc; border-top:2px solid #121212; border-spacing:0px; margin-bottom:20px; padding:40px;}
+#cinemaform{height:385px; border:1px solid #ccc; border-top:2px solid #121212; border-spacing:0px; margin: 50px 0 50px 100px; padding:40px;}
+#cinemaform >#sellocal{margin-top: 50px;}
 #cinemaform >#sellocal, #txtcname{width: 200px; height: 35px; text-align-last: center;}
-#cinemaform div.btnBox{text-align:right; padding-top:50px;}
+#cinemaform div.btnBox{text-align:center; padding:55px;}
 
 /* 예매 메인페이지 reserveMain*/
 #movieform{}
@@ -135,7 +146,7 @@
 #movieform > table #tdtime li.notimelist{border: none; text-align:center; font-size: 16px;}
 #movieform > table #tdtime li.notimelist > img{width: 50px; margin: 40px 0 20px 0;}
 
-#movieform div.btnBox{text-align:right;}
+#movieform div.btnBox{text-align:right; margin-bottom: 50px;}
 
 /* 좌석선택 서브페이지 */
 form#seatForm{}

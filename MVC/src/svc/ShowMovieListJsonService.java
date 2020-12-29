@@ -7,6 +7,7 @@ import dao.ReserveDAO;
 import static db.JdbcUtil.*;
 
 import java.sql.Connection;
+import java.sql.Timestamp;
 
 public class ShowMovieListJsonService {
 
