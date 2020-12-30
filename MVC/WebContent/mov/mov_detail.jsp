@@ -225,7 +225,7 @@
 						</dd>
 					</dl>
 				</div><!-- .detail_info2 -->
-				<a href="http://localhost:8080/MVC/ReserveMain.re" class="genric-btn primary circle">예매하기</a>
+				<a href="http://localhost:8080/MVC/ReserveMain.re?movieCd=<%=article.getMovieCd() %>" class="genric-btn primary circle">예매하기</a>
 			</div><!-- .detail_top -->
 		</section><!-- .detail_box1 -->
 		
