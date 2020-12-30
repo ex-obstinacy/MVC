@@ -347,8 +347,8 @@ div.reserveInfo .btnBox{text-align:center;}
 .contents_mall_detail .pd_wrap .pd_detail .txt_price_wrap strong {margin-left: 20px; font-size: 30px;}
 .txt_price_str {display: inline-block; font-family: 'Roboto', 'Noto Sans KR'; font-weight: bold; color: #FF243E;}
 
-/* basket */
-.cat_product_area {margin-top: 20px;}
+/* basket / orderForm */
+.cart_area {margin-top: 80px;}
 
 /* orderResult */ 
 div.orderResult{width:80%; margin:0 auto;}
