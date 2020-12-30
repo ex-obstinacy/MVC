@@ -8,8 +8,10 @@
 <%@page import="org.apache.tomcat.jni.Mmap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	// BoardBean 객체 파라미터 가져오기
+// WinBean 객체 파라미터 가져오기
 WinBean article = (WinBean) request.getAttribute("article");
+String win_member_id = article.getMember_id();
+// System.out.println("win_member : " + win_member_id);
 
 ArrayList<ApplyBean> articleList = (ArrayList<ApplyBean>)request.getAttribute("articleList");
 
@@ -189,7 +191,11 @@ int num = Integer.parseInt(request.getParameter("num"));
 									<div class="bbs-content" itemprop="description">
 										<div class="content-view">
 											<%=article.getContent()%>
-											
+											<label for="wmember" >
+											당첨자 아이디 : 
+												<input type="text" name="win-member" id="wmember" placeholder="아직 추첨 안함" 
+													value="<%=win_member_id %>" readonly>
+											</label>
 										</div>
 								</div> 
 								

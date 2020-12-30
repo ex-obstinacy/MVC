@@ -8,13 +8,15 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import dao.ApplyDAO;
+import dao.WinDAO;
 import vo.ApplyBean;
+import vo.WinBean;
 
 public class WinRandomService {
 
 	public int getArticleList(int event_num) {
 		
-		System.out.println("WinRandomService - getArticleList()");
+//		System.out.println("WinRandomService - getArticleList()");
 		
 		ArrayList<ApplyBean> articleList = null;
 		
@@ -32,7 +34,7 @@ public class WinRandomService {
 		// 그 숫자 가지고 해당하는 리스트 번호 불러오면 당첨자 나오겟지
 		
 		// 전체 갯수 (num)  
-//		System.out.println("응모한 회원  : " + articleList.size() + "명");
+		System.out.println("응모한 회원  : " + articleList.size() + "명");
 //		
 //		System.out.println("응모 번호1 : " +  articleList.get(0).getNum());
 //		System.out.println("응모 번호1 : " +  articleList.get(1).getNum());
@@ -40,19 +42,15 @@ public class WinRandomService {
 //		System.out.println("응모 아이디2 :  " + articleList.get(1).getMember_id());
 		
 		int result=0;
-		int updateCount = 0;
 		for(int i=1; i<=1;i++) {
-			 result = ((int)(Math.random() * articleList.size())+1);
+			
+			result = ((int)(Math.random() * articleList.size())+1);
+			
 			System.out.println("당첨자 회원 번호 :"+ result);
-			updateCount = applyDAO.updateArticle(result);
+			
 		}
-////		
-		System.out.println("당첨자 명 수 : " + updateCount);
-//		System.out.println("result" + result);
 		
-//		System.out.println(articleList.get(0).getWin());
-//		System.out.println(articleList.get(1).getWin());
-//		System.out.println(articleList.get(2).getWin());
+		int updateCount = applyDAO.updateArticle(result);
 		
 		if(updateCount>0) {
 			commit(con);
@@ -62,9 +60,73 @@ public class WinRandomService {
 		}
 		
 		close(con);
+////		
+		System.out.println("당첨자 명 수 : " + updateCount);
+//		System.out.println("result" + result);
+		
+//		System.out.println(articleList.get(0).getWin());
+//		System.out.println(articleList.get(1).getWin());
+//		System.out.println(articleList.get(2).getWin());
+		
 		
 		// 당첨자 번호 return
 		return result;
+	}
+
+	public WinBean getWinMemberInfo(int win_result) {
+		
+//		System.out.println("WinRandomService - getWinMemberInfo()");
+		
+		WinBean win_member = null;
+		
+		// 1(공통). Connection 객체 가져오기
+		Connection con = getConnection(); // 메서드명만으로 접근 가능
+		
+		// 2(공통). DB 작업에 필요한 DAO 객체 가져오기
+		ApplyDAO applyDAO = ApplyDAO.getInstance();
+		
+		applyDAO.setConnection(con);
+		
+		win_member = applyDAO.getWinMemberInfo(win_result);
+		
+		if(win_member != null) {
+			commit(con);
+			
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return win_member;
+	}
+
+	public int updateWinMember(WinBean win_member) {
+		
+		System.out.println("WinRandomService - updateWinMember()");
+		int updateCount = 0;
+		
+		// 1(공통). Connection 객체 가져오기
+		Connection con = getConnection(); // 메서드명만으로 접근 가능
+		
+		// 2(공통). DB 작업에 필요한 DAO 객체 가져오기
+		WinDAO winDAO = WinDAO.getInstance();
+		
+		winDAO.setConnection(con);
+		
+		updateCount = winDAO.updateWinMember(win_member);
+		
+		if(updateCount > 0) {
+			commit(con);
+			
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
+		
+		return updateCount;
+		
 	}
 
 

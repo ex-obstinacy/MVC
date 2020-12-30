@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
+import vo.ApplyBean;
 import vo.WinBean;
 
 public class WinDAO {
@@ -398,6 +398,34 @@ public class WinDAO {
 		}
 		
 		return articleList;
-	}	
+	}
+
+
+	public int updateWinMember(WinBean win_member) {
+		
+		int updateCount = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			String sql = "UPDATE win SET member_id=? where event_num=?";
+			pstmt =con.prepareStatement(sql);
+			pstmt.setString(1, win_member.getMember_id());
+			pstmt.setInt(2, win_member.getEvent_num());
+			updateCount = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("updateWinMember() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			// 자원 반환
+			// 주의! DAO 클래스 내에서 Connection 객체 반환 금지!
+			close(pstmt);
+		}
+		
+		return updateCount;
+	}
+
+
 	
 }

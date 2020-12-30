@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import vo.ApplyBean;
+import vo.WinBean;
 
 
 public class ApplyDAO {
@@ -155,7 +156,6 @@ public class ApplyDAO {
 				article.setWin(rs.getInt("win"));
 				article.setMember_id(rs.getString("member_id"));
 				article.setEvent_num(rs.getInt("event_num"));
-
 	
 				
 				// 1개 게시물을 전체 게시물 저장 객체(ArrayList)에 추가
@@ -183,9 +183,9 @@ public class ApplyDAO {
 		
 		try {
 			String sql = "UPDATE apply SET win=1 WHERE num=?";
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, result);
 			updateCount = pstmt.executeUpdate();
-			// 이거 ? 가 null 이 찍힌건가요? 그런거같은데..
 //			ApplyBean article = new ApplyBean();
 		} catch (Exception e) {
 			System.out.println("updateArticle() 오류! - " + e.getMessage());
@@ -195,6 +195,33 @@ public class ApplyDAO {
 		}
 		
 		return updateCount;
+	}
+
+	public WinBean getWinMemberInfo(int win_result) {
+		
+		WinBean win_member = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT * FROM apply WHERE num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, win_result);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				win_member = new WinBean();
+				win_member.setMember_id(rs.getString("member_id"));
+				win_member.setEvent_num(rs.getInt("event_num"));
+			}
+		} catch (Exception e) {
+			System.out.println("updateArticle() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return win_member;
 	}
 
 
