@@ -23,6 +23,17 @@
 			   color: #BDBDBD;}
 	</style>
 	
+	<%
+		if (member_id == null) {
+	%>
+	<script type="text/javascript">
+		alert("로그인이 필요합니다.");
+		location.href = "MemberLogin.me";
+	</script>
+	<%
+		}
+	%>
+	
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
