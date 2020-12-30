@@ -55,11 +55,11 @@
 #clistform > table td{width:300px; height:250px; padding:0;}
 #clistform > table td>ul{height:100%; overflow-y: auto; background:#f2f2f2;}
 #clistform > table td>ul li{border-bottom:1px solid #ddd; }
-#clistform > table td>ul li label{width:100%; cursor:pointer; font-size:12px; padding:10px 10px; background:#fff;}
+#clistform > table td>ul li label{width:100%; cursor:pointer; font-size:12px; padding:10px 10px; background:#fff; text-align: left;}
 #clistform > table td>ul li input{display:none;}
 #clistform > table td>ul#cldiv li label{border:2px solid transparent; box-sizing:border-box; font-size:14px;}
 #clistform > table td>ul#cldiv li input:checked+label{border:2px solid #FF243E; background:#fff url(../img/sub/check.png) no-repeat 96% center/15px auto;}
-#clistform > table td>ul#cldiv li #span_c1{font-size:15px; font-weight:bold; margin: 0 20px 0 0;}
+#clistform > table td>ul#cldiv li #span_c1{font-size:15px; font-weight:bold; margin: 0 20px 0 65px;}
 #clistform > table td>ul#cldiv li #span_c2{font-size:16px; font-weight:500; color: #FF3368;}
 #clistform > table td#tdBox{height: 40px; padding: 10px 0; background-color: #f2f2f2;}
 #clistform div.btnBox{text-align:right;}
