@@ -4,12 +4,32 @@
  <%
 	//session 객체에 저장된 id 값 가져와서 변수에 저장
 	String id = (String)session.getAttribute("id");
-%>
+ 
+ %>
 
 <!DOCTYPE html>
 <html lang="zxx">
 
 <head>
+
+	<%
+		if (id == null) {
+	%>
+	<script type="text/javascript">
+		alert("로그인이 필요합니다.");
+		location.href = "MemberLogin.me";
+	</script>
+	<%
+		} else if (!id.equals("admin")) {
+	%>
+			<script type="text/javascript">
+				alert("잘못된 접근입니다.");
+				history.back();
+			</script>
+	<%
+		}
+	%>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

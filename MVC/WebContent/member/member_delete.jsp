@@ -10,6 +10,18 @@
 <html lang="zxx">
 
 <head>
+
+	<%
+		if (id == null) {
+	%>
+	<script type="text/javascript">
+		alert("로그인이 필요합니다.");
+		location.href = "MemberLogin.me";
+	</script>
+	<%
+		}
+	%>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
