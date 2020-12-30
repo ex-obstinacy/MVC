@@ -4,9 +4,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-	<%
-	LocalDate today = LocalDate.now();
-	%>
+<%
+LocalDate today = LocalDate.now();
+
+// session 객체에 저장된 id 값 가져와서 변수에 저장
+String id = (String)session.getAttribute("id");
+
+// 영화코드 가져와서 변수에 저장
+String movCode = request.getParameter("movCode");
+System.out.println("영화코드 : " + movCode);
+%>
 <html lang="zxx">
 
 <head>
@@ -42,12 +49,18 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		
 		// 등록되어있는 영화목록 가져오기
 		$.getJSON('MovieListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
-				$('#tdsubject').append("<li class='"+item.movie_subject+"'><input type='radio' name='movie' id='"+item.movie_code+"' value='"+item.movie_subject+"' class='rmovie'/><label for='"+item.movie_code+"'>"
+				$('#tdsubject').append("<li class='"+item.movie_code+"'><input type='radio' name='movie' id='"+item.movie_code+"' value='"+item.movie_subject+"' class='rmovie "+item.movie_code+"'/><label for='"+item.movie_code+"'>"
 						+"<span id='span_r1' class='g"+item.movie_grade+"'>"+item.movie_grade+"</span><span id='span_r2'>"+item.movie_subject+"</span></label></li>");
 			});
+			
+			// 영화상세페이지 - 예매 로 넘어올 경우 해당 영화 선택되어있게하기
+			if($('#tdsubject > li > input').hasClass(<%=movCode%>)) {
+				$('#tdsubject > li > input.'+<%=movCode%>).prop("checked", true);
+			}
 		});
 		// cinema 목록 db에서 가져오기(admin_reserve랑 동일)
 		$.getJSON('CinemaListJson.re', function(rdata) {
@@ -63,6 +76,8 @@
 						+item.showtime_t+" "+item.showtime_g+"</label></li>");
 			});
 		});
+		
+		
 		// 지역 선택
 		$('#tdlocal input').click(function() {
 			if($('.rmovie').is(":checked") == false) {
@@ -137,6 +152,11 @@
 				$('.rtime').focus();
 				return false;
 			}
+			if(<%=id%> == null) {
+				alert("로그인이 필요합니다.");
+				location.href = "MemberLogin.me";
+				return false;
+			}
 		});
 		
 		// 상위항목 체크할 때 마다 하위항목 리셋
@@ -178,6 +198,7 @@
 		});
 
 	});
+	
 </script>
 </head>
 
