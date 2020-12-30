@@ -21,18 +21,9 @@
 
                         <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                             <ul class="navbar-nav">
-                           		<li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="MovMain.mo" id="navbarDropdown_5"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                               		         영화
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_5">
-                                        <a class="dropdown-item" href="#">현재 상영작</a>
-                                        <a class="dropdown-item" href="#">상영 예정작</a>
-                                        
-                                    </div>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="MovMain.mo">영화</a>
                                 </li>
-                            
                                 <li class="nav-item">
                                     <a class="nav-link" href="ReserveMain.re">예매</a>
                                 </li>
