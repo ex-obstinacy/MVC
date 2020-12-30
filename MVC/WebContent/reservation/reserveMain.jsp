@@ -11,8 +11,8 @@ LocalDate today = LocalDate.now();
 String id = (String)session.getAttribute("id");
 
 // 영화코드 가져와서 변수에 저장
-String movCode = request.getParameter("movCode");
-System.out.println("영화코드 : " + movCode);
+String movieCd = request.getParameter("movieCd");
+System.out.println("영화코드 : " + movieCd);
 %>
 <html lang="zxx">
 
@@ -58,8 +58,8 @@ System.out.println("영화코드 : " + movCode);
 			});
 			
 			// 영화상세페이지 - 예매 로 넘어올 경우 해당 영화 선택되어있게하기
-			if($('#tdsubject > li > input').hasClass(<%=movCode%>)) {
-				$('#tdsubject > li > input.'+<%=movCode%>).prop("checked", true);
+			if($('#tdsubject > li > input').hasClass(<%=movieCd%>)) {
+				$('#tdsubject > li > input.'+<%=movieCd%>).prop("checked", true);
 			}
 		});
 		// cinema 목록 db에서 가져오기(admin_reserve랑 동일)
