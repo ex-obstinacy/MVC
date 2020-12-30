@@ -24,7 +24,7 @@
 	
 // 	String Member_id =(String)session.getAttribute("id");
 	
-	String member_id = (String)session.getAttribute("id"); 
+	String member_id = (String)session.getAttribute("id"); // 
 	
 	String id = (String)request.getAttribute("id");
 	
@@ -125,6 +125,7 @@
 <link rel="stylesheet" href="css/slick.css">
 <!-- style CSS -->
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/common.css">
 </head>
 <body>
 	<!--::header part start::-->

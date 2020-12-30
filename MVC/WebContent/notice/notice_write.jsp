@@ -80,6 +80,7 @@
 <link rel="stylesheet" href="css/slick.css">
 <!-- style CSS -->
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/common.css">
 </head>
 <body>
 	<!--::header part start::-->
@@ -192,6 +193,8 @@
 										<section id="commandCell">
 											<input type="submit" value="등록">&nbsp;&nbsp; <input type="reset" value="다시쓰기" />
 									</form>
+									
+									
 								</section>
 								<!-- 게시판 -->
 							</div>

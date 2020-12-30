@@ -25,6 +25,7 @@ public class QnaListAction implements Action {
 		ActionForward forward = null;
 
 		HttpSession session = request.getSession(); // MemberBean id 값 가져오기
+		
 		String id = (String) session.getAttribute("id");
 
 		// 페이징 처리를 위한 변수 선언

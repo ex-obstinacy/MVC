@@ -120,6 +120,7 @@
 <link rel="stylesheet" href="css/slick.css">
 <!-- style CSS -->
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/common.css">
 </head>
 <body>
 	<!--::header part start::-->
@@ -151,7 +152,10 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 	<section class="blog_area padding_top">
 		<div class="container">
 			<div class="topnav">
-				<a href="EventList.ev" target="_parent">영화</a> <a href="PreviewList.pr" target="_parent">시사회/무대인사</a> <a href="#" target="_parent">당첨자 발표</a> <a href="#">회원 약관</a>
+				<a href="EventList.ev" target="_parent">영화</a>
+				<a href="PreviewList.pr" target="_parent">시사회/무대인사</a> 
+				<a href="WinList.wi" target="_parent">당첨자발표</a> 
+<!-- 				<a href="#"> </a> -->
 			</div>
 		</div>
 	</section>
@@ -177,7 +181,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 					%>
 							<td>
 								<div class="single_product_item">
-									<a href="EventDetail.ev?num=<%=articleList.get(i).getNum() %>&page=<%=nowPage %>"> <img src="eventUpload/<%=articleList.get(i).getThumbnail()%>"></a>
+									<a href="EventDetail.ev?num=<%=articleList.get(i).getNum() %>&page=<%=nowPage %>"> <img src="eventUpload/<%=articleList.get(i).getThumbnail()%>"  width="314" height="184" ></a>
 									<div class="single_product_text">
 										<h4><%=sdf.format(articleList.get(i).getDate())%></h4>
 									</div>

@@ -12,7 +12,7 @@ public class NoticeDetailService {
 
 	// 게시물 1개에 대한 상세 내용을 요청하는 getArticle() 메서드 정의
 	public NoticeBean getArticle(int num) throws Exception{
-		System.out.println("NoticeDetailService - getArticle()");
+		System.out.println("NoticeDetailService - getArticle()!");
 		
 		// 1(공통). Connection 객체 가져오기
 		Connection con = getConnection();
@@ -28,6 +28,7 @@ public class NoticeDetailService {
 		//    => 파라미터 : 글번호(num), 리턴타입 : NoticeBean
 		NoticeBean article = noticeDAO.selectArticle(num);
 		
+		System.out.println("글번호: " +  num);
 		// 게시물 상세 내용 조회가 성공했을 경우 
 		// NoticeDAO 객체의 updateReadCount() 메서드 호출하여
 		// 해당 게시물 조회수(readcount)를 1만큼 증가시키기

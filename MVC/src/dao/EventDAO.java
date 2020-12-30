@@ -254,7 +254,8 @@ public class EventDAO {
 		
 		return updateCount;
 	}
-
+	
+	// 글 수정
 	public int updateArticle(EventBean article) {
 		// PreviewBean 객체에 저장된 수정 내용(작성자, 제목, 내용)을 사용하여
 		// 글번호(num)에 해당하는 레코드를 수정 후 결과 리턴

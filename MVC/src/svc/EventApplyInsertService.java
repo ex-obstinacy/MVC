@@ -11,6 +11,31 @@ import dao.ApplyDAO;
 
 public class EventApplyInsertService {
 
+	public boolean checkApplyEvent(String member_id, int event_num) {
+		
+	boolean	isOverlap = false;
+	
+	// 1(공통). Connection 객체 가져오기
+	Connection con = getConnection();
+	
+	//2 ApplyDAO 객체 가져오기
+	ApplyDAO applyDAO = ApplyDAO.getInstance();
+	
+	// 3. ApplyDAO 객체에 Connection 객체 전달 
+	applyDAO.setConnection(con);
+	
+	isOverlap = applyDAO.isOverlapApply(member_id,event_num);
+	
+	// 5(공통). Connection 객체 반환하기
+	close(con);
+	
+	return isOverlap;
+	}
+	
+	
+	
+	
+	
 	public boolean registArticle(ApplyBean applyBean) {
 		
 		System.out.println("EventApplyInsertService ! - registArticle() ");
@@ -49,5 +74,6 @@ public class EventApplyInsertService {
 		
 		return isInsertSuccess;
 	}
+
 
 }

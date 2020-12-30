@@ -80,6 +80,7 @@
 <link rel="stylesheet" href="css/slick.css">
 <!-- style CSS -->
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/common.css">
 </head>
 <body>
 	<!--::header part start::-->

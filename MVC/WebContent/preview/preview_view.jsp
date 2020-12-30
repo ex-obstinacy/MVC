@@ -1,3 +1,4 @@
+
 <%@page import="vo.PreviewBean"%>
 <%@page import="com.mysql.fabric.xmlrpc.base.Member"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -7,6 +8,8 @@
 <%
 	// BoardBean 객체 파라미터 가져오기
 PreviewBean article = (PreviewBean) request.getAttribute("article");
+
+
 
 // page 파라미터 가져오기
 // 1. BoardDetailAction 에서 request.setAttribute() 메서드로 저장했을 경우
@@ -94,6 +97,8 @@ int num = Integer.parseInt(request.getParameter("num"));
 <link rel="stylesheet" href="css/slick.css">
 <!-- style CSS -->
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/common.css">
+
 <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
 <script type="text/javascript" src="js/jquery.bxslider.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
@@ -134,7 +139,10 @@ int num = Integer.parseInt(request.getParameter("num"));
 	<section class="blog_area padding_top">
 		<div class="container">
 			<div class="topnav">
-				<a href="EventList.ev" target="_parent">영화</a> <a href="PreviewList.pr" target="_parent">시사회/무대인사</a> <a href="#" target="_parent">당첨자발표</a> <a href="#">회원 약관</a>
+				<a href="EventList.ev" target="_parent">영화</a>
+				<a href="PreviewList.pr" target="_parent">시사회/무대인사</a> 
+				<a href="WinList.wi" target="_parent">당첨자발표</a> 
+<!-- 				<a href="#"> </a> -->
 			</div>
 		</div>
 	</section>

@@ -80,6 +80,7 @@
 <link rel="stylesheet" href="css/slick.css">
 <!-- style CSS -->
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/common.css">
 </head>
 <body>
 	<!--::header part start::-->
@@ -108,7 +109,10 @@
 	<section class="blog_area padding_top">
 		<div class="container">
 			<div class="topnav">
-				<a href="EventList.ev" target="_parent">영화</a> <a href="PreviewList.pr" target="_parent">시사회/무대인사</a> <a href="#" target="_parent">당첨자발표</a> <a href="#">회원 약관</a>
+				<a href="EventList.ev" target="_parent">영화</a>
+				<a href="PreviewList.pr" target="_parent">시사회/무대인사</a> 
+				<a href="WinList.wi" target="_parent">당첨자발표</a> 
+<!-- 				<a href="#"> </a> -->
 			</div>
 		</div>
 	</section>

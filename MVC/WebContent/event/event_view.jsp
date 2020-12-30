@@ -15,11 +15,9 @@ EventBean article = (EventBean) request.getAttribute("article");
 // 2. 서블릿 주소로 전달된 page 값을 파라미터 그대로 사용할 경우
 String nowPage = request.getParameter("page");
 
-String Member_id = (String) session.getAttribute("id");
+String member_id = (String) session.getAttribute("id"); // member_id (로그인한 아이디) 세션값 불러오기
 
 int num = Integer.parseInt(request.getParameter("num"));
-
-String member_id = request.getParameter("member_id");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,8 +75,6 @@ String member_id = request.getParameter("member_id");
 .content-view {
 	white-space: pre-line;
 }
-
-
 </style>
 <link rel="icon" href="img/favicon.png">
 <!-- Bootstrap CSS -->
@@ -98,6 +94,8 @@ String member_id = request.getParameter("member_id");
 <link rel="stylesheet" href="css/slick.css">
 <!-- style CSS -->
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/common.css">
+
 <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
 <script type="text/javascript" src="js/jquery.bxslider.js"></script>
 <script type="text/javascript" src="js/jquery-ui.js"></script>
@@ -138,7 +136,10 @@ String member_id = request.getParameter("member_id");
 	<section class="blog_area padding_top">
 		<div class="container">
 			<div class="topnav">
-				<a href="EventList.ev" target="_parent">영화</a> <a href="PreviewList.pr" target="_parent">시사회/무대인사</a> <a href="#" target="_parent">당첨자발표</a> <a href="#">회원 약관</a>
+				<a href="EventList.ev" target="_parent">영화</a>
+				<a href="PreviewList.pr" target="_parent">시사회/무대인사</a> 
+				<a href="WinList.wi" target="_parent">당첨자발표</a> 
+<!-- 				<a href="#"> </a> -->
 			</div>
 		</div>
 	</section>
@@ -200,7 +201,6 @@ String member_id = request.getParameter("member_id");
 											<%
 												if (article.getApply().equals("생성")) {
 											%>
-											
 											<div>
 												<script type="text/javascript">
 													function b() {
@@ -211,15 +211,14 @@ String member_id = request.getParameter("member_id");
 														} else {
 															return false;
 														}
-													} 
+													}
 												</script>
-												<form action="EventApplyButton.ev" name="fr" method="post">
-														<input type="hidden" name="num" value="<%=num%>" />
-														<input type="hidden" name="member_id" value="<%=member_id%>" />
-<!-- 														<input type="image" src="/img/btn_event.png" name="Submit" value="Submit"  align="absmiddle" onclick="return b()"> -->
-														<button input type="submit">
-														
-														<img alt="응모" src="img/btn_event.png" onclick="return b()"></button>													
+												<form action="EventApplyInsert.ev" name="fr" method="post">
+													<input type="hidden" name="num" value="<%=num%>" /> <input type="hidden" name="member_id" value="<%=member_id%>" /> <input type="hidden" name="page" value="<%=nowPage%>" />
+													<!-- 														<input type="image" src="/img/btn_event.png" name="Submit" value="Submit"  align="absmiddle" onclick="return b()"> -->
+													<button input type="submit">
+														<img alt="응모" src="img/btn_event.png" onclick="return b()">
+													</button>
 												</form>
 											</div>
 											<%
@@ -269,13 +268,13 @@ String member_id = request.getParameter("member_id");
 											<a href="EventList.ev?page=<%=nowPage%>" target="_parent" class="bbs-button">목록보기</a>
 										</div>
 										<%
-											if (Member_id != null) {
-											if (Member_id.equals("admin")) {
+											if (member_id != null) {
+											if (member_id.equals("admin")) {
 										%>
 										<div style="text-align: center;">
 											<a href="EventModifyForm.ev?num=<%=article.getNum()%>&page=<%=nowPage%>" target="_parent" class="bbs-button">수정하기</a>
 										</div>
-
+	
 										<div>
 											<script type="text/javascript">
 												function a() {
@@ -289,9 +288,7 @@ String member_id = request.getParameter("member_id");
 												}
 											</script>
 											<form action="EventDeletePro.ev" name="fr" method="post">
-												<input type="hidden" name="num" value="<%=num%>" /> 
-												<input type="hidden" name="page" value="<%=nowPage%>" /> 
-												<input type="submit" value="삭제하기" onclick="return a()" class="bbs-button">
+												<input type="hidden" name="num" value="<%=num%>" /> <input type="hidden" name="page" value="<%=nowPage%>" /> <input type="submit" value="삭제하기" onclick="return a()" class="bbs-button">
 											</form>
 										</div>
 										<%

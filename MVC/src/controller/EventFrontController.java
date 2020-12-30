@@ -18,19 +18,7 @@ import action.EventListSearchAction;
 import action.EventModifyFormAction;
 import action.EventModifyProAction;
 import action.EventWriteProAction;
-import action.NoticeDeleteProAction;
-import action.NoticeDetailAction;
-import action.NoticeListAction;
 
-import action.NoticeModifyFormAction;
-import action.NoticeModifyProAction;
-import action.NoticeWriteProAction;
-import action.PreviewDeleteProAction;
-import action.PreviewDetailAction;
-import action.PreviewListAction;
-import action.PreviewModifyFormAction;
-import action.PreviewModifyProAction;
-import action.PreviewWriteProAction;
 import vo.ActionForward;
 
 @WebServlet("*.ev") // 서블릿 주소 중 XXX.ev 주소에 대한 요청을 전달받아 처리

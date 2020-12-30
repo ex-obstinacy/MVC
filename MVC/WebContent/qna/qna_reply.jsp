@@ -4,15 +4,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	// request 객체에 저장된 BoardBean 객체(article) 가져오기
-	QnaBean	article = (QnaBean)request.getAttribute("article");
-	// request 객체에 저장된 페이지번호(page) 파라미터 가져오기
+QnaBean article = (QnaBean) request.getAttribute("article");
+// request 객체에 저장된 페이지번호(page) 파라미터 가져오기
 // 	String nowPage = request.getParameter("page");
-	
-	//세션값 가져오기
-	String member_id = (String)session.getAttribute("id");
-	
-	 
-	
+
+//세션값 가져오기
+String member_id = (String) session.getAttribute("id");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,6 +82,7 @@
 <link rel="stylesheet" href="css/slick.css">
 <!-- style CSS -->
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/common.css">
 </head>
 <body>
 	<!--::header part start::-->
@@ -129,7 +127,11 @@
 							<div class="bbs-view m_noview">
 								<section id="writeForm">
 									<form action="QnaReplyPro.qn" method="post" name="replyForm">
-										<input type="hidden" name="page" value="<%=request.getParameter("page") %>" /> <input type="hidden" name="num" value="<%=article.getNum() %>" /> <input type="hidden" name="re_ref" value="<%=article.getRe_ref() %>" /> <input type="hidden" name="re_lev" value="<%=article.getRe_lev() %>" /> <input type="hidden" name="re_seq" value="<%=article.getRe_seq() %>" />
+										<input type="hidden" name="page" value="<%=request.getParameter("page")%>" />
+										<input type="hidden" name="num" value="<%=article.getNum()%>" />
+										<input type="hidden" name="re_ref" value="<%=article.getRe_ref()%>" />
+										<input type="hidden" name="re_lev" value="<%=article.getRe_lev()%>" />
+										<input type="hidden" name="re_seq" value="<%=article.getRe_seq()%>" />
 										<table>
 											<!-- 								<form action="NoticeWritePro.no" method="post"enctype="multipart/form-data" name="noticeform"> -->
 											<input type="hidden" name="mode" value="up">
@@ -149,24 +151,18 @@
 												<tr>
 													<td class="bbs-list-blank" style="width: 30px;"></td>
 													<td class="bbs-list-a" style="width: 150px;">제 &nbsp; &nbsp; 목</td>
-													<td class="bbs-list-b" colspan="4">
-														<input type="text" name="subject" value="" placeholder="제목 입력란" class="form-control" required="required">
-													</td>
+													<td class="bbs-list-b" colspan="4"><input type="text" name="subject" value="" placeholder="제목 입력란" class="form-control" required="required"></td>
 												</tr>
 												<tr>
 													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">I &nbsp; &nbsp; D</td>
-													<td class="bbs-list-b">
-														<input type="text" name="member_id" placeholder="아이디" class="form-control" value="<%=member_id %>" readonly>
-													</td>
+													<td class="bbs-list-b"><input type="text" name="member_id" placeholder="아이디" class="form-control" value="<%=member_id%>" readonly></td>
 													<td class="bbs-list-blank"></td>
 												</tr>
 												<tr>
 													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">원글쓴이</td>
-													<td class="bbs-list-b">
-														<input type="text" name="p_member_id" placeholder="원글쓴이" class="form-control" value="<%=article.getP_member_id()%>" readonly>
-													</td>
+													<td class="bbs-list-b"><input type="text" name="p_member_id" placeholder="원글쓴이" class="form-control" value="<%=article.getP_member_id()%>" readonly></td>
 													<td class="bbs-list-blank"></td>
 												</tr>
 												<!-- 										<tr> -->
@@ -178,9 +174,7 @@
 												<tr>
 													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">본 문</td>
-													<td class="bbs-list-b" colspan="4">
-														<textarea id="editor1" name="content" style="width: 100%; height: 325px; resize: none;" required="required"></textarea>
-													</td>
+													<td class="bbs-list-b" colspan="4"><textarea id="editor1" name="content" style="width: 100%; height: 325px; resize: none;" required="required"></textarea></td>
 												</tr>
 											</tbody>
 											<!-- 									<section id="commandCell"> -->

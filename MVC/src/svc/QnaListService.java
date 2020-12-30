@@ -5,10 +5,10 @@ import static db.JdbcUtil.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.http.HttpSession;
-
-import com.sun.org.apache.regexp.internal.recompile;
+//import javax.servlet.RequestDispatcher;
+//import javax.servlet.http.HttpSession;
+//
+//import com.sun.org.apache.regexp.internal.recompile;
 
 import dao.QnaDAO;
 import vo.QnaBean;
