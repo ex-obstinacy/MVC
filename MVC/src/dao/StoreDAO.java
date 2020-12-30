@@ -858,7 +858,7 @@ public class StoreDAO {
   		}	
         
       // 2. 장바구니 -> 구매내역 -> 결제
-        public int orderGoods(String[] goodsIds, String[] reserveNum, String id, StoreBean order) {
+        public int orderGoods(String[] goodsIds, String[] reserveNum, String id, StoreBean order, int orderCount) {
   			System.out.println("StoreDAO - orderGoods");
   			
   			int addCount = 0;
@@ -879,7 +879,6 @@ public class StoreDAO {
   			
   			try {
   				int orderId = 0;
-  				int orderCount = 1;
   				
   				for(int i=0; i<goodsIds.length; i++) {
   					
@@ -891,24 +890,15 @@ public class StoreDAO {
 //  					System.out.println("goodsId : " + goodsIds.g);
 //  		            System.out.println(num);
   		            
-  		            String sql = "SELECT * FROM goods_order WHERE orderNum=?";
-  		           	pstmt = con.prepareStatement(sql);
-  		           	pstmt.setString(1, order.getOrderNum());
-  		           	rs = pstmt.executeQuery();
+//  		            String sql = "SELECT * FROM goods_order WHERE orderNum=?";
+//  		           	pstmt = con.prepareStatement(sql);
+//  		           	pstmt.setString(1, order.getOrderNum());
+//  		           	rs = pstmt.executeQuery();
   		            
   		           	System.out.println("확인");
   		           	
-  					if(rs.next()) {
-  						sql = "SELECT MAX(orderCount) FROM goods_order where orderNum = ?";
-  						pstmt = con.prepareStatement(sql);
-  						pstmt.setString(1, order.getOrderNum());
-  				        rs = pstmt.executeQuery();
-  				        if (rs.next()) {
-  				        	orderCount = rs.getInt(1) +1;
-  				        	System.out.println(orderCount);
-  				            System.out.println("확인2");
-  				            
-  				            sql = "SELECT MAX(orderId) FROM goods_order";
+//  					if(rs.next()) {
+  				           String sql = "SELECT MAX(orderId) FROM goods_order";
   					        pstmt = con.prepareStatement(sql);
   					        rs = pstmt.executeQuery();
   					        if (rs.next()) {
@@ -932,33 +922,32 @@ public class StoreDAO {
   							 addCount = pstmt.executeUpdate();
   							 System.out.println("확인7");
   							 
-  				        }
-  					} else {
-  						sql = "SELECT MAX(orderId) FROM goods_order";
-  				        pstmt = con.prepareStatement(sql);
-  				        rs = pstmt.executeQuery();
-  				        System.out.println("확인3"); 
-  				        if (rs.next()) {
-  				              orderId = rs.getInt(1) +1;
-  				              System.out.println("확인4");
-  				        }
-  						 sql = "INSERT INTO goods_order(orderId, goods_goodsId, member_id, orderCount, totalPrice, date, orderNum, sumPrice, reserveNum, expiredate, status) VALUES(?, ?, ?, ?, ?, ? ,? ,? ,? ,? ,?)";
-  						 pstmt = con.prepareStatement(sql);
-  						 pstmt.setInt(1, orderId);
-  						 pstmt.setInt(2, goodsId);
-  						 pstmt.setString(3, id);
-  						 pstmt.setInt(4, orderCount);
-  						 pstmt.setInt(5, order.getTotalPrice());
-  						 pstmt.setTimestamp(6, date);
-  						 pstmt.setString(7, order.getOrderNum());
-  						 pstmt.setInt(8, order.getSumPrice());
-  						 pstmt.setString(9, reserveNum[i]);
-  						 pstmt.setString(10, expiredate);
-  						 pstmt.setBoolean(11, status);
-  			        
-  						 addCount = pstmt.executeUpdate();
-  						 System.out.println("확인5");
-  			        }
+//  					} else {
+//  						sql = "SELECT MAX(orderId) FROM goods_order";
+//  				        pstmt = con.prepareStatement(sql);
+//  				        rs = pstmt.executeQuery();
+//  				        System.out.println("확인3"); 
+//  				        if (rs.next()) {
+//  				              orderId = rs.getInt(1) +1;
+//  				              System.out.println("확인4");
+//  				        }
+//  						 sql = "INSERT INTO goods_order(orderId, goods_goodsId, member_id, orderCount, totalPrice, date, orderNum, sumPrice, reserveNum, expiredate, status) VALUES(?, ?, ?, ?, ?, ? ,? ,? ,? ,? ,?)";
+//  						 pstmt = con.prepareStatement(sql);
+//  						 pstmt.setInt(1, orderId);
+//  						 pstmt.setInt(2, goodsId);
+//  						 pstmt.setString(3, id);
+//  						 pstmt.setInt(4, orderCount);
+//  						 pstmt.setInt(5, order.getTotalPrice());
+//  						 pstmt.setTimestamp(6, date);
+//  						 pstmt.setString(7, order.getOrderNum());
+//  						 pstmt.setInt(8, order.getSumPrice());
+//  						 pstmt.setString(9, reserveNum[i]);
+//  						 pstmt.setString(10, expiredate);
+//  						 pstmt.setBoolean(11, status);
+//  			        
+//  						 addCount = pstmt.executeUpdate();
+//  						 System.out.println("확인5");
+//  			        }
   					 
 //  					} // reserveNum 포문
 //  				} // goods 포문

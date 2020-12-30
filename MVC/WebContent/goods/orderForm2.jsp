@@ -117,14 +117,14 @@ function requestPay() {
                 })
                 
                 ///추가////  
-                   var check_count = document.getElementsByName("goodsRow").length;
+//                    var check_count = document.getElementsByName("goodsRow").length;
          		   var goodsRow = document.getElementsByName("goodsRow");
-         		   var checked =0 ; //체크된 갯수 파악 위한 초기 변수
+//          		   var checked =0 ; //체크된 갯수 파악 위한 초기 변수
          		   
          		   // 체크박스 값 확인
-         			for(var i=0; i<check_count; i++){
+//          			for(var i=0; i<check_count; i++){
 //          				   alert(goodsRow[i].value);
-         			}
+//          			}
 //                   alert("결제성공");
                 	document.orderResult.submit();
                	///추가////

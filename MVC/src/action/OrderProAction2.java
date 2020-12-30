@@ -46,8 +46,12 @@ public class OrderProAction2 implements Action {
     	  System.out.println("goods : " + goods);
       }
       
+      // orderCount
+      int orderCount = goodsIds.length;
+      System.out.println("orderCount : " + orderCount);
+      
       OrderProService2 orderProService = new OrderProService2();
-	  boolean isOrderSuccess = orderProService.OrderGoods(goodsIds, reserveNum, id, order);
+	  boolean isOrderSuccess = orderProService.OrderGoods(goodsIds, reserveNum, id, order, orderCount);
       
 	  //멤버십 추가
       boolean isMembershipSuccess = orderProService.createMembership(id, order);
