@@ -708,7 +708,7 @@ public class ReserveDAO {
 		
 		try {
 			
-			String sql = "select * from movie_board where date(openDt) <= now() order by subject";
+			String sql = "select * from movie_board order by subject";
 			pstmt = con.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
