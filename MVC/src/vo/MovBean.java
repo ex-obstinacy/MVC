@@ -1,6 +1,7 @@
 package vo;
 
 import java.sql.Date;
+import java.util.Arrays;
 
 public class MovBean {
 	
@@ -138,5 +139,17 @@ public class MovBean {
 	public void setTotalRating(float totalRating) {
 		this.totalRating = totalRating;
 	}
+	@Override
+	public String toString() {
+		return "MovBean [subjet=" + subjet + ", movieCd=" + movieCd + ", genre=" + genre + ", openDt=" + openDt
+				+ ", showTm=" + showTm + ", director=" + director + ", cast=" + cast + ", nationNm=" + nationNm
+				+ ", companys=" + companys + ", grade=" + grade + ", post=" + post + ", stillCut=" + stillCut
+				+ ", stillCutFileName=" + Arrays.toString(stillCutFileName) + ", trailer=" + trailer + ", content="
+				+ content + ", ticketing=" + ticketing + ", bookingRate=" + bookingRate + ", totalRating=" + totalRating
+				+ ", trailerFileName=" + Arrays.toString(trailerFileName) + "]";
+	}
+	
+	
+	
 
 }

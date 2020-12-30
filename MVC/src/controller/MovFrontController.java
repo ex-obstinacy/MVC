@@ -21,7 +21,7 @@ import action.MemberWriteProAction;
 import action.MovCommentDeleteProAction;
 import action.MovCommentWriteProAction;
 import action.MovDetailAction;
-import action.MovMainProAction;
+import action.MovMainAction;
 import action.AdminMovListAction;
 import action.AdminMovWriteProAction;
 import vo.ActionForward;
@@ -126,7 +126,7 @@ public class MovFrontController extends HttpServlet {
 				
 			}
 		}  else if (command.equals("/MovMain.mo")) { // 영화 메인 페이지
-			action = new MovMainProAction();
+			action = new MovMainAction();
 			
 			try {
 				forward = action.execute(request, response);
@@ -136,16 +136,6 @@ public class MovFrontController extends HttpServlet {
 				
 			}
 		} 
-		
-		
-		
-//		else if(command.equals("/MovMain.mo")) { // 영화 메인 페이지
-//			forward = new ActionForward();
-//			forward.setPath("/mov/mov_main.jsp");
-//		}
-		
-		
-		
 		
 		// ----------------------------------------------------------------------------------------------
 		// 기본 설정 후 공통적으로 수행할 포워딩 작업

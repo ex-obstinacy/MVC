@@ -1,5 +1,3 @@
-<%@page import="java.util.Date"%>
-<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="vo.MovBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -13,10 +11,6 @@
 	ArrayList<MovBean> currentMovList = (ArrayList<MovBean>) request.getAttribute("currentMovList");
 	// 상영 예정작 객체 가져오기
 	ArrayList<MovBean> toBeMovList = (ArrayList<MovBean>) request.getAttribute("toBeMovList");
-	
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	Date currentTime = new Date();
-	String oTime = sdf.format(currentTime);
 	
 %>
 
@@ -129,29 +123,86 @@
 					<a href="#">더보기 ></a>
 				</h2>
 				<ul>
-					<%
-						for (int i = 0; i < currentMovList.size(); i++) {
-							
-					%>
 					<li>
 						<div class="img_box">
 							<div class="black_box">
-								<a href="MovDetail.mo?movieCd=<%=currentMovList.get(i).getMovieCd() %>">상세정보</a>
+								<a href="#">상세정보</a>
 							</div><!-- .black_box -->
-							<span class="grade gr_<%=currentMovList.get(i).getGrade() %>"><%=currentMovList.get(i).getGrade() %></span>
-							<img src="movUpload/<%=currentMovList.get(i).getPost() %>">							
+							<span class="grade gr_12">12</span>
+							<img src="img/sub/mov/poster_img1.jpg">							
 						</div><!-- .img_box -->
 						<div class="mov_info">
-							<h3><%=currentMovList.get(i).getSubjet() %></h3>
+							<h3>원더 우먼 1984</h3>
 							<p>
-								<span class="rating">예매율 <b><%=currentMovList.get(i).getBookingRate() %>%</b></span>
-								<span class="score"><b><%=currentMovList.get(i).getTotalRating() %></b></span>
+								<span class="rating">예매율 <b>66.2%</b></span>
+								<span class="score"><b>7.6</b></span>
 							</p>
 						</div><!-- .mov_info -->
 					</li>
-					<%
-						}
-					%>
+					<li>
+						<div class="img_box">
+							<div class="black_box">
+								<a href="#">상세정보</a>
+							</div><!-- .black_box -->
+							<span class="grade gr_15">15</span>
+							<img src="img/sub/mov/poster_img2.jpg">							
+						</div><!-- .img_box -->
+						<div class="mov_info">
+							<h3>조제</h3>
+							<p>
+								<span class="rating">예매율 <b>4.0%</b></span>
+								<span class="score"><b>7.6</b></span>
+							</p>
+						</div><!-- .mov_info -->
+					</li>
+					<li>
+						<div class="img_box">
+							<div class="black_box">
+								<a href="#">상세정보</a>
+							</div><!-- .black_box -->
+							<span class="grade gr_15">15</span>
+							<img src="img/sub/mov/poster_img3.jpg">							
+						</div><!-- .img_box -->
+						<div class="mov_info">
+							<h3>라이어트 : 기계들의 역습</h3>
+							<p>
+								<span class="rating">예매율 <b>4.0%</b></span>
+								<span class="score"><b>7.6</b></span>
+							</p>
+						</div><!-- .mov_info -->
+					</li>
+					<li>
+						<div class="img_box">
+							<div class="black_box">
+								<a href="#">상세정보</a>
+							</div><!-- .black_box -->
+							<span class="grade gr_15">15</span>
+							<img src="img/sub/mov/poster_img4.jpg">							
+						</div><!-- .img_box -->
+						<div class="mov_info">
+							<h3>화양연화</h3>
+							<p>
+								<span class="rating">예매율 <b>4.0%</b></span>
+								<span class="score"><b>7.6</b></span>
+							</p>
+						</div><!-- .mov_info -->
+					</li>
+					<li>
+						<div class="img_box">
+							<div class="black_box">
+								<a href="#">상세정보</a>
+							</div><!-- .black_box -->
+							<span class="grade gr_15">15</span>
+							<img src="img/sub/mov/poster_img5.jpg">							
+						</div><!-- .img_box -->
+						<div class="mov_info">
+							<h3>썸머 85</h3>
+							<p>
+								<span class="rating">예매율 <b>4.0%</b></span>
+								<span class="score"><b>7.6</b></span>
+							</p>
+						</div><!-- .mov_info -->
+					</li>
 				</ul>
 			</div><!-- .now_ranking -->
 			
@@ -160,28 +211,86 @@
 					<a href="#">더보기 ></a>
 				</h2>
 				<ul>
-					<%
-						for (int i = 0; i < toBeMovList.size(); i++) {
-					%>
 					<li>
 						<div class="img_box">
 							<div class="black_box">
-								<a href=MovDetail.mo?movieCd=<%=toBeMovList.get(i).getMovieCd() %>>상세정보</a>
+								<a href="#">상세정보</a>
 							</div><!-- .black_box -->
-							<span class="grade gr_<%=toBeMovList.get(i).getGrade() %>"><%=toBeMovList.get(i).getGrade() %></span>
-							<img src="movUpload/<%=toBeMovList.get(i).getPost() %>">							
+							<span class="grade gr_12">12</span>
+							<img src="img/sub/mov/poster_img1.jpg">							
 						</div><!-- .img_box -->
 						<div class="mov_info">
-							<h3><%=toBeMovList.get(i).getSubjet() %></h3>
+							<h3>원더 우먼 1984</h3>
 							<p>
-								<span class="rating">개봉예정일 <b><%=toBeMovList.get(i).getOpenDt() %></b></span>
-								<span class="score"><b><%=toBeMovList.get(i).getTotalRating() %></b></span>
+								<span class="rating">예매율 <b>66.2%</b></span>
+								<span class="score"><b>7.6</b></span>
 							</p>
 						</div><!-- .mov_info -->
 					</li>
-					<%
-						}
-					%>
+					<li>
+						<div class="img_box">
+							<div class="black_box">
+								<a href="#">상세정보</a>
+							</div><!-- .black_box -->
+							<span class="grade gr_15">15</span>
+							<img src="img/sub/mov/poster_img2.jpg">							
+						</div><!-- .img_box -->
+						<div class="mov_info">
+							<h3>조제</h3>
+							<p>
+								<span class="rating">예매율 <b>4.0%</b></span>
+								<span class="score"><b>7.6</b></span>
+							</p>
+						</div><!-- .mov_info -->
+					</li>
+					<li>
+						<div class="img_box">
+							<div class="black_box">
+								<a href="#">상세정보</a>
+							</div><!-- .black_box -->
+							<span class="grade gr_15">15</span>
+							<img src="img/sub/mov/poster_img3.jpg">							
+						</div><!-- .img_box -->
+						<div class="mov_info">
+							<h3>라이어트 : 기계들의 역습</h3>
+							<p>
+								<span class="rating">예매율 <b>4.0%</b></span>
+								<span class="score"><b>7.6</b></span>
+							</p>
+						</div><!-- .mov_info -->
+					</li>
+					<li>
+						<div class="img_box">
+							<div class="black_box">
+								<a href="#">상세정보</a>
+							</div><!-- .black_box -->
+							<span class="grade gr_15">15</span>
+							<img src="img/sub/mov/poster_img4.jpg">							
+						</div><!-- .img_box -->
+						<div class="mov_info">
+							<h3>화양연화</h3>
+							<p>
+								<span class="rating">예매율 <b>4.0%</b></span>
+								<span class="score"><b>7.6</b></span>
+							</p>
+						</div><!-- .mov_info -->
+					</li>
+					<li>
+						<div class="img_box">
+							<div class="black_box">
+								<a href="#">상세정보</a>
+							</div><!-- .black_box -->
+							<span class="grade gr_15">15</span>
+							<img src="img/sub/mov/poster_img5.jpg">							
+						</div><!-- .img_box -->
+						<div class="mov_info">
+							<h3>썸머 85</h3>
+							<p>
+								<span class="rating">예매율 <b>4.0%</b></span>
+								<span class="score"><b>7.6</b></span>
+							</p>
+						</div><!-- .mov_info -->
+					</li>
 				</ul>
 			</div><!-- .screen_ranking -->
 			
