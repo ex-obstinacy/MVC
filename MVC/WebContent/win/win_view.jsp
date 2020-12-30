@@ -11,6 +11,9 @@
 // WinBean 객체 파라미터 가져오기
 WinBean article = (WinBean) request.getAttribute("article");
 String win_member_id = article.getMember_id();
+if(win_member_id.equals("admin")) {
+	win_member_id = "아직 추첨 안함";
+}
 // System.out.println("win_member : " + win_member_id);
 
 ArrayList<ApplyBean> articleList = (ArrayList<ApplyBean>)request.getAttribute("articleList");
