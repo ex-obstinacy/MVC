@@ -152,7 +152,7 @@
     <!-- breadcrumb start-->
 
     <!--================ 메뉴 영역 =================-->
-    <section class="cat_product_area">
+    <section class="cart_area">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
@@ -174,11 +174,10 @@
                         </aside>
                     </div>
                 </div>
-          <!--================ 메뉴 영역 =================-->          
-                
+          <!--================ 메뉴 영역 =================-->                      
    <div class="col-lg-9">
      <div class="row align-items-center latest_product_inner">
-        <section class="cart_area padding_top">
+<!--         <section class="cart_area"> -->
     <div class="container">
       <div class="cart_inner">
         <h3>장바구니상품 정보</h3>
@@ -289,7 +288,7 @@
          
         </div>
       </div>
-  </section>
+<!--   </section> -->
                 	
                     </div>
                 </div>

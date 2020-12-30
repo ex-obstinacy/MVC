@@ -136,7 +136,7 @@ function requestPay() {
 <jsp:include page="/inc/sub_store1.jsp"/>
 
   <!--================Cart Area =================-->
-  <section class="cart_area padding_top">
+  <section class="cart_area">
     <div class="container">
       <div class="cart_inner">
         <h3>구매상품 정보</h3>
