@@ -61,7 +61,7 @@
                                         
                                          <a class="dropdown-item" href="EventList.ev"> 영화</a>
                                         <a class="dropdown-item" href="PreviewList.pr">시사회/무대인사</a>
-                                        <a class="dropdown-item" href="single-blog.jsp">당첨자 발표</a>
+                                        <a class="dropdown-item" href="WinList.wi">당첨자 발표</a>
                                     </div>
                                 </li>
                                 
@@ -75,7 +75,7 @@
                                         <a class="dropdown-item" href="NoticeList.no"> 공지사항</a>
                                         <a class="dropdown-item" href="NoticeFaq.no">FAQ</a>
                                         <a class="dropdown-item" href="QnaList.qn">1대1 문의</a>
-                                        <a class="dropdown-item" href="single-blog.jsp">이용약관</a>
+                                        <a class="dropdown-item" href="#">이용약관</a>
                                     </div>
                                 </li>
                             </ul>
