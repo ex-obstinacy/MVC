@@ -21,6 +21,18 @@
 
                         <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                             <ul class="navbar-nav">
+                           		<li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="MovMain.mo" id="navbarDropdown_5"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               		         영화
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_5">
+                                        <a class="dropdown-item" href="#">현재 상영작</a>
+                                        <a class="dropdown-item" href="#">상영 예정작</a>
+                                        
+                                    </div>
+                                </li>
+                            
                                 <li class="nav-item">
                                     <a class="nav-link" href="ReserveMain.re">예매</a>
                                 </li>
@@ -37,7 +49,7 @@
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_3"
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_2"
                                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         pages
                                     </a>
@@ -50,11 +62,11 @@
                                     </div>
                                 </li>
                               <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.jsp" id="navbarDropdown_2"
+                                    <a class="nav-link dropdown-toggle" href="blog.jsp" id="navbarDropdown_3"
                                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         이벤트
                                     </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_3">
                                         <a class="dropdown-item" href="blog.jsp"> 영화</a>
                                         <a class="dropdown-item" href="PreviewList.pr">시사회/무대인사</a>
                                         <a class="dropdown-item" href="single-blog.jsp">당첨자 발표</a>
@@ -63,11 +75,11 @@
                                 
                                                             
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.jsp" id="navbarDropdown_2"
+                                    <a class="nav-link dropdown-toggle" href="blog.jsp" id="navbarDropdown_4"
                                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         고객센터
                                     </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_4">
                                         <a class="dropdown-item" href="NoticeList.no"> 공지사항</a>
                                         <a class="dropdown-item" href="NoticeFaq.no">FAQ</a>
                                         <a class="dropdown-item" href="QnaList.qn">1대1 문의</a>

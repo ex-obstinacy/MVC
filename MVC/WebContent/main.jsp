@@ -335,7 +335,7 @@
 			</section><!-- .notice_cont -->
 	
 			<section class="banner_cont">
-				<a href="#"><img src="img/main/banner_img1.jpg"></a>			
+				<a href="MovDetail.mo?movieCd=20201002"><img src="img/main/banner_img1.jpg"></a>			
 			</section><!-- .banner_cont -->
 		
 	    </div><!-- .container -->

@@ -21,7 +21,8 @@ public class BookingRateService {
 		
 		float bookingRate = 0.0f;
 		if (sumTicketing != 0) {
-			bookingRate = (float) (ticketing / sumTicketing * 100);
+			bookingRate = (float) ticketing / sumTicketing * 100;
+			bookingRate = Float.parseFloat(String.format("%.1f", bookingRate));
 			
 		}
 		
