@@ -21,6 +21,7 @@ import action.MemberWriteProAction;
 import action.MovCommentDeleteProAction;
 import action.MovCommentWriteProAction;
 import action.MovDetailAction;
+import action.MovMainProAction;
 import action.AdminMovListAction;
 import action.AdminMovWriteProAction;
 import vo.ActionForward;
@@ -124,10 +125,24 @@ public class MovFrontController extends HttpServlet {
 				e.printStackTrace();
 				
 			}
-		} else if(command.equals("/MovMain.mo")) { // 영화 메인 페이지
-			forward = new ActionForward();
-			forward.setPath("/mov/mov_main.jsp");
-		}
+		}  else if (command.equals("/MovMain.mo")) { // 영화 메인 페이지
+			action = new MovMainProAction();
+			
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
+		} 
+		
+		
+		
+//		else if(command.equals("/MovMain.mo")) { // 영화 메인 페이지
+//			forward = new ActionForward();
+//			forward.setPath("/mov/mov_main.jsp");
+//		}
 		
 		
 		
