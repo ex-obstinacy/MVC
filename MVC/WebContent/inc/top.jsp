@@ -89,7 +89,7 @@
                           	}
                             %>
                             
-                            <a href="#" class="btn_cart"><img src="img/cart.png"></a>
+                            <a href="BasketList.go" class="btn_cart"><img src="img/cart.png"></a>
                             
                         </div>
                     </nav>
