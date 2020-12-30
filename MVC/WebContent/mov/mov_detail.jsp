@@ -199,7 +199,7 @@
 					</li>
 					<li>
 						<span>예매율</span>
-						<strong><%=article.getBookingRate() %>%</strong>
+						<strong><%=article.getBookingRate() %> %</strong>
 					</li>
 				</ul><!-- .detail_info1 -->
 				
