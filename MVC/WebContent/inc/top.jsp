@@ -39,19 +39,19 @@
                                         
                                     </div>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_2"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        pages
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="tracking.jsp">tracking</a>
-                                        <a class="dropdown-item" href="checkout.jsp">결제페이지</a>
-                                        <a class="dropdown-item" href="cart.jsp">장바구니</a>
-                                        <a class="dropdown-item" href="confirmation.jsp">결제내역</a>
-                                        <a class="dropdown-item" href="elements.jsp">elements</a>
-                                    </div>
-                                </li>
+<!--                                 <li class="nav-item dropdown"> -->
+<!--                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_2" -->
+<!--                                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
+<!--                                         pages -->
+<!--                                     </a> -->
+<!--                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2"> -->
+<!--                                         <a class="dropdown-item" href="tracking.jsp">tracking</a> -->
+<!--                                         <a class="dropdown-item" href="checkout.jsp">결제페이지</a> -->
+<!--                                         <a class="dropdown-item" href="cart.jsp">장바구니</a> -->
+<!--                                         <a class="dropdown-item" href="confirmation.jsp">결제내역</a> -->
+<!--                                         <a class="dropdown-item" href="elements.jsp">elements</a> -->
+<!--                                     </div> -->
+<!--                                 </li> -->
                               <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="blog.jsp" id="navbarDropdown_3"
                                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
