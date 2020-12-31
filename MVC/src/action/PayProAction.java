@@ -16,6 +16,7 @@ public class PayProAction implements Action {
 		ActionForward forward = null;
 		
 		int movienum = Integer.parseInt(request.getParameter("movienum"));
+		int moviecode = Integer.parseInt(request.getParameter("moviecode"));
 		String ticketnum = request.getParameter("ticketnum");
 		
 		ReserveBean reservation = new ReserveBean();
@@ -35,7 +36,7 @@ public class PayProAction implements Action {
 		if(isReserveSuccess) {		
 			if(ticketnum != null) {
 				forward = new ActionForward();
-				forward.setPath("ReserveResult.re?ticketnum=" + ticketnum);
+				forward.setPath("ReserveResult.re?ticketnum=" + ticketnum + "&moviecode=" + moviecode);
 				forward.setRedirect(true);	
 			} else {
 				response.setContentType("text/html; charset=UTF-8");

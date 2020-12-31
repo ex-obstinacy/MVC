@@ -1,5 +1,6 @@
 package svc;
 
+import vo.MovBean;
 import vo.ReserveBean;
 import static db.JdbcUtil.*;
 

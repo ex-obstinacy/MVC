@@ -241,6 +241,7 @@ if(adultnum == 0){
 				<input type="hidden" name="ticketnum" value="<%=ticketnum%>"> <!-- 예매번호 -->
 				<input type="hidden" name="member_id" value="<%=member_id%>"> <!-- 예매 아이디 -->
 				<input type="hidden" name="movienum" value="<%=request.getParameter("movienum")%>"> <!-- 영화 번호 -->
+				<input type="hidden" name="moviecode" value="<%=request.getParameter("moviecode")%>"> <!-- 영화 코드 -->
 				<input type="hidden" name="adultnum" value="<%=adultnum %>"> <!-- 성인 수 -->
 				<input type="hidden" name="kidsnum" value="<%=kidsnum %>"> <!-- 아이 수 -->
 

@@ -1,3 +1,4 @@
+<%@page import="vo.MovBean"%>
 <%@page import="vo.MemberBean"%>
 <%@page import="vo.ReserveBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,7 +7,7 @@
 // String member_id=(String)session.getAttribute("id");
 
 ReserveBean reserveInfo = (ReserveBean)request.getAttribute("reserveInfo");
-
+MovBean mv = (MovBean)request.getAttribute("mv");
 %>
 <!DOCTYPE html>
 <html>
@@ -58,8 +59,7 @@ ReserveBean reserveInfo = (ReserveBean)request.getAttribute("reserveInfo");
 			<h2><span>예매</span>가 완료되었습니다.</h2>
 			<div class="infoBox">
 				
-				<!-- 임시이미지 -->
-				<img src="img/sub/poster.jpg">
+				<img src="movUpload/<%=mv.getPost() %>">
 				
 				<div class="rightBox">
 					<p><%=reserveInfo.getMovie_subject() %></p>

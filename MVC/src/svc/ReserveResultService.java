@@ -1,5 +1,6 @@
 package svc;
 
+import vo.MovBean;
 import vo.ReserveBean;
 
 import java.sql.Connection;
@@ -24,6 +25,23 @@ public class ReserveResultService {
 		close(con);
 		
 		return reserveInfo;
+	}
+
+	public MovBean getMoviePost(int moviecode) {
+		System.out.println("ReserveResultService !");
+		MovBean mv = null;
+		
+		Connection con = getConnection();
+		
+		ReserveDAO reserveDAO = ReserveDAO.getInstance();
+		
+		reserveDAO.setConnection(con);
+		
+		mv = reserveDAO.getMoviePost(moviecode);
+		
+		close(con);
+		
+		return mv;
 	}
 
 }
