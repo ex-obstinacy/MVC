@@ -76,6 +76,7 @@ public class ReserveDAO {
 		return seatList;
 	}
 
+	// 영화정보 가져오는 메서드
 	public ReserveBean getMovie(int movienum) {
 		ReserveBean movie = new ReserveBean();
 		
@@ -104,6 +105,7 @@ public class ReserveDAO {
 		return movie;
 	}
 	
+	// 영화 포스터 가져오는 메서드
 	public MovBean getMoviePost(int moviecode) {
 		MovBean mv = new MovBean();
 		
@@ -129,6 +131,7 @@ public class ReserveDAO {
 		return mv;
 	}
 
+	// 쿠폰, 관람권 정보 가져오는 메서드
 	public MemberBean getMemberInfo(String member_id) {
 		MemberBean memberInfo = new MemberBean();
 		
@@ -158,12 +161,13 @@ public class ReserveDAO {
 	}
 	
 	// 예매정보 DB 등록 메서드
-	public int reserveMovie(ReserveBean reservation) {
+	public int reserveMovie(ReserveBean reservation, int payPrice) {
 		System.out.println("ReserveDAO - reserveMovie() !");
 		
 		int reserveCount = 0;
 		
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		
 		String[] seatArr = reservation.getSeatArr();
 		String seat = Arrays.toString(seatArr);
@@ -214,6 +218,26 @@ public class ReserveDAO {
 				}					
 			}
 			
+			// 예매된 영화 예매율(ticketing) + 1 
+			String sql6 = "SELECT movie_board_movCode FROM admin_reservation WHERE num=?";
+			pstmt = con.prepareStatement(sql6);
+			pstmt.setInt(1, reservation.getMovienum());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				String sql7 = "UPDATE movie_board SET ticketing=ticketing+1 WHERE movCode=?";
+				pstmt=con.prepareStatement(sql7);
+				pstmt.setInt(1, rs.getInt("movie_board_movCode"));
+				pstmt.executeUpdate();
+			}
+			
+			// 예매시 멤버쉽 포인트 + 결제금액의 1%
+			String sql7 = "UPDATE member SET membership=membership+? WHERE id=?";
+			pstmt = con.prepareStatement(sql7);
+//			payPrice = 20000; // 포인트 테스트용
+			pstmt.setInt(1, payPrice/100);
+			pstmt.setString(2, reservation.getMember_id());
+			pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -224,6 +248,7 @@ public class ReserveDAO {
 		return reserveCount;
 	}
 
+	// 예매정보 가져오는 메서드
 	public ReserveBean getReserveInfo(String ticketnum) {
 		ReserveBean reserveInfo = null;
 		
@@ -275,6 +300,7 @@ public class ReserveDAO {
 		return reserveInfo;
 	}
 
+	// 티켓번호 생성 메서드
 	public String createTicketNum() {
 		System.out.println("createTicketNum() !");
 		

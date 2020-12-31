@@ -10,7 +10,7 @@ import dao.ReserveDAO;
 
 public class PayProService {
 
-	public boolean reserveMovie(ReserveBean reservation) {
+	public boolean reserveMovie(ReserveBean reservation, int payPrice) {
 		System.out.println("PayProService - reserveMovie() !");
 		boolean isReserveSuccess = false;
 		
@@ -20,7 +20,7 @@ public class PayProService {
 		
 		reserveDAO.setConnection(con);
 		
-		int reserveCount = reserveDAO.reserveMovie(reservation);
+		int reserveCount = reserveDAO.reserveMovie(reservation, payPrice);
 		
 		if(reserveCount > 0) {
 			commit(con);

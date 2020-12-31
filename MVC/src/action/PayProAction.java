@@ -18,6 +18,7 @@ public class PayProAction implements Action {
 		int movienum = Integer.parseInt(request.getParameter("movienum"));
 		int moviecode = Integer.parseInt(request.getParameter("moviecode"));
 		String ticketnum = request.getParameter("ticketnum");
+		int payPrice = Integer.parseInt(request.getParameter("payPrice"));
 		
 		ReserveBean reservation = new ReserveBean();
 		reservation.setMember_id(request.getParameter("member_id")); // 원래 코드
@@ -31,7 +32,7 @@ public class PayProAction implements Action {
 		reservation.setUse_coupon(request.getParameter("coupon_select"));
 		
 		PayProService payProService = new PayProService();
-		boolean isReserveSuccess = payProService.reserveMovie(reservation);
+		boolean isReserveSuccess = payProService.reserveMovie(reservation, payPrice);
 		
 		if(isReserveSuccess) {		
 			if(ticketnum != null) {
