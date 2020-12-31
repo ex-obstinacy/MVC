@@ -117,7 +117,7 @@
 					<option value="대구">대구</option>
 					<option value="부산/울산">부산/울산</option>
 					<option value="경상">경상</option>
-					<option value="제주">제주</option>
+					<option value="광주">광주/전라/제주</option>
 				</select><br><br><br>
 				<input type="text" name="txtcname" id="txtcname" placeholder="영화관명을 입력하세요."><br><br>
 				<div class="btnBox"><input type="submit" class="genric-btn primary circle" value="등록"></div>
