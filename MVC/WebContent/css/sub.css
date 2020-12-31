@@ -9,6 +9,25 @@
 .sub_visual01 h2{position:absolute; top:50%; left:50%; color:#fff;  font-size:23px; z-index:100; transform:translate(-50%,-50%);}
 .sub_store01{position:relative; width:100%; height:200px; text-align:center; background-image:url(../img/sub/ssmain.png); background-repeat:no-repeat; background-position:center center; background-size:100% auto;}
 
+/******************** 멤버 서브페이지 시작 ********************/
+
+/* member_order */ 
+div.member_order{width:100%; margin:0 auto;}
+div.member_order h2{margin: 0; line-height:1.2em; font-size:30px; color:#1a1a1a; font-weight:600; font-family: "Poppins", sans-serif; transition: 0.5s; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; }
+div.member_order h2 span{color:#ff243e;}
+div.member_order .infoBox{border:3px solid #ff243e; padding:25px 3%; margin-bottom: 25px;}
+div.member_order .infoBox:after{content:""; display:block; clear:both;}
+div.member_order .infoBox img{float:left; width:25%; height:auto; }
+div.member_order .infoBox .rightBox{float:right; width:71%;}
+div.member_order .infoBox .rightBox p{font-size:18px; font-weight:600; margin-bottom:20px;}
+div.member_order .infoBox .rightBox table{width:100%; border-top:2px solid #121212; }
+div.member_order .infoBox .rightBox table th, div.orderResult .infoBox .rightBox table td{border-right:0; border-bottom:1px solid #ccc; padding:10px 10px;}
+div.member_order .infoBox .rightBox table th{background:#f3f3f3; border-right:1px solid #ccc;;}
+
+div.member_order .btnBox{text-align:center; margin-top:30px; margin-bottom:50px;}
+
+/******************** 멤버 서브페이지 끝 ********************/
+
 /******************** 예매쪽 서브페이지 시작 ********************/
 /* 관리자 - 영화 등록 페이지 */
 #mlistform{}

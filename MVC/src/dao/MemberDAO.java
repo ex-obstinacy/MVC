@@ -11,6 +11,7 @@ import vo.MemberBean;
 import vo.MemberShipBean;
 import vo.MovCommentBean;
 import vo.ReserveBean;
+import vo.StoreBean;
 
 import static db.JdbcUtil.*;
 
@@ -589,5 +590,114 @@ public class MemberDAO {
 		
 		return articleList;
 	}
+	
+	// 회원 마이페이지 - 구매내역 리스트 갯수
+		public int selectOrderListCount(String id) {
+			System.out.println("MemberDAO - selectOrderListCount()");
+			int listCount = 0;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				// SELECT 구문을 사용하여 전체 회원 수 조회
+				// => count() 함수 사용, 조회 대상 컬럼 1개 지정하거나 * 사용
+				String sql = "SELECT COUNT(*) FROM goods_order where member_id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					listCount = rs.getInt(1);
+				}
+				
+			} catch (SQLException e) {
+				System.out.println("selectOrderListCount() 오류! - " + e.getMessage());
+				e.printStackTrace();
+				
+			} finally {
+				close(rs);
+				close(pstmt);
+				
+			}
+			
+			return listCount;
+		}
+
+		// 회원 마이페이지 - 구매내역 리스트
+		public ArrayList<StoreBean> selectOrderList(int page, int limit, String id) {
+			System.out.println("MemberDAO - selectOrderList()");
+			
+			ArrayList<StoreBean> articleList = null;
+			
+			PreparedStatement pstmt = null;
+			PreparedStatement pstmt2 = null;
+			ResultSet rs = null;
+			ResultSet rs2 = null;
+			
+			int startRow = (page - 1) * limit;
+			
+			try {
+				// 구매 조회
+				String sql = "SELECT o.date, o.orderNum, o.reserveNum, o.member_id, o.expiredate, o.status, o.sumPrice, o.orderCount, " 
+  	                     + "g.name, g.component, g.file, g.ctg "
+  	                     + "FROM goods g JOIN goods_order o "
+  	                     + "ON g.goodsId = o.goods_goodsId "
+  	                     + "WHERE member_id = ? "
+  	                     + "ORDER BY orderNum limit ?,?";
+  	            pstmt = con.prepareStatement(sql);
+  	            pstmt.setString(1, id);
+  	            pstmt.setInt(2, startRow);
+  	            pstmt.setInt(3, limit);
+
+  	            rs = pstmt.executeQuery();
+  	            
+  	            System.out.println("확인");
+  	            
+  	          articleList = new ArrayList<StoreBean>();
+  	            
+  	            while(rs.next()) {
+  	               StoreBean order = new StoreBean(); 
+  	                 
+  	               order.setDate(rs.getTimestamp("date"));
+  	               order.setOrderNum(rs.getString("orderNum"));
+  	               order.setReserveNum(rs.getString("reserveNum"));
+  	               order.setMember_id(rs.getString("member_id"));
+  	               order.setExpiredate(rs.getString("expiredate"));
+  	               order.setStatus(rs.getBoolean("status"));
+  	               order.setSumPrice(rs.getInt("sumPrice"));
+  	               order.setOrderCount(rs.getInt("orderCount"));
+
+  	               order.setName(rs.getString("name"));
+  	               order.setComponent(rs.getString("component"));
+  	               order.setFile(rs.getString("file"));
+  	               order.setCtg(rs.getString("ctg"));
+  	               
+  	               
+  	               String sql2 = "SELECT name FROM member where id = ?";
+  	               pstmt2 = con.prepareStatement(sql2);
+  	               pstmt2.setString(1, order.getMember_id());
+  	               rs2 = pstmt2.executeQuery();
+  	               if(rs2.next()) {
+  	            	   order.setMember_name(rs2.getString("name"));
+  	               }
+  					
+  	             articleList.add(order);
+  	            }
+				
+			} catch (SQLException e) {
+				System.out.println("selectArticleList() 오류! - " + e.getMessage());
+				e.printStackTrace();
+				
+			} finally {
+				close(rs);
+				close(pstmt);
+				
+			}
+			
+			return articleList;
+		}
+	
+	
 
 }
