@@ -56,9 +56,9 @@ MovBean mv = (MovBean)request.getAttribute("mv");
 <div id="sub_content">
 	<div class="container">
 		<div class="reserveInfo">
-			<h2><span>예매</span>가 완료되었습니다.</h2>
+			<h2>예매 내역</h2>
 			<div class="infoBox">
-				
+					
 				<img src="movUpload/<%=mv.getPost() %>">
 				
 				<div class="rightBox">

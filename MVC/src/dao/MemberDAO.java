@@ -10,6 +10,7 @@ import exception.LoginException;
 import vo.MemberBean;
 import vo.MemberShipBean;
 import vo.MovCommentBean;
+import vo.ReserveBean;
 
 import static db.JdbcUtil.*;
 
@@ -477,6 +478,107 @@ public class MemberDAO {
 			
 		} catch (SQLException e) {
 			System.out.println("selectMovCommentArticleList() 오류! - " + e.getMessage());
+			e.printStackTrace();
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+			
+		}
+		
+		return articleList;
+	}
+	
+	// 회원 마이페이지 - 예매내역 리스트 갯수
+	public int selectReserveListCount(String id) {
+		System.out.println("MemberDAO - selectReserveListCount()");
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			// SELECT 구문을 사용하여 전체 회원 수 조회
+			// => count() 함수 사용, 조회 대상 컬럼 1개 지정하거나 * 사용
+			String sql = "SELECT COUNT(*) FROM private_reservation where member_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectReserveListCount() 오류! - " + e.getMessage());
+			e.printStackTrace();
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+			
+		}
+		
+		return listCount;
+	}
+
+	// 회원 마이페이지 - 예매내역 리스트
+	public ArrayList<ReserveBean> selectReserveList(int page, int limit, String id) {
+		System.out.println("MemberDAO - selectReserveList()");
+		
+		ArrayList<ReserveBean> articleList = null;
+		
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		ResultSet rs = null;
+		ResultSet rs2 = null;
+		
+		// 조회를 시작할 레코드(행) 번호 계산
+		int startRow = (page - 1) * limit;
+		
+		try {
+			// 예매 조회
+			String sql = "SELECT * FROM private_reservation WHERE member_id=? LIMIT ?,?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, limit);
+			rs = pstmt.executeQuery();
+			
+			// ArrayList 객체 생성(while문 위에서 생성 필수!)
+			articleList = new ArrayList<ReserveBean>();
+			
+			while(rs.next()) {
+				String sql2 = "SELECT * FROM admin_reservation WHERE num=?";
+				pstmt2 = con.prepareStatement(sql2);
+				pstmt2.setInt(1, rs.getInt("reservation_num"));
+				rs2 = pstmt2.executeQuery();
+				
+				while(rs2.next()) {
+					// 1개 게시물 정보를 저장할 BoardBean 객체 생성 및 데이터 저장
+					ReserveBean article = new ReserveBean();
+					// private_reservation(개인 예매관련)
+					article.setTicketnum(rs.getString(1));
+					article.setMember_id(rs.getString(2));
+					article.setMovienum(rs.getInt(3));
+					article.setAdultnum(rs.getInt(4));
+					article.setKidsnum(rs.getInt(5));
+					article.setSeatnum(rs.getString(6));
+					// admin_reservation(영화 정보관련)
+					article.setMovie_code(rs2.getInt("movie_board_movCode"));
+					article.setMovie_subject(rs2.getString("movie_subject"));
+					article.setCinema_name(rs2.getString("cinema_name"));
+					article.setShowdate(rs2.getString("showdate"));
+					article.setShowtime(rs2.getString("showtime"));
+					// 1개 회원을 전체 회원 저장 객체(ArrayList)에 추가
+					articleList.add(article);
+//					System.out.println("articleList : " + articleList);
+				}
+				
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectArticleList() 오류! - " + e.getMessage());
 			e.printStackTrace();
 			
 		} finally {

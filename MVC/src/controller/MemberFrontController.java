@@ -18,6 +18,8 @@ import action.MemberLoginProAction;
 import action.MemberLogoutAction;
 import action.MemberMainAction;
 import action.MemberMovCommentAction;
+import action.MemberReserveDetailAction;
+import action.MemberReserveListAction;
 import action.MemberUpdateProAction;
 import action.MemberWriteProAction;
 import vo.ActionForward;
@@ -162,6 +164,26 @@ public class MemberFrontController extends HttpServlet {
 			}
 		} else if(command.equals("/MemberMovComment.me")) { // 리뷰내역 조회
 			action = new MemberMovCommentAction();
+			
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
+		} else if(command.equals("/MemberReserveList.me")) { // 예매내역 리스트 조회
+			action = new MemberReserveListAction();
+			
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
+		} else if(command.equals("/MemberReserveDetail.me")) { // 예매내역 상세 조회
+			action = new MemberReserveDetailAction();
 			
 			try {
 				forward = action.execute(request, response);

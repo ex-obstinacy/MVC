@@ -111,6 +111,7 @@
 							<div class="l_w_title"></div>
 							<div class="widgets_inner">
 								<ul class="list">
+									<li><a href="MemberReserveList.me">예매내역</a></li>
 									<li><a href="#">결제내역</a></li>
 									<li><a href="BasketList.go">장바구니</a></li>
 									<li><a href="MemberMovComment.me">리뷰내역</a></li>
