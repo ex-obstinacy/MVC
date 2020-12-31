@@ -38,6 +38,35 @@ ul.store-tab li{
 	box-sizing: border-box;
 }
 
+#package{
+	padding: 0 0 0 100px;
+}
+
+#ticket{
+	padding: 0 0 0 100px;
+}
+
+#snack{
+	padding: 0 0 0 100px;
+}
+
+#price{ 
+	font-size: 16px; font-family: 'Roboto', 'Noto Sans KR'; font-size: 13px; font-weight: bold; text-decoration: line-through; opacity: .4; vertical-align: middle;
+	}
+	
+#sumprice{
+	font-size : 18px;
+	font-weight : bold;
+	color: #000;
+	line-weight:1.2em;
+}
+
+#originPrice{
+	font-size : 18px;
+	font-weight : bold;
+	color: #000;
+	line-weight:1.2em;
+}
 
 </style>
 <!-- 탭메뉴 끝 -->
@@ -98,7 +127,7 @@ ul.store-tab li{
             </div>
                     <!--======= 패키지 카테고리 상품!!!!!! =======-->
             <div id = "package">
-              <h3>패키지</h3>
+              <h3><b>패키지</b></h3>
                 <table>
                   <tr>
                   <%
@@ -117,10 +146,10 @@ ul.store-tab li{
                   			<div class="single_product_text">
                   				<h4><%=articleList.get(i).getName() %></h4>
                   				<%if(sale == 0){ %>
-                  				<h3 id="originPrice"><%=articleList.get(i).getPrice() %> 원</h3><Br>
+                  				<span id="originPrice"><%=articleList.get(i).getPrice() %> 원</span><Br>
                   				<%} else { %>
-                  				<h3 class = "price"><%=articleList.get(i).getPrice() %> 원</h3>
-                  				<h4><%=sumPrice%> 원</h4> 
+                  				<span class="txt_sale"><%=articleList.get(i).getSale() %>% </span>
+                  				<span id = "sumprice"><%=sumPrice%> 원</span> <span id = "price"><%=articleList.get(i).getPrice() %> 원</span>
                   				<% } %>
                   				<a href="BasketAdd.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="add_cart">장바구니</a>
 <!-- 								<input type="button"> -->
@@ -145,7 +174,7 @@ ul.store-tab li{
                  
                     <!--======= 관람권 카테고리 상품!!!!!! =======-->
              <div id = "ticket">
-               <h3>관람권</h3>
+               <h3><b>관람권</b></h3>
                     <table>
                     <tr>
                   <%
@@ -164,10 +193,10 @@ ul.store-tab li{
                   			<div class="single_product_text">
                   				<h4><%=articleList.get(i).getName() %></h4>
                   				<%if(sale == 0){ %>
-                  				<h3 id="originPrice"><%=articleList.get(i).getPrice() %> 원</h3><Br>
+                  				<span id="originPrice"><%=articleList.get(i).getPrice() %> 원</span><Br>
                   				<%} else { %>
-                  				<h3 class = "price"><%=articleList.get(i).getPrice() %> 원</h3>
-                  				<h4><%=sumPrice%> 원</h4> 
+                  				<span class="txt_sale"><%=articleList.get(i).getSale() %>% </span>
+                  				<span id = "sumprice"><%=sumPrice%> 원</span> <span id = "price"><%=articleList.get(i).getPrice() %> 원</span>
                   				<% } %>
                   				<a href="BasketAdd.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="add_cart">장바구니</a>
                   				<a href="OrderForm.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="buy">구매하기</a>
@@ -191,7 +220,7 @@ ul.store-tab li{
                     
                     <!--======= 스낵 카테고리 상품!!!!!! =======-->
              <div id = "snack">
-                    <h3>스낵음료</h3>
+                    <h3><b>스낵음료</b></h3>
                      <table>
                     <tr>
                   <%
@@ -210,10 +239,10 @@ ul.store-tab li{
                   			<div class="single_product_text">
                   				<h4><%=articleList.get(i).getName() %></h4>
                   				<%if(sale == 0){ %>
-                  				<h3 id="originPrice"><%=articleList.get(i).getPrice() %> 원</h3><Br>
+                  				<span id="originPrice"><%=articleList.get(i).getPrice() %> 원</span><Br>
                   				<%} else { %>
-                  				<h3 class = "price"><%=articleList.get(i).getPrice() %> 원</h3>
-                  				<h4><%=sumPrice%> 원</h4> 
+                  				<span class="txt_sale"><%=articleList.get(i).getSale() %>% </span>
+                  				<span id = "sumprice"><%=sumPrice%> 원</span> <span id = "price"><%=articleList.get(i).getPrice() %> 원</span>
                   				<% } %>
                   				<a href="BasketAdd.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="add_cart">장바구니</a>
                   				<a href="OrderForm.go?goodsId=<%=articleList.get(i).getGoodsId()%>" class="buy">구매하기</a>

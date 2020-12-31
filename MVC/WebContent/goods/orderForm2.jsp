@@ -99,8 +99,8 @@ function requestPay() {
              pay_method:payMethod,
              merchant_uid: orderNum, // 상품 번호
              name: name, // 상품명
-             amount: 100, // 상품가격
-//              amount: sumPrice.value, // 상품가격
+//              amount: 100, // 상품가격
+             amount: sumPrice.value, // 상품가격
              buyer_email: "gildong@gmail.com",
          }, function (rsp) { // callback
             if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
@@ -113,23 +113,11 @@ function requestPay() {
                 }).done(function (data) {
                   // 가맹점 서버 결제 API 성공시 로직
 
-         		   //ㅇㅕ기 넣으면 왜 안넘어가지 !!!!?!?????
          				   
                 })
                 
-                ///추가////  
-//                    var check_count = document.getElementsByName("goodsRow").length;
          		   var goodsRow = document.getElementsByName("goodsRow");
-//          		   var checked =0 ; //체크된 갯수 파악 위한 초기 변수
-         		   
-         		   // 체크박스 값 확인
-//          			for(var i=0; i<check_count; i++){
-//          				   alert(goodsRow[i].value);
-//          			}
-//                   alert("결제성공");
                 	document.orderResult.submit();
-               	///추가////
-               	
                	
               } else {
                 alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);

@@ -100,8 +100,8 @@ function requestPay() {
              pay_method:payMethod,
              merchant_uid: orderNum, // 상품 번호
              name: name, // 상품명
-             amount: 100, // 상품가격
-//              amount: sumPrice.value, // 상품가격
+//              amount: 100, // 상품가격
+             amount: sumPrice.value, // 상품가격
              buyer_email: "gildong@gmail.com",
          }, function (rsp) { // callback
             if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
@@ -113,8 +113,6 @@ function requestPay() {
                     data: queryString
                 }).done(function (data) {
                   // 가맹점 서버 결제 API 성공시 로직
-
-         		   //ㅇㅕ기 넣으면 왜 안넘어가지 !!!!?!?????
          				   
                 })
                 
