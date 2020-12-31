@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import exception.LoginException;
 import vo.MemberBean;
 import vo.MemberShipBean;
+import vo.MovCommentBean;
 
 import static db.JdbcUtil.*;
 
@@ -402,6 +403,91 @@ public class MemberDAO {
 		}
 		
 		return chekcIdResult;
+	}
+
+	public int selectMovCommentListCount(String id) {
+		System.out.println("MemberDAO - selectMovCommentListCount()");
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT COUNT(*) FROM mb_comment WHERE member_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectMovCommentListCount() 오류! - " + e.getMessage());
+			e.printStackTrace();
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+			
+		}
+		
+		return listCount;
+	}
+
+	public ArrayList<MovCommentBean> selectMovCommentArticleList(int page, int limit, String id) {
+		System.out.println("MemberDAO - selectMovCommentArticleList()");
+		
+		ArrayList<MovCommentBean> articleList = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		// 조회를 시작할 레코드(행) 번호 계산
+		int startRow = (page - 1) * limit;
+		
+		try {
+			// 회원 조회
+			String sql = "SELECT m.movCode, m.post, m.subject, c.content, c.date, c.cmgrade "
+					+ "FROM mb_comment c JOIN movie_board m ON m.movCode = c.movie_board_movCode "
+					+ "WHERE c.member_id=? ORDER BY date DESC limit ?,?";
+					
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, limit);
+			rs = pstmt.executeQuery();
+			
+			// ArrayList 객체 생성(while문 위에서 생성 필수!)
+			articleList = new ArrayList<MovCommentBean>();
+			
+			while(rs.next()) {
+				// 1개 게시물 정보를 저장할 BoardBean 객체 생성 및 데이터 저장
+				MovCommentBean article = new MovCommentBean();
+				article.setMovie_board_movCode(rs.getInt(1));
+				article.setPost(rs.getString(2));
+				article.setSubjet(rs.getString(3));
+				article.setContent(rs.getString(4));
+				article.setDate(rs.getTimestamp(5));
+				article.setCmgrade(rs.getInt(6));
+				
+				
+				
+				// 1개 회원을 전체 회원 저장 객체(ArrayList)에 추가
+				articleList.add(article);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectMovCommentArticleList() 오류! - " + e.getMessage());
+			e.printStackTrace();
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+			
+		}
+		
+		return articleList;
 	}
 
 }

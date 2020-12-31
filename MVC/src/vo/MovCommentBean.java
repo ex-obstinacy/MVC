@@ -10,6 +10,8 @@ public class MovCommentBean {
 	private Timestamp date;  //작성일
 	private int cmgrade; //평점
 	private int movie_board_movCode; //가져올값
+	private String post;
+	private String subjet;
 	
 	public int getNum() {
 		return num;
@@ -46,6 +48,18 @@ public class MovCommentBean {
 	}
 	public void setMovie_board_movCode(int movie_board_movCode) {
 		this.movie_board_movCode = movie_board_movCode;
+	}
+	public String getPost() {
+		return post;
+	}
+	public void setPost(String post) {
+		this.post = post;
+	}
+	public String getSubjet() {
+		return subjet;
+	}
+	public void setSubjet(String subjet) {
+		this.subjet = subjet;
 	}
 	
 }

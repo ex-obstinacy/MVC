@@ -53,10 +53,10 @@ public class MovDetailAction implements Action {
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		MovCommentListService MovCommentListService = new MovCommentListService();
-		int listCount = MovCommentListService.getListCount(movieCd);
+		MovCommentListService movCommentListService = new MovCommentListService();
+		int listCount = movCommentListService.getListCount(movieCd);
 		ArrayList<MovCommentBean> articleList = new ArrayList<MovCommentBean>();
-		articleList = MovCommentListService.getArticleList(page, limit, movieCd);
+		articleList = movCommentListService.getArticleList(page, limit, movieCd);
 		int maxPage = (int)((double)listCount / limit + 0.95);
 		int startPage = ((int)((double)page / 10 + 0.9) - 1) * 10 + 1;
 		int endPage = startPage + 10 - 1;
