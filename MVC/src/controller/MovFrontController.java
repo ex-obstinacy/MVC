@@ -20,8 +20,10 @@ import action.MemberMainAction;
 import action.MemberWriteProAction;
 import action.MovCommentDeleteProAction;
 import action.MovCommentWriteProAction;
+import action.MovCurrentMainAction;
 import action.MovDetailAction;
 import action.MovMainAction;
+import action.MovToBeMainAction;
 import action.AdminMovListAction;
 import action.AdminMovWriteProAction;
 import vo.ActionForward;
@@ -101,10 +103,6 @@ public class MovFrontController extends HttpServlet {
 				e.printStackTrace();
 				
 			}
-		} else if (command.equals("/MovDetail_Original.mo")) { // 경환이가 만든 페이지 확인용
-			forward = new ActionForward();
-			forward.setPath("/mov/mov_detail_original.jsp");
-			
 		} else if (command.equals("/MovCommentWritePro.mo")) { // 영화 댓글 등록
 			action = new MovCommentWriteProAction();
 			
@@ -135,7 +133,27 @@ public class MovFrontController extends HttpServlet {
 				e.printStackTrace();
 				
 			}
-		} 
+		} else if (command.equals("/MovCurrentMain.mo")) { // 현재 상영작 메인 페이지
+			action = new MovCurrentMainAction();
+			
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
+		}  else if (command.equals("/MovToBeMain.mo")) { // 상영 예정작 메인 페이지
+			action = new MovToBeMainAction();
+			
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
+		}
 		
 		// ----------------------------------------------------------------------------------------------
 		// 기본 설정 후 공통적으로 수행할 포워딩 작업

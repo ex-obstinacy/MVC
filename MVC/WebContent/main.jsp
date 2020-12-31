@@ -98,10 +98,14 @@
                 <div class="col-lg-12">
                     <div class="banner_slider owl-carousel">
                         <div class="single_banner_slider">
-                             <img src="img/main/main_slide1.jpg" alt=""><!-- 메인슬라이더 1 이미지 -->
+                        	<a  href="MovDetail.mo?movieCd=20192567">
+	                             <img src="img/main/main_slide1.jpg" alt=""><!-- 메인슬라이더 1 이미지 -->
+                        	</a>
                         </div>
                         <div class="single_banner_slider">
+                        	<a  href="MovDetail.mo?movieCd=20201002">
                                 <img src="img/main/main_slide2.jpg" alt=""><!-- 메인슬라이더 2 이미지 -->
+                        	</a>
                         </div>
                     </div><!-- .banner_slider -->
                 </div><!-- .col-lg-12 -->

@@ -461,9 +461,7 @@ public class MovDAO {
 		ArrayList<MovBean> currentMovList = null;
 		
 		PreparedStatement pstmt = null;
-		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
-		ResultSet rs2 = null;
 		
 		try {
 			int sumTicketing = 0;
@@ -562,6 +560,121 @@ public class MovDAO {
 			
 		} catch (SQLException e) {
 			System.out.println("selectListToBeMov() 오류! - " + e.getMessage());
+			e.printStackTrace();
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+			
+		}
+		
+		return toBeMovList;
+	}
+
+	public ArrayList<MovBean> selectAllListCurrentMov() {
+		System.out.println("MovDAO - selectAllListCurrentMov()");
+		
+		ArrayList<MovBean> currentMovList = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			int sumTicketing = 0;
+			
+			String sql = "SELECT SUM(ticketing) FROM movie_board";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				sumTicketing = rs.getInt(1);
+				
+			}
+			
+			// 회원 조회
+			sql = "SELECT DISTINCT m.movCode, m.grade, m.post, m.subject, m.ticketing FROM admin_reservation r JOIN movie_board m ON r.movie_board_movCode = m.movCode ORDER BY m.ticketing DESC";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			// ArrayList 객체 생성(while문 위에서 생성 필수!)
+			currentMovList = new ArrayList<MovBean>();
+			
+			while(rs.next()) {
+				// 1개 게시물 정보를 저장할 BoardBean 객체 생성 및 데이터 저장
+				MovBean article = new MovBean();
+				article.setMovieCd(rs.getInt(1));
+				article.setGrade(rs.getString(2));
+				article.setPost(rs.getString(3));
+				article.setSubjet(rs.getString(4));
+				article.setTicketing(rs.getInt(5));
+				
+				float bookingRate = (float) rs.getInt(5) / sumTicketing * 100;
+				article.setBookingRate(Float.parseFloat(String.format("%.1f", bookingRate)));
+				
+				// 1개 회원을 전체 회원 저장 객체(ArrayList)에 추가
+				currentMovList.add(article);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectAllListCurrentMov() 오류! - " + e.getMessage());
+			e.printStackTrace();
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+			
+		}
+		
+		return currentMovList;
+	}
+
+	public ArrayList<MovBean> selectAllListToBeMov() {
+		System.out.println("MovDAO - selectAllListToBeMov()");
+		
+		ArrayList<MovBean> toBeMovList = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			// 회원 조회
+			String sql = "SELECT * FROM movie_board WHERE openDt > now() ORDER BY openDt";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			// ArrayList 객체 생성(while문 위에서 생성 필수!)
+			toBeMovList = new ArrayList<MovBean>();
+			
+			Date nowDate = new Date(System.currentTimeMillis());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			System.out.println(sdf.format(nowDate));
+			
+			while(rs.next()) {
+				
+				// 1개 게시물 정보를 저장할 BoardBean 객체 생성 및 데이터 저장
+				MovBean article = new MovBean();
+				article.setMovieCd(rs.getInt(1));
+				article.setSubjet(rs.getString(2));
+				article.setGenre(rs.getString(3));
+				article.setOpenDt(rs.getDate(4));
+				article.setShowTm(rs.getString(5));
+				article.setDirector(rs.getString(6));
+				article.setCast(rs.getString(7));
+				article.setNationNm(rs.getString(8));
+				article.setCompanys(rs.getString(9));
+				article.setGrade(rs.getString(10));
+				article.setPost(rs.getString(11));
+				article.setStillCut(rs.getString(12));
+				article.setTrailer(rs.getString(13));
+				article.setContent(rs.getString(14));
+				article.setTicketing(rs.getInt(15));
+				
+				// 1개 회원을 전체 회원 저장 객체(ArrayList)에 추가
+				toBeMovList.add(article);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectAllListToBeMov() 오류! - " + e.getMessage());
 			e.printStackTrace();
 			
 		} finally {

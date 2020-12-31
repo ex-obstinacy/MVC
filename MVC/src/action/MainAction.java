@@ -5,15 +5,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import vo.ActionForward;
 
-public class MovMainProAction implements Action {
+public class MainAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MovMainProAction");
+		System.out.println("MainAction");
 		
-		
-		
-		ActionForward forward = null;
+		ActionForward forward = new ActionForward();
+		forward.setPath("./");
+		forward.setRedirect(true);
 		return forward;
 	}
 

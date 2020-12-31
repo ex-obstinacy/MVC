@@ -9,8 +9,6 @@
 	//session 객체에 저장된 id 값 가져와서 변수에 저장
 	String id = (String)session.getAttribute("id");
  
-	// 현재 상영작 객체 가져오기
-	ArrayList<MovBean> currentMovList = (ArrayList<MovBean>) request.getAttribute("currentMovList");
 	// 상영 예정작 객체 가져오기
 	ArrayList<MovBean> toBeMovList = (ArrayList<MovBean>) request.getAttribute("toBeMovList");
 	
@@ -120,65 +118,50 @@
 
 	<div id="sub_content" class="mov_main">
 		<div class="container">
-			<div class="now_ranking ranking_box">
-				<h2>현재 상영작 <strong>TOP 5</strong>
-					<a href="MovCurrentMain.mo">더보기 ></a>
-				</h2>
-				<ul>
-					<%
-						for (int i = 0; i < currentMovList.size(); i++) {
-							
-					%>
-					<li>
-						<div class="img_box">
-							<div class="black_box">
-								<a href="MovDetail.mo?movieCd=<%=currentMovList.get(i).getMovieCd() %>">상세정보</a>
-							</div><!-- .black_box -->
-							<span class="grade gr_<%=currentMovList.get(i).getGrade() %>"><%=currentMovList.get(i).getGrade() %></span>
-							<img src="movUpload/<%=currentMovList.get(i).getPost() %>">							
-						</div><!-- .img_box -->
-						<div class="mov_info">
-							<h3><%=currentMovList.get(i).getSubjet() %></h3>
-							<p>
-								<span class="rating">예매율 <b><%=currentMovList.get(i).getBookingRate() %>%</b></span>
-								<span class="score"><b><%=currentMovList.get(i).getTotalRating() %></b></span>
-							</p>
-						</div><!-- .mov_info -->
-					</li>
-					<%
-						}
-					%>
-				</ul>
-			</div><!-- .now_ranking -->
 			
 			<div class="screen_ranking ranking_box">
-				<h2>상영 예정작 <strong>TOP 5</strong>
-					<a href="MovToBeMain.mo">더보기 ></a>
-				</h2>
+				<h2>상영 예정작</h2>
+				<%
+					int totalCount = toBeMovList.size() / 5 + (toBeMovList.size() % 5 == 0 ? 0 : 1);
+					for (int j = 0; j < totalCount; j++) {
+				%>
 				<ul>
-					<%
-						for (int i = 0; i < toBeMovList.size(); i++) {
-					%>
+				<%
+						for (int i = 0; i < 5; i++) {
+							int count = 5 * j + i;
+							if (toBeMovList.size() > count) {
+				%>
 					<li>
 						<div class="img_box">
 							<div class="black_box">
-								<a href=MovDetail.mo?movieCd=<%=toBeMovList.get(i).getMovieCd() %>>상세정보</a>
+								<a href=MovDetail.mo?movieCd=<%=toBeMovList.get(count).getMovieCd() %>>상세정보</a>
 							</div><!-- .black_box -->
-							<span class="grade gr_<%=toBeMovList.get(i).getGrade() %>"><%=toBeMovList.get(i).getGrade() %></span>
-							<img src="movUpload/<%=toBeMovList.get(i).getPost() %>">							
+							<span class="grade gr_<%=toBeMovList.get(count).getGrade() %>"><%=toBeMovList.get(count).getGrade() %></span>
+							<img src="movUpload/<%=toBeMovList.get(count).getPost() %>">							
 						</div><!-- .img_box -->
 						<div class="mov_info">
-							<h3><%=toBeMovList.get(i).getSubjet() %></h3>
+							<h3><%=toBeMovList.get(count).getSubjet() %></h3>
 							<p>
-								<span class="rating">개봉예정일 <b><%=toBeMovList.get(i).getOpenDt() %></b></span>
-								<span class="score"><b><%=toBeMovList.get(i).getTotalRating() %></b></span>
+								<span class="rating">개봉예정일 <b><%=toBeMovList.get(count).getOpenDt() %></b></span>
+								<span class="score"><b><%=toBeMovList.get(count).getTotalRating() %></b></span>
 							</p>
 						</div><!-- .mov_info -->
 					</li>
-					<%
+				<%
+								
+							} else {
+				%>
+					<li></li>
+				<%
+							}
+				%>
+				<%
 						}
-					%>
+				%>
 				</ul>
+				<%
+					}
+				%>
 			</div><!-- .screen_ranking -->
 			
 			<div class="under_banner">
