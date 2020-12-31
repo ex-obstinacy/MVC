@@ -61,5 +61,13 @@ public class MovCommentBean {
 	public void setSubjet(String subjet) {
 		this.subjet = subjet;
 	}
+	@Override
+	public String toString() {
+		return "MovCommentBean [num=" + num + ", member_id=" + member_id + ", content=" + content + ", date=" + date
+				+ ", cmgrade=" + cmgrade + ", movie_board_movCode=" + movie_board_movCode + ", post=" + post
+				+ ", subjet=" + subjet + "]";
+	}
+	
+	
 	
 }

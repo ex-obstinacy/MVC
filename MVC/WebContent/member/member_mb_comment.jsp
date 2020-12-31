@@ -1,3 +1,6 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="vo.PageInfo"%>
+<%@page import="vo.MovCommentBean"%>
 <%@page import="vo.StoreBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="vo.MemberShipBean"%>
@@ -6,7 +9,17 @@
 
 <%
 	String member_id = (String) session.getAttribute("id");
-%>
+
+	ArrayList<MovCommentBean> articleList = (ArrayList<MovCommentBean>) request.getAttribute("articleList");
+	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	int nowPage = pageInfo.getPage();
+	int maxPage = pageInfo.getMaxPage();
+	int startPage = pageInfo.getStartPage();
+	int endPage = pageInfo.getEndPage();
+	int listCount = pageInfo.getListCount();
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm");
+	%>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -117,7 +130,84 @@
 							<div class="cart_inner">
 							
 							
-							1:1 문의
+								<div class="table-responsive">
+									<table class="table">
+										<%
+											if (articleList != null && listCount > 0) {
+										%>
+										<tr>
+											<th align="center">제목</th>
+											<th align="center">내용</th>
+											<th align="center">작성일</th>
+											<th align="center">평점</th>
+										</tr>
+										<%
+												for (int i = 0; i < articleList.size(); i++) {
+										%>
+										<tr>
+											<td align="center">
+												<a href="MovDetail.mo?movieCd=<%=articleList.get(i).getMovie_board_movCode() %>&page=<%=nowPage %>">
+													<img src="movUpload/<%=articleList.get(i).getPost() %>" width="70"><br>
+													<%=articleList.get(i).getSubjet() %>
+												</a>
+											</td>
+											<td align="center"><%=articleList.get(i).getContent() %></td>
+											<td align="center"><%=sdf.format(articleList.get(i).getDate()) %></td>
+											<td align="center"><%=articleList.get(i).getCmgrade() %></td>
+										</tr>
+										<%
+												}
+											}
+										%>
+									</table>
+								</div>
+								
+								
+						<section id="pageList">
+							<div class="container">
+								<%
+									if (nowPage <= 1) {
+								%>
+								<input type="button" value="이전" class="btn_3">&nbsp;
+								<%
+									} else {
+								%>
+								<input type="button" value="이전" class="btn_3" onclick="location.href='MemberMovComment.me?page=<%=nowPage - 1%>'">&nbsp;
+								<%
+									}
+								%>
+					
+								<%
+									for (int i = startPage; i <= endPage; i++) {
+									if (i == nowPage) {
+								%>
+								[<%=i%>]&nbsp;
+								<%
+									} else {
+								%>
+								<a href="MemberMovComment.me?page=<%=i%>">[<%=i%>]
+								</a>&nbsp;
+								<%
+									}
+								%>
+								<%
+									}
+								%>
+					
+								<%
+									if (nowPage >= maxPage) {
+								%>
+								<input type="button" value="다음" class="btn_3">
+								<%
+									} else {
+								%>
+								<input type="button" value="다음" class="btn_3"
+									onclick="location.href='MemberMovComment.me?page=<%=nowPage + 1%>'">
+								<%
+									}
+								%>
+							</div>
+						</section>
 							
 							
 							</div>

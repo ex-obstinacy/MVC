@@ -471,8 +471,6 @@ public class MemberDAO {
 				article.setDate(rs.getTimestamp(5));
 				article.setCmgrade(rs.getInt(6));
 				
-				
-				
 				// 1개 회원을 전체 회원 저장 객체(ArrayList)에 추가
 				articleList.add(article);
 			}
