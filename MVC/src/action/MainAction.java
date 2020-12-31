@@ -11,9 +11,10 @@ public class MainAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MainAction");
 		
+		
+		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./");
-		forward.setRedirect(true);
+		forward.setPath("/main/main.jsp");
 		return forward;
 	}
 
