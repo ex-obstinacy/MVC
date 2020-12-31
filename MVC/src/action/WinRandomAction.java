@@ -25,18 +25,6 @@ public class WinRandomAction implements Action {
 		// 이벤트 번호 num
 		int num= Integer.parseInt(request.getParameter("num"));
 		int event_num = Integer.parseInt(request.getParameter("event_num"));
-		int winCount = 0;
-		if(request.getParameter("winCount").equals("")) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('추첨인원수를 입력해주세요.')");
-			out.println("history.back()");
-			out.println("</script>");
-		} else {
-			winCount = Integer.parseInt(request.getParameter("winCount"));
-			System.out.println("추첨인원수 : " + winCount +"명");
-		}
 		
 		WinRandomService winRandomService = new WinRandomService();
 		
@@ -53,6 +41,19 @@ public class WinRandomAction implements Action {
 			out.println("history.back()");
 			out.println("</script>");
 		} else {	// 당첨자 없음 -> 추첨해야함!
+			// 추첨인원수 입력한대로 랜덤뽑기하기
+			int winCount = 0;
+			if(request.getParameter("winCount").equals("")) {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>");
+				out.println("alert('추첨인원수를 입력해주세요.')");
+				out.println("history.back()");
+				out.println("</script>");
+			} else {
+				winCount = Integer.parseInt(request.getParameter("winCount"));
+				System.out.println("추첨인원수 : " + winCount +"명");
+			}
 			// 해당 이벤트 당첨자 뽑기
 			Set<Integer> win_members = winRandomService.getArticleList(event_num, winCount);	// 당첨자 num
 			if(win_members.contains(-10)) {
