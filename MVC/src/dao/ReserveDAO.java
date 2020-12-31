@@ -17,6 +17,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import vo.MemberBean;
+import vo.MovBean;
 import vo.ReserveBean;
 
 import static db.JdbcUtil.*;
@@ -101,6 +102,31 @@ public class ReserveDAO {
 		}
 		
 		return movie;
+	}
+	
+	public MovBean getMoviePost(int moviecode) {
+		MovBean mv = new MovBean();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql="select post from movie_board where movCode=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, moviecode);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				mv.setPost(rs.getString("post"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return mv;
 	}
 
 	public MemberBean getMemberInfo(String member_id) {
@@ -510,7 +536,7 @@ public class ReserveDAO {
 				movienum = rs.getInt("num");
 			}
 			
-			System.out.println(movienum);
+			System.out.println("영화번호 : " + movienum);
 			
 		} catch (Exception e) {
 			
@@ -525,6 +551,40 @@ public class ReserveDAO {
 		
 		return movienum;
 		
+	}
+	
+	public int findMovieCode(String movie) {
+		
+		int moviecode = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			String sql = "select movCode from movie_board where subject=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, movie);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				moviecode = rs.getInt("movCode");
+			}
+			
+			System.out.println("영화코드 : " + moviecode);
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+			
+		}
+		
+		return moviecode;
 	}
 	
 	// JSON 처리 메서드
@@ -738,6 +798,8 @@ public class ReserveDAO {
 		
 		return showMovieList;
 	}
+
+
 	
 	
 	// 은주 끝

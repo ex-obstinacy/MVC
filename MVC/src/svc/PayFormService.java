@@ -1,6 +1,7 @@
 package svc;
 
 import vo.MemberBean;
+import vo.MovBean;
 import vo.ReserveBean;
 import static db.JdbcUtil.*;
 
@@ -57,6 +58,23 @@ public class PayFormService {
 		close(con);
 		
 		return ticketnum;
+	}
+
+	public MovBean getMoviePost(int moviecode) {
+		System.out.println("PayFormService !");
+		MovBean mv = null;
+		
+		Connection con = getConnection();
+		
+		ReserveDAO reserveDAO = ReserveDAO.getInstance();
+		
+		reserveDAO.setConnection(con);
+		
+		mv = reserveDAO.getMoviePost(moviecode);
+		
+		close(con);
+		
+		return mv;
 	}
 
 }

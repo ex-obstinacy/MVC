@@ -24,6 +24,24 @@ public class MovieNumFindService {
 		
 		return movienum;
 	}
+
+	public int findMovieCode(String movie) {
+		
+		int moviecode = 0;
+		
+		Connection con = getConnection();
+		
+		ReserveDAO reserveDAO = ReserveDAO.getInstance();
+		
+		reserveDAO.setConnection(con);
+		
+		moviecode = reserveDAO.findMovieCode(movie);
+		
+		close(con);
+		
+		return moviecode;
+		
+	}
 	
 	
 	

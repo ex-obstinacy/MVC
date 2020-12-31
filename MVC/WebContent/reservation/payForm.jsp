@@ -1,3 +1,4 @@
+<%@page import="vo.MovBean"%>
 <%@page import="vo.MemberBean"%>
 <%@page import="vo.ReserveBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -9,6 +10,8 @@ int kidsnum=Integer.parseInt(request.getParameter("kidsNum"));
 String[] seatArr=request.getParameterValues("seat");
 
 ReserveBean movie = (ReserveBean)request.getAttribute("movie");
+MovBean mv = (MovBean)request.getAttribute("mv");
+// System.out.println("가져온 영화 포스터 : " + mv.getPost());
 MemberBean memberInfo = (MemberBean)request.getAttribute("memberInfo");
 
 int coupon1000 = memberInfo.getCoupon_1000();
@@ -254,7 +257,7 @@ if(adultnum == 0){
 				<div class="leftBox">
 					<div class="movieCont">
 						<h3>예매정보</h3>
-						<span class="movieImg"><img src="img/sub/poster.jpg"></span>
+						<span class="movieImg"><img src="movUpload/<%=mv.getPost() %>"></span>
 						<div class="movieInfo">			
 							<h4 class="movieSubject"><%=movie.getMovie_subject() %></h4>
 							<dl>
