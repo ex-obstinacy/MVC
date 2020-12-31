@@ -6,9 +6,6 @@
 
 <%
 	String member_id = (String) session.getAttribute("id");
-
-	// MemberShip 객체 받아오기
-	MemberShipBean memberShip = (MemberShipBean) request.getAttribute("memberShip");
 %>
 
 <!DOCTYPE html>
@@ -119,8 +116,9 @@
 						<div class="container">
 							<div class="cart_inner">
 							
-								<div><h5><%=memberShip.getGrade() %> 입니다.</h5></div>
-	                    		<h4><B><%=memberShip.getNextGrade() %></B> 까지 남은 POINT <B><%=memberShip.getNextPoint() - memberShip.getPoint() %></B></h4>
+							
+							1:1 문의
+							
 							
 							</div>
 						</div>

@@ -17,6 +17,7 @@ import action.MemberInfoAction;
 import action.MemberLoginProAction;
 import action.MemberLogoutAction;
 import action.MemberMainAction;
+import action.MemberMovCommentAction;
 import action.MemberUpdateProAction;
 import action.MemberWriteProAction;
 import vo.ActionForward;
@@ -151,6 +152,16 @@ public class MemberFrontController extends HttpServlet {
 			}
 		} else if(command.equals("/CheckId.me")) { // 회원가입시 아이디 중복 확인
 			action = new MemberCheckIdAction();
+			
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
+		} else if(command.equals("/MemberMovComment.me")) { // 리뷰내역 조회
+			action = new MemberMovCommentAction();
 			
 			try {
 				forward = action.execute(request, response);
