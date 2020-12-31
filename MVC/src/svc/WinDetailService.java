@@ -38,4 +38,21 @@ public class WinDetailService {
 		return article;
 	}
 
+	// 해당 이벤트에 참여한 사람 수 구하기
+	public int getPartiMemberCount(int event_num) {
+		int partiMemberCount = 0;
+		
+		Connection con = getConnection();
+		
+		WinDAO winDAO = WinDAO.getInstance();
+		
+		winDAO.setConnection(con);
+		
+		partiMemberCount = winDAO.getPartiMemberCount(event_num);
+		
+		close(con);
+		
+		return partiMemberCount;
+	}
+
 }

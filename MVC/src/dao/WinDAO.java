@@ -458,5 +458,69 @@ public class WinDAO {
 	}
 
 
+	public int hasEvent(int event_num) {
+		int checkEvent = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			String sql = "SELECT count(*) FROM event WHERE num=?";
+			pstmt =con.prepareStatement(sql);
+			pstmt.setInt(1, event_num);
+			rs = pstmt.executeQuery();
+			
+			// 조회 결과가 있을 경우(= 게시물이 하나라도 존재하는 경우)
+			if(rs.next()) {
+				checkEvent = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("hasEvent() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			// 자원 반환
+			// 주의! DAO 클래스 내에서 Connection 객체 반환 금지!
+			close(rs);
+			close(pstmt);
+		}
+		
+		return checkEvent;
+	}
+
+
+	// 해당 이벤트에 참여한 사람 수 구하기
+	public int getPartiMemberCount(int event_num) {
+		int partiMemberCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			String sql = "SELECT count(*) FROM apply WHERE event_num=?";
+			pstmt =con.prepareStatement(sql);
+			pstmt.setInt(1, event_num);
+			rs = pstmt.executeQuery();
+			
+			// 조회 결과가 있을 경우(= 게시물이 하나라도 존재하는 경우)
+			if(rs.next()) {
+				partiMemberCount = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("getPartiMemberCount() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			// 자원 반환
+			// 주의! DAO 클래스 내에서 Connection 객체 반환 금지!
+			close(rs);
+			close(pstmt);
+		}
+		
+		return partiMemberCount;
+	}
+
+
 	
 }

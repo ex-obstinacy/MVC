@@ -25,6 +25,18 @@ public class WinRandomAction implements Action {
 		// 이벤트 번호 num
 		int num= Integer.parseInt(request.getParameter("num"));
 		int event_num = Integer.parseInt(request.getParameter("event_num"));
+		int winCount = 0;
+		if(request.getParameter("winCount").equals("")) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('추첨인원수를 입력해주세요.')");
+			out.println("history.back()");
+			out.println("</script>");
+		} else {
+			winCount = Integer.parseInt(request.getParameter("winCount"));
+			System.out.println("추첨인원수 : " + winCount +"명");
+		}
 		
 		WinRandomService winRandomService = new WinRandomService();
 		
@@ -42,39 +54,41 @@ public class WinRandomAction implements Action {
 			out.println("</script>");
 		} else {	// 당첨자 없음 -> 추첨해야함!
 			// 해당 이벤트 당첨자 뽑기
-			Set<Integer> win_members = winRandomService.getArticleList(event_num);	// 당첨자 num
-			
-			// 이벤트 당첨자 정보 가져오기 -> 여러명일 수도 있으니까 List에 담기
-			ArrayList<WinBean> winMemberList = new ArrayList<WinBean>();
-			winMemberList = winRandomService.getWinMemberInfo(win_members);
-			
-			request.setAttribute("winMemberList", winMemberList);
-//			
-			// 이벤트 번호, 당첨자 아이디(일단 2명)
-//			System.out.println("응모한 이벤트번호 : " + winMemberList.get(0).getEvent_num());
-//			System.out.println("당첨자 아이디 : " + winMemberList.get(0).getMember_id());
-//			System.out.println("응모한 이벤트번호 : " + winMemberList.get(1).getEvent_num());
-//			System.out.println("당첨자 아이디 : " + winMemberList.get(1).getMember_id());
-//			
-			// 당첨자 아이디를 win 테이블의 member_id 에 저장하기(2명)
-//			String win_member_ids = "winMemberList.get(0).getMember_id()/winMemberList.get(1).getMember_id()";
-			boolean isUpdateSuccess = winRandomService.updateWinMember(winMemberList);
-			if(isUpdateSuccess) {
+			Set<Integer> win_members = winRandomService.getArticleList(event_num, winCount);	// 당첨자 num
+			if(win_members.contains(-10)) {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
 				out.println("<script>");
-				out.println("alert('당첨자 저장 성공!')");
-				out.println("</script>");
-				forward = new ActionForward();
-				forward.setPath("WinDetail.wi?num="+ num + "&page=" + request.getParameter("page"));
-				forward.setRedirect(true);
-			} else {
-				response.setContentType("text/html; charset=UTF-8");
-				PrintWriter out = response.getWriter();
-				out.println("<script>");
-				out.println("alert('당첨자 저장 실패!')");
+				out.println("alert('응모인원보다 추첨인원수가 더 많습니다!')");
 				out.println("history.back()");
 				out.println("</script>");
+			} else {
+				// 이벤트 당첨자 정보 가져오기 -> 여러명일 수도 있으니까 List에 담기
+				ArrayList<WinBean> winMemberList = new ArrayList<WinBean>();
+				winMemberList = winRandomService.getWinMemberInfo(win_members);
+				
+				request.setAttribute("winMemberList", winMemberList);
+				
+				// 당첨자 아이디를 win 테이블의 member_id 에 저장하기(2명)
+//			String win_member_ids = "winMemberList.get(0).getMember_id()/winMemberList.get(1).getMember_id()";
+				boolean isUpdateSuccess = winRandomService.updateWinMember(winMemberList);
+				if(isUpdateSuccess) {
+					response.setContentType("text/html; charset=UTF-8");
+					PrintWriter out = response.getWriter();
+					out.println("<script>");
+					out.println("alert('당첨자 저장 성공!')");
+					out.println("</script>");
+					forward = new ActionForward();
+					forward.setPath("WinDetail.wi?num="+ num + "&page=" + request.getParameter("page"));
+					forward.setRedirect(true);
+				} else {
+					response.setContentType("text/html; charset=UTF-8");
+					PrintWriter out = response.getWriter();
+					out.println("<script>");
+					out.println("alert('당첨자 저장 실패!')");
+					out.println("history.back()");
+					out.println("</script>");
+				}
 			}
 			
 		}

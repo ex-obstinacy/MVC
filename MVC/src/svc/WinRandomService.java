@@ -18,10 +18,11 @@ import vo.WinBean;
 
 public class WinRandomService {
 
-	public Set<Integer> getArticleList(int event_num) {
+	public Set<Integer> getArticleList(int event_num, int winCount) {
 		
 		Set<Integer> win_members1 = null;
 		Set<Integer> win_members2 = null;
+		Set<Integer> win_members_error = null;
 		
 //		System.out.println("WinRandomService - getArticleList()");
 		
@@ -36,9 +37,6 @@ public class WinRandomService {
 		applyDAO.setConnection(con);
 		
 		articleList =applyDAO.selectArticleList(event_num);
-		
-		// 저걸 랜덤함수랑 잘 버무려서 그 리턴값이 무슨 숫자가 나올거란 말이지
-		// 그 숫자 가지고 해당하는 리스트 번호 불러오면 당첨자 나오겟지
 		
 		// 전체 갯수 (num)  
 		System.out.println("응모한 회원  : " + articleList.size() + "명");
@@ -55,10 +53,16 @@ public class WinRandomService {
 		
 		win_members1 = new TreeSet<Integer>();
 		win_members2 = new TreeSet<Integer>();
+		win_members_error = new TreeSet<Integer>();
 		
 		// 길이를 정해서 몇 명 추첨할건지 수정해야함! (현재는 무조건 2명 당첨)
-		// 저장되는 요소(난수) 갯수가 3개보다 작을 동안 반복
-		while(win_members2.size()<2) {
+		if(winCount > articleList.size()) {
+			System.out.println("응모인원보다 추첨인원이 더 많음!");
+			win_members_error.add(-10);
+			return win_members_error;
+		}
+		// 저장되는 요소(난수) 갯수가 winCount(관리자가입력한값) 보다 작을 동안 반복
+		while(win_members2.size()<winCount) {
 			win_members2.add(r.nextInt(articleList.size()));		// 0 ~ articleList.size-1 까지의 난수
 		}
 		
@@ -67,9 +71,9 @@ public class WinRandomService {
 		while(ite.hasNext()) {
 			int o = (int) ite.next();
 			// 당첨된 사람 아이디
-			System.out.println("당첨된 회원 : " + articleList.get(o).getMember_id());
+//			System.out.println("당첨된 회원 : " + articleList.get(o).getMember_id());
 			// 해당 이벤트에서 당첨된 사람 아이디의 응모번호(apply테이블의 num)
-			System.out.println("응모번호 : " + articleList.get(o).getNum());
+//			System.out.println("응모번호 : " + articleList.get(o).getNum());
 			win_member_num = articleList.get(o).getNum();
 			updateCount = applyDAO.updateArticle(win_member_num);
 			

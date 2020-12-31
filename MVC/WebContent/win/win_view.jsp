@@ -1,3 +1,4 @@
+<%@page import="java.util.StringTokenizer"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="vo.ApplyBean"%>
 <%@page import="vo.WinBean"%>
@@ -10,10 +11,8 @@
 <%
 // WinBean 객체 파라미터 가져오기
 WinBean article = (WinBean) request.getAttribute("article");
-String win_member_id = article.getMember_id();
-if(win_member_id.equals("admin")) {
-	win_member_id = "아직 추첨 안함";
-}
+int partiMemberCount = (int)(request.getAttribute("partiMemberCount"));
+String win_members = article.getMember_id();
 // System.out.println("win_member : " + win_member_id);
 
 ArrayList<ApplyBean> articleList = (ArrayList<ApplyBean>)request.getAttribute("articleList");
@@ -195,9 +194,18 @@ int num = Integer.parseInt(request.getParameter("num"));
 										<div class="content-view">
 											<%=article.getContent()%>
 											<label for="wmember" >
-											당첨자 아이디 : 
-												<input type="text" name="win-member" id="wmember" placeholder="아직 추첨 안함" 
-													value="<%=win_member_id %>" readonly>
+											<%
+												if(win_members.equals("")) {
+													%>아직 추첨하지 않은 이벤트입니다.<%
+												} else {
+													%>당첨자 아이디 : <br><%
+													StringTokenizer st = new StringTokenizer(win_members, "/");
+													while(st.hasMoreTokens()) {
+														String win_id = st.nextToken() + "님";
+														out.println(win_id);
+													}
+												}
+											%>
 											</label>
 										</div>
 								</div> 
@@ -246,27 +254,6 @@ int num = Integer.parseInt(request.getParameter("num"));
 											<a href="WinModifyForm.wi?num=<%=article.getNum()%>&page=<%=nowPage%>" target="_parent" class="bbs-button">수정하기</a>
 										</div>
 										
-																		
-										<div>
-											<script type="text/javascript">
-												function c() {
-													var c = confirm("추첨하시겠습니까?");
-
-													if (c) {
-														fr.submit();
-													} else {
-														return false;
-													}
-												}
-											</script>
-											<form action="WinRandom.wi" name="fr" method="post">
-												<input type="hidden" name="num" value="<%=num%>" /> 
-												<input type="hidden" name="page" value="<%=nowPage%>" /> 
-												<input type="hidden" name="event_num" value= "<%=article.getEvent_num()%>"/>
-												<input type="submit" value="추첨하기" onclick="return c()" class="bbs-button">
-											</form>
-										</div>
-											
 										
 										<div>
 											<script type="text/javascript">
@@ -281,14 +268,41 @@ int num = Integer.parseInt(request.getParameter("num"));
 												}
 											</script>
 											<form action="WinDeletePro.wi" name="fr" method="post">
-												<input type="hidden" name="num" value="<%=num%>" /> <input type="hidden" name="page" value="<%=nowPage%>" /> <input type="submit" value="삭제하기" onclick="return a()" class="bbs-button">
+												<input type="hidden" name="num" value="<%=num%>" />
+												<input type="hidden" name="page" value="<%=nowPage%>" />
+												<input type="submit" value="삭제하기" onclick="return a()" class="bbs-button">
 											</form>
 										</div>
 										<%
 											}
 										}
 										%>
+										<br><br><br>
+										<!-- 추첨안했을때만 뜨게하기 -->								
+										<div>
+											<script type="text/javascript">
+												function c() {
+													var c = confirm("추첨하시겠습니까?");
+		
+													if (c) {
+														fr.submit();
+													} else {
+														return false;
+													}
+												}
+											</script>
+											<span>이벤트 참여수 : <%=partiMemberCount %> 명</span>
+											<form action="WinRandom.wi" name="fr" method="post">
+												<input type="hidden" name="num" value="<%=num%>" />
+												<input type="hidden" name="page" value="<%=nowPage%>" /> 
+												<input type="hidden" name="event_num" value= "<%=article.getEvent_num()%>"/>
+												<input type="text" name="winCount" placeholder="추첨 인원수"/>
+												<input type="submit" value="추첨하기" onclick="return c()" class="bbs-button">
+											</form>
+										</div>
 									</div>
+									
+									
 									<!-- 페이징 끝 -->
 								</div>
 							</div>

@@ -23,7 +23,13 @@ public class WinDetailAction implements Action {
 		WinDetailService winDetailService = new WinDetailService();
 		WinBean article = winDetailService.getArticle(num);
 		
+		// event_num 으로 해당 이벤트에 참여한 사람수 구하기
+		int event_num = article.getEvent_num();
+		int partiMemberCount = winDetailService.getPartiMemberCount(event_num);
+		System.out.println("해당 이벤트에 참여한 사람수 : " + partiMemberCount +"명");
+		
 		request.setAttribute("article", article);
+		request.setAttribute("partiMemberCount", partiMemberCount);
 		
 		forward = new ActionForward();
 		forward.setPath("/win/win_view.jsp");

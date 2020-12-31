@@ -226,7 +226,7 @@ public class ApplyDAO {
 					win_member.setEvent_num(rs.getInt("event_num"));
 					winMemberList.add(win_member);
 				}
-				System.out.println(winMemberList);
+//				System.out.println(winMemberList);
 			}
 			
 		} catch (Exception e) {
