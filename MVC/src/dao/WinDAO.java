@@ -216,7 +216,6 @@ public class WinDAO {
 				article.setEvent_num(rs.getInt("event_num"));
 				System.out.println("상세 조회 글 번호 : " + num );
 				
-				
 			}
 			
 		} catch (SQLException e) {
@@ -248,7 +247,6 @@ public class WinDAO {
 //			System.out.println("조회수 증가 결과 : " + updateCount);
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
@@ -401,18 +399,20 @@ public class WinDAO {
 	}
 
 
-	public int updateWinMember(WinBean win_member) {
+	public int updateWinMember(ArrayList<WinBean> winMemberList) {
 		
 		int updateCount = 0;
 		PreparedStatement pstmt = null;
 		
 		try {
 			
-			String sql = "UPDATE win SET member_id=? where event_num=?";
-			pstmt =con.prepareStatement(sql);
-			pstmt.setString(1, win_member.getMember_id());
-			pstmt.setInt(2, win_member.getEvent_num());
-			updateCount = pstmt.executeUpdate();
+			for(int i=0;i<winMemberList.size();i++) {
+				String sql = "UPDATE win SET member_id=concat(member_id, '/', ?) where event_num=?";
+				pstmt =con.prepareStatement(sql);
+				pstmt.setString(1, winMemberList.get(i).getMember_id());
+				pstmt.setInt(2, winMemberList.get(i).getEvent_num());
+				updateCount = pstmt.executeUpdate();
+			}
 			
 		} catch (SQLException e) {
 			System.out.println("updateWinMember() 오류! - " + e.getMessage());
@@ -424,6 +424,37 @@ public class WinDAO {
 		}
 		
 		return updateCount;
+	}
+
+
+	public String hasWinMember(int event_num) {
+		String winMember = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			String sql = "SELECT member_id FROM win where event_num=?";
+			pstmt =con.prepareStatement(sql);
+			pstmt.setInt(1, event_num);
+			rs = pstmt.executeQuery();
+			
+			// 조회 결과가 있을 경우(= 게시물이 하나라도 존재하는 경우)
+			if(rs.next()) {
+				winMember = rs.getString("member_id");
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("hasWinMember() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			// 자원 반환
+			// 주의! DAO 클래스 내에서 Connection 객체 반환 금지!
+			close(rs);
+			close(pstmt);
+		}
+		
+		return winMember;
 	}
 
 

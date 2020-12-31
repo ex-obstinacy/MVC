@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Set;
 
 import vo.ApplyBean;
 import vo.WinBean;
@@ -175,7 +177,7 @@ public class ApplyDAO {
 	}
 
 	// win -> 1 로 update 하는 메서드
-	public int updateArticle(int result) {
+	public int updateArticle(int win_member_num) {
 		
 		int updateCount = 0;
 		
@@ -184,7 +186,7 @@ public class ApplyDAO {
 		try {
 			String sql = "UPDATE apply SET win=1 WHERE num=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, result);
+			pstmt.setInt(1, win_member_num);
 			updateCount = pstmt.executeUpdate();
 //			ApplyBean article = new ApplyBean();
 		} catch (Exception e) {
@@ -197,31 +199,45 @@ public class ApplyDAO {
 		return updateCount;
 	}
 
-	public WinBean getWinMemberInfo(int win_result) {
+	public ArrayList<WinBean> getWinMemberInfo(Set<Integer> win_members) {
 		
+		ArrayList<WinBean> winMemberList = null;
 		WinBean win_member = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
-			String sql = "SELECT * FROM apply WHERE num=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, win_result);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				win_member = new WinBean();
-				win_member.setMember_id(rs.getString("member_id"));
-				win_member.setEvent_num(rs.getInt("event_num"));
+			// 가져온 당첨자들num을 하나씩 쪼개기
+			Iterator<Integer> ite = win_members.iterator();
+			winMemberList = new ArrayList<WinBean>();
+			
+			while(ite.hasNext()) {
+				// 당첨자 1명 꺼내서 정보 저장하기
+				int o = (int) ite.next();
+//				System.out.println("당첨자번호 : " + o)
+
+				String sql = "SELECT * FROM apply WHERE num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, o);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					win_member = new WinBean();
+					win_member.setMember_id(rs.getString("member_id"));
+					win_member.setEvent_num(rs.getInt("event_num"));
+					winMemberList.add(win_member);
+				}
+				System.out.println(winMemberList);
 			}
+			
 		} catch (Exception e) {
-			System.out.println("updateArticle() 오류! - " + e.getMessage());
+			System.out.println("getWinMemberInfo() 오류! - " + e.getMessage());
 			e.printStackTrace();
 		} finally {
 			close(rs);
 			close(pstmt);
 		}
 		
-		return win_member;
+		return winMemberList;
 	}
 
 
