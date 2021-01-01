@@ -1,6 +1,6 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="vo.PageInfo"%>
-<%@page import="vo.MovCommentBean"%>
+<%@page import="vo.QnaBean"%>
 <%@page import="vo.StoreBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="vo.MemberShipBean"%>
@@ -10,7 +10,8 @@
 <%
 	String member_id = (String) session.getAttribute("id");
 
-	ArrayList<MovCommentBean> articleList = (ArrayList<MovCommentBean>) request.getAttribute("articleList");
+	ArrayList<QnaBean> articleList = (ArrayList<QnaBean>)request.getAttribute("articleList");
+
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
 	int nowPage = pageInfo.getPage();
 	int maxPage = pageInfo.getMaxPage();
@@ -18,8 +19,9 @@
 	int endPage = pageInfo.getEndPage();
 	int listCount = pageInfo.getListCount();
 	
-	SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm");
-	%>
+	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+	
+%>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -115,7 +117,7 @@
 									<li><a href="MemberOrderList.me">결제내역</a></li>
 									<li><a href="BasketList.go">장바구니</a></li>
 									<li><a href="MemberMovComment.me">리뷰내역</a></li>
-									<li><a href="MemberQnADetail.me">1:1문의</a></li>
+									<li><a href="QnaList.qn">1:1문의</a></li>
 									<li><a href="MemberInfo.me">My 정보</a></li>
 									<li><a href="MemberDelete.me">회원 탈퇴</a></li>
 								</ul>
@@ -131,86 +133,85 @@
 							<div class="cart_inner">
 							
 							
-								<div class="table-responsive">
-									<table class="table">
-										<%
-											if (articleList != null && listCount > 0) {
+							
+							
+							<%
+								if(articleList != null && listCount > 0) {
+							%>
+							<table class="table">
+							<%
+								if(member_id!=null){
+							%>
+								<tr>
+									<td align="center">작성일</td>
+									<td align="center">제 목</td>
+									<td align="center">작성자</td>
+									<td align="center">조회수</td>
+								</tr>
+								<%
+									for(int i = 0; i < articleList.size(); i++) {
+								%>
+								<tr>
+									<td align="center"><%=sdf.format(articleList.get(i).getDate())%></td>
+									<td align="center">
+										<%if(articleList.get(i).getRe_lev() != 0) {
+											for(int j = 0; j <= articleList.get(i).getRe_lev() * 2; j++) { %>
+										&nbsp;
+										<%} %>
+										└▶
+										<%} %>
+										&nbsp; 
+										<a href="QnaDetail.qn?num=<%=articleList.get(i).getNum() %>&page=<%=nowPage %>&re_ref=<%=articleList.get(i).getRe_ref() %>&re_lev=<%=articleList.get(i).getRe_lev() %>">
+											<%=articleList.get(i).getSubject() %>
+										</a>
+									<td align="center"><%=articleList.get(i).getMember_id() %></td>
+									<td align="center"><%=articleList.get(i).getReadcount() %></td>
+								</tr>
+								<%	} %>
+							<%	} %>
+							</table>
+							
+							<section id="pageList">
+								<div class="container">
+								<%
+									if(member_id!=null){
+										if(nowPage <= 1) {
+								%>
+									<input type="button" value="이전" class="btn_3">&nbsp;
+										<%} else {%>
+									<input type="button" value="이전" class="btn_3" onclick="location.href='QnaList.qn?page=<%=nowPage - 1 %>'">&nbsp;
+										<%}
+										for(int i = startPage; i <= endPage; i++) { 
+											if(i == nowPage) { 
 										%>
-										<tr>
-											<th align="center">제목</th>
-											<th align="center">내용</th>
-											<th align="center">작성일</th>
-											<th align="center">평점</th>
-										</tr>
-										<%
-												for (int i = 0; i < articleList.size(); i++) {
-										%>
-										<tr>
-											<td align="center">
-												<a href="MovDetail.mo?movieCd=<%=articleList.get(i).getMovie_board_movCode() %>&page=<%=nowPage %>">
-													<img src="movUpload/<%=articleList.get(i).getPost() %>" width="70"><br>
-													<%=articleList.get(i).getSubjet() %>
-												</a>
-											</td>
-											<td align="center"><%=articleList.get(i).getContent() %></td>
-											<td align="center"><%=sdf.format(articleList.get(i).getDate()) %></td>
-											<td align="center"><%=articleList.get(i).getCmgrade() %></td>
-										</tr>
-										<%
-												}
-											}
-										%>
-									</table>
+									[<%=i %>]&nbsp;
+											<%} else { %>
+									<a href="QnaList.an?page=<%=i %>">[<%=i %>]</a>&nbsp;
+											<%} %>
+										<%} %>
+										<%if(nowPage >= maxPage) { %>
+									<input type="button" value="다음" class="btn_3">
+										<%} else { %>
+									<input type="button" value="다음" class="btn_3" onclick="location.href='QnaList.qn?page=<%=nowPage + 1 %>'">
+										<%} %>
+									<%}%>
 								</div>
-								
-								
-						<section id="pageList">
-							<div class="container">
-								<%
-									if (nowPage <= 1) {
-								%>
-								<input type="button" value="이전" class="btn_3">&nbsp;
-								<%
-									} else {
-								%>
-								<input type="button" value="이전" class="btn_3" onclick="location.href='MemberMovComment.me?page=<%=nowPage - 1%>'">&nbsp;
-								<%
-									}
-								%>
-					
-								<%
-									for (int i = startPage; i <= endPage; i++) {
-									if (i == nowPage) {
-								%>
-								[<%=i%>]&nbsp;
-								<%
-									} else {
-								%>
-								<a href="MemberMovComment.me?page=<%=i%>">[<%=i%>]
-								</a>&nbsp;
-								<%
-									}
-								%>
-								<%
-									}
-								%>
-					
-								<%
-									if (nowPage >= maxPage) {
-								%>
-								<input type="button" value="다음" class="btn_3">
-								<%
-									} else {
-								%>
-								<input type="button" value="다음" class="btn_3"
-									onclick="location.href='MemberMovComment.me?page=<%=nowPage + 1%>'">
-								<%
-									}
-								%>
-							</div>
-						</section>
-							
-							
+							</section>
+							<% 
+							}else {
+							%>
+									
+							<section id="emptyArea">
+								<div class="container">등록된 글이 없습니다</div>
+							</section>
+							<section id="buttonArea">
+								<div class="container">
+									<input type="button" value="글쓰기" class="btn_3" onclick="location.href='QnaWriteForm.qn'">
+								</div>
+							</section>
+							<%
+							}
+							%>
 							</div>
 						</div>
 						<!--   </section> -->

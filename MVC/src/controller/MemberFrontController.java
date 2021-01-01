@@ -20,6 +20,7 @@ import action.MemberMainAction;
 import action.MemberMovCommentAction;
 import action.MemberOrderDetailAction;
 import action.MemberOrderListAction;
+import action.MemberQnADetailAction;
 import action.MemberReserveDetailAction;
 import action.MemberReserveListAction;
 import action.MemberUpdateProAction;
@@ -206,6 +207,16 @@ public class MemberFrontController extends HttpServlet {
 			}
 		} else if(command.equals("/MemberOrderDetail.me")) { // 구매내역 상세 조회
 			action = new MemberOrderDetailAction();
+			
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
+		} else if(command.equals("/MemberQnADetail.me")) { // 1:1문의 상세 조회
+			action = new MemberQnADetailAction();
 			
 			try {
 				forward = action.execute(request, response);

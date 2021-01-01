@@ -86,10 +86,10 @@
                             <div class="widgets_inner">
                                 <ul class="list">
 									<li><a href="MemberReserveList.me">예매내역</a></li>
-									<li><a href="#">결제내역</a></li>
+									<li><a href="MemberOrderList.me">결제내역</a></li>
 									<li><a href="BasketList.go">장바구니</a></li>
 									<li><a href="MemberMovComment.me">리뷰내역</a></li>
-									<li><a href="#">1:1문의</a></li>
+									<li><a href="MemberQnADetail.me">1:1문의</a></li>
 									<li><a href="MemberInfo.me">My 정보</a></li>
 									<li><a href="MemberDelete.me">회원 탈퇴</a></li>
 								</ul>
