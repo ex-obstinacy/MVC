@@ -291,7 +291,7 @@ System.out.println("영화코드 : " + movieCd);
 			</tr>
 		</table>
 		<div class="btnBox">
-			<input type="submit" class="genric-btn primary circle" value="좌선선택">
+			<input type="submit" class="genric-btn primary circle" value="좌석선택">
 		</div>
 		</form>
 	  </div>
