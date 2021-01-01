@@ -28,29 +28,14 @@
 <!--     style CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/common.css"> 
+        <link rel="stylesheet" href="css/sub.css">
 </head>
 <body>
   <!--::header part start::-->
   <jsp:include page="/inc/top.jsp"/>
   <!-- Header part end-->
-  
-    <!--================Home Banner Area =================-->
-  <!-- breadcrumb start-->
-  <section class="breadcrumb breadcrumb_bg">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div class="breadcrumb_iner">
-            <div class="breadcrumb_iner_item">
-              <h2>상품 등록</h2>
-              <p>란희 <span>-</span> GoodsWriteForm</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- breadcrumb start-->
+  <jsp:include page="/inc/sub_main1.jsp"/>
+   
 
 <script src="js/jquery-3.5.1.js"></script>
 <script type="text/javascript">

@@ -145,7 +145,7 @@
   <!-- Header part end-->
 
 	<!-- 서브비주얼 -->
-	<jsp:include page="/inc/sub_visual1.jsp"/>
+	<jsp:include page="/inc/sub_main1.jsp"/>
 
   
 
