@@ -21,8 +21,30 @@ String[] reserveNum = (String [])request.getAttribute("reserveNum");
 
 <head>
 	<style type="text/css">
-	.oldprice {text-decoration : line-through;
-			   color: #BDBDBD;}
+	#originPrice{ 
+	font-size: 16px; font-family: 'Roboto', 'Noto Sans KR'; font-size: 13px; font-weight: bold; text-decoration: line-through; opacity: .4; vertical-align: middle;
+	}
+	
+	#price{
+	font-size : 18px;
+	color: #000;
+	line-weight:1.2em;
+	}
+	
+	#name{
+	font-family: 'Roboto', 'Noto Sans KR'; 
+	font-size : 15px;
+	color: #000;
+	line-weight:1.2em;
+	}
+	
+	#component{
+	font-family: 'Roboto', 'Noto Sans KR'; 
+	font-size : 15px;
+	color: #666666;
+	line-weight:1.2em;
+	}
+	
 
 	</style>
   <!-- Required meta tags -->
@@ -138,7 +160,7 @@ function requestPay() {
   <section class="cart_area">
     <div class="container">
       <div class="cart_inner">
-        <h3>구매상품 정보</h3>
+        <h2><span>구매상품 정보</span></h2>
          <hr>
         <form action="OrderPro2.go" name="orderResult" method="post" id="orderForm">
           <table class="table">
@@ -177,21 +199,22 @@ function requestPay() {
                       <img src="goodsUpload/<%=basketList.get(i).getFile() %>" alt="상품이미지" width="250" />
                     </div>
                     <div class="media-body">
-                      <p class="name"><%=basketList.get(i).getName() %></p>
-                      <p><%=basketList.get(i).getComponent() %></p>
+                      <p id = name><b><%=basketList.get(i).getName() %></b></p>
+                      <p id = component><b><%=basketList.get(i).getComponent() %></b></p>
                     </div>
                   </div>
                 </td>
                 <td>
                   <div class="product_count">
-                    <p><%=basketList.get(i).getBasketCount() %>개</p>
+                    <p><b><%=basketList.get(i).getBasketCount() %>개</b></p>
                   </div>
                 </td>
                 <td>
                   <%if(sale == 0){ %>
-                  <h5><%=goodsPrice %>원</h5> <%} else { %>
-                  <h5 class=oldprice><%=goodsPrice %>원</h5>
-                  <h5><%=nowPrice %>원</h5> <%} %>
+                  <h5 id ="price"><%=goodsPrice %>원</h5> <%} else { %>
+                  <h5 id ="price"><%=nowPrice %>원</h5>
+                  <h5 id=originPrice><%=goodsPrice %>원</h5>
+                  <%} %>
                 </td>
               </tr>
             <%   

@@ -7,7 +7,13 @@
 .sub_visual01{position:relative; width:100%; height:200px; text-align:center; background-image:url(../img/sub/sub_visual01.jpg); background-repeat:no-repeat; background-position:center center; background-size:100% auto;}
 .sub_visual01 div.black{position:absolute; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6); }
 .sub_visual01 h2{position:absolute; top:50%; left:50%; color:#fff;  font-size:23px; z-index:100; transform:translate(-50%,-50%);}
+
 .sub_store01{position:relative; width:100%; height:200px; text-align:center; background-image:url(../img/sub/ssmain.png); background-repeat:no-repeat; background-position:center center; background-size:100% auto;}
+
+.sub_main01{position:relative; width:100%; height:200px; text-align:center; background-image:url(../img/sub/sub_main01.jpg); background-repeat:no-repeat; background-position:center center; background-size:100% auto;}
+.sub_main01 div.black{position:absolute; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6); }
+.sub_main01 h2{position:absolute; top:45%; left:50%; color:#fff;  font-size:30px; z-index:100; transform:translate(-50%,-50%);}
+.sub_main01 h3{position:absolute; top:65%; left:50%; color:#fff;  font-size:23px; z-index:100; transform:translate(-50%,-50%);}
 
 /******************** 멤버 서브페이지 시작 ********************/
 

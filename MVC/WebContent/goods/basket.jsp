@@ -19,8 +19,38 @@
 
 <head>
 	<style type="text/css">
-	.oldprice {text-decoration : line-through;
-			   color: #BDBDBD;}
+	#originPrice{ 
+	font-size: 16px; font-family: 'Roboto', 'Noto Sans KR'; font-size: 13px; font-weight: bold; text-decoration: line-through; opacity: .4; vertical-align: middle;
+	}
+	
+	#price{
+	font-size : 18px;
+	color: #000;
+	line-weight:1.2em;
+	}
+	
+	#name{
+	font-family: 'Roboto', 'Noto Sans KR'; 
+	font-size : 15px;
+	color: #000;
+	line-weight:1.2em;
+	}
+	
+	#component{
+	font-family: 'Roboto', 'Noto Sans KR'; 
+	font-size : 15px;
+	color: #666666;
+	line-weight:1.2em;
+	}
+	
+	#price2{
+	font-family: 'Roboto', 'Noto Sans KR'; 
+	font-size : 15px;
+	color: #000;
+	line-weight:1.2em;
+	}
+	
+	
 	</style>
 	
 	<%
@@ -132,24 +162,8 @@
 <!--::header part start::-->
     <jsp:include page="../inc/top.jsp"/>
 <!-- Header part end-->
-	
-    <!--================Home Banner Area =================-->
-    <!-- breadcrumb start-->
-    <section class="breadcrumb breadcrumb_bg">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="breadcrumb_iner">
-                        <div class="breadcrumb_iner_item">
-                            <h2><%=member_id %> 님</h2>
-                            <p>반갑습니다! Welcome Back!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- breadcrumb start-->
+	    <!--     서브비주얼 -->
+	<jsp:include page="/inc/sub_main1.jsp"/>
 
     <!--================ 메뉴 영역 =================-->
     <section class="cart_area">
@@ -167,7 +181,7 @@
 									<li><a href="MemberOrderList.me">결제내역</a></li>
 									<li><a href="BasketList.go">장바구니</a></li>
 									<li><a href="MemberMovComment.me">리뷰내역</a></li>
-									<li><a href="QnaList.qn">1:1문의</a></li>
+									<li><a href="MemberQnADetail.me">1:1문의</a></li>
 									<li><a href="MemberInfo.me">My 정보</a></li>
 									<li><a href="MemberDelete.me">회원 탈퇴</a></li>
 								</ul>
@@ -181,7 +195,7 @@
 <!--         <section class="cart_area"> -->
     <div class="container">
       <div class="cart_inner">
-        <h3>장바구니상품 정보</h3>
+        <h2><span>장바구니상품 정보</span></h2>
          <hr>
          <%
           if(basketList.size() != 0 && basketList.size() >0){
@@ -218,9 +232,9 @@
                       <img src="goodsUpload/<%=basketList.get(i).getFile() %>" alt=""  width="250" />
                     </div>
                     <div class="media-body"> <!-- 상품 설명 바디 -->
-                      <p><%=basketList.get(i).getName() %> </p>
-                      <p><%=basketList.get(i).getComponent() %></p>
-                      <p><%=basketList.get(i).getPrice() %>원</p>
+                      <p id = name><b><%=basketList.get(i).getName() %></b> </p>
+                      <p id = component><b><%=basketList.get(i).getComponent() %></b></p>
+                      <p id = price2><b><%=basketList.get(i).getPrice() %>원</b></p>
                     </div>
                   </div>
                 </td>
@@ -235,9 +249,10 @@
                 </td>
                 <td>
                 <%if(sale == 0){ %>
-                  <h5><%=goodsPrice %>원</h5> <%} else { %>
-                  <h5 class=oldprice><%=goodsPrice %>원</h5>
-                  <h5><%=nowPrice %>원</h5> <%} %>
+                  <h5 id ="price"><%=goodsPrice %>원</h5> <%} else { %>
+                  <h5 id ="price"><%=nowPrice %>원</h5>
+                  <h5 id=originPrice><%=goodsPrice %>원</h5>
+                  <%} %>
                 </td>
               </tr>
          
@@ -250,7 +265,7 @@
                 <td>
                   <h5>총 상품금액</h5>
                   <h5>할인금액</h5>
-                  <h3>총 결제예정금액</h3>
+                  <h3>총 결제예상금액</h3>
                 </td>
                 <td>
                   <h5><%=totalPrice %>원</h5>

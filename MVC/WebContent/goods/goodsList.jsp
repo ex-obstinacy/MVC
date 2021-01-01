@@ -46,6 +46,7 @@
 <!--     style CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/common.css"> 
+    <link rel="stylesheet" href="css/sub.css">
     
     <script type="text/javascript">
 
@@ -64,24 +65,26 @@
   <!--::header part start::-->
   <jsp:include page="/inc/top.jsp"/>
   <!-- Header part end-->
-  
-    <!--================Home Banner Area =================-->
-  <!-- breadcrumb start-->
-  <section class="breadcrumb breadcrumb_bg">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div class="breadcrumb_iner">
-            <div class="breadcrumb_iner_item">
-              <h2>상품 목록</h2>
-              <p>란희 <span>-</span> GoodsList</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- breadcrumb start-->
+   <!--     서브비주얼 -->
+	<jsp:include page="/inc/sub_main1.jsp"/>
+	
+<!--     ================Home Banner Area ================= -->
+<!--   <!-- breadcrumb start--> 
+<!--   <section class="breadcrumb breadcrumb_bg"> -->
+<!--     <div class="container"> -->
+<!--       <div class="row justify-content-center"> -->
+<!--         <div class="col-lg-8"> -->
+<!--           <div class="breadcrumb_iner"> -->
+<!--             <div class="breadcrumb_iner_item"> -->
+<!--               <h2>상품 목록</h2> -->
+<!--               <p>란희 <span>-</span> GoodsList</p> -->
+<!--             </div> -->
+<!--           </div> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--   </section> -->
+<!--   <!-- breadcrumb start--> 
   
       <!--================ 메뉴 영역 =================-->
     <section class="cat_product_area section_padding">
