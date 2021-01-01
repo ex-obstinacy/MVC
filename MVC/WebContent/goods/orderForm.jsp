@@ -32,7 +32,7 @@ String reserveNum = (String)request.getAttribute("reserveNum");
 	line-weight:1.2em;
 	}
 	
-	#name{
+	.name{
 	font-family: 'Roboto', 'Noto Sans KR'; 
 	font-size : 15px;
 	color: #000;
@@ -197,7 +197,7 @@ function requestPay() {
                       <img src="goodsUpload/<%=basketList.get(i).getFile() %>" alt="상품이미지" width="250" />
                     </div>
                     <div class="media-body">
-                      <p id = name><b><%=basketList.get(i).getName() %></b></p>
+                      <p class="name"><b><%=basketList.get(i).getName() %></b></p>
                       <p id = component><b><%=basketList.get(i).getComponent() %></b></p>
                     </div>
                   </div>
