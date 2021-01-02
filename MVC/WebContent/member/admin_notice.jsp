@@ -1,23 +1,35 @@
-<%@page import="vo.MovBean"%>
-<%@page import="kr.or.kobis.kobisopenapi.consumer.soap.movie.MovieAPIServiceImplService"%>
-<%@page import="kr.or.kobis.kobisopenapi.consumer.soap.movie.MovieInfoResult"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
+    
  <%
 	//session 객체에 저장된 id 값 가져와서 변수에 저장
 	String id = (String)session.getAttribute("id");
  
-	// MovBean 객체 가져오기
-	MovBean article = (MovBean)request.getAttribute("article");
-	
-	String nowPage = request.getParameter("page");
-%>
+ %>
 
 <!DOCTYPE html>
 <html lang="zxx">
 
 <head>
+
+	<%
+		if (id == null) {
+	%>
+	<script type="text/javascript">
+		alert("로그인이 필요합니다.");
+		location.href = "MemberLogin.me";
+	</script>
+	<%
+		} else if (!id.equals("admin")) {
+	%>
+			<script type="text/javascript">
+				alert("잘못된 접근입니다.");
+				history.back();
+			</script>
+	<%
+		}
+	%>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -43,8 +55,7 @@
     <link rel="stylesheet" href="css/price_rangs.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
-    
-    <link rel="stylesheet" href="css/common.css"> 
+    <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/sub.css">
     
 </head>
@@ -53,24 +64,6 @@
     <!--::header part start::-->
     <jsp:include page="../inc/top.jsp"/>
     <!-- Header part end-->
-
-    <!--================Home Banner Area =================-->
-    <!-- breadcrumb start-->
-<!--     <section class="breadcrumb breadcrumb_bg"> -->
-<!--         <div class="container"> -->
-<!--             <div class="row justify-content-center"> -->
-<!--                 <div class="col-lg-8"> -->
-<!--                     <div class="breadcrumb_iner"> -->
-<!--                         <div class="breadcrumb_iner_item"> -->
-<!--                             <h2>영화 등록</h2> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--             </div> -->
-<!--         </div> -->
-<!--     </section> -->
-    <!-- breadcrumb start-->
-    
     <!--     서브비주얼 -->
 	<jsp:include page="/inc/sub_main1.jsp"/>
 
@@ -116,73 +109,9 @@
                 
                 <div class="col-lg-9">
                     <div class="row align-items-center latest_product_inner">
-                    	<table class="table">
-                    		<tr>
-                    			<td width="80">제목</td>
-                    			<td><input type="text" readonly="readonly" class="single-input" value="<%=article.getSubjet() %>"></td>
-                    			<td width="80">영화 코드</td>
-                    			<td><input type="text" readonly="readonly" class="single-input" value="<%=article.getMovieCd() %>"></td>
-                    		</tr>
-                    		<tr>
-                    			<td>장르</td>
-                    			<td><input type="text" readonly="readonly" class="single-input" value="<%=article.getGenre() %>"></td>
-                    			<td>개봉일</td>
-                    			<td><input type="text" readonly="readonly" class="single-input" value="<%=article.getOpenDt() %>"></td>
-                    		</tr>
-                    		<tr>
-                    			<td>상영시간</td>
-                    			<td><input type="text" readonly="readonly" class="single-input" value="<%=article.getShowTm() %>"></td>
-                    			<td>감독</td>
-                    			<td><input type="text" readonly="readonly" class="single-input" value="<%=article.getDirector() %>"></td>
-                    		</tr>
-                    		<tr>
-                    			<td>출연</td>
-                    			<td><input type="text" readonly="readonly" class="single-input" value="<%=article.getCast() %>"></td>
-                    			<td>제작국가</td>
-                    			<td><input type="text" readonly="readonly" class="single-input" value="<%=article.getNationNm() %>"></td>
-                    		</tr>
-                    		<tr>
-                    			<td>영화사</td>
-                    			<td><input type="text" readonly="readonly" class="single-input" value="<%=article.getCompanys() %>"></td>
-                    			<td>관람등급</td>
-                    			<td>
-                    				<% if (article.getGrade().equals("ALL")) { %>
-                    				전체관람가
-                    				<% } else if (article.getGrade().equals("12")) { %>
-                    				12세이상관람가
-                    				<% } else if (article.getGrade().equals("15")) { %>
-                    				15세이상관람가
-                    				<%} else { %>
-                    				청소년관람불가
-                    				<%} %>
-                    			</td>
-                    		</tr>
-                    		<tr>
-                    			<td>포스터</td>
-                    			<td><img src="movUpload/<%=article.getPost() %>" width="100"></td>
-                    			<td>스틸컷</td>
-                    			<td>
-                    				<% for (String stillCut: article.getStillCutFileName()) { %>
-                    				<img src="movUpload/<%=stillCut %>" width="100">
-                    				<% } %>
-                    			</td>
-                    		</tr>
-                    		<tr>
-                    			<td>트레일러</td>
-                    			<td colspan="3"><%=article.getTrailer() %></td>
-                    		</tr>
-                    		<tr>
-                    			<td colspan="4">
-                    				<textarea class="single-textarea" placeholder="영화정보" name="content"><%=article.getContent() %></textarea>
-                    			</td>
-                    		</tr>
-                    		<tr>
-                    			<td colspan="4">
-                    				<input type="button" value="목록" class="genric-btn primary circle" onclick="location.href='AdminMovList.mo?page=<%=nowPage %>'">
-                    			</td>
-                    		</tr>
-                    		
-                    	</table>
+	                    <h3><%=id %> 님<br>
+	                    열심히 일하자!</h3>
+                    
                     </div>
                 </div>
             </div>

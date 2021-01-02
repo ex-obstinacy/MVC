@@ -49,6 +49,7 @@
     <link rel="stylesheet" href="css/style.css">
     
     <link rel="stylesheet" href="css/common.css"> 
+    <link rel="stylesheet" href="css/sub.css">
     
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script>
@@ -96,20 +97,23 @@
 
     <!--================Home Banner Area =================-->
     <!-- breadcrumb start-->
-    <section class="breadcrumb breadcrumb_bg">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="breadcrumb_iner">
-                        <div class="breadcrumb_iner_item">
-                            <h2>영화 등록</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!--     <section class="breadcrumb breadcrumb_bg"> -->
+<!--         <div class="container"> -->
+<!--             <div class="row justify-content-center"> -->
+<!--                 <div class="col-lg-8"> -->
+<!--                     <div class="breadcrumb_iner"> -->
+<!--                         <div class="breadcrumb_iner_item"> -->
+<!--                             <h2>영화 등록</h2> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--     </section> -->
     <!-- breadcrumb start-->
+    
+    <!--     서브비주얼 -->
+	<jsp:include page="/inc/sub_main1.jsp"/>
 
     <!--================ 메뉴 영역 =================-->
     <section class="cat_product_area section_padding">
