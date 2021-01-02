@@ -132,20 +132,20 @@
 		<div class="container">
       	  <div class="cart_inner">
             <div class="table-responsive">
-		<h2>상품 목록</h2>
+<!-- 		<h2>상품 목록</h2> -->
 		<table class="table">
 			<%
 			if(articleList != null && listCount > 0) {
 			%>
-				<tr>
-					<th>상품번호</th>
-					<th>카테고리</th>
-					<th>상품이름</th>
-					<th>상품가격</th>
-					<th>할인율</th>
+				<tr align="center">
+					<th width="70">상품<br>번호</th>
+					<th width="70">카테고리</th>
+					<th>상품<br>이름</th>
+					<th>상품<br>가격</th>
+					<th width="70">할인율</th>
 					<th>구성품</th>
-					<th>판매량</th>
-					<th>상품이미지</th>
+					<th width="70">판매량</th>
+					<th width="70">상품<br>이미지</th>
 					<th>내용</th>
 					<th>관리</th>
 				</tr>

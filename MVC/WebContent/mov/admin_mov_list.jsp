@@ -127,14 +127,14 @@
 											<%
 												if (articleList != null && listCount > 0) {
 											%>
-											<tr>
+											<tr align="center">
 												<th>제목</th>
 												<th>영화 코드</th>
 												<th>장르</th>
 												<th>개봉일</th>
-												<th>상영시간</th>
+												<th width="80">상영시간</th>
 												<th>감독</th>
-												<th>제작국가</th>
+												<th width="80">제작국가</th>
 												<th></th>
 											</tr>
 											<%

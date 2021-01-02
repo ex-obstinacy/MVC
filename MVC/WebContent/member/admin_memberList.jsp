@@ -145,7 +145,7 @@
 											<%
 												if (articleList != null && listCount > 0) {
 											%>
-											<tr>
+											<tr align="center">
 												<th>아이디</th>
 												<th>비밀번호</th>
 												<th>이름</th>
