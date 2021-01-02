@@ -111,7 +111,7 @@
                                         <a href="GoodsList.go">스토어</a>
                                     </li>
                                     <li>
-                                        <a href="NoticeList.no">공지사항</a>
+                                        <a href="AdminNoticeList.ad">공지사항</a>
                                     </li>
                                     <li>
                                         <a href="QnaList.qn">1대1 문의</a>
