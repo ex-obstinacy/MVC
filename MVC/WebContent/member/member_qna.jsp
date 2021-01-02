@@ -114,11 +114,8 @@
 						<div class="container">
 							<div class="cart_inner">
 							
-							
-							
-							
 							<%
-								if(articleList != null && listCount > 0) {
+								if(articleList.size() != 0) {
 							%>
 							<table class="table">
 							<%

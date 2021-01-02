@@ -112,12 +112,12 @@
 						<div class="container">
 							<div class="cart_inner">
 							
+								<%
+									if (articleList != null && listCount > 0) {
+								%>
 							
 								<div class="table-responsive">
 									<table class="table">
-										<%
-											if (articleList != null && listCount > 0) {
-										%>
 										<tr>
 											<th align="center">제목</th>
 											<th align="center">내용</th>
@@ -140,58 +140,63 @@
 										</tr>
 										<%
 												}
-											}
 										%>
 									</table>
 								</div>
 								
-								
-						<section id="pageList">
-							<div class="container">
-								<%
-									if (nowPage <= 1) {
-								%>
-								<input type="button" value="이전" class="btn_3">&nbsp;
-								<%
-									} else {
-								%>
-								<input type="button" value="이전" class="btn_3" onclick="location.href='MemberMovComment.me?page=<%=nowPage - 1%>'">&nbsp;
-								<%
-									}
-								%>
-					
-								<%
-									for (int i = startPage; i <= endPage; i++) {
-									if (i == nowPage) {
-								%>
-								[<%=i%>]&nbsp;
-								<%
-									} else {
-								%>
-								<a href="MemberMovComment.me?page=<%=i%>">[<%=i%>]
-								</a>&nbsp;
-								<%
-									}
-								%>
-								<%
-									}
-								%>
-					
-								<%
-									if (nowPage >= maxPage) {
-								%>
-								<input type="button" value="다음" class="btn_3">
-								<%
-									} else {
-								%>
-								<input type="button" value="다음" class="btn_3"
-									onclick="location.href='MemberMovComment.me?page=<%=nowPage + 1%>'">
-								<%
-									}
-								%>
-							</div>
-						</section>
+								<section id="pageList">
+									<div class="container">
+										<%
+											if (nowPage <= 1) {
+										%>
+										<input type="button" value="이전" class="btn_3">&nbsp;
+										<%
+											} else {
+										%>
+										<input type="button" value="이전" class="btn_3" onclick="location.href='MemberMovComment.me?page=<%=nowPage - 1%>'">&nbsp;
+										<%
+											}
+										%>
 							
+										<%
+											for (int i = startPage; i <= endPage; i++) {
+											if (i == nowPage) {
+										%>
+										[<%=i%>]&nbsp;
+										<%
+											} else {
+										%>
+										<a href="MemberMovComment.me?page=<%=i%>">[<%=i%>]
+										</a>&nbsp;
+										<%
+											}
+										%>
+										<%
+											}
+										%>
+							
+										<%
+											if (nowPage >= maxPage) {
+										%>
+										<input type="button" value="다음" class="btn_3">
+										<%
+											} else {
+										%>
+										<input type="button" value="다음" class="btn_3"
+											onclick="location.href='MemberMovComment.me?page=<%=nowPage + 1%>'">
+										<%
+											}
+										%>
+									</div>
+								</section>
+								<%
+								} else {
+								%>
+								작성한 리뷰가 없습니다.<br><br>
+								<input type="button" value="영화 목록" class="btn_3" onclick="location.href='MovMain.mo'">
+								<%
+								}
+								%>
 							
 							</div>
 						</div>

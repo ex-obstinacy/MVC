@@ -269,7 +269,7 @@
 						<input type="hidden" name="cmgrade" id="cmgrade" value="10">
 						<table class="table">
 							<tr>
-								<td>
+								<td align="center" width="220">
 									<span id="rating_point">10</span> 점<br>
 									<%
 									for (int i = 0; i < 10; i++) {
@@ -280,7 +280,7 @@
 									%>
 								</td>
 								<td><textarea placeholder="리뷰를 작성해주세요" name="content" class="single-textarea"></textarea></td>
-								<td><input type="submit" value="관람평 작성" class="genric-btn primary circle"></td>
+								<td align="center" width="150"><input type="submit" value="관람평 작성" class="genric-btn primary circle"></td>
 							</tr>
 						</table>
 						<table class="table">

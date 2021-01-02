@@ -40,6 +40,8 @@ public class MemberQnADetailAction implements Action {
 			endPage = maxPage;
 		}
 		PageInfo pageInfo = new PageInfo(page, maxPage, startPage, endPage, listCount);
+		
+		System.out.println("확인 : " + articleList.size());
 
 		request.setAttribute("articleList", articleList);
 		request.setAttribute("pageInfo", pageInfo);

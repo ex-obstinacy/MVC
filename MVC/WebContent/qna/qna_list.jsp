@@ -175,7 +175,8 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 						<%
 			
 			
-			if(articleList != null && listCount > 0) {
+// 			if(articleList != null && listCount > 0) {
+			if(articleList.size() != 0) {
 			%>
 					<table class="table">
 
