@@ -20,7 +20,7 @@ public class AdminMovListAction implements Action {
 		
 		// 페이징 처리를 위한 변수 선언
 		int page = 1; // 현재 페이지 번호 저장할 변수
-		int limit = 10; // 페이지 당 표시할 게시물 수를 결정하는 변수
+		int limit = 5; // 페이지 당 표시할 게시물 수를 결정하는 변수
 		
 		// request 객체로부터 "page" 파라미터가 전달됐을 경우(null 이 아닐 경우)
 		// 해당 파라미터 값을 page 변수에 저장(String -> int 변환 필요)
