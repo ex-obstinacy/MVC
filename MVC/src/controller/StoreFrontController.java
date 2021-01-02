@@ -52,13 +52,13 @@ public class StoreFrontController extends HttpServlet {
 		ActionForward forward = null;
 		
 		// if문을 사용하여 각 서블릿 주소 판별 및 각 요청 처리를 위한 작업 요청
-		if(command.equals("/GoodsWriteForm.go")) {
+		if(command.equals("/GoodsWriteForm.go")) { // 상품 작성
 			/*
 			 * 글쓰기 페이지에 대한 요청은 비즈니스 로직 없이
 			 * View 페이지(JSP)로 바로 포워딩 수행
 			 * - 기존 서블릿 주소가 유지되어야 하므로 Dispatcher 방식 포워딩
 			 *   => ActionForward 객체에 redirect 변수값을 false 로 설정
-			 *      (boolean 타입 기본 값이 false 이므로 별도 설정 필요 없음)\
+			 *      (boolean 타입 기본 값이 false 이므로 별도 설정 필요 없음)
 			 *   => 따라서, 포워딩 주소만 지정
 			 * - 포워딩 주소 : board 폴더 내의 qna_board_write.jsp
 			 */
@@ -68,7 +68,7 @@ public class StoreFrontController extends HttpServlet {
 			forward.setPath("/goods/goodsWriteForm.jsp");
 			// 3. 포워딩 방식 설정(Dispatcher 방식)
 //			forward.setRedirect(false); // 기본값이 false 이므로 설정 생략 가능
-		} else if(command.equals("/GoodsWritePro.go")) { // BoardWritePro.bo 서블릿 요청에 대한 처리
+		} else if(command.equals("/GoodsWritePro.go")) { // 상품 작성
 			// 1. BoardWriteProAction 클래스 객체 생성
 			// => Action 클래스는 Action 인터페이스를 구현하므로 다형성 활용 가능
 			action = new GoodsWriteProAction();
@@ -81,7 +81,7 @@ public class StoreFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/GoodsList.go")) {
+		} else if(command.equals("/GoodsList.go")) { // 상품 리스트
 			action = new GoodsListAction();
 		
 			try {
@@ -89,7 +89,7 @@ public class StoreFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/StoreList.go")) {
+		} else if(command.equals("/StoreList.go")) { // 스토어 리스트
 			action = new StoreListAction();
 		
 			try {
@@ -97,7 +97,7 @@ public class StoreFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/GoodsDetail.go")) {
+		} else if(command.equals("/GoodsDetail.go")) { // 상품상세보기
 			action = new GoodsDetailAction();
 			
 			try {
@@ -160,7 +160,7 @@ public class StoreFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			} 
-		} else if(command.equals("/GoodsModifyForm.go")) {
+		} else if(command.equals("/GoodsModifyForm.go")) { // 상품수정
 			action = new GoodsModifyFormAction();
 			
 			try {
@@ -168,7 +168,7 @@ public class StoreFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/GoodsModifyPro.go")) {
+		} else if(command.equals("/GoodsModifyPro.go")) { // 상품수정
 			action = new GoodsModifyProAction();
 			
 			try {
@@ -176,10 +176,10 @@ public class StoreFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/GoodsDeleteForm.go")) {
+		} else if(command.equals("/GoodsDeleteForm.go")) { // 상품삭제
 			forward = new ActionForward();
 			forward.setPath("/goods/goodsDelete.jsp");
-		}  else if(command.equals("/GoodsDeletePro.go")) {
+		}  else if(command.equals("/GoodsDeletePro.go")) { // 상품삭제
 			action = new GoodsDeleteProAction();
 			
 			try {
@@ -187,7 +187,7 @@ public class StoreFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/BasketModifyPro.go")) {
+		} else if(command.equals("/BasketModifyPro.go")) { // 장바구니 수정
 			action = new BasketModifyProAction();
 			
 			try {
@@ -195,7 +195,7 @@ public class StoreFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			} 
-		} else if(command.equals("/BasketDeletePro.go")) {
+		} else if(command.equals("/BasketDeletePro.go")) { // 장바구니 삭제
 			action = new BasketDeleteProAction();
 			
 			try {
@@ -203,7 +203,7 @@ public class StoreFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			} 
-		} else if(command.equals("/GoodsOrder.go")) {
+		} else if(command.equals("/GoodsOrder.go")) { 
 			action = new GoodsOrderAction();
 			
 			try {

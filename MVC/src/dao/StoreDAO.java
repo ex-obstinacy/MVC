@@ -103,7 +103,7 @@ public class StoreDAO {
          return insertCount;
       }
       
-      //전체 게시물 수 조회
+      //전체 상품수 조회
       public int selectListCount() {
          int listCount = 0;
          
@@ -137,7 +137,7 @@ public class StoreDAO {
          return listCount;
       }
       
-      //게시물 목록 조회
+      //상품 목록 조회
       public ArrayList<StoreBean> selectArticleList(int page, int limit) {
          // 지정된 갯수만큼의 게시물 조회 후 ArrayList 객체에 저장한 뒤 리턴
          ArrayList<StoreBean> articleList = null;
@@ -199,7 +199,7 @@ public class StoreDAO {
          return articleList;
       }
       
-      // 게시물 상세내용 조회
+      // 상품 상세내용 조회
       public StoreBean selectArticle(int goodsId) {
          // 글번호(goodsId)에 해당하는 레코드를 SELECT
          // 조회 결과가 있을 경우 StoreBean 객체에 저장한 뒤 리턴
@@ -846,6 +846,18 @@ public class StoreDAO {
   					 addCount = pstmt.executeUpdate();
   					 System.out.println("확인2");
   					 
+  				// 구매시 goods에 sellCount  + 1 
+  					String sql2 = "SELECT sellCount FROM goods WHERE goodsId=?";
+  					pstmt = con.prepareStatement(sql2);
+  					pstmt.setInt(1, order.getGoodsId());
+  					rs = pstmt.executeQuery();
+  					if(rs.next()) {
+  						String sql3 = "UPDATE goods SET sellCount=sellCount+1 WHERE goodsId=?";
+  						pstmt=con.prepareStatement(sql3);
+  						pstmt.setInt(1, rs.getInt("goodsId"));
+  						pstmt.executeUpdate();
+  					}
+  					
   			} catch (Exception e) {
   				System.out.println("orderGoods() 오류!- "+e.getMessage());
   				e.printStackTrace();

@@ -28,7 +28,7 @@ public class StoreBean {
 	private String member_id; // 멤버아이디 
 	private int goods_goodsId; // 상품번호 (외래키) 
 	private String member_name; //멤버이름
-	private int membership;
+	private int membership; // 멤버쉽 적립금
 
 	public int getGoodsId() {
 		return goodsId;
