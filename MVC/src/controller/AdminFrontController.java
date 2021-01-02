@@ -13,6 +13,7 @@ import action.AdminDeleteProAction;
 import action.AdminMemberDetailProAction;
 import action.MemberInfoAction;
 import action.AdminMemberListAction;
+import action.AdminNoticeListAction;
 import action.MemberLoginProAction;
 import action.MemberLogoutAction;
 import action.MemberMainAction;
@@ -66,8 +67,19 @@ public class AdminFrontController extends HttpServlet {
 				
 			}
 			
-		}  else if (command.equals("/AdminMemberDetail.ad")) { // 회원 정보 조회
+		} else if (command.equals("/AdminMemberDetail.ad")) { // 회원 정보 조회
 			action = new AdminMemberDetailProAction();
+			
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
+			
+		} else if (command.equals("/AdminNoticeList.ad")) { // 공지사항 조회
+			action = new AdminNoticeListAction();
 			
 			try {
 				forward = action.execute(request, response);

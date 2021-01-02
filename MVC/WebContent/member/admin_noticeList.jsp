@@ -1,3 +1,7 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="vo.PageInfo"%>
+<%@page import="vo.NoticeBean"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -5,6 +9,16 @@
 	//session 객체에 저장된 id 값 가져와서 변수에 저장
 	String id = (String)session.getAttribute("id");
  
+	ArrayList<NoticeBean> articleList = (ArrayList<NoticeBean>)request.getAttribute("articleList");
+	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	int nowPage = pageInfo.getPage();
+	int maxPage = pageInfo.getMaxPage();
+	int startPage = pageInfo.getStartPage();
+	int endPage = pageInfo.getEndPage();
+	int listCount = pageInfo.getListCount();
+	
+	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+	
  %>
 
 <!DOCTYPE html>
@@ -92,7 +106,7 @@
                                         <a href="GoodsList.go">스토어</a>
                                     </li>
                                     <li>
-                                        <a href="NoticeList.no">공지사항</a>
+                                        <a href="AdminNoticeList.ad">공지사항</a>
                                     </li>
                                     <li>
                                         <a href="QnaList.qn">1대1 문의</a>
@@ -109,9 +123,99 @@
                 
                 <div class="col-lg-9">
                     <div class="row align-items-center latest_product_inner">
-	                    <h3><%=id %> 님<br>
-	                    열심히 일하자!</h3>
-                    
+
+						<%
+							if(articleList != null && listCount > 0) {
+						%>
+						<table class="table">
+							<tr>
+								<td align="center">번호</td>
+								<td align="center">제 목</td>
+								<td align="center">작성자</td>
+								<td align="center">작성일</td>
+								<td align="center">조회수</td>
+							</tr>
+							<%
+								for(int i = 0; i < articleList.size(); i++) {
+							%>
+							<tr>
+								<td align="center"><%=articleList.get(i).getNum() %></td>
+								<td align="center">
+									<a href="NoticeDetail.no?num=<%=articleList.get(i).getNum() %>&page=<%=nowPage %>"> <%=articleList.get(i).getSubject() %>
+									</a>
+								<td align="center"><%=articleList.get(i).getMember_id() %></td>
+								<td align="center"><%=sdf.format(articleList.get(i).getDate())%></td>
+								<td align="center"><%=articleList.get(i).getReadcount() %></td>
+							</tr>
+							<%
+								}
+							%>
+						</table>
+
+						<section id="buttonArea">
+							<div class="container">
+								<%
+									if(id != null){
+										if(id.equals("admin")){
+								%>
+								<input type="button" value="글쓰기" class="btn_3" onclick="location.href='NoticeWriteForm.no'">
+								<%
+										}
+									}
+								%>
+								<div class="search">
+									<form action="NoticeListSearch.no" method="post">
+										<input type="text" name="search" class="input_box" placeholder="Search..">
+									</form>
+								</div>
+							</div>
+						</section>
+						
+						<section id="pageList">
+							<div class="container">
+								<%if(nowPage <= 1) {%>
+								<input type="button" value="이전" class="btn_3">&nbsp;
+								<%} else {%>
+								<input type="button" value="이전" class="btn_3" onclick="location.href='NoticeList.no?page=<%=nowPage - 1 %>'">&nbsp;
+								<%} %>
+								<%for(int i = startPage; i <= endPage; i++) { 
+								if(i == nowPage) { %>
+								[<%=i %>]&nbsp;
+								<%} else { %>
+								<a href="NoticeList.no?page=<%=i %>">[<%=i %>]
+								</a>&nbsp;
+								<%} %>
+								<%} %>
+								<%if(nowPage >= maxPage) { %>
+								<input type="button" value="다음" class="btn_3">
+								<%} else { %>
+								<input type="button" value="다음" class="btn_3" onclick="location.href='NoticeList.no?page=<%=nowPage + 1 %>'">
+								<%} %>
+							</div>
+						</section>
+						<%
+							} else {
+						%>
+						<section id="emptyArea">
+							<div class="container">등록된 글이 없습니다</div>
+						</section>
+						<section id="buttonArea">
+							<div class="container">
+								<%
+									if(id!=null){
+										if(id.equals("admin")){
+								%>
+								<input type="button" value="글쓰기" class="btn_3" onclick="location.href='NoticeWriteForm.no'">
+							</div>
+							<%
+										}
+									}
+							%>
+						</section>
+						<%
+							}
+						%>
+
                     </div>
                 </div>
             </div>
