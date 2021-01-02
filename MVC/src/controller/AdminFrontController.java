@@ -14,6 +14,7 @@ import action.AdminMemberDetailProAction;
 import action.MemberInfoAction;
 import action.AdminMemberListAction;
 import action.AdminNoticeListAction;
+import action.AdminQnAListAction;
 import action.MemberLoginProAction;
 import action.MemberLogoutAction;
 import action.MemberMainAction;
@@ -80,6 +81,17 @@ public class AdminFrontController extends HttpServlet {
 			
 		} else if (command.equals("/AdminNoticeList.ad")) { // 공지사항 조회
 			action = new AdminNoticeListAction();
+			
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
+			
+		} else if (command.equals("/AdminQnAList.ad")) { // 1대1 문의 조회
+			action = new AdminQnAListAction();
 			
 			try {
 				forward = action.execute(request, response);

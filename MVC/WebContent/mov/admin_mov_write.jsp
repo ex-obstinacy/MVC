@@ -143,7 +143,7 @@
                                         <a href="AdminNoticeList.ad">공지사항</a>
                                     </li>
                                     <li>
-                                        <a href="QnaList.qn">1대1 문의</a>
+                                        <a href="AdminQnAList.ad">1대1 문의</a>
                                     </li>
                                     <li>
                                         <a href="AdminMemberList.ad">회원 목록</a>
