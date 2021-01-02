@@ -24,71 +24,59 @@
 <html lang="zxx">
 
 <head>
+<%
+	if (id == null) {
+%>
+<script type="text/javascript">
+	alert("로그인이 필요합니다.");
+	location.href = "MemberLogin.me";
+</script>
+<%
+	}
+%>
 
-	<%
-		if (id == null) {
-	%>
-		<script type="text/javascript">
-			alert("로그인이 필요합니다.");
-			location.href = "MemberLogin.me";
-		</script>
-	<%
-		}
-	%>
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>MVC</title>
-    <link rel="icon" href="img/favicon.png">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- animate CSS -->
-    <link rel="stylesheet" href="css/animate.css">
-    <!-- owl carousel CSS -->
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <!-- nice select CSS -->
-    <link rel="stylesheet" href="css/nice-select.css">
-    <!-- font awesome CSS -->
-    <link rel="stylesheet" href="css/all.css">
-    <!-- flaticon CSS -->
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/themify-icons.css">
-    <!-- font awesome CSS -->
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <!-- swiper CSS -->
-    <link rel="stylesheet" href="css/slick.css">
-    <link rel="stylesheet" href="css/price_rangs.css">
-    <!-- style CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    
-    <link rel="stylesheet" href="css/common.css"> 
-    <link rel="stylesheet" href="css/sub.css">
-        
-    <!-- 회원 삭제 -->
-    <script type="text/javascript">
-		function chDelete(id){
-             var check = confirm("삭제하시겠습니까?");
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>MVC</title>
+<link rel="icon" href="img/favicon.png">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<!-- animate CSS -->
+<link rel="stylesheet" href="css/animate.css">
+<!-- owl carousel CSS -->
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<!-- nice select CSS -->
+<link rel="stylesheet" href="css/nice-select.css">
+<!-- font awesome CSS -->
+<link rel="stylesheet" href="css/all.css">
+<!-- flaticon CSS -->
+<link rel="stylesheet" href="css/flaticon.css">
+<link rel="stylesheet" href="css/themify-icons.css">
+<!-- font awesome CSS -->
+<link rel="stylesheet" href="css/magnific-popup.css">
+<!-- swiper CSS -->
+<link rel="stylesheet" href="css/slick.css">
+<link rel="stylesheet" href="css/price_rangs.css">
+<!-- style CSS -->
+<link rel="stylesheet" href="css/style.css">
 
-             if(check){
-            	 location.href="AdminDeletePro.ad?id=" + id;
-            	 
-             }
-         }
-	</script>  
-      
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/sub.css">
+
 </head>
 
 <body>
-    <!--::header part start::-->
-    <jsp:include page="../inc/top.jsp"/>
-    <!-- Header part end-->
-    
+	<!--::header part start::-->
+	<jsp:include page="../inc/top.jsp" />
+	<!-- Header part end-->
     <!--     서브비주얼 -->
 	<jsp:include page="/inc/sub_main1.jsp"/>
 
-    <!--================ 메뉴 영역 =================-->
-    <section class="cart_area">
+	<!--================ 메뉴 영역 =================-->
+	<section class="cart_area">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3">
@@ -109,102 +97,84 @@
 						</aside>
 					</div>
 				</div>
-          		<!--================ 메뉴 영역 =================-->
+				<!--================ 메뉴 영역 =================-->
 				<div class="col-lg-9">
 					<div class="row align-items-center latest_product_inner">
 						<!--         <section class="cart_area"> -->
 						<div class="container">
 							<div class="cart_inner">
-							<h2><span>결제 내역</span></h2>
-								<div class="table-responsive">
-									<table class="table">
-										<%
-											if (articleList != null && listCount > 0) {
+							<%
+								if(articleList.size() != 0) {
+							%>
+							<table class="table">
+							<%
+								if (articleList != null && listCount > 0) {
+							%>
+							<tr>
+								<th>구매일</th>
+								<th>주문번호</th>
+								<th>상품명</th>
+								<th>결제금액</th>
+								<th>구매자</th>
+							</tr>
+							<%
+								for (int i = 0; i < articleList.size(); i++) {
+									int orderCount = articleList.get(i).getOrderCount() -1;
+							%>
+							<tr>
+								<td align="center"><%=articleList.get(i).getDate() %></td>
+								<td align="center"><a href="MemberOrderDetail.me?orderNum=<%=articleList.get(i).getOrderNum() %>"><%=articleList.get(i).getOrderNum() %></a></td>
+								<%if(orderCount == 0){ %>
+								<td align="center"><%=articleList.get(i).getName() %></td>
+								<%} else { %>
+								<td align="center"><%=articleList.get(i).getName() %> 외 <%=orderCount %></td>
+								<% } %>
+								<td align="center"><%=articleList.get(i).getSumPrice() %></td>
+								<td align="center"><%=articleList.get(i).getMember_name() %></td>
+							</tr>
+								<%	} %>
+							<%	} %>
+							</table>
+							
+							<section id="pageList">
+								<div class="container">
+								<%
+									if(id!=null){
+										if(nowPage <= 1) {
+								%>
+									<input type="button" value="이전" class="btn_3">&nbsp;
+										<%} else {%>
+									<input type="button" value="이전" class="btn_3" onclick="MemberOrderList.me?page=<%=nowPage - 1 %>'">&nbsp;
+										<%}
+										for(int i = startPage; i <= endPage; i++) { 
+											if(i == nowPage) { 
 										%>
-										<tr>
-											<th>구매일</th>
-											<th>주문번호</th>
-											<th>상품명</th>
-											<th>결제금액</th>
-											<th>구매자</th>
-										</tr>
-										<%
-											for (int i = 0; i < articleList.size(); i++) {
-												int orderCount = articleList.get(i).getOrderCount() -1;
-										%>
-										<tr>
-											<td align="center"><%=articleList.get(i).getDate() %></td>
-											<td align="center"><a href="MemberOrderDetail.me?orderNum=<%=articleList.get(i).getOrderNum() %>"><%=articleList.get(i).getOrderNum() %></a></td>
-											<%if(orderCount == 0){ %>
-											<td align="center"><%=articleList.get(i).getName() %></td>
+									[<%=i %>]&nbsp;
 											<%} else { %>
-											<td align="center"><%=articleList.get(i).getName() %> 외 <%=orderCount %></td>
-											<% } %>
-											<td align="center"><%=articleList.get(i).getSumPrice() %></td>
-											<td align="center"><%=articleList.get(i).getMember_name() %></td>
-										</tr>
-										<%
-											}
-										%>
-									</table>
+									<a href="MemberOrderList.me?page=<%=i%>">[<%=i%>]</a>&nbsp;
+											<%} %>
+										<%} %>
+										<%if(nowPage >= maxPage) { %>
+									<input type="button" value="다음" class="btn_3">
+										<%} else { %>
+									<input type="button" value="다음" class="btn_3" onclick="MemberOrderList.me?page=<%=nowPage + 1 %>'">
+										<%} %>
+									<%}%>
 								</div>
+							</section>
+							<% 
+							}else {
+							%>
+									
+							<section id="emptyArea">
+								<div class="container">결제 내역이 없습니다.</div>
+							</section>
+							<%
+							}
+							%>
 							</div>
 						</div>
 						<!--   </section> -->
-						<section id="pageList">
-							<div class="container">
-								<%
-									if (nowPage <= 1) {
-								%>
-								<input type="button" value="이전" class="btn_3">&nbsp;
-								<%
-									} else {
-								%>
-								<input type="button" value="이전" class="btn_3" onclick="location.href='MemberReserveList.me?page=<%=nowPage - 1%>'">&nbsp;
-								<%
-									}
-								%>
-					
-								<%
-									for (int i = startPage; i <= endPage; i++) {
-									if (i == nowPage) {
-								%>
-								[<%=i%>]&nbsp;
-								<%
-									} else {
-								%>
-								<a href="MemberOrderList.me?page=<%=i%>">[<%=i%>]
-								</a>&nbsp;
-								<%
-									}
-								%>
-								<%
-									}
-								%>
-					
-								<%
-									if (nowPage >= maxPage) {
-								%>
-								<input type="button" value="다음" class="btn_3">
-								<%
-									} else {
-								%>
-								<input type="button" value="다음" class="btn_3"
-									onclick="location.href='MemberOrderList.me?page=<%=nowPage + 1%>'">
-								<%
-									}
-								%>
-							</div>
-						</section>
-						<%
-							} else {
-						%>
-						<section id="emptyArea">
-							<div class="container">등록된 글이 없습니다</div>
-						</section>
-						<%
-							}
-						%>
 
 					</div>
 				</div>
