@@ -665,7 +665,7 @@ public class ReserveDAO {
 		
 		try {
 			
-			String sql = "select * from cinema order by local";
+			String sql = "select * from cinema order by name";
 			pstmt = con.prepareStatement(sql);
 
 			rs = pstmt.executeQuery();
