@@ -21,7 +21,7 @@ int freeTicket = memberInfo.getFree_ticket();
 
 String ticketnum = (String)request.getAttribute("ticketnum");
 
-if(adultnum == 0){
+if(adultnum == 0 && kidsnum == 0){
 	%>
 		<script type="text/javascript">
 			alert("잘못된 접근입니다.")
