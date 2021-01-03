@@ -15,6 +15,9 @@
 .sub_main01 h2{position:absolute; top:45%; left:50%; color:#fff;  font-size:30px; z-index:100; transform:translate(-50%,-50%);}
 .sub_main01 h3{position:absolute; top:65%; left:50%; color:#fff;  font-size:23px; z-index:100; transform:translate(-50%,-50%);}
 
+.sub_customer01{position:relative; width:100%; height:200px; text-align:center; background-image:url(../img/sub/sub_customer01.png); margin-bottom: 10px; background-repeat:no-repeat; background-position:center center; background-size:100% auto;}
+
+
 /******************** 멤버 서브페이지 시작 ********************/
 
 /* member_order */ 

@@ -108,30 +108,14 @@ int num = Integer.parseInt(request.getParameter("num"));
 <link rel="stylesheet" type="text/css" href="css/content.css" />
 <link rel="stylesheet" type="text/css" href="css/utobiz.css" />
 <link rel="stylesheet" type="text/css" href="css/bbs.css" />
+<link rel="stylesheet" href="css/sub.css">
 </head>
 <body>
 	<!--::header part start::-->
 	<jsp:include page="../inc/top.jsp" />
 	<!-- Header part end-->
-	<!--================Home Banner Area =================-->
-	<!-- breadcrumb start-->
-	<section class="breadcrumb breadcrumb_bg">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-8">
-					<div class="breadcrumb_iner">
-						<div class="breadcrumb_iner_item">
-							<h2>Shop Single</h2>
-							<p>
-								Home <span>-</span> Shop Single
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- breadcrumb start-->
+	<!-- 서브비주얼 -->
+	<jsp:include page="/inc/sub_customer1.jsp"/>
 	<!--================Blog Area =================-->
 	<section class="blog_area padding_top">
 		<div class="container">
