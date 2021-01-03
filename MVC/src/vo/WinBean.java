@@ -11,12 +11,19 @@ public class WinBean {
 	private Timestamp date;
 	
 	
-	private String win_member;
 	// 당첨자 회원 저장 
+	private String member_id;
+	
 	private int event_num;
 	
 	
 	
+	public String getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
 	public int getNum() {
 		return num;
 	}
@@ -49,12 +56,7 @@ public class WinBean {
 	}
 
 
-	public String getWin_member() {
-		return win_member;
-	}
-	public void setWin_member(String win_member) {
-		this.win_member = win_member;
-	}
+
 	public int getEvent_num() {
 		return event_num;
 	}

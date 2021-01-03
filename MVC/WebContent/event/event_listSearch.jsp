@@ -223,6 +223,7 @@ String member_id = (String) session.getAttribute("id");
 			<%
 				if (nowPage <= 1) {
 			%>
+			<br>
 			<input type="button" value="이전" class="btn_3">&nbsp;
 			<%
 				} else {

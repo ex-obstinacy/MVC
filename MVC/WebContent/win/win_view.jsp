@@ -12,7 +12,7 @@
 // WinBean 객체 파라미터 가져오기
 WinBean article = (WinBean) request.getAttribute("article");
 int partiMemberCount = (int)(request.getAttribute("partiMemberCount"));
-String win_members = article.getWin_member();
+String win_members = article.getMember_id();
 // System.out.println("win_member : " + win_member_id);
 
 ArrayList<ApplyBean> articleList = (ArrayList<ApplyBean>)request.getAttribute("articleList");
@@ -152,7 +152,7 @@ int num = Integer.parseInt(request.getParameter("num"));
 				<a href="EventList.ev" target="_parent">영화</a>
 				<a href="PreviewList.pr" target="_parent">시사회/무대인사</a> 
 				<a href="WinList.wi" target="_parent">당첨자발표</a> 
-				<a href="#">회원 약관</a>
+			
 			
 			</div>
 		</div>

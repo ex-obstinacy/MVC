@@ -129,8 +129,8 @@
 									<form action="QnaModifyPro.qn" method="post" enctype="multipart/form-data" name="modifyForm">
 										<input type="hidden" name="num" value="<%=article.getNum() %>" /> 
 										<input type="hidden" name="page" value="<%=nowPage %>" />
-										<input type="hidden" name="re_ref" value="<%=re_ref %>">
-										<input type="hidden" name="re_lev" value="<%=re_lev %>">
+										<input type="hidden" name="re_ref" value="<%=article.getRe_ref() %>">
+										<input type="hidden" name="re_lev" value="<%=article.getRe_lev() %>">
 										<table>
 											<!-- 								<form action="NoticeWritePro.no" method="post"enctype="multipart/form-data" name="noticeform"> -->
 <!-- 											<input type="hidden" name="mode" value="up"> -->

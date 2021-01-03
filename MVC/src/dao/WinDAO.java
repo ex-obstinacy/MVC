@@ -58,7 +58,7 @@ public class WinDAO {
 
 			// 전달받은 NoticeBean 객체 내의 데이터를 사용하여 INSERT 작업 수행
 			// => 컬럼 중 date 항목(작성일)은 now() 함수 사용
-			sql = "INSERT INTO win(num,subject,content,readcount,date,win_member,event_num) values(?,?,?,?,?,?,?)";
+			sql = "INSERT INTO win(num,subject,content,readcount,date,member_id,event_num) values(?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			// NoticeBean 객체로부터 데이터를 꺼내서 쿼리문 ? 대체
 			
@@ -165,7 +165,7 @@ public class WinDAO {
 				article.setContent(rs.getString("content"));
 				article.setReadcount(rs.getInt("readcount"));
 				article.setDate(rs.getTimestamp("date")); // 여기 timestap 
-				article.setWin_member(rs.getString("win_member"));
+				article.setMember_id(rs.getString("member_id"));
 				article.setEvent_num(rs.getInt("event_num"));
 				
 				
@@ -212,7 +212,7 @@ public class WinDAO {
 				article.setContent(rs.getString("content"));
 				article.setReadcount(rs.getInt("readcount"));
 				article.setDate(rs.getTimestamp("date"));
-				article.setWin_member(rs.getString("win_member"));
+				article.setMember_id(rs.getString("member_id"));
 				article.setEvent_num(rs.getInt("event_num"));
 				System.out.println("상세 조회 글 번호 : " + num );
 				
@@ -376,7 +376,7 @@ public class WinDAO {
 				article.setContent(rs.getString("content"));
 				article.setReadcount(rs.getInt("readcount"));
 				article.setDate(rs.getTimestamp("date")); // 여기 timestap 
-				article.setWin_member(rs.getString("win_member"));
+				article.setMember_id(rs.getString("member_id"));
 				article.setEvent_num(rs.getInt("event_num"));
 				
 				// 레코드 저장 확인용 코드
@@ -407,9 +407,9 @@ public class WinDAO {
 		try {
 			
 			for(int i=0;i<winMemberList.size();i++) {
-				String sql = "UPDATE win SET win_member=concat(win_member, '/', ?) where event_num=?";
+				String sql = "UPDATE win SET member_id=concat(member_id, '/', ?) where event_num=?";
 				pstmt =con.prepareStatement(sql);
-				pstmt.setString(1, winMemberList.get(i).getWin_member());
+				pstmt.setString(1, winMemberList.get(i).getMember_id());
 				pstmt.setInt(2, winMemberList.get(i).getEvent_num());
 				updateCount = pstmt.executeUpdate();
 			}
@@ -434,14 +434,14 @@ public class WinDAO {
 		
 		try {
 			
-			String sql = "SELECT win_member FROM win where event_num=?";
+			String sql = "SELECT member_id FROM win where event_num=?";
 			pstmt =con.prepareStatement(sql);
 			pstmt.setInt(1, event_num);
 			rs = pstmt.executeQuery();
 			
 			// 조회 결과가 있을 경우(= 게시물이 하나라도 존재하는 경우)
 			if(rs.next()) {
-				winMember = rs.getString("win_member");
+				winMember = rs.getString("member_id");
 			}
 			
 		} catch (SQLException e) {

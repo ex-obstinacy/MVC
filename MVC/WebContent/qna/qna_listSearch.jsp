@@ -237,6 +237,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 if(member_id!=null){
 		%>
 			<%if(nowPage <= 1) {%>
+			<br>
 			<input type="button" value="이전" class="btn_3">&nbsp;
 			<%} else {%>
 			<input type="button" value="이전" class="btn_3" onclick="location.href='QnaList.qn?page=<%=nowPage - 1 %>'">&nbsp;

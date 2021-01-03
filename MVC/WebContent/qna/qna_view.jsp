@@ -275,10 +275,24 @@ int re_lev = Integer.parseInt(request.getParameter("re_lev"));
 												<div style="text-align: center;">
 													<a href="QnaModifyForm.qn?num=<%=article.getNum()%>&page=<%=nowPage%>" target="_parent" class="bbs-button">수정하기</a>
 												</div>
+												
+										<div>
+											<script type="text/javascript">
+												function a() {
+													var a = confirm("삭제하시겠습니까?");
+
+													if (a) {
+														fr.submit();
+													} else {
+														return false;
+													}
+												}
+											</script>												
 												<form action="QnaDeletePro.qn" name="fr" method="post">
 												<input type="hidden" name="num" value="<%=num%>" /><input type="hidden" name="re_ref" value="<%=re_ref%>" /><input type="hidden" name="re_lev" value="<%=re_lev%>" />
 												 <input type="hidden" name="page" value="<%=nowPage%>" /> <input type="submit" value="삭제하기" onclick="return a()" class="bbs-button">
 											</form>
+										</div>	
 											<% 
 											}
 										}

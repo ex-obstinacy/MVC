@@ -208,8 +208,9 @@ if(member_id!=null){
 	<section id="pageList">
 		<div class="container">
 			<%
-				if (nowPage <= 1) {
+				if (nowPage <= 1) {	
 			%>
+			<br>
 			<input type="button" value="이전" class="btn_3">&nbsp;
 			<%
 				} else {
