@@ -546,7 +546,8 @@ public class StoreDAO {
 
       // 장바구니 목록 조회
       public ArrayList<StoreBean> selectBasketList(String id) {
-            System.out.println("selectBasketList DAO");
+            System.out.println("storeDAO - selectBasketList()");
+            
     	  	ArrayList<StoreBean> basketList = null;
             
             PreparedStatement pstmt = null;
@@ -675,7 +676,7 @@ public class StoreDAO {
  		
       // 1. store_main, store_detail 구매하기 목록 조회
       public ArrayList<StoreBean> selectBasketList(int basketCount, int goodsId) {
-            System.out.println("selectBasketList DAO");
+            System.out.println("storeDAO - selectBasketList()");
     	  	ArrayList<StoreBean> basketList = null;
     	  	
             System.out.println(basketCount);
@@ -847,17 +848,19 @@ public class StoreDAO {
   					 addCount = pstmt.executeUpdate();
   					 System.out.println("확인2");
   					 
-  				// 구매시 goods에 sellCount  + 1 
-//  					String sql2 = "SELECT sellCount FROM goods WHERE goodsId=?";
-//  					pstmt = con.prepareStatement(sql2);
-//  					pstmt.setInt(1, order.getGoodsId());
+//  				 구매시 goods에 sellCount  + orderCount - 수정 중 (란희) 
+  					String sql2 = "SELECT sellCount FROM goods WHERE goodsId=?";
+  					pstmt = con.prepareStatement(sql2);
+  					pstmt.setInt(1, order.getGoodsId());
 //  					rs = pstmt.executeQuery();
-//  					if(rs.next()) {
-//  						String sql3 = "UPDATE goods SET sellCount=sellCount+1 WHERE goodsId=?";
-//  						pstmt=con.prepareStatement(sql3);
+  					if(rs.next()) {
+//  						String sql3 = "UPDATE goods g SET g.sellCount = g.sellCount + (SELECT o.orderCount FROM goods_order o WHERE g.goodsId = o.goods_goodsId) WHERE g.goodsId=?";
+  						String sql3 = "UPDATE goods g INNER JOIN goods_order o ON g.goodsId = o.goods_goodsId SET g.sellCount = g.sellCount + o.orderCount WHERE g.goodsId=?";
+  						pstmt=con.prepareStatement(sql3);
 //  						pstmt.setInt(1, rs.getInt("goodsId"));
-//  						pstmt.executeUpdate();
-//  					}
+  						pstmt.setInt(1, order.getGoodsId());
+  						pstmt.executeUpdate();
+  					}
   					
   			} catch (Exception e) {
   				System.out.println("orderGoods() 오류!- "+e.getMessage());
@@ -985,7 +988,7 @@ public class StoreDAO {
    				PreparedStatement pstmt = null;
    				ResultSet rs = null;
    				
-   				SimpleDateFormat format1 = new SimpleDateFormat ( "yyyyMMdd");
+   				SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMdd");
    				Date time = new Date();
    				
    				Random random = new Random();
@@ -1029,7 +1032,7 @@ public class StoreDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
    				
-		SimpleDateFormat format1 = new SimpleDateFormat ( "yyyyMMdd");
+		SimpleDateFormat format1 = new SimpleDateFormat ("yyyyMMdd");
 		Date time = new Date();
   				
 		Random random = new Random();
@@ -1128,7 +1131,7 @@ public class StoreDAO {
     
    // 구매내역 조회
    public ArrayList<StoreBean> selectOrderList(String orderNum, String id) {
-       System.out.println("selectOrderList DAO");
+       System.out.println("storeDAO - selectOrderList()");
          ArrayList<StoreBean> orderList = null;
          
          PreparedStatement pstmt = null;
@@ -1148,7 +1151,7 @@ public class StoreDAO {
             pstmt.setString(2, id);
             rs = pstmt.executeQuery();
             
-            System.out.println("확인");
+            System.out.println("구매내역 orderNum 확인" + orderNum);
             
             orderList = new ArrayList<StoreBean>();
             
@@ -1174,7 +1177,7 @@ public class StoreDAO {
                }
 				
                orderList.add(order);
-               System.out.println("확인2");
+               System.out.println("구매내역 orderNum 확인2" + orderNum);
             }
             
          } catch (SQLException e) {

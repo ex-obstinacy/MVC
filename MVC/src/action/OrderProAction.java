@@ -18,7 +18,7 @@ public class OrderProAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
 	      
-	      System.out.println("OrderProAction !");
+	      System.out.println("OrderProAction으로 이동!");
 	      
 	      HttpSession session = request.getSession(); //MemberBean id 값 가져오기
 	      String id = (String)session.getAttribute("id");
@@ -35,7 +35,7 @@ public class OrderProAction implements Action {
 	      order.setTotalPrice(totalPrice);
 	      order.setGoodsId(goodsId);
 	      
-	      System.out.println("goodsId : " + goodsId);
+	      System.out.println("구매한 goodsId : " + goodsId);
 	      
 	      OrderProService orderProService = new OrderProService();
 	      

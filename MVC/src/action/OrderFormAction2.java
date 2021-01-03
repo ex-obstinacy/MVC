@@ -11,7 +11,7 @@ import svc.OrderFormService;
 import vo.ActionForward;
 import vo.StoreBean;
 
-//장바구니 -> 구매목록
+// 장바구니에서 구매하기시 - 구매하기 목록
 public class OrderFormAction2 implements Action {
 
    @Override

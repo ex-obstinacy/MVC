@@ -10,7 +10,7 @@ import vo.StoreBean;
 
 public class BasketListService {
    public ArrayList<StoreBean> getBasketList(String id) throws Exception {
-      System.out.println("BasketListService !");
+      System.out.println("BasketListService! getBasketList()");
       ArrayList<StoreBean> basketList = null;
       
       Connection con = getConnection();

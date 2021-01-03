@@ -44,10 +44,9 @@ String reserveNum = (String)request.getAttribute("reserveNum");
 	font-size : 15px;
 	color: #666666;
 	line-weight:1.2em;
-	}
-	
-			   		   
+	}		   		   
 	</style>
+	
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -136,8 +135,7 @@ function requestPay() {
                 }).done(function (data) {
                   // 가맹점 서버 결제 API 성공시 로직
          				   
-                })
-                
+                })             
 //                   alert("결제성공");
                 	document.orderResult.submit();
                	
@@ -150,8 +148,8 @@ function requestPay() {
 
 </script>
 
-  <!--::header part start::-->
-   <jsp:include page="../inc/top.jsp"/>
+<!--::header part start::-->
+<jsp:include page="../inc/top.jsp"/>
 <!-- 서브비주얼 -->
 <jsp:include page="/inc/sub_store1.jsp"/>
 
@@ -159,7 +157,7 @@ function requestPay() {
   <section class="cart_area">
     <div class="container">
       <div class="cart_inner">
-        <h2><span>구매상품 정보</span></h2>
+        <h2><span>구매하기</span></h2>
          <hr>
         <form action="OrderPro.go" name="orderResult" method="post" id="orderForm">
           <table class="table">
@@ -217,13 +215,10 @@ function requestPay() {
               </tr>
             <%   
          }
-         %>
-           
+         %>          
            <%  
           }
-          %>  
-              
-              
+          %>                              
               <tr>
                 <td></td>
                 <td></td>

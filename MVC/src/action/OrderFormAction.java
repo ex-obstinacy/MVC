@@ -10,12 +10,12 @@ import svc.OrderFormService;
 import vo.ActionForward;
 import vo.StoreBean;
 
-//store_main, store_detail 구매목록
+//store_main, store_detail에서 구매하기시 - 구매하기 목록
 public class OrderFormAction implements Action {
 
    @Override
    public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-      System.out.println("OrderFormAction !");
+      System.out.println("OrderFormAction으로 이동!");
       ActionForward forward = null;
       forward = new ActionForward();
       
@@ -39,7 +39,7 @@ public class OrderFormAction implements Action {
     	  basketCount = "1";
       }
       
-      System.out.println(goodsId);
+      System.out.println("가져온 goodsId : " + goodsId);
       
       OrderFormService orderFormService = new OrderFormService();
       

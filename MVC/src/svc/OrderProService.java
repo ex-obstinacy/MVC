@@ -7,7 +7,7 @@ import java.sql.Connection;
 import dao.StoreDAO;
 import vo.StoreBean;
 
-//////스토어메인, 디테일에서 넘어옴 //////
+//store_main, store_detail에서 구매하기시
 public class OrderProService {
 
 	public boolean createMembership(String id, StoreBean order) {
