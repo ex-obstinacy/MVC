@@ -44,7 +44,7 @@ public class BasketAddAction implements Action {
       
       int goodsId = Integer.parseInt(request.getParameter("goodsId"));
       String basketCount = request.getParameter("basketCount");
-      System.out.println(basketCount);
+      System.out.println("BasketAddAction에서 가져온 basketCount 수량 check!" + basketCount);
       if(basketCount == null) {
     	  basketCount = "0";
       }

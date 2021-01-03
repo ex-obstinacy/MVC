@@ -115,15 +115,15 @@ position:relative;
          location.href = "OrderForm.go?goodsId="+goodsId+"&basketCount="+basketCount.value;
    }
    
-// 수량이 변경될때마다 basketCount check
+// 수량이 변경될때마다 basketCount check / totalPrice 계산
 	function countChk(count) {
 // 		alert(count.value);
 		basketCount = count.value;
 // 		alert(basketCount);
 		var element = document.getElementById('totalPrice');
-		var total = <%=sumPrice%> * basketCount;
+		var totalPrice = <%=sumPrice%> * basketCount;
 // 		alert(total);
-		element.innerHTML = total;
+		element.innerHTML = totalPrice;
 	}
 	
 
@@ -133,7 +133,7 @@ position:relative;
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>aranoz</title>
+  <title>store_detail</title>
   <link rel="icon" href="img/favicon.png">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="css/bootstrap.min.css">

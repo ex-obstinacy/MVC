@@ -40,7 +40,7 @@ public class StoreDAO {
    
    // ---------------------- 관리자 ----------------------
    
-      // 글 등록 작업
+      // 상품 등록 작업
       public int insertArticle(StoreBean storeBean) {
          // Service 클래스로 부터 BoardBean 객체를 전달받아
          // DB의 board 테이블에 insert 작업 수행하고 결과(int) 리턴
@@ -137,7 +137,7 @@ public class StoreDAO {
          return listCount;
       }
       
-      //상품 목록 조회
+      // 상품 목록 조회
       public ArrayList<StoreBean> selectArticleList(int page, int limit) {
          // 지정된 갯수만큼의 게시물 조회 후 ArrayList 객체에 저장한 뒤 리턴
          ArrayList<StoreBean> articleList = null;
@@ -539,7 +539,8 @@ public class StoreDAO {
             close(pstmt);
             
          }
-         System.out.println("addBasketDAO basketCount : " + basketCount);
+         
+         System.out.println("storeDAO addBasket()에서 basketCount : " + basketCount);
          return addCount;
       }
 
@@ -847,16 +848,16 @@ public class StoreDAO {
   					 System.out.println("확인2");
   					 
   				// 구매시 goods에 sellCount  + 1 
-  					String sql2 = "SELECT sellCount FROM goods WHERE goodsId=?";
-  					pstmt = con.prepareStatement(sql2);
-  					pstmt.setInt(1, order.getGoodsId());
-  					rs = pstmt.executeQuery();
-  					if(rs.next()) {
-  						String sql3 = "UPDATE goods SET sellCount=sellCount+1 WHERE goodsId=?";
-  						pstmt=con.prepareStatement(sql3);
-  						pstmt.setInt(1, rs.getInt("goodsId"));
-  						pstmt.executeUpdate();
-  					}
+//  					String sql2 = "SELECT sellCount FROM goods WHERE goodsId=?";
+//  					pstmt = con.prepareStatement(sql2);
+//  					pstmt.setInt(1, order.getGoodsId());
+//  					rs = pstmt.executeQuery();
+//  					if(rs.next()) {
+//  						String sql3 = "UPDATE goods SET sellCount=sellCount+1 WHERE goodsId=?";
+//  						pstmt=con.prepareStatement(sql3);
+//  						pstmt.setInt(1, rs.getInt("goodsId"));
+//  						pstmt.executeUpdate();
+//  					}
   					
   			} catch (Exception e) {
   				System.out.println("orderGoods() 오류!- "+e.getMessage());
