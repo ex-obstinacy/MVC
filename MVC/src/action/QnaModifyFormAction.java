@@ -31,6 +31,7 @@ public class QnaModifyFormAction implements Action {
 		forward = new ActionForward();
 		forward.setPath("/qna/qna_modify.jsp");
 		
+		
 		return forward;
 	}
 

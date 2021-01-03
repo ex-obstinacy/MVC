@@ -243,7 +243,7 @@ int re_lev = Integer.parseInt(request.getParameter("re_lev"));
 										<div style="text-align: center;">
 											<a href="QnaModifyForm.qn?num=<%=article.getNum() %>
 															&page=<%=nowPage %>
-															&re_ref=<%=re_ref %>
+															&re_ref=<%=request.getParameter("re_ref") %>
 															&re_lev=<%=re_lev %>" target="_parent" class="bbs-button">수정하기</a>
 										</div>
 										<div style="text-align: center;">
