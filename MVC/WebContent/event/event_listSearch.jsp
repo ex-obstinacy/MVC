@@ -169,7 +169,7 @@ String member_id = (String) session.getAttribute("id");
 						%>
 						<%
 							int row = 1; // 게시판의 행
-						int col = 5; // 게시판의 열
+							int col = 3; // 게시판의 열
 						for (int i = 0; i < articleList.size(); i++, row++) {
 							if (row % col == 1) {
 						%>

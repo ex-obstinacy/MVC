@@ -145,7 +145,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 	<section class="blog_area padding_top">
 		<div class="container">
 			<div class="topnav">
-				<a href="NoticeList.no" target="_parent">공지사항</a> <a href="NoticeFaq.no" target="_parent">FAQ</a> <a href="QnaList.qn" target="_parent">1대1 문의</a> <a href="#contact">회원 약관</a>
+				<a href="NoticeList.no" target="_parent">공지사항</a> <a href="NoticeFaq.no" target="_parent">FAQ</a> <a href="QnaList.qn" target="_parent">1대1 문의</a> 
 			</div>
 		</div>
 	</section>

@@ -108,7 +108,7 @@
 	<section class="blog_area padding_top">
 		<div class="container">
 			<div class="topnav">
-				<a href="NoticeList.no" target="_parent">공지사항</a> <a href="NoticeFaq.no" target="_parent">FAQ</a> <a href="QnaList.qn" target="_parent">1대1 문의</a> <a href="#contact">회원 약관</a>
+				<a href="NoticeList.no" target="_parent">공지사항</a> <a href="NoticeFaq.no" target="_parent">FAQ</a> <a href="QnaList.qn" target="_parent">1대1 문의</a> 
 			</div>
 		</div>
 	</section>
@@ -124,7 +124,8 @@
 							<div class="bbs-view m_noview">
 								<section id="writeForm">
 									<form action="QnaModifyPro.qn" method="post" enctype="multipart/form-data" name="modifyForm">
-										<input type="hidden" name="num" value="<%=article.getNum() %>" /> <input type="hidden" name="page" value="<%=nowPage %>" />
+										<input type="hidden" name="num" value="<%=article.getNum() %>" /> 
+										<input type="hidden" name="page" value="<%=nowPage %>" />
 										<table>
 											<!-- 								<form action="NoticeWritePro.no" method="post"enctype="multipart/form-data" name="noticeform"> -->
 											<input type="hidden" name="mode" value="up">
@@ -158,6 +159,12 @@
 												</tr>
 												<tr>
 													<td class="bbs-list-blank"></td>
+													<td class="bbs-list-a">원글쓴이</td>
+													<td class="bbs-list-b"><input type="text" name="p_member_id" placeholder="원글쓴이" class="form-control" value="<%=article.getP_member_id()%>" readonly></td>
+													<td class="bbs-list-blank"></td>
+												</tr>
+												<tr>
+													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">파일 &nbsp; &nbsp; 첨부</td>
 													<td class="bbs-list-b">
 														<input type="file" name="file" id="file" class="form-control" value="<%=article.getFile() %>">
@@ -168,8 +175,7 @@
 													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">본 문</td>
 													<td class="bbs-list-b" colspan="4">
-														<textarea id="editor1" name="content" style="width: 100%; height: 325px; resize: none;" required="required">
-												<%=article.getContent() %>
+														<textarea id="editor1" name="content" style="width: 800px; height: 500px; resize: none;" required="required"><%=article.getContent() %>
 												</textarea>
 													</td>
 												</tr>

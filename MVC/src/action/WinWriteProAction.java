@@ -27,7 +27,7 @@ public class WinWriteProAction implements Action {
 		WinBean article = new WinBean();	
 		article.setSubject(request.getParameter("subject"));
 		article.setContent(request.getParameter("content"));
-		article.setMember_id(request.getParameter("member_id"));
+//		article.setMember_id(request.getParameter("member_id"));
 		article.setEvent_num(Integer.parseInt(request.getParameter("event_num")));
 		
 		

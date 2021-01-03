@@ -157,7 +157,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 	<section class="blog_area padding_top">
 		<div class="container">
 			<div class="topnav">
-				<a href="NoticeList.no" target="_parent">공지사항</a> <a href="NoticeFaq.no" target="_parent">FAQ</a> <a href="QnaList.qn" target="_parent">1대1 문의</a> <a href="#contact">회원 약관</a>
+				<a href="NoticeList.no" target="_parent">공지사항</a> <a href="NoticeFaq.no" target="_parent">FAQ</a> <a href="QnaList.qn" target="_parent">1대1 문의</a> 
 			</div>
 		</div>
 	</section>
@@ -284,11 +284,17 @@ if(member_id!=null){
 	<section id="emptyArea">
 		<div class="container">등록된 글이 없습니다</div>
 	</section>
+	<%
+	if(member_id!=null){
+	%>
 	<section id="buttonArea">
 		<div class="container">
 			<input type="button" value="글쓰기" class="btn_3" onclick="location.href='QnaWriteForm.qn'">
 		</div>
 	</section>
+	<%
+	}
+	%>
 	<%
 	}
 	%>

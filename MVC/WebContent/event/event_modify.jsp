@@ -1,20 +1,21 @@
 
 <%@page import="vo.EventBean"%>
 <%@page import="org.apache.tomcat.jni.Mmap"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%
 	// request 객체에 저장된 BoardBean 객체(article) 가져오기
-	EventBean article = (EventBean)request.getAttribute("article");
-	// request 객체에 저장된 페이지번호(page) 파라미터 가져오기
-	String nowPage = request.getParameter("page");
-	
+EventBean article = (EventBean) request.getAttribute("article");
+// request 객체에 저장된 페이지번호(page) 파라미터 가져오기
+String nowPage = request.getParameter("page");
 %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>MVC</title>
 <style>
 .title_top {
@@ -109,10 +110,10 @@
 	<section class="blog_area padding_top">
 		<div class="container">
 			<div class="topnav">
-				<a href="EventList.ev" target="_parent">영화</a>
-				<a href="PreviewList.pr" target="_parent">시사회/무대인사</a> 
-				<a href="WinList.wi" target="_parent">당첨자발표</a> 
-<!-- 				<a href="#"> </a> -->
+				<a href="EventList.ev" target="_parent">영화</a> <a
+					href="PreviewList.pr" target="_parent">시사회/무대인사</a> <a
+					href="WinList.wi" target="_parent">당첨자발표</a>
+				<!-- 				<a href="#"> </a> -->
 			</div>
 		</div>
 	</section>
@@ -127,8 +128,10 @@
 							<!-- 게시판 -->
 							<div class="bbs-view m_noview">
 								<section id="writeForm">
-									<form action="EventModifyPro.ev" method="post" enctype="multipart/form-data" name="modifyForm">
-										<input type="hidden" name="num" value="<%=article.getNum() %>" /> <input type="hidden" name="page" value="<%=nowPage %>" />
+									<form action="EventModifyPro.ev" method="post"
+										enctype="multipart/form-data" name="modifyForm">
+										<input type="hidden" name="num" value="<%=article.getNum()%>" />
+										<input type="hidden" name="page" value="<%=nowPage%>" />
 										<table>
 											<!-- 								<form action="NoticeWritePro.no" method="post"enctype="multipart/form-data" name="noticeform"> -->
 											<input type="hidden" name="mode" value="up">
@@ -147,43 +150,54 @@
 											<tbody>
 												<tr>
 													<td class="bbs-list-blank" style="width: 30px;"></td>
-													<td class="bbs-list-a" style="width: 150px;">제 &nbsp; &nbsp; 목</td>
-													<td class="bbs-list-b" colspan="4">
-														<input type="text" name="subject" value="<%=article.getSubject() %>" class="form-control" required="required">
-													</td>
+													<td class="bbs-list-a" style="width: 150px;">제 &nbsp;
+														&nbsp; 목</td>
+													<td class="bbs-list-b" colspan="4"><input type="text"
+														name="subject" value="<%=article.getSubject()%>"
+														class="form-control" required="required"></td>
 												</tr>
 												<tr>
 													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">I &nbsp; &nbsp; D</td>
+													<td class="bbs-list-b"><input type="text"
+														name="member_id" placeholder="아이디" class="form-control"
+														value="<%=article.getMember_id()%>" readonly></td>
+													<td class="bbs-list-blank"></td>
+												</tr>
+
+												<tr>
+													<td class="bbs-list-blank"></td>
+													<td class="bbs-list-a">응모 버튼 여부</td>
 													<td class="bbs-list-b">
-														<input type="text" name="member_id" placeholder="아이디" class="form-control" value="<%=article.getMember_id() %>" readonly>
+													<input type="radio" name="apply" value="생성" class="form-control"><label for="버튼있음">버튼있음</label> 
+													<input type="radio" name="apply" value="없음" class="form-control"><label for="버튼없음">버튼없음</label>
 													</td>
 													<td class="bbs-list-blank"></td>
 												</tr>
+
 												<tr>
 													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">본문 &nbsp; &nbsp; 파일</td>
-													<td class="bbs-list-b">
-														<input type="file" name="file" id="file" class="form-control" value="<%=article.getFile() %>">
-													</td>
+													<td class="bbs-list-b"><input type="file" name="file"
+														id="file" class="form-control"
+														value="<%=article.getFile()%>"></td>
 													<td class="bbs-list-blank"></td>
 												</tr>
 												<tr>
 													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">미리보기 &nbsp; &nbsp; 파일</td>
-													<td class="bbs-list-b">
-														<input type="file" name="thumbnail" id="thumbnail" class="form-control" value="<%=article.getThumbnail() %>" readonly>
-													</td>
+													<td class="bbs-list-b"><input type="file"
+														name="thumbnail" id="thumbnail" class="form-control"
+														value="<%=article.getThumbnail()%>" readonly></td>
 													<td class="bbs-list-blank"></td>
 												</tr>
 												<tr>
 													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">본 문</td>
-													<td class="bbs-list-b" colspan="4">
-														<textarea id="editor1" name="content" style="width: 100%; height: 325px; resize: none;">
-												<%=article.getContent() %>
-												</textarea>
-													</td>
+													<td class="bbs-list-b" colspan="4"><textarea
+															id="editor1" name="content"
+															style="width: 800px; height: 500px; resize: none;"><%=article.getContent()%>
+												</textarea></td>
 												</tr>
 											</tbody>
 											<!-- 									<section id="commandCell"> -->
@@ -198,7 +212,8 @@
 											<!-- 							</div> -->
 										</table>
 										<section id="commandCell">
-											<input type="submit" value="수정">&nbsp;&nbsp; <input type="button" value="뒤로" onclick="history.back()">
+											<input type="submit" value="수정">&nbsp;&nbsp; <input
+												type="button" value="뒤로" onclick="history.back()">
 									</form>
 								</section>
 								<!-- 게시판 -->

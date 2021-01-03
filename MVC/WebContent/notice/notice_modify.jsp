@@ -109,7 +109,7 @@
 	<section class="blog_area padding_top">
 		<div class="container">
 			<div class="topnav">
-				<a href="NoticeList.no" target="_parent">공지사항</a> <a href="NoticeFaq.no" target="_parent">FAQ</a> <a href="QnaList.qn" target="_parent">1대1 문의</a> <a href="#contact">회원 약관</a>
+				<a href="NoticeList.no" target="_parent">공지사항</a> <a href="NoticeFaq.no" target="_parent">FAQ</a> <a href="QnaList.qn" target="_parent">1대1 문의</a>
 			</div>
 		</div>
 	</section>
@@ -169,8 +169,7 @@
 													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">본 문</td>
 													<td class="bbs-list-b" colspan="4">
-														<textarea id="editor1" name="content" style="width: 100%; height: 325px; resize: none;" required="required">
-												<%=article.getContent() %>
+														<textarea id="editor1" name="content" style="width: 800px; height: 500px; resize: none;" required="required"><%=article.getContent() %>
 												</textarea>
 													</td>
 												</tr>

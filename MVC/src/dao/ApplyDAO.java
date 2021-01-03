@@ -222,7 +222,7 @@ public class ApplyDAO {
 				rs = pstmt.executeQuery();
 				if(rs.next()) {
 					win_member = new WinBean();
-					win_member.setMember_id(rs.getString("member_id"));
+					win_member.setWin_member(rs.getString("win_member"));
 					win_member.setEvent_num(rs.getInt("event_num"));
 					winMemberList.add(win_member);
 				}

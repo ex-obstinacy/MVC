@@ -142,7 +142,7 @@ int re_lev = Integer.parseInt(request.getParameter("re_lev"));
 	<section class="blog_area padding_top">
 		<div class="container">
 			<div class="topnav">
-				<a href="NoticeList.no" target="_parent">공지사항</a> <a href="NoticeFaq.no" target="_parent">FAQ</a> <a href="QnaList.qn" target="_parent">1대1 문의</a> <a href="#contact">회원 약관</a>
+				<a href="NoticeList.no" target="_parent">공지사항</a> <a href="NoticeFaq.no" target="_parent">FAQ</a> <a href="QnaList.qn" target="_parent">1대1 문의</a> 
 			</div>
 		</div>
 	</section>
@@ -238,7 +238,7 @@ int re_lev = Integer.parseInt(request.getParameter("re_lev"));
 										</div>
 										<%
 											if (Member_id != null) {
-											if ("admin".equals(Member_id) || (Member_id.equals(article.getP_member_id()))) {
+											if ("admin".equals(Member_id)) {
 										%>
 										<div style="text-align: center;">
 											<a href="QnaModifyForm.qn?num=<%=article.getNum()%>&page=<%=nowPage%>" target="_parent" class="bbs-button">수정하기</a>
@@ -267,6 +267,16 @@ int re_lev = Integer.parseInt(request.getParameter("re_lev"));
 											</form>
 										</div>
 										<%
+											}else if((Member_id.equals(article.getMember_id()))){
+												%>
+												<div style="text-align: center;">
+													<a href="QnaModifyForm.qn?num=<%=article.getNum()%>&page=<%=nowPage%>" target="_parent" class="bbs-button">수정하기</a>
+												</div>
+												<form action="QnaDeletePro.qn" name="fr" method="post">
+												<input type="hidden" name="num" value="<%=num%>" /><input type="hidden" name="re_ref" value="<%=re_ref%>" /><input type="hidden" name="re_lev" value="<%=re_lev%>" />
+												 <input type="hidden" name="page" value="<%=nowPage%>" /> <input type="submit" value="삭제하기" onclick="return a()" class="bbs-button">
+											</form>
+											<% 
 											}
 										}
 										%>

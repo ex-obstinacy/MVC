@@ -56,6 +56,13 @@ public class QnaModifyProAction implements Action {
 		article.setContent(multi.getParameter("content"));
 		article.setFile(multi.getOriginalFileName("file"));
 		
+//		System.out.println("글 번호 : " + num);
+//		System.out.println("글 페이지 : " + nowPage);
+//		
+//		System.out.println("제목 : "+multi.getParameter("subject"));
+//		System.out.println("내용 : "+multi.getParameter("content"));
+//		System.out.println("글쓴이 : "+multi.getParameter("member_id"));
+		System.out.println("원글쓴이 : " +multi.getParameter("p_member_id"));
 		// QnaModifyProService 클래스의 modifyArticle() 메서드를 호출하여
 		// 글 수정 작업 요청
 		// => 파라미터 : QnaBean, 리턴타입 : boolean(isModifySuccess)

@@ -12,7 +12,7 @@
 // WinBean 객체 파라미터 가져오기
 WinBean article = (WinBean) request.getAttribute("article");
 int partiMemberCount = (int)(request.getAttribute("partiMemberCount"));
-String win_members = article.getMember_id();
+String win_members = article.getWin_member();
 // System.out.println("win_member : " + win_member_id);
 
 ArrayList<ApplyBean> articleList = (ArrayList<ApplyBean>)request.getAttribute("articleList");
@@ -178,7 +178,7 @@ int num = Integer.parseInt(request.getParameter("num"));
 									<div class="bbs-detail">
 										<div class="detail-attr detail-writer">
 											<div class="detail-name">작성자</div>
-											<div class="detail-value"><%=article.getMember_id()%></div>
+											<div class="detail-value">admin</div>
 										</div>
 										<div class="detail-attr detail-date">
 											<div class="detail-name">작성일</div>
@@ -278,7 +278,11 @@ int num = Integer.parseInt(request.getParameter("num"));
 										}
 										%>
 										<br><br><br>
-										<!-- 추첨안했을때만 뜨게하기 -->								
+										<!-- 추첨안했을때만 뜨게하기 -->		
+										<%
+											if (Member_id != null) {
+											if (Member_id.equals("admin")) {
+										%>						
 										<div>
 											<script type="text/javascript">
 												function c() {
@@ -300,6 +304,10 @@ int num = Integer.parseInt(request.getParameter("num"));
 												<input type="submit" value="추첨하기" onclick="return c()" class="bbs-button">
 											</form>
 										</div>
+										<%
+											}
+										}
+										%>
 									</div>
 									
 									

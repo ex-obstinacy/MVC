@@ -153,14 +153,14 @@
 														<input type="text" name="subject" value="<%=article.getSubject() %>" class="form-control" required="required">
 													</td>
 												</tr>
-												<tr>
-													<td class="bbs-list-blank"></td>
-													<td class="bbs-list-a">I &nbsp; &nbsp; D</td>
-													<td class="bbs-list-b">
-														<input type="text" name="member_id" placeholder="아이디" class="form-control" value="<%=article.getMember_id() %>" readonly>
-													</td>
-													<td class="bbs-list-blank"></td>
-												</tr>
+<!-- 												<tr> -->
+<!-- 													<td class="bbs-list-blank"></td> -->
+<!-- 													<td class="bbs-list-a">I &nbsp; &nbsp; D</td> -->
+<!-- 													<td class="bbs-list-b"> -->
+<%-- 														<input type="text" name="member_id" placeholder="아이디" class="form-control" value="<%=article.getMember_id() %>" readonly> --%>
+<!-- 													</td> -->
+<!-- 													<td class="bbs-list-blank"></td> -->
+<!-- 												</tr> -->
 												<tr>
 													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">이벤트 글 번호</td>
@@ -173,8 +173,7 @@
 													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">본 문</td>
 													<td class="bbs-list-b" colspan="4">
-														<textarea id="editor1" name="content" style="width: 100%; height: 325px; resize: none;" required="required">
-												<%=article.getContent() %>
+														<textarea id="editor1" name="content" style="width: 800px; height: 500px; resize: none;" required="required"><%=article.getContent() %>
 												</textarea>
 													</td>
 												</tr>

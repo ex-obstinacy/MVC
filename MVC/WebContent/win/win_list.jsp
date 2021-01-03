@@ -176,7 +176,7 @@ String member_id = (String) session.getAttribute("id");
 							<td align="center"><%=articleList.get(i).getNum()%></td>
 							<td align="center"><a href="WinDetail.wi?num=<%=articleList.get(i).getNum()%>&page=<%=nowPage%>"> <%=articleList.get(i).getSubject()%>
 							</a>
-							<td align="center"><%=articleList.get(i).getMember_id()%></td>
+							<td align="center">admin</td>
 							<td align="center"><%=sdf.format(articleList.get(i).getDate())%></td>
 							<td align="center"><%=articleList.get(i).getReadcount()%></td>
 						</tr>

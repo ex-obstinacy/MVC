@@ -62,7 +62,7 @@
                                         <a class="dropdown-item" href="NoticeList.no"> 공지사항</a>
                                         <a class="dropdown-item" href="NoticeFaq.no">FAQ</a>
                                         <a class="dropdown-item" href="QnaList.qn">1대1 문의</a>
-                                        <a class="dropdown-item" href="#">이용약관</a>
+                                        
                                     </div>
                                 </li>
                             </ul>

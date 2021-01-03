@@ -179,8 +179,7 @@ String nowPage = request.getParameter("page");
 													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">본 문</td>
 													<td class="bbs-list-b" colspan="4">
-														<textarea id="editor1" name="content" style="width: 100%; height: 325px; resize: none;">
-												<%=article.getContent()%>
+														<textarea id="editor1" name="content" style="width: 800px; height: 500px; resize: none;"><%=article.getContent()%>
 												</textarea>
 													</td>
 												</tr>

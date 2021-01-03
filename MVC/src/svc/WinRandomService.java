@@ -167,14 +167,21 @@ public class WinRandomService {
 		
 		// 당첨자가 admin 인 경우 -> 아직 추첨안함!
 		// 당첨자가 admin 이 아닌 경우 -> 이미 추첨함!
-		if(!(winMember.equals("admin"))) {
+//		if(!(winMember.equals(""))) {
+//			commit(con);
+//			hasWinMember = true;
+//		} else {
+//			rollback(con);
+//		}
+//		
+//		close(con);
+		
+		if(!(winMember=="")) {
+			rollback(con);
+		}else {
 			commit(con);
 			hasWinMember = true;
-		} else {
-			rollback(con);
 		}
-		
-		close(con);
 		
 		return hasWinMember;
 	}
