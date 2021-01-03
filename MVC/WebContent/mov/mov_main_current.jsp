@@ -141,7 +141,7 @@
 						<div class="mov_info">
 							<h3><%=currentMovList.get(count).getSubjet() %></h3>
 							<p>
-								<span class="rating">개봉예정일 <b><%=currentMovList.get(count).getOpenDt() %></b></span>
+								<span class="rating">예매율 <b><%=currentMovList.get(i).getBookingRate() %>%</b></span>
 								<span class="score"><b><%=currentMovList.get(count).getTotalRating() %></b></span>
 							</p>
 						</div><!-- .mov_info -->
