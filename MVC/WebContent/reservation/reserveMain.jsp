@@ -65,7 +65,19 @@ System.out.println("영화코드 : " + movieCd);
 		// cinema 목록 db에서 가져오기(admin_reserve랑 동일)
 		$.getJSON('CinemaListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
-				$('#tdcinema').append("<li class='cdiv "+item.cinema_local+"'><input type='radio' name='cinema' id='"+item.cinema_name+"' value='"+item.cinema_name+"' class='rcinema'/><label for='"+item.cinema_name+"'>"+item.cinema_name+"</label></li>");
+				$('#tdcinema').append("<li class='cdiv reserveNo "+item.cinema_local+" "+item.cinema_name+"'><input type='radio' name='cinema' id='"+item.cinema_name+"' value='"+item.cinema_name+"' class='rcinema "+item.cinema_name+"'/><label for='"+item.cinema_name+"'>"+item.cinema_name+"</label></li>");
+			});
+			// 서울-강남점, 부산-서면점 만 오픈함
+			if($('#tdcinema li').hasClass('강남') || $('#tdcinema li').hasClass('서면')) {
+				$('#movieform > table td>ul#tdcinema li.강남').removeClass('reserveNo');
+				$('#movieform > table td>ul#tdcinema li.서면').removeClass('reserveNo');
+			}
+			// 오픈안한 영화관은 클릭안됨
+			$('#movieform > table td>ul#tdcinema li.reserveNo').click(function() {
+				$('#tdcinema input').prop("checked", false);
+				$('#tddate input').prop("checked", false);
+				$('#tdtime input').prop("checked", false);
+				$('#tdtime .tdiv').removeClass('show');
 			});
 		});
 		// showtime 목록 db에서 가져오기
