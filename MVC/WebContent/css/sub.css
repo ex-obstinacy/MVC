@@ -17,6 +17,10 @@
 
 .sub_customer01{position:relative; width:100%; height:200px; text-align:center; background-image:url(../img/sub/sub_customer01.png); margin-bottom: 10px; background-repeat:no-repeat; background-position:center center; background-size:100% auto;}
 
+.sub_event01{position:relative; width:100%; height:200px; text-align:center; background-image:url(../img/sub/sub_event02.jpg); margin-bottom: 30px; background-repeat:no-repeat; background-position:center center; background-size:100% auto;}
+.sub_event01 div.black{position:absolute; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6); }
+.sub_event01 h2{position:absolute; top:50%; left:50%; color:#fff;  font-size:23px; z-index:100; transform:translate(-50%,-50%);}
+
 
 /******************** 멤버 서브페이지 시작 ********************/
 
