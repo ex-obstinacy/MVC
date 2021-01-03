@@ -79,6 +79,8 @@ public class QnaModifyProAction implements Action {
 		//    새 요청이 발생하므로 Redirect 방식으로 이동
 		//    파라미터로 글번호(num)와 페이지번호(page) 전달 필요
 		
+		System.out.println("확인 : " + multi.getParameter("re_ref") + ", " + multi.getParameter("re_lev"));
+		
 		if(!isModifySuccess) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -89,7 +91,9 @@ public class QnaModifyProAction implements Action {
 		} else {
 			forward = new ActionForward();
 			forward.setPath("QnaDetail.qn?num=" + num + 
-									"&page=" + nowPage);
+									"&page=" + nowPage + 
+									"&re_ref=" + multi.getParameter("re_ref") + 
+									"&re_lev=" + multi.getParameter("re_lev"));
 			
 			
 			System.out.println("게시물 페이지 : " +nowPage);

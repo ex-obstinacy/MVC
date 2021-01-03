@@ -229,7 +229,7 @@ public class QnaDAO {
 				article.setP_member_id(rs.getString("p_member_id"));
 				System.out.println("num : " + num);
 				System.out.println("re_ref : " + num);
-				System.out.println("re_ : " + num);
+				System.out.println("re_lev : " + num);
 			}
 
 		} catch (SQLException e) {

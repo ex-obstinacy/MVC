@@ -7,9 +7,6 @@
 	// request 객체에 저장된 페이지번호(page) 파라미터 가져오기
 	String nowPage = request.getParameter("page");
 	
-	String re_ref = request.getParameter("re_ref");
-	String re_lev = request.getParameter("re_lev");
-	
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -129,15 +126,13 @@
 									<form action="QnaModifyPro.qn" method="post" enctype="multipart/form-data" name="modifyForm">
 										<input type="hidden" name="num" value="<%=article.getNum() %>" /> 
 										<input type="hidden" name="page" value="<%=nowPage %>" />
-										<input type="hidden" name="re_ref" value="<%=re_ref %>">
-										<input type="hidden" name="re_lev" value="<%=re_lev %>">
 										<table>
 											<!-- 								<form action="NoticeWritePro.no" method="post"enctype="multipart/form-data" name="noticeform"> -->
-<!-- 											<input type="hidden" name="mode" value="up"> -->
-<!-- 											<input Type="hidden" Name="bbs" Value="free"> -->
-<!-- 											<input Type="hidden" Name="num_a" Value="7"> -->
-<!-- 											<input Type="hidden" Name="num_b" Value="9"> -->
-<!-- 											<input Type="hidden" Name="htmltype" Value="HTML"> -->
+											<input type="hidden" name="mode" value="up">
+											<input Type="hidden" Name="bbs" Value="free">
+											<input Type="hidden" Name="num_a" Value="7">
+											<input Type="hidden" Name="num_b" Value="9">
+											<input Type="hidden" Name="htmltype" Value="HTML">
 											<colgroup>
 												<col width="30" />
 												<col width="150" />
