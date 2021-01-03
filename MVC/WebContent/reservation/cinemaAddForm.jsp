@@ -45,7 +45,7 @@
 		// 등록된 영화관 리스트 가져오기
 		$.getJSON('CinemaListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
-				$('#cldiv').append("<li class='cl_div "+item.cinema_local+"'><input type='radio' name='cinema' id='"+item.cinema_name+"' value='"+item.cinema_name+"' class='rcinema'/><label for='"+item.cinema_name+"'>"
+				$('#cldiv').append("<li class='cl_div "+item.cinema_local+"'><input type='radio' name='cinema' id='"+item.cinema_name+"' value='"+item.cinema_namefull+"' class='rcinema'/><label for='"+item.cinema_name+"'>"
 						+"<span id='span_c1'>["+item.cinema_localfull+"]</span><span id='span_c2'>"+item.cinema_name+"</span></label></li>");
 			});
 		});
@@ -117,7 +117,7 @@
 					<option value="대구">대구</option>
 					<option value="부산/울산">부산/울산</option>
 					<option value="경상">경상</option>
-					<option value="광주">광주/전라/제주</option>
+					<option value="광주/전라/제주">광주/전라/제주</option>
 				</select><br><br><br>
 				<input type="text" name="txtcname" id="txtcname" placeholder="영화관명을 입력하세요."><br><br>
 				<div class="btnBox"><input type="submit" class="genric-btn primary circle" value="등록"></div>

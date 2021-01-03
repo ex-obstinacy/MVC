@@ -49,7 +49,6 @@ System.out.println("영화코드 : " + movieCd);
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		
 		// 등록되어있는 영화목록 가져오기
 		$.getJSON('MovieListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
@@ -259,8 +258,7 @@ System.out.println("영화코드 : " + movieCd);
 						<li><input type="radio" name="local" id="대구" value="대구" class="rlocal"/><label for="대구">대구</label></li>
 						<li><input type="radio" name="local" id="부산" value="부산/울산" class="rlocal"/><label for="부산">부산/울산</label></li>
 						<li><input type="radio" name="local" id="경상" value="경상" class="rlocal"/><label for="경상">경상</label></li>
-						<li><input type="radio" name="local" id="광주" value="광주/전라" class="rlocal"/><label for="광주">광주/전라</label></li>
-						<li><input type="radio" name="local" id="제주" value="제주" class="rlocal"/><label for="제주">제주</label></li>
+						<li><input type="radio" name="local" id="광주" value="광주/전라/제주" class="rlocal"/><label for="광주">광주/전라/제주</label></li>
 					</ul>
 				</td>
 				<td rowspan="2">
