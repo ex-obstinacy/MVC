@@ -114,7 +114,6 @@
 								<th>구매일</th>
 								<th>주문번호</th>
 								<th>상품명</th>
-								<th>구매수량</th>
 								<th>결제금액</th>
 								<th>구매자</th>
 							</tr>
@@ -137,7 +136,6 @@
 <%-- 								<%} else { %> --%>
 <%-- 								<td align="center"><%=articleList.get(i).getName() %> 외 <%=orderCount %></td> --%>
 <%-- 								<% } %> --%>
-								<td align="center"><%=articleList.get(i).getOrderCount() %></td>
 								<td align="center"><%=articleList.get(i).getSumPrice() %></td>
 								<td align="center"><%=articleList.get(i).getMember_name() %></td>
 							</tr>
@@ -148,7 +146,6 @@
 								<td align="center"><%=articleList.get(i).getDate() %></td>
 								<td align="center"><a href="MemberOrderDetail.me?orderNum=<%=articleList.get(i).getOrderNum() %>"><%=articleList.get(i).getOrderNum() %></a></td>
 								<td align="center"><%=articleList.get(i).getName() %> 외 <%=count-1 %></td>
-								<td align="center"><%=articleList.get(i).getOrderCount() %></td>
 								<td align="center"><%=articleList.get(i).getSumPrice() %></td>
 								<td align="center"><%=articleList.get(i).getMember_name() %></td>
 							</tr>
