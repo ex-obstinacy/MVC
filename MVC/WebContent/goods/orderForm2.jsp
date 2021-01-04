@@ -194,6 +194,7 @@ function requestPay() {
 					<!-- Pro로 넘길 값 -->
                     <input type="hidden" value=<%=goods_goodsId %> name="goodsRow" class="goodsSelect">
                     <input type="hidden" value=<%=reserveNum[i] %> name="reserveNum">
+                    <input type="hidden" value=<%=basketList.get(i).getBasketCount() %> name="basketCount">
                     <input type="hidden" value="<%=orderNum %>" name="orderNum">
                     <!-- Pro로 넘길 값 -->
                       <img src="goodsUpload/<%=basketList.get(i).getFile() %>" alt="상품이미지" width="250" />
@@ -377,7 +378,7 @@ function requestPay() {
             <input type="button" class="btn_3" value="결제하기" onclick="requestPay()">
           </div>
           <!-- 가상 결제 완료 버튼 -->
-<!--         <input type="submit" value="결제 완료"> -->
+        <input type="submit" value="결제 완료">
      <!--::버튼 끝::-->
          </form>
       </div>

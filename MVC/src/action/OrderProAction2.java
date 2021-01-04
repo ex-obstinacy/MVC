@@ -33,6 +33,11 @@ public class OrderProAction2 implements Action {
       order.setSumPrice(sumPrice);
       order.setTotalPrice(totalPrice);
       
+      String[] basketCount = request.getParameterValues("basketCount");
+      for(String num:basketCount) {
+    	  System.out.println(num);
+      }
+      
       //개별상품번호 !
       String[] reserveNum = request.getParameterValues("reserveNum");
       
@@ -51,7 +56,8 @@ public class OrderProAction2 implements Action {
       System.out.println("orderCount : " + orderCount);
       
       OrderProService2 orderProService = new OrderProService2();
-	  boolean isOrderSuccess = orderProService.OrderGoods(goodsIds, reserveNum, id, order, orderCount);
+//	  boolean isOrderSuccess = orderProService.OrderGoods(goodsIds, reserveNum, id, order, orderCount);
+	  boolean isOrderSuccess = orderProService.OrderGoods(goodsIds, reserveNum, id, order, basketCount);
       
 	  //멤버십 추가
       boolean isMembershipSuccess = orderProService.createMembership(id, order);
