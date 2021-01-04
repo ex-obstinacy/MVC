@@ -12,7 +12,7 @@ import vo.StoreBean;
 public class OrderFormService2 {
 
 	public ArrayList<StoreBean> getBasketList(String[] checkRows, String id) {
-		System.out.println("OrderFormService2 !");
+		System.out.println("OrderFormService2 - getBasketList() !");
 	    
 	    ArrayList<StoreBean> basketList = null;
 	    

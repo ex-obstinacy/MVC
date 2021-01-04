@@ -1177,7 +1177,7 @@ public class StoreDAO {
        return reserveNum2;
     }
     
-   // 구매내역 조회
+   // 개인 구매내역 조회
    public ArrayList<StoreBean> selectOrderList(String orderNum, String id) {
        System.out.println("storeDAO - selectOrderList()");
          ArrayList<StoreBean> orderList = null;
