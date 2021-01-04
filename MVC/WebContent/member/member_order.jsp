@@ -94,10 +94,7 @@ ArrayList<StoreBean> orderList = (ArrayList<StoreBean>)request.getAttribute("ord
 				
 				<div class="rightBox">
 					<p>교환권번호 : <%=orderList.get(i).getReserveNum() %></p>
-					<table >
-					
-					
-					
+					<table >				
 						<colgroup>
 							<col width="20%"/>
 							<col width="30%"/>
@@ -127,8 +124,7 @@ ArrayList<StoreBean> orderList = (ArrayList<StoreBean>)request.getAttribute("ord
 			</div><!-- .infoBox -->
 						<%	
 					}
-					
-						
+											
 					}
 					%>
 			<div class="btnBox">

@@ -852,8 +852,8 @@ public class StoreDAO {
   					String sql2 = "SELECT sellCount FROM goods WHERE goodsId=?";
   					pstmt = con.prepareStatement(sql2);
   					pstmt.setInt(1, order.getGoodsId());
-//  					rs = pstmt.executeQuery();
-  					System.out.println("확인3");
+  					rs = pstmt.executeQuery();
+  					System.out.println("확인3 goodsId : " + order.getGoodsId());
   					if(rs.next()) {
 //  						String sql3 = "UPDATE goods g SET g.sellCount = g.sellCount + (SELECT o.orderCount FROM goods_order o WHERE g.goodsId = o.goods_goodsId) WHERE g.goodsId=?";
   						String sql3 = "UPDATE goods g INNER JOIN goods_order o ON g.goodsId = o.goods_goodsId SET g.sellCount = g.sellCount + o.orderCount WHERE g.goodsId=?";

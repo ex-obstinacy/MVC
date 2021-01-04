@@ -19,7 +19,7 @@ public class OrderProAction2 implements Action {
    public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
       ActionForward forward = null;
       
-      System.out.println("OrderProAction2 !");
+      System.out.println("OrderProAction2로 이동!");
       
       HttpSession session = request.getSession(); //MemberBean id 값 가져오기
       String id = (String)session.getAttribute("id");

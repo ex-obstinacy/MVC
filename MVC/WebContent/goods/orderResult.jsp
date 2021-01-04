@@ -49,7 +49,7 @@ ArrayList<StoreBean> orderList = (ArrayList<StoreBean>)request.getAttribute("ord
 <!-- 서브비주얼 -->
 <jsp:include page="/inc/sub_store1.jsp"/>
 
-<div id="cart_area">
+<div class="cart_area">
 	<div class="container">
 		<div class="orderResult">
 			<h2><span>결제</span>가 완료되었습니다.</h2>

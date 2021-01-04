@@ -125,11 +125,11 @@
       </div>
 	</section>
 	
-	<section id="buttonArea">
+	<section id="buttonArea">pageList
   	  <div class="container">
 	  </div>
 	</section>
-	<section id="pageList">
+	<section id="buttonArea">
 	  <div class="container">
 	<%if(nowPage <= 1) {%>
 			<input type="button" value="이전" class="btn_3">&nbsp;

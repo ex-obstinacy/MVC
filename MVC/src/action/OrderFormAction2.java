@@ -16,7 +16,7 @@ public class OrderFormAction2 implements Action {
 
    @Override
    public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-	   System.out.println("OrderFormAction2 !");
+	   System.out.println("OrderFormAction2로 이동!");
 	      ActionForward forward = null;
 	      forward = new ActionForward();
 	      
