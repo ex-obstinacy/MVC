@@ -855,10 +855,8 @@ public class StoreDAO {
   					rs = pstmt.executeQuery();
   					System.out.println("확인3 goodsId : " + order.getGoodsId());
   					if(rs.next()) {
-//  						String sql3 = "UPDATE goods g SET g.sellCount = g.sellCount + (SELECT o.orderCount FROM goods_order o WHERE g.goodsId = o.goods_goodsId) WHERE g.goodsId=?";
   						String sql3 = "UPDATE goods g INNER JOIN goods_order o ON g.goodsId = o.goods_goodsId SET g.sellCount = g.sellCount + o.orderCount WHERE g.goodsId=?";
-  						pstmt=con.prepareStatement(sql3);
-//  						pstmt.setInt(1, rs.getInt("goodsId"));
+  						pstmt=con.prepareStatement(sql3);;
   						pstmt.setInt(1, order.getGoodsId());
   						pstmt.executeUpdate();
   						System.out.println("확인4");
@@ -939,6 +937,20 @@ public class StoreDAO {
   				        
   							 addCount = pstmt.executeUpdate();
   							 System.out.println("확인7");
+  							 
+//  		  				 구매시 goods에 sellCount  + orderCount - 수정 중 (란희) 
+  		  					String sql2 = "SELECT sellCount FROM goods WHERE goodsId=?";
+  		  					pstmt = con.prepareStatement(sql2);
+  		  					pstmt.setInt(1, goodsId);
+  		  					rs = pstmt.executeQuery();
+  		  					System.out.println("확인3 goodsId : " + goodsId);
+  		  					if(rs.next()) {
+  		  						String sql3 = "UPDATE goods g INNER JOIN goods_order o ON g.goodsId = o.goods_goodsId SET g.sellCount = g.sellCount + o.orderCount WHERE g.goodsId=?";
+  		  						pstmt=con.prepareStatement(sql3);;
+  		  						pstmt.setInt(1, goodsId);
+  		  						pstmt.executeUpdate();
+  		  						System.out.println("확인4");
+  		  					}
   							 
 //  					} else {
 //  						sql = "SELECT MAX(orderId) FROM goods_order";
@@ -1088,7 +1100,7 @@ public class StoreDAO {
           String today = format1.format(time);
           
           if (rs.next()) {
-             System.out.println(rs.getString(1));
+             System.out.println("yyyyMMdd + Date : " + rs.getString(1));
              
              if (rs.getNString(1) != null) {
                 if (rs.getString(1).contains(today)) {
@@ -1117,7 +1129,7 @@ public class StoreDAO {
           
           //값 확인
           for(String reserve : reserveNum2) {
-             System.out.println(reserve);
+             System.out.println("reserveNum2확인" + reserve);
           }
           
        } catch (NumberFormatException e) {
