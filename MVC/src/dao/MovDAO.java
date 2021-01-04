@@ -189,7 +189,13 @@ public class MovDAO {
 				article.setOpenDt(rs.getDate(4));
 				article.setShowTm(rs.getString(5));
 				article.setDirector(rs.getString(6));
-				article.setCast(rs.getString(7));
+				if(rs.getNString(7)!=null) {
+					String cast = rs.getNString(7);
+					cast = cast.substring(0, cast.length()-2);
+					article.setCast(cast);
+				} else if(rs.getNString(7)==null){
+					article.setCast(" ");
+				};				
 				article.setNationNm(rs.getString(8));
 				article.setCompanys(rs.getString(9));
 				article.setGrade(rs.getString(10));
