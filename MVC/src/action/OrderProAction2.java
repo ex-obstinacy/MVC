@@ -69,7 +69,7 @@ public class OrderProAction2 implements Action {
 			  // 장바구니 목록 삭제
 			  for (int i = 0; i < goodsIds.length; i++) {
 				  BasketDeleteProService basketDeleteProService = new BasketDeleteProService();
-				  boolean isDeleteSuccess = basketDeleteProService.removeBasket(Integer.parseInt(goodsIds[i]));
+				  boolean isDeleteSuccess = basketDeleteProService.removeBasketGoodsId(Integer.parseInt(goodsIds[i]));
 					if(!isDeleteSuccess){
 						response.setContentType("text/html;charset=UTF-8");
 						PrintWriter out=response.getWriter();
