@@ -46,7 +46,7 @@
 	color: #FFF !important;
 	text-decoration: none;
 	font-size: 17px;
-	width: 33%;
+	width: 25%;
 	/* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */
 	text-align: center; /* If you want the text to be centered */
 }
@@ -139,7 +139,8 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 			<div class="topnav">
 				<a href="EventList.ev" target="_parent">영화</a>
 				<a href="PreviewList.pr" target="_parent">시사회/무대인사</a> 
-				<a href="WinList.wi" target="_parent">당첨자발표</a> 
+				<a href="WinList.wi" target="_parent">당첨자발표</a>
+				<a href="EventListHot.ev" target="_parent"> HOT</a>
 <!-- 				<a href="#"> </a> -->
 			</div>
 		</div>

@@ -132,8 +132,41 @@ public class EventFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/EventHot1.ev")){
+			// 1. ActionForward 객체 생성(변수는 이미 선언되어 있음)
+			forward = new ActionForward();
+			// 2. 포워딩 경로 설정
+			forward.setPath("/event/event_hot_1.jsp");
 		}
 		
+		else if(command.equals("/EventHot2.ev")){
+			// 1. ActionForward 객체 생성(변수는 이미 선언되어 있음)
+			forward = new ActionForward();
+			// 2. 포워딩 경로 설정
+			forward.setPath("/event/event_hot_2.jsp");
+		}
+		
+		
+		else if(command.equals("/EventHot5.ev")){
+			// 1. ActionForward 객체 생성(변수는 이미 선언되어 있음)
+			forward = new ActionForward();
+			// 2. 포워딩 경로 설정
+			forward.setPath("/event/event_hot_5.jsp");
+		}
+		
+		else if(command.equals("/EventHot4.ev")){
+			// 1. ActionForward 객체 생성(변수는 이미 선언되어 있음)
+			forward = new ActionForward();
+			// 2. 포워딩 경로 설정
+			forward.setPath("/event/event_hot_4.jsp");
+		}
+		
+		else if(command.equals("/EventListHot.ev")){
+			// 1. ActionForward 객체 생성(변수는 이미 선언되어 있음)
+			forward = new ActionForward();
+			// 2. 포워딩 경로 설정
+			forward.setPath("/event/event_hot_list.jsp");
+		}
 		// ----------------------------------------------------------------
 		// 기본적인 작업 후 공통적으로 수행할 포워딩 작업
 		// 1. ActionForward 객체 존재 여부 판별(객체가 존재할 때 포워딩 수행)

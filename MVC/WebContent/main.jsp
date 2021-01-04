@@ -246,33 +246,33 @@
 	        	</h2>
 	        	<ul>
 	        		<li class="event_img1">
-	        			<a href="#">
+	        			<a href="EventDetail.ev?num=14&page=1">
 	        				<img src="img/main/event1.jpg">
 	        			</a>
 	        		</li>
 	        		<li class="event_img1">
-	        			<a href="#">
+	        			<a href="EventHot2.ev">
 	        				<img src="img/main/event2.jpg">
 	        			</a>
 	        		</li>
 	        		<li class="event_img2">
-	        			<a href="#">
+	        			<a href="EventHot1.ev">
 	        				<img src="img/main/event3.jpg">
 	        			</a>
 	        		</li>
 	        		<li class="event_img2">
-	        			<a href="#">
+	        			<a href="EventHot4.ev">
 	        				<img src="img/main/event4.jpg">
 	        			</a>
 	        		</li>
 	        		
 	        		<li class="event_img3">
-	        			<a href="#">
-	        				<img src="img/main/event5.jpg">
+	        			<a href="EventHot5.ev">
+	        				<img src="img/main/main_event_5.jpg">
 	        			</a>
 	        		</li>
 	        		<li class="event_img1">
-	        			<a href="#">
+	        			<a href="EventDetail.ev?num=1&page=2">
 	        				<img src="img/main/event6.jpg">
 	        			</a>
 	        		</li>
@@ -283,11 +283,11 @@
 		    <!-- 시사회/무대인사 시작 -->
 			<section class="preview_cont">
 				<h2>시사회/무대인사
-					<a href="#" class="more_btn">더보기 &#62;</a>
+					<a href="PreviewList.pr" class="more_btn">더보기 &#62;</a>
 				</h2> 
 				<ul>
 					<li>
-						<a href="#">
+						<a href="PreviewDetail.pr?num=4&page=1">
 							<strong>
 								<span>시사회&#38;무대인사</span>
 									&#60;썸머 85&#62;스페셜 굿즈 패키지
@@ -296,7 +296,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="PreviewDetail.pr?num=12&page=1">
 							<strong>
 								<span>시사회&#38;무대인사</span>
 									&#60;화양연화 리마스터링&#62;2차 스페셜 굿즈 패키지
@@ -305,7 +305,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="PreviewDetail.pr?num=6&page=1">
 							<strong>
 								<span>시사회&#38;무대인사</span>
 									&#60;아이 엠 우먼&#62;굿즈 패키지 상영회
@@ -322,16 +322,16 @@
 				<div class="rolling_notice">
 					<ul>
 						<li>
-							<a href="#">수도권 사회적 거리두기 2.5단계으로 인한 영화관 21시 이후 운영안내</a>
+							<a href="NoticeDetail.no?num=12&page=1">수도권 사회적 거리두기 2.5단계으로 인한 영화관 21시 이후 운영안내</a>
 						</li>
 						<li>
-							<a href="#">	&#60;마스크 착용 의무화 행정명령 시행 안내&#62;</a>
+							<a href="NoticeDetail.no?num=11&page=1">	&#60;마스크 착용 의무화 행정명령 시행 안내&#62;</a>
 						</li>
 						<li>
-							<a href="#">	"5인 이상 모임 금지" 수도권 행정명령에 따른 고객 안내</a>
+							<a href="NoticeDetail.no?num=10&page=1">	[[극장]] MVC 일부 극장 영업 중단안내</a>
 						</li>
 						<li>
-							<a href="#">&#60;워 위드 그랜파&#62; 회원시사회 일정취소 안내</a>
+							<a href="NoticeDetail.no?num=5&page=1"> 강화 된 좌석 간 거리두기 시행 안내 </a>
 						</li>
 					</ul>
 				</div><!-- .rolling_notice -->

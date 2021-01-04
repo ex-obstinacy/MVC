@@ -1,23 +1,9 @@
-<%@page import="action.PreviewListAction"%>
-<%@page import="vo.PreviewBean"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="vo.PageInfo"%>
+<%@page import="vo.NoticeBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-	// 전달받은 request 객체로부터 데이터 가져오기
-	// "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
-	// "pageInfo" 객체로부터 페이지 관련 값들을 꺼내서 변수에 저장
-	ArrayList<PreviewBean> articleList = (ArrayList<PreviewBean>)request.getAttribute("articleList");
-	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
-	int nowPage = pageInfo.getPage();
-	int maxPage = pageInfo.getMaxPage();
-	int startPage = pageInfo.getStartPage();
-	int endPage = pageInfo.getEndPage();
-	int listCount = pageInfo.getListCount();
-	
-	String member_id = (String)session.getAttribute("id");
-%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,6 +57,7 @@
 	}
 }
 
+/* 검색 */
 .search input[type=text] {
 	float: right;
 	padding: 6px;
@@ -122,9 +109,8 @@
 	<!-- Header part end-->
 	<!-- 서브비주얼 -->
 	<jsp:include page="/inc/sub_event1.jsp"/>
-	<%
-SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-%>
+
+	
 	<!--================Blog Area =================-->
 	<section class="blog_area padding_top">
 		<div class="container">
@@ -133,7 +119,6 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 				<a href="PreviewList.pr" target="_parent">시사회/무대인사</a> 
 				<a href="WinList.wi" target="_parent">당첨자발표</a>
 				<a href="EventListHot.ev" target="_parent"> HOT</a>
-<!-- 				<a href="#"> </a> -->
 			</div>
 		</div>
 	</section>
@@ -141,110 +126,66 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		<div class="container">
 			<div class="cart_inner">
 				<div class="table-responsive">
-					<h2>시사회/무대인사</h2>
+					<h2>HOT</h2>
 					<table class="table">
-						<%
-			if(articleList != null && listCount > 0) {
-			%>
-						<%
-				int row = 1; // 게시판의 행
-				int col = 3; // 게시판의 열
-				for (int i = 0; i < articleList.size(); i++, row++) {
-					if (row % col == 1) {
-			%>
+
 						<tr>
-							<%
-				}
-						PreviewBean pb = (PreviewBean)articleList.get(i);		
-					%>
-							<td>
-								<div class="single_product_item">
-									<a href="PreviewDetail.pr?num=<%=articleList.get(i).getNum() %>&page=<%=nowPage %>"> <img src="previewUpload/<%=articleList.get(i).getThumbnail()%>" width="314" height="184" ></a>
-									<div class="single_product_text">
-										<h4>
-											<%=sdf.format(articleList.get(i).getDate())%>
-										</h4>
-									</div>
-								</div>
-							</td>
-							<%
-						if (row % col == 0) {
-					%>
+							<td align="center">번호</td>
+							<td align="center">제 목</td>
+							<td align="center">작성자</td>
+							<td align="center">작성일</td>
+							
 						</tr>
-						<%
-							}
-				
-						}
+
+						<tr>
+							<td align="center">1</td>
+							<td align="center">
+								<a href="EventHot1.ev"> 함께해요! # 안심 영화관 만들기
+								</a>
+							<td align="center">admin</td>
+							<td align="center">2021-01-04</td>
+							
+						</tr>
+															
+						<tr>
+							<td align="center">2</td>
+							<td align="center">
+								<a href="EventHot4.ev"> 매주 금-토요일 영화티켓 장당 5000 M 포인트 사용
+								</a>
+							<td align="center">admin</td>
+							<td align="center">2021-01-04</td>
+							
+						</tr>																
+						
+						<tr>
+							<td align="center">3</td>
+							<td align="center">
+								<a href="EventHot4.ev"> 	2021년에도 새해 복 많이 받으소 ~
+								</a>
+							<td align="center">admin</td>
+							<td align="center">2021-01-01</td>
+							
+						</tr>							
 					
-				%>
+						<tr>
+							<td align="center">4</td>
+							<td align="center">
+								<a href="EventHot2.ev"> 매일 MVC ON은 메리 크리스마스
+								</a>
+							<td align="center">admin</td>
+							<td align="center">2020-12-10</td>
+							
+						</tr>
+						
 					</table>
 				</div>
 			</div>
 		</div>
 	</section>
-	<section id="buttonArea">
-		<div class="container">
-			<%
-if(member_id!=null){
-	if(member_id.equals("admin")){
-		%>
-			<input type="button" value="글쓰기" class="btn_3" onclick="location.href='PreviewWriteForm.pr'">
-			<%
-	}
-}
-%>
-			<div class="search">
-				<form action="PreviewListSearch.pr" method="post">
-					<input type="text" name="search" class="input_box" placeholder="Search..">
-				</form>
-			</div>
-		</div>
-	</section>
-	<section id="pageList">
-		<div class="container">
-			<%if(nowPage <= 1) {%>
-			<br>
-			<input type="button" value="이전" class="btn_3">&nbsp;
-			<%} else {%>
-			<input type="button" value="이전" class="btn_3" onclick="location.href='PreviewList.pr?page=<%=nowPage - 1 %>'">&nbsp;
-			<%} %>
-			<%for(int i = startPage; i <= endPage; i++) { 
-			if(i == nowPage) { %>
-			[<%=i %>]&nbsp;
-			<%} else { %>
-			<a href="PreviewList.pr?page=<%=i %>">[<%=i %>]
-			</a>&nbsp;
-			<%} %>
-			<%} %>
-			<%if(nowPage >= maxPage) { %>
-			<input type="button" value="다음" class="btn_3">
-			<%} else { %>
-			<input type="button" value="다음" class="btn_3" onclick="location.href='PreviewList.pr?page=<%=nowPage + 1 %>'">
-			<%} %>
-		</div>
-	</section>
-	<%
-	} else {
-	%>
-	<section id="emptyArea">
-		<div class="container">등록된 글이 없습니다</div>
-	</section>
-	<section id="buttonArea">
-		<div class="container">
-			<%
-if(member_id!=null){
-	if(member_id.equals("admin")){
-		%>
-			<input type="button" value="글쓰기" class="btn_3" onclick="location.href='PreviewWriteForm.pr'">
-		</div>
-		<%
-	}
-}
-%>
-	</section>
-	<%
-	}
-	%>
+
+
+
+
 	<!--================Blog Area =================-->
 	<!--::footer_part start::-->
 	<jsp:include page="../inc/bottom.jsp" />

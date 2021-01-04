@@ -49,6 +49,7 @@
                                          <a class="dropdown-item" href="EventList.ev"> 영화</a>
                                         <a class="dropdown-item" href="PreviewList.pr">시사회/무대인사</a>
                                         <a class="dropdown-item" href="WinList.wi">당첨자 발표</a>
+                                        <a class="dropdown-item" href="EventListHot.ev">HOT</a>
                                     </div>
                                 </li>
                                 

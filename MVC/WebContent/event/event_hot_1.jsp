@@ -1,5 +1,4 @@
-
-<%@page import="vo.PreviewBean"%>
+<%@page import="vo.EventBean"%>
 <%@page import="com.mysql.fabric.xmlrpc.base.Member"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="dao.MemberDAO"%>
@@ -7,8 +6,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	// BoardBean 객체 파라미터 가져오기
-PreviewBean article = (PreviewBean) request.getAttribute("article");
-
 
 
 // page 파라미터 가져오기
@@ -16,11 +13,11 @@ PreviewBean article = (PreviewBean) request.getAttribute("article");
 // 	String nowPage = (String)request.getAttribute("page");
 
 // 2. 서블릿 주소로 전달된 page 값을 파라미터 그대로 사용할 경우
-String nowPage = request.getParameter("page");
 
-String Member_id = (String) session.getAttribute("id");
 
-int num = Integer.parseInt(request.getParameter("num"));
+String member_id = (String) session.getAttribute("id"); // member_id (로그인한 아이디) 세션값 불러오기
+
+
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -132,7 +129,7 @@ int num = Integer.parseInt(request.getParameter("num"));
 		</div>
 	</section>
 	<%
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+// 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	%>
 	<section id="listForm" class="checkout_area padding_top">
 		<div class="container">
@@ -140,52 +137,55 @@ int num = Integer.parseInt(request.getParameter("num"));
 				<div class="inr02">
 					<!-- 컨텐츠 -->
 					<div class="col-md-12 contents_sub">
-						<h3>시사회/무대인사</h3>
+						<h3>이벤트</h3>
 						<!-- S -->
 						<div class="block" style="padding-top: 5px;">
 							<div class="row" style="min-height: 500px;">
 								<!-- 리스트 시작 -->
 								<div class="bbs-document-wrap" itemscope itemtype="http://schema.org/Article">
 									<div class="bbs-title" itemprop="name">
-										<p><%=article.getSubject()%></p>
+										<p>함께해요! # 안심 영화관 만들기</p>
 									</div>
 									<div class="bbs-detail">
 										<div class="detail-attr detail-writer">
 											<div class="detail-name">작성자</div>
-											<div class="detail-value"><%=article.getMember_id()%></div>
+											<div class="detail-value">admin</div>
 										</div>
 										<div class="detail-attr detail-date">
 											<div class="detail-name">작성일</div>
-											<div class="detail-value"><%=sdf.format(article.getDate())%></div>
+											<div class="detail-value">2021-01-04</div>
 										</div>
-										<div class="detail-attr detail-view">
-											<div class="detail-name">조회</div>
-											<div class="detail-value"><%=article.getReadcount()%></div>
-										</div>
-										<div class="detail-attr detail-file">
-											<div class="detail-name">파일</div>
-											<div class="detail-value">
-												<%
-													if (article.getFile() != null) {
-												%>
-												<a href="preview/file_down.jsp?downFile=<%=article.getFile()%>"><%=article.getFile()%></a>
-												<%
-													}
-												%>
-											</div>
-										</div>
+<!-- 										<div class="detail-attr detail-view"> -->
+<!-- 											<div class="detail-name">조회</div> -->
+<!-- 											<div class="detail-value">14</div> -->
+<!-- 										</div> -->
+<!-- 										<div class="detail-attr detail-file"> -->
+<!-- 											<div class="detail-name">파일</div> -->
+<!-- 											<div class="detail-value"> -->
+<%-- 												<% --%>
+<!-- // 													if (article.getFile() != null) { -->
+<%-- 												%> --%>
+<%-- 												<a href="event/file_down.jsp?downFile=<%=article.getFile()%>"><%=article.getFile()%></a> --%>
+<%-- 												<% --%>
+<!-- // 													} -->
+<%-- 												%> --%>
+<!-- 											</div> -->
+<!-- 										</div> -->
 									</div>
 									<div class="bbs-content" itemprop="description">
 										<div class="content-view">
-											<%
-												if (article.getFile() != null) {
-											%>
-											<img src="previewUpload/<%=article.getFile()%>" />
-											<%
-												}
-											%>
+<%-- 											<% --%>
+<!-- // 												if (article.getFile() != null) { -->
+<%-- 											%> --%>
+											<img src="img/event_view/main_event_1_view.jpg" />
+<%-- 											<% --%>
+<!-- // 												} -->
+<%-- 											%> --%>
 											<br>
-											<%=article.getContent()%>
+<%-- 											<%=article.getContent()%> --%>
+	
+											</div>
+									
 										</div>
 										<!-- 								<div class="bbs-document-action"> -->
 										<!--div class="left">
@@ -227,38 +227,9 @@ int num = Integer.parseInt(request.getParameter("num"));
 									</div>
 									<div class="bbs-control">
 										<div style="text-align: center;">
-											<a href="PreviewList.pr?page=<%=nowPage%>" target="_parent" class="bbs-button">목록보기</a>
+											<a href="EventListHot.ev" target="_parent" class="bbs-button">목록보기</a>
 										</div>
-										<%
-											if (Member_id != null) {
-											if (Member_id.equals("admin")) {
-										%>
-										<div style="text-align: center;">
-											<a href="PreviewModifyForm.pr?num=<%=article.getNum()%>&page=<%=nowPage%>" target="_parent" class="bbs-button">수정하기</a>
-										</div>
-										<!-- 											<div style="text-align:center;"> -->
-										<%-- 												<a href="NoticeDeleteForm.no?num=<%=article.getNum()%>&page=<%=nowPage%>" target="_parent" class="bbs-button">삭제하기</a>  --%>
-										<!-- 																	</div>						 -->
-										<div>
-											<script type="text/javascript">
-												function a() {
-													var a = confirm("삭제하시겠습니까?");
 
-													if (a) {
-														fr.submit();
-													} else {
-														return false;
-													}
-												}
-											</script>
-											<form action="PreviewDeletePro.pr" name="fr" method="post">
-												<input type="hidden" name="num" value="<%=num%>" /> <input type="hidden" name="page" value="<%=nowPage%>" /> <input type="submit" value="삭제하기" onclick="return a()" class="bbs-button">
-											</form>
-										</div>
-										<%
-											}
-										}
-										%>
 									</div>
 									<!-- 페이징 끝 -->
 								</div>
