@@ -78,7 +78,8 @@ ArrayList<StoreBean> orderList = (ArrayList<StoreBean>)request.getAttribute("ord
 				</div>
 	<!--================ 메뉴 영역 =================-->		
 	
-<div id="sub_content2">
+<div class="col-lg-9">
+  <div class="row align-items-center latest_product_inner">
 	<div class="container">
 		<div class="member_order">
 			<h2>결제 내역</h2>
@@ -137,7 +138,9 @@ ArrayList<StoreBean> orderList = (ArrayList<StoreBean>)request.getAttribute("ord
 		</div><!-- .reserveInfo -->
 	</div><!-- .container -->
 </div><!-- #reserveResult -->
-
+			</div>
+		</div>
+	</section>
   
 <!-- 푸터 -->
 <jsp:include page="../inc/bottom.jsp"/>
