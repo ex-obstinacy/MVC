@@ -35,11 +35,16 @@ public class OrderProAction implements Action {
 	      order.setTotalPrice(totalPrice);
 	      order.setGoodsId(goodsId);
 	      
+	      String[] basketCount = request.getParameterValues("basketCount");
+	      for(String num:basketCount) {
+	    	  System.out.println(num);
+	      }
+	      
 	      System.out.println("구매한 goodsId : " + goodsId);
 	      
 	      OrderProService orderProService = new OrderProService();
 	      
-	      boolean isOrderSuccess = orderProService.OrderGoods(id, order);
+	      boolean isOrderSuccess = orderProService.OrderGoods(id, order, basketCount);
 	      
 	      //멤버십 추가
 	      boolean isMembershipSuccess = orderProService.createMembership(id, order);

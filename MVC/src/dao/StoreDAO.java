@@ -796,7 +796,7 @@ public class StoreDAO {
 		}
    	
       // 1. 스토어메인, 디테일 -> 구매내역 -> 결제
-        public int orderGoods(String id, StoreBean order) {
+        public int orderGoods(String id, StoreBean order, String[] basketCount) {
   			System.out.println("StoreDAO - orderGoods ----String id, StoreBean order");
   			
   			int addCount = 0;
@@ -818,6 +818,9 @@ public class StoreDAO {
   				int orderId = 1;
   				int orderCount = 1;
   				
+  				for(int i=0; i<basketCount.length; i++) {
+  					int basketCounts = Integer.parseInt(basketCount[i]);
+  					
   					//확인
   					System.out.println("goodsId : " + order.getGoodsId());
   		            System.out.println(order.getReserveNum());
@@ -836,7 +839,7 @@ public class StoreDAO {
   					 pstmt.setInt(1, orderId);
   					 pstmt.setInt(2, order.getGoodsId());
   					 pstmt.setString(3, id);
-  					 pstmt.setInt(4, orderCount);
+  					 pstmt.setInt(4, basketCounts);
   					 pstmt.setInt(5, order.getTotalPrice());
   					 pstmt.setTimestamp(6, date);
   					 pstmt.setString(7, order.getOrderNum());
@@ -861,7 +864,7 @@ public class StoreDAO {
   						pstmt.executeUpdate();
   						System.out.println("확인4");
   					}
-  					
+  				}	
   			} catch (Exception e) {
   				System.out.println("orderGoods() 오류!- "+e.getMessage());
   				e.printStackTrace();

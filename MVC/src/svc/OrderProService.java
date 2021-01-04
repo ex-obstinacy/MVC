@@ -33,7 +33,7 @@ public class OrderProService {
 	    return isMembershipSuccess;
 	}
 	
-	public boolean OrderGoods(String id, StoreBean order) {
+	public boolean OrderGoods(String id, StoreBean order, String[] basketCount) {
 		System.out.println("OrderProService - OrderGoods() !");
 		boolean isOrderSuccess = false;
 		
@@ -41,7 +41,7 @@ public class OrderProService {
 	    StoreDAO storeDAO = StoreDAO.getInstance();
 	    storeDAO.setConnection(con);
 	    
-	    int addCount = storeDAO.orderGoods(id, order);
+	    int addCount = storeDAO.orderGoods(id, order, basketCount);
 	      
 	    if(addCount > 0) {
 	    	isOrderSuccess = true;
