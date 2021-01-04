@@ -853,6 +853,7 @@ public class StoreDAO {
   					pstmt = con.prepareStatement(sql2);
   					pstmt.setInt(1, order.getGoodsId());
 //  					rs = pstmt.executeQuery();
+  					System.out.println("확인3");
   					if(rs.next()) {
 //  						String sql3 = "UPDATE goods g SET g.sellCount = g.sellCount + (SELECT o.orderCount FROM goods_order o WHERE g.goodsId = o.goods_goodsId) WHERE g.goodsId=?";
   						String sql3 = "UPDATE goods g INNER JOIN goods_order o ON g.goodsId = o.goods_goodsId SET g.sellCount = g.sellCount + o.orderCount WHERE g.goodsId=?";
@@ -860,6 +861,7 @@ public class StoreDAO {
 //  						pstmt.setInt(1, rs.getInt("goodsId"));
   						pstmt.setInt(1, order.getGoodsId());
   						pstmt.executeUpdate();
+  						System.out.println("확인4");
   					}
   					
   			} catch (Exception e) {

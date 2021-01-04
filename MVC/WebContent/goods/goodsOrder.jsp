@@ -85,7 +85,7 @@
   <!-- breadcrumb start-->
   
 	<!-- 게시판 리스트 -->
-	<section id="listForm" class="checkout_area padding_top">
+	<section id="listForm" class="cart_area">
 		<div class="container">
       	  <div class="cart_inner">
             <div class="table-responsive">
@@ -124,6 +124,7 @@
         </div>
       </div>
 	</section>
+	
 	<section id="buttonArea">
   	  <div class="container">
 	  </div>
