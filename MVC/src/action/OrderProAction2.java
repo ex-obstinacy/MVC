@@ -53,8 +53,8 @@ public class OrderProAction2 implements Action {
       }
       
       // orderCount
-      int orderCount = goodsIds.length;
-      System.out.println("orderCount : " + orderCount);
+//      int orderCount = goodsIds.length;
+//      System.out.println("orderCount : " + orderCount);
       
       OrderProService2 orderProService = new OrderProService2();
 //	  boolean isOrderSuccess = orderProService.OrderGoods(goodsIds, reserveNum, id, order, orderCount);

@@ -670,10 +670,10 @@ public class StoreDAO {
  			return deleteCount;
  		}
  		
-      // 장바구니 상품 삭제(상품번호)
+      // 장바구니 상품 삭제(상품번호) - 구매 후 장바구니 비울 때 사용
  		public int deleteBasket_goodsId(int goodsId) {
  			// StoreBean 객체에 저장된 내용을 사용하여
- 			// 장바구니번호(basketId)에 해당하는 레코드를 삭제 후 결과 리턴
+ 			// 장바구니번호(goodsId)에 해당하는 레코드를 삭제 후 결과 리턴
  			int deleteCount =0;
  			PreparedStatement pstmt = null;
  			
@@ -846,7 +846,6 @@ public class StoreDAO {
   			
   			try {
   				int orderId = 1;
-  				int orderCount = 1;
   				
   				for(int i=0; i<basketCount.length; i++) {
   					int basketCounts = Integer.parseInt(basketCount[i]);
@@ -888,9 +887,10 @@ public class StoreDAO {
   					rs = pstmt.executeQuery();
   					System.out.println("확인3 goodsId : " + order.getGoodsId());
   					if(rs.next()) {
-  						String sql3 = "UPDATE goods g INNER JOIN goods_order o ON g.goodsId = o.goods_goodsId SET g.sellCount = g.sellCount + o.orderCount WHERE g.goodsId=?";
+  						String sql3 = "UPDATE goods g INNER JOIN goods_order o ON g.goodsId = o.goods_goodsId SET g.sellCount = g.sellCount + o.orderCount WHERE g.goodsId=? AND o.orderId=?";
   						pstmt=con.prepareStatement(sql3);;
   						pstmt.setInt(1, order.getGoodsId());
+  						pstmt.setInt(2, orderId);
   						pstmt.executeUpdate();
   						System.out.println("확인4");
   					}
@@ -979,9 +979,10 @@ public class StoreDAO {
   		  					rs = pstmt.executeQuery();
   		  					System.out.println("확인3 goodsId : " + goodsId);
   		  					if(rs.next()) {
-  		  						String sql3 = "UPDATE goods g INNER JOIN goods_order o ON g.goodsId = o.goods_goodsId SET g.sellCount = g.sellCount + o.orderCount WHERE g.goodsId=?";
+  		  						String sql3 = "UPDATE goods g INNER JOIN goods_order o ON g.goodsId = o.goods_goodsId SET g.sellCount = g.sellCount + o.orderCount WHERE g.goodsId=? AND o.orderId=?";
   		  						pstmt=con.prepareStatement(sql3);;
   		  						pstmt.setInt(1, goodsId);
+  		  						pstmt.setInt(2, orderId);
   		  						pstmt.executeUpdate();
   		  						System.out.println("확인4");
   		  					}

@@ -12,6 +12,7 @@ import dao.StoreDAO;
 
 public class BasketDeleteProService {
 	
+	// 개별 상품 삭제
 	public boolean removeBasket(int basketId) throws Exception {
 		boolean isDeleteSuccess = true;
 		
@@ -26,7 +27,7 @@ public class BasketDeleteProService {
 		// 3(공통). 가져온 Connection 객체를 DAO 객체에 전달하기
 		storeDAO.setConnection(con);
 				
-		// 4. StoreDAO 클래스의 deleteBasket() 메서드를 호출하여 글 수정
+		// 4. StoreDAO 클래스의 deleteBasket() 메서드를 호출하여 글 삭제
 		int deleteCount = storeDAO.deleteBasket(basketId);		
 				
 		// 5. 글 삭제 결과에 대한 판별 작업 수행
@@ -45,7 +46,8 @@ public class BasketDeleteProService {
 		// 7. 결과 리턴
 		return isDeleteSuccess;
 	}
-
+	
+	// 상품 구매시 장바구니 비우기
 	public boolean removeBasketGoodsId(int goodsId) {
 		boolean isDeleteSuccess = true;
 		
@@ -60,7 +62,7 @@ public class BasketDeleteProService {
 		// 3(공통). 가져온 Connection 객체를 DAO 객체에 전달하기
 		storeDAO.setConnection(con);
 				
-		// 4. StoreDAO 클래스의 deleteBasket() 메서드를 호출하여 글 수정
+		// 4. StoreDAO 클래스의 deleteBasket() 메서드를 호출하여 장바구니 비우기
 		int deleteCount = storeDAO.deleteBasket_goodsId(goodsId);		
 				
 		// 5. 글 삭제 결과에 대한 판별 작업 수행
