@@ -27,7 +27,7 @@
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/common.css">
-    
+    <link rel="stylesheet" href="css/sub.css">
 </head>
 
 <body>
@@ -54,45 +54,66 @@
     <!-- breadcrumb start-->
 
     <!--================login_part Area =================-->
-    <section class="login_part padding_top">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-6">
-                    <div class="login_part_text text-center">
-                        <div class="login_part_text_iner">
-                            <h2>New to our Shop?</h2>
-                            <p>There are advances being made in science and technology
-                                everyday, and a good example of this is the</p>
-                            <a href="MemberAgreeForm.me" class="btn_3">Create an Account</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="login_part_form">
-                        <div class="login_part_form_iner">
-                            <h3>Welcome Back ! <br>
-                                Please Sign in now</h3>
-                            <form class="row contact_form" action="MemberLoginPro.me" method="post" novalidate="novalidate">
-                                <div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="name" name="name" value=""
-                                        placeholder="Username">
-                                </div>
-                                <div class="col-md-12 form-group p_star">
-                                    <input type="password" class="form-control" id="password" name="password" value=""
-                                        placeholder="Password">
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <button type="submit" value="submit" class="btn_3">
-                                        log in
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div id="sub_content">
+    	<div class="container">
+    		<section class="login_part">
+	    		<div class="login_box">
+	    			<h2>로그인</h2>
+	    			<form class="contact_form" action="MemberLoginPro.me" method="post" novalidate="novalidate">
+	    				<div class="input_box">
+	    					<input type="text" id="name" name="name" value="" placeholder="아이디를 입력해주세요">
+		                	<input type="password" id="password" name="password" value="" placeholder="비밀번호를 입력해주세요">
+	    				</div><!-- .input_box -->	                
+		                <button type="submit" value="submit" class="btn_login">로그인</button>
+		            </form>
+		            <a href="MemberAgreeForm.me" class="btn_join">회원가입</a>
+	    		</div><!-- .login_box -->
+	    		
+	    		<a href="http://localhost:8080/MVC/MovDetail.mo?movieCd=20192567" class="right_banner">
+	    			<img src="img/sub/login/login_banner1.jpg">
+	    		</a><!-- .right_banner -->
+    		</section><!-- .login_part -->
+    	</div><!-- .container -->
+    </div><!-- #sub_content -->
+<!--     <section class="login_part padding_top"> -->
+<!--         <div class="container"> -->
+<!--             <div class="row align-items-center"> -->
+<!--                 <div class="col-lg-6 col-md-6"> -->
+<!--                     <div class="login_part_text text-center"> -->
+<!--                         <div class="login_part_text_iner"> -->
+<!--                             <h2>New to our Shop?</h2> -->
+<!--                             <p>There are advances being made in science and technology -->
+<!--                                 everyday, and a good example of this is the</p> -->
+<!--                             <a href="MemberAgreeForm.me" class="btn_3">Create an Account</a> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--                 <div class="col-lg-6 col-md-6"> -->
+<!--                     <div class="login_part_form"> -->
+<!--                         <div class="login_part_form_iner"> -->
+<!--                             <h3>Welcome Back ! <br> -->
+<!--                                 Please Sign in now</h3> -->
+<!--                             <form class="row contact_form" action="MemberLoginPro.me" method="post" novalidate="novalidate"> -->
+<!--                                 <div class="col-md-12 form-group p_star"> -->
+<!--                                     <input type="text" class="form-control" id="name" name="name" value="" -->
+<!--                                         placeholder="Username"> -->
+<!--                                 </div> -->
+<!--                                 <div class="col-md-12 form-group p_star"> -->
+<!--                                     <input type="password" class="form-control" id="password" name="password" value="" -->
+<!--                                         placeholder="Password"> -->
+<!--                                 </div> -->
+<!--                                 <div class="col-md-12 form-group"> -->
+<!--                                     <button type="submit" value="submit" class="btn_3"> -->
+<!--                                         log in -->
+<!--                                     </button> -->
+<!--                                 </div> -->
+<!--                             </form> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--     </section> -->
     <!--================login_part end =================-->
 
     <!--::footer_part start::-->

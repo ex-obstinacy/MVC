@@ -23,6 +23,21 @@
 
 
 /******************** 멤버 서브페이지 시작 ********************/
+/* login */
+section.login_part{background:#f7f7f7; padding:80px 3%;}
+section.login_part:after{content:""; display:block; clear:both;}
+section.login_part > div.login_box{width:46%; float:left; margin-right:8%;}
+section.login_part > div.login_box h2{text-align:center; margin-bottom:50px;}
+section.login_part > div.login_box form{}
+section.login_part > div.login_box form:after{content:""; display:block; clear:both;}
+section.login_part > div.login_box form div.input_box{float:left; width:72%; margin-right:3%;}
+section.login_part > div.login_box form div.input_box input{width:100%; padding:10px 15px; box-sizing:border-box; border:1px solid #ccc; border-radius:3px;}
+section.login_part > div.login_box form div.input_box input:first-child{margin-bottom:10px;}
+section.login_part > div.login_box form button{float:left; width:25%; border:0; border-radius:3px; padding:37px 0 ; background:#FF243E; color:#fff;}
+section.login_part > div.login_box a.btn_join{display:block; margin-top:20px;}
+
+section.login_part > a.right_banner{display:block; width:46%; float:left;}
+section.login_part > a.right_banner img{width:100%;}
 
 /* member_order */ 
 div.member_order{width:100%; margin:0 auto;}
