@@ -104,7 +104,7 @@ ArrayList<StoreBean> orderList = (ArrayList<StoreBean>)request.getAttribute("ord
 					%>
 			<div class="btnBox">
 				<a href="main.jsp" class="genric-btn primary circle">홈으로</a>
-				<a href="MemberMain.me" class="genric-btn info circle">마이페이지</a>
+				<a href="MemberOrderList.me" class="genric-btn info circle">마이페이지</a>
 			</div>
 		</div><!-- .reserveInfo -->
 	</div><!-- .container -->
