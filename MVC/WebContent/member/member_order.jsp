@@ -134,6 +134,7 @@ ArrayList<StoreBean> orderList = (ArrayList<StoreBean>)request.getAttribute("ord
 </div><!-- #reserveResult -->
 			</div>
 		</div>
+		</div>
 	</section>
   
 <!-- 푸터 -->
