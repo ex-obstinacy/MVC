@@ -102,6 +102,16 @@
 						<div class="container">
 							<div class="cart_inner">
 							
+								<%
+									if (memberShip.getGrade().equals("VIP")) {
+								%>
+								<div><h5><%=memberShip.getGrade() %> 입니다.</h5></div>
+	                    		<h4><B>항상 이용해주셔서 감사합니다!</B></h4>
+								<%
+									}
+								
+								%>
+							
 								<div><h5><%=memberShip.getGrade() %> 입니다.</h5></div>
 	                    		<h4><B><%=memberShip.getNextGrade() %></B> 까지 남은 POINT <B><%=memberShip.getNextPoint() - memberShip.getPoint() %></B></h4>
 							

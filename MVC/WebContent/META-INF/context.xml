@@ -20,7 +20,7 @@
 	        Oracle : jdbc:oracle:thin:@접속주소:포트번호:DB명
 	  maxActive="최대 동시 대여 가능한 커넥션 갯수"
 	  maxIdle="최대 보유 가능한 유휴 커넥션 갯수"
-	--> 
+
 	<Resource
 		name="jdbc/MySQL"
 		auth="Container"
@@ -30,6 +30,20 @@
 		driverClassName="com.mysql.jdbc.Driver"
 		factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
 		url="jdbc:mysql://localhost:3306/MVC"
+		maxActive="500"
+		maxIdle="20"
+	/>
+	--> 
+	
+	<Resource
+		name="jdbc/MySQL"
+		auth="Container"
+		type="javax.sql.DataSource"
+		username="itwillbs5"
+		password="itwillbs8030909"
+		driverClassName="com.mysql.jdbc.Driver"
+		factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
+		url="jdbc:mysql://itwillbs5.cafe24.com:3306/itwillbs5?useUnicode=yes&amp;useSSL=false&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;serverTimezone=UTC"
 		maxActive="500"
 		maxIdle="20"
 	/>
