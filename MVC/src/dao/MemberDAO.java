@@ -644,7 +644,7 @@ public class MemberDAO {
   	                     + "FROM goods g JOIN goods_order o "
   	                     + "ON g.goodsId = o.goods_goodsId "
   	                     + "WHERE member_id = ? "
-  	                     + "ORDER BY orderNum limit ?,?";
+  	                     + "ORDER BY date DESC limit ?,?";
   	            pstmt = con.prepareStatement(sql);
   	            pstmt.setString(1, id);
   	            pstmt.setInt(2, startRow);
