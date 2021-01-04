@@ -378,7 +378,9 @@ function requestPay() {
             <input type="button" class="btn_3" value="결제하기" onclick="requestPay()">
           </div>
           <!-- 가상 결제 완료 버튼 -->
-        <input type="submit" value="결제 완료">
+          <div class="checkout_btn_inner float-right">
+           <input type="submit" class="btn_3" value="결제 완료">
+          </div>
      <!--::버튼 끝::-->
          </form>
       </div>
