@@ -28,6 +28,7 @@
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/sub.css">
     
     <!-- member CSS -->
     <link rel="stylesheet" href="css/member.css">
@@ -280,73 +281,85 @@
     <!-- breadcrumb start-->
 
     <!--================main_part Area =================-->
-    <section class="login_part padding_top">
-	    <form action="MemberWritePro.me" id="join" method="post" name="fr" class="container" onsubmit="return check()">
-			<fieldset>
-				<legend>필수 항목</legend>
-				<table>
-					<tr>
-						<td class=td_size>아이디</td>
-						<td><input type="text" name="id" class="id" id="myId" required="required" placeholder="4~12자 영문과 숫자 조합" onkeyup="checkId(this)"><span id="checkIdResult"></span></td>
-<!-- 				<input type="button" value="ID확인" class="genric-btn info circle" id="chkId"> -->
-					</tr>
-					<tr>
-						<td>비밀번호</td>
-						<td><input type="password" name="pass" id="pass" required="required" placeholder="4~16자 영문(대.소문자),숫자,특수문자" onkeyup="checkPasswd(this)"><span id="checkPasswdResult"></span></td>
-					</tr>
-					<tr>
-						<td>비밀번호 재확인</td>
-						<td><input type="password" name="rePass" id="rePass" required="required" onkeyup="retryPasswd(this)"><span id="retryPasswdResult"></span></td>
-					</tr>
-					<tr>
-						<td>이름</td>
-						<td><input type="text" name="name" id="name" required="required"></td>
-					</tr>
-					<tr>
-						<td>전화번호</td>
-						<td><input type="text" name="phone" required="required" placeholder="ex.000-0000-0000"></td>
-					</tr>
-					<tr>
-						<td>이메일</td>
-						<td><input type="email" name="email" id="email" required="required"></td>
-					</tr>
-					<tr>
-						<td>이메일 재확인</td>
-						<td><input type="email" name="reEmail" id="reEmail" required="required" onkeyup="retryEmail(this)"><span id="retryEmailResult"></span></td>
-					</tr>
-					<tr>
-						<td>성별</td>
-						<td><input type="radio" name="gender" value="male" id="male" required="required">남 <input type="radio" name="gender" value="female" id="female">여</td>
-					</tr>
-					<tr>
-						<td>생년월일</td>
-						<td><input type="date" name="birthday" id="birthday" required="required" placeholder="2000-12-20"></td>
-					</tr>
-				</table>
-			</fieldset>
-	
-			<fieldset>
-				<legend>선택 항목</legend>
-				<table>
-					<tr>
-						<td rowspan="3" class=td_size>주소</td>
-						<td><input type="text" name="postcode" id="postcode" class="id" placeholder="우편번호" readonly="readonly"> <input type="button" value="우편번호검색" class="genric-btn info circle" onclick="execPostCode()"></td>
-					</tr>
-					<tr>
-						<td><input type="text" name="address" id="address" placeholder="주소" size="46" readonly="readonly"></td>
-					</tr>
-					<tr>
-						<td><input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소"> <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목" readonly="readonly"></td>
-					</tr>
-				</table>
-			</fieldset>
-			<div class="clear"></div>
-			<div id="buttons">
-				<input type="submit" value="가입하기" class="genric-btn primary circle">
-				<input type="reset" value="취소" class="genric-btn success circle">
-			</div>
-		</form>
-    </section>
+    <div id="sub_content"> 
+	    <section class="member_form">
+	    	<div class="container">
+	    		<h2>회원가입</h2>	    	
+			    <form action="MemberWritePro.me" id="join" method="post" name="fr"onsubmit="return check()">
+					<fieldset>
+						<legend>필수 항목</legend>
+						<table class="necessary">
+							<colgroup>
+								<col width="15%"/>
+								<col width=""/>
+							</colgroup>
+							<tr>
+								<th>아이디</th>
+								<td><input type="text" name="id" class="id" id="myId" required="required" placeholder="4~12자 영문과 숫자 조합" onkeyup="checkId(this)"><span id="checkIdResult"></span></td>
+		<!-- 				<input type="button" value="ID확인" class="genric-btn info circle" id="chkId"> -->
+							</tr>
+							<tr>
+								<th>비밀번호</th>
+								<td><input type="password" name="pass" id="pass" required="required" placeholder="4~16자 영문(대.소문자),숫자,특수문자" onkeyup="checkPasswd(this)"><span id="checkPasswdResult"></span></td>
+							</tr>
+							<tr>
+								<th>비밀번호 재확인</th>
+								<td><input type="password" name="rePass" id="rePass" required="required" onkeyup="retryPasswd(this)"><span id="retryPasswdResult"></span></td>
+							</tr>
+							<tr>
+								<th>이름</th>
+								<td><input type="text" name="name" id="name" required="required"></td>
+							</tr>
+							<tr>
+								<th>전화번호</th>
+								<td><input type="text" name="phone" required="required" placeholder="ex.000-0000-0000"></td>
+							</tr>
+							<tr>
+								<th>이메일</th>
+								<td><input type="email" name="email" id="email" required="required"></td>
+							</tr>
+							<tr>
+								<th>이메일 재확인</th>
+								<td><input type="email" name="reEmail" id="reEmail" required="required" onkeyup="retryEmail(this)"><span id="retryEmailResult"></span></td>
+							</tr>
+							<tr>
+								<th>성별</th>
+								<td><input type="radio" name="gender" value="male" id="male" required="required">남 <input type="radio" name="gender" value="female" id="female">여</td>
+							</tr>
+							<tr>
+								<th>생년월일</th>
+								<td><input type="date" name="birthday" id="birthday" required="required" placeholder="2000-12-20"></td>
+							</tr>
+						</table>
+					</fieldset>
+			
+					<fieldset>
+						<legend>선택 항목</legend>
+						<table>
+							<colgroup>
+								<col width="15%"/>
+								<col width=""/>
+							</colgroup>
+							<tr>
+								<th rowspan="3" class=th_size>주소</th>
+								<td><input type="text" name="postcode" id="postcode" class="id" placeholder="우편번호" readonly="readonly"> <input type="button" value="우편번호검색" class="genric-btn info circle" onclick="execPostCode()"></td>
+							</tr>
+							<tr>
+								<td><input type="text" name="address" id="address" placeholder="주소" size="46" readonly="readonly"></td>
+							</tr>
+							<tr>
+								<td><input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소"> <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목" readonly="readonly"></td>
+							</tr>
+						</table>
+					</fieldset>
+					<div id="buttons">
+						<input type="submit" value="가입하기" class="genric-btn primary circle">
+						<input type="reset" value="취소" class="genric-btn success circle">
+					</div>
+				</form>
+			</div><!-- .container -->
+	    </section><!-- .member_form -->
+    </div><!-- #sub_content -->
     <!--================main_part end =================-->
 
     <!--::footer_part start::-->

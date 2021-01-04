@@ -34,10 +34,38 @@ section.login_part > div.login_box form div.input_box{float:left; width:72%; mar
 section.login_part > div.login_box form div.input_box input{width:100%; padding:10px 15px; box-sizing:border-box; border:1px solid #ccc; border-radius:3px;}
 section.login_part > div.login_box form div.input_box input:first-child{margin-bottom:10px;}
 section.login_part > div.login_box form button{float:left; width:25%; border:0; border-radius:3px; padding:37px 0 ; background:#FF243E; color:#fff;}
-section.login_part > div.login_box a.btn_join{display:block; margin-top:20px;}
+section.login_part > div.login_box a.btn_join{display:inline-block; margin-top:20px;}
 
 section.login_part > a.right_banner{display:block; width:46%; float:left;}
 section.login_part > a.right_banner img{width:100%;}
+
+/* member_agree */
+section.member_agree{text-align:center;}
+section.member_agree h2{font-size:24px; text-align:left; margin-bottom:20px; font-weight:500;}
+section.member_agree div.agree_text{background:#f9f9f9; padding:40px 20px; height:500px; overflow:auto; border:1px solid #aaa; margin-bottom:20px; text-align:left;}
+section.member_agree div.agree_text p{font-size:14px; line-height:20px; margin-bottom:15px;}
+section.member_agree div.agree_text h3{font-size:14px; font-weight:600; margin-bottom:5px;}
+section.member_agree div.agree_text ul{margin-bottom:15px;}
+section.member_agree div.agree_text ul li{font-size:14px; line-height:20px; }
+section.member_agree div.agree_text ul li ol{list-style:none; margin-left:15px;}
+section.member_agree div.agree_chkbox{margin-bottom:10px;}
+section.member_agree div.agree_chkbox input:nth-child(2){margin-left:10px;}
+
+/* member_join */
+section.member_form{}
+section.member_form h2{font-size:24px; text-align:left; margin-bottom:20px; font-weight:500;}
+section.member_form form{}
+section.member_form form fieldset{margin-bottom:50px;}
+section.member_form form legend{font-size:16px;}
+section.member_form form table{width:100%; border-top:1px solid #121212;}
+section.member_form form table th, section.member_form form table td{padding:20px 10px; border-bottom:1px solid #ccc;}
+section.member_form form table th{color:#777; font-weight:400; position:relative; }
+section.member_form form table td{}
+section.member_form form table td input{padding:5px 5px;}
+section.member_form form table.necessary th:before{content:"*"; display:block; color:#f00; position:absolute; top:50%; left:0; transform:translateY(-50%);}
+section.member_form form table.necessary td input[type=text]{width:300px;}
+section.member_form form table.necessary td input[type=password]{width:300px;}
+section.member_form form table.necessary td input[type=email]{width:300px;}
 
 /* member_order */ 
 div.member_order{width:100%; margin:0 auto;}
