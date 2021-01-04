@@ -90,12 +90,13 @@ div.member_order .btnBox{text-align:center; margin-top:30px; margin-bottom:50px;
 #movieform > table td>ul#ultime li>#seltime, #selguan{width: 100px; height: 35px; text-align-last: center;}
 #movieform div.btnBox{text-align:right; margin-right: 30px;}
 
-#mformdiv{margin: 50px 0;}
+#mlistdiv{width: 70%; margin-left: 50px;}
+#mformdiv{width:100%; margin: 50px 0;}
 
 /* 관리자 - 영화관 등록 페이지 */
 #clistform, #cinemaform{display: inline-block; vertical-align: top; text-align: center;}
 
-#clistform{margin: 50px 0 50px 200px;}
+#clistform{margin: 50px 0 50px 0;}
 #clistform > table{width:100%; border:1px solid #ccc; border-top:2px solid #121212; border-spacing:0px; margin-bottom:20px;}
 #clistform > table th, #clistform > table td{border-right: 1px solid #ccc;}
 #clistform > table th{background:#fff; border-bottom:1px solid #121212; padding:20px 0; font-size:17px; text-align:center;}

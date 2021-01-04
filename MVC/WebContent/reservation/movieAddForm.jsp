@@ -3,10 +3,32 @@
 <%@page import="java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-	<%
+<%
+	//session 객체에 저장된 id 값 가져와서 변수에 저장
+	String id = (String)session.getAttribute("id");
+	
 	LocalDate today = LocalDate.now();
-	%>
+%>
+<html lang="zxx">
+
+<head>
+<%
+	if (id == null) {
+%>
+		<script type="text/javascript">
+			alert("로그인이 필요합니다.");
+			location.href = "MemberLogin.me";
+		</script>
+<%
+	} else if (!id.equals("admin")) {
+%>
+		<script type="text/javascript">
+			alert("잘못된 접근입니다.");
+			history.back();
+		</script>
+<%
+	}
+%>
 <html lang="zxx">
 
 <head>
@@ -153,6 +175,38 @@
   <section id="sub_content" class="reserveMain">
 	  <div class="container">
 	  	<h3 class="sub_title"><b>관리자님! 영화를 등록/삭제 해주세요.</b></h3>
+	  	<div class="row">
+	  	<div class="col-lg-3">
+            <div class="left_sidebar_area">
+                <aside class="left_widgets p_filter_widgets">
+                    <div class="widgets_inner">
+                        <ul class="list">
+                            <li>
+                                <a href="AdminMovList.mo">영화</a>
+                            </li>
+                            <li>
+                            	<a href="CinemaAddForm.re">영화관</a>
+                            </li>
+                            <li>
+                            	<a href="MovieAddForm.re">영화관 - 영화</a><br>
+                            </li>
+                            <li>
+                                <a href="GoodsList.go">스토어</a>
+                            </li>
+                            <li>
+                                <a href="AdminNoticeList.ad">공지사항</a>
+                            </li>
+                            <li>
+                                <a href="AdminQnAList.ad">1대1 문의</a>
+                            </li>
+                            <li>
+                                <a href="AdminMemberList.ad">회원 목록</a>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </div>
 	  	<!-- 등록된 영화 목록 -->
 	  	<div id="mlistdiv">
 	  	<form action="MovieDeletePro.re" method="post" id="mlistform">
@@ -284,6 +338,7 @@
 		</form>
 		</div>
 		<!-- 영화등록표 -->
+		</div>
 	  </div>
   </section>
   <!--================End Reservation Area =================-->
