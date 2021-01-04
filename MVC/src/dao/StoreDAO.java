@@ -670,6 +670,36 @@ public class StoreDAO {
  			return deleteCount;
  		}
  		
+ 	      // 장바구니 상품 삭제(상품번호)
+ 	 		public int deleteBasket_goodsId(int goodsId) {
+ 	 			// StoreBean 객체에 저장된 내용을 사용하여
+ 	 			// 장바구니번호(basketId)에 해당하는 레코드를 삭제 후 결과 리턴
+ 	 			int deleteCount =0;
+ 	 			PreparedStatement pstmt = null;
+ 	 			
+ 	 			try {
+// 	 				String sql = "delete from basket where goods_goodsId=?and member_id";
+ 	 				String sql = "delete from basket where goods_goodsId=?";
+ 	 				pstmt = con.prepareStatement(sql);
+ 	 				pstmt.setInt(1, goodsId );
+// 	 				pstmt.setString(2, id);
+ 	 				
+ 	 				deleteCount = pstmt.executeUpdate();
+ 	 				
+ 	 				//임시 확인용
+ 	 				System.out.println("storeDAO - deleteBasket 에서 check! 삭제되었는가? : " + deleteCount);
+ 	 				
+ 	 			} catch (SQLException e) {
+ 	 				System.out.println("deleteArticle() 오류!- "+e.getMessage());
+ 	 				
+ 	 				e.printStackTrace();
+ 	 			} finally {
+ 	 				close(pstmt);
+ 	 			}
+ 	 			  			
+ 	 			return deleteCount;
+ 	 		}
+ 		
  	// ---------------------- 장바구니  끝 ----------------------	
  		
  	// ---------------------- 구매하기 ----------------------	

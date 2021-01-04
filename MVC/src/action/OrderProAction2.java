@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import svc.BasketDeleteProService;
 import svc.OrderProService2;
 import svc.PayProService;
 import vo.ActionForward;
@@ -64,6 +65,22 @@ public class OrderProAction2 implements Action {
 	  
 	  if(isOrderSuccess && isMembershipSuccess) {
 		  if(orderNum != null) {
+			  
+			  // 장바구니 목록 삭제
+			  for (int i = 0; i < goodsIds.length; i++) {
+				  BasketDeleteProService basketDeleteProService = new BasketDeleteProService();
+				  boolean isDeleteSuccess = basketDeleteProService.removeBasket(Integer.parseInt(goodsIds[i]));
+					if(!isDeleteSuccess){
+						response.setContentType("text/html;charset=UTF-8");
+						PrintWriter out=response.getWriter();
+						out.println("<script>");
+						out.println("alert('장바구니 상품 삭제실패');");
+						out.println("history.back()");
+						out.println("</script>");
+					}
+				  
+			}
+			  
 			  forward = new ActionForward();
 			  forward.setPath("OrderResult.go?orderNum=" + orderNum);
 			  forward.setRedirect(true);
