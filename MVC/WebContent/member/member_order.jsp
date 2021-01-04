@@ -112,7 +112,11 @@ ArrayList<StoreBean> orderList = (ArrayList<StoreBean>)request.getAttribute("ord
 						<tr>
 							<th>구성품</th>
 							<td colspan="3"><%=orderList.get(i).getComponent()%></td>
-						</tr>					
+						</tr>	
+						<tr>
+							<th>구매수량</th>
+							<td colspan="3"><%=orderList.get(i).getOrderCount()%></td>
+						</tr>				
 						<tr>
 							<th>유효기간</th>
 							<td colspan="3"><%=orderList.get(i).getExpiredate()%></td>
@@ -126,7 +130,7 @@ ArrayList<StoreBean> orderList = (ArrayList<StoreBean>)request.getAttribute("ord
 					}
 					%>
 			<div class="btnBox">
-				<a href="Main" class="genric-btn primary circle">홈으로</a>
+				<a href="MemberOrderList.me" class="genric-btn primary circle">뒤로</a>
 				<a href="MemberMain.me" class="genric-btn info circle">마이페이지</a>
 			</div>
 		</div><!-- .reserveInfo -->

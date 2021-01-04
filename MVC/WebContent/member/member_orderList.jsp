@@ -114,26 +114,50 @@
 								<th>구매일</th>
 								<th>주문번호</th>
 								<th>상품명</th>
+								<th>구매수량</th>
 								<th>결제금액</th>
 								<th>구매자</th>
 							</tr>
 							<%
 								for (int i = 0; i < articleList.size(); i++) {
-									int orderCount = articleList.get(i).getOrderCount() -1;
+// 									int orderCount = articleList.get(i).getOrderCount() -1;
+									int count = 0;
+									for (int x=0; x<articleList.size(); x++) {
+										if (articleList.get(i).getOrderNum().equals(articleList.get(x).getOrderNum())) {
+											count++;
+										}
+									}
+									if (count == 1) {
 							%>
 							<tr>
 								<td align="center"><%=articleList.get(i).getDate() %></td>
 								<td align="center"><a href="MemberOrderDetail.me?orderNum=<%=articleList.get(i).getOrderNum() %>"><%=articleList.get(i).getOrderNum() %></a></td>
-								<%if(orderCount == 0){ %>
+<%-- 								<%if(orderCount == 0){ %> --%>
 								<td align="center"><%=articleList.get(i).getName() %></td>
-								<%} else { %>
-								<td align="center"><%=articleList.get(i).getName() %> 외 <%=orderCount %></td>
-								<% } %>
+<%-- 								<%} else { %> --%>
+<%-- 								<td align="center"><%=articleList.get(i).getName() %> 외 <%=orderCount %></td> --%>
+<%-- 								<% } %> --%>
+								<td align="center"><%=articleList.get(i).getOrderCount() %></td>
 								<td align="center"><%=articleList.get(i).getSumPrice() %></td>
 								<td align="center"><%=articleList.get(i).getMember_name() %></td>
 							</tr>
-								<%	} %>
-							<%	} %>
+							<%
+									} else {
+							%>
+							<tr>
+								<td align="center"><%=articleList.get(i).getDate() %></td>
+								<td align="center"><a href="MemberOrderDetail.me?orderNum=<%=articleList.get(i).getOrderNum() %>"><%=articleList.get(i).getOrderNum() %></a></td>
+								<td align="center"><%=articleList.get(i).getName() %> 외 <%=count-1 %></td>
+								<td align="center"><%=articleList.get(i).getOrderCount() %></td>
+								<td align="center"><%=articleList.get(i).getSumPrice() %></td>
+								<td align="center"><%=articleList.get(i).getMember_name() %></td>
+							</tr>
+							
+							<%			
+									i = i + count -1;
+									}
+								} 
+							%>
 							</table>
 							
 							<section id="pageList">
@@ -170,6 +194,7 @@
 								<div class="container">결제 내역이 없습니다.</div>
 							</section>
 							<%
+							}
 							}
 							%>
 							</div>

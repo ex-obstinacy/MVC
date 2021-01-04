@@ -351,7 +351,7 @@ public class StoreDAO {
    	         
    	         try {
    	            String sql = "SELECT o.orderNum, o.reserveNum, o.member_id, o.expiredate, o.status, " 
-   	                     + "g.name, g.component, g.file, g.ctg "
+   	                     + "g.name, g.component, g.file, g.ctg, "
    	                     + "FROM goods g JOIN goods_order o "
    	                     + "ON g.goodsId = o.goods_goodsId "
    	                     + "ORDER BY member_id, orderNum limit ?,?";
@@ -378,6 +378,7 @@ public class StoreDAO {
    	               order.setComponent(rs.getString("component"));
    	               order.setFile(rs.getString("file"));
    	               order.setCtg(rs.getString("ctg"));
+   	               
    	               
    	               
    	               String sql2 = "select name from member where id = ?";
@@ -1191,7 +1192,7 @@ public class StoreDAO {
          
          try {
             String sql = "SELECT o.orderNum, o.reserveNum, o.member_id, o.expiredate, " 
-                     + "g.name, g.component, g.file "
+                     + "g.name, g.component, g.file, o.orderCount "
                      + "FROM goods g JOIN goods_order o "
                      + "ON g.goodsId = o.goods_goodsId "
                      + "WHERE orderNum = ? AND member_id = ?";
@@ -1215,6 +1216,7 @@ public class StoreDAO {
                order.setName(rs.getString("name"));
                order.setComponent(rs.getString("component"));
                order.setFile(rs.getString("file"));
+               order.setOrderCount(rs.getInt("orderCount"));
                
                
                String sql2 = "select name from member where id = ?";
