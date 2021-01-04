@@ -431,7 +431,7 @@ div.orderResult .btnBox{text-align:center;}
 .mov_main .ranking_box h2 a{display:block; float: right; font-size: 10px; line-height: 24px; color: #888;}
 .mov_main .ranking_box ul{}
 .mov_main .ranking_box ul:after{content:""; display:block; clear:both;}
-.mov_main .ranking_box ul li{float:left; width:18%; margin-right:2.5%;}
+.mov_main .ranking_box ul li{float:left; width:18%; margin-right:2.5%; margin-bottom:30px;}
 .mov_main .ranking_box ul li:last-child{margin-right:0;}
 .mov_main .ranking_box ul li div.img_box{margin-bottom:10px; position:relative; border-radius:5px; overflow:hidden;}
 .mov_main .ranking_box ul li:hover div.img_box .black_box{display:block;}
@@ -455,13 +455,13 @@ div.orderResult .btnBox{text-align:center;}
 .mov_main .under_banner{margin-bottom:80px;}
 .mov_main .under_banner img{width:100%;}
 
-/* mov_Detail 영화상세페이지 */
-.mov_detail{padding:0 !important;}
+/* mov 영화상세페이지 */
+.mov{padding:0 !important;}
 .stillcut_box{position:relative; margin-bottom:30px;}
 .stillcut_box .stillcut_pager{width:100%; position:absolute; top:50%; transform:translateY(-50%); z-index:100; padding:0 50px; box-sizing:border-box;}
 .stillcut_box .stillcut_pager button{width:50px; height:50px; padding:0; text-indent:-9999px; border:0; background-repeat:no-repeat; background-color:transparent; background-size:50px auto; background-position:center;}
-.stillcut_box .stillcut_pager button.prev{background-image:url(../img/sub/mov_detail/prev.png); }
-.stillcut_box .stillcut_pager button.next{background-image:url(../img/sub/mov_detail/next.png); float:right;}
+.stillcut_box .stillcut_pager button.prev{background-image:url(../img/sub/mov/prev.png); }
+.stillcut_box .stillcut_pager button.next{background-image:url(../img/sub/mov/next.png); float:right;}
 
 .stillcut_box .stillcut_slider{}
 .stillcut_box .stillcut_slider{background:#000; text-align:center;}
@@ -478,8 +478,8 @@ div.orderResult .btnBox{text-align:center;}
 
 .stillcut_box div.stillcut_control{position:absolute; bottom:5px; left:60%;}
 .stillcut_box div.stillcut_control span{display:block; width:20px; height:20px; text-indent:-9999px; background-repeat:no-repeat; background-position:center; background-size:20px auto; cursor:pointer;}
-.stillcut_box div.stillcut_control span.start_btn{background-image:url(../img/sub/mov_detail/start.png); display:none;}
-.stillcut_box div.stillcut_control span.stop_btn{background-image:url(../img/sub/mov_detail/stop.png);}
+.stillcut_box div.stillcut_control span.start_btn{background-image:url(../img/sub/mov/start.png); display:none;}
+.stillcut_box div.stillcut_control span.stop_btn{background-image:url(../img/sub/mov/stop.png);}
 
 section.detail_box1{margin-bottom:50px;}
 section.detail_box1:after{content:""; display:block; clear:both;}
@@ -496,7 +496,7 @@ section.detail_box1 > div.detail_top ul.detail_info1 li{display:inline-block; ma
 section.detail_box1 > div.detail_top ul.detail_info1 li span{font-size:15px; line-height:20px; font-weight:400; margin-right:10px;}
 section.detail_box1 > div.detail_top ul.detail_info1 li strong{font-size:20px; line-height:20px;}
 section.detail_box1 > div.detail_top ul.detail_info1 li strong span{font-size:20px;}
-section.detail_box1 > div.detail_top ul.detail_info1 li:first-child strong:before{content:""; display:inline-block; width:20px; height:20px; line-height:20px; background:url(../img/sub/mov_detail/starscore.png) no-repeat center/100% auto; margin:0 3px -2px 0;}
+section.detail_box1 > div.detail_top ul.detail_info1 li:first-child strong:before{content:""; display:inline-block; width:20px; height:20px; line-height:20px; background:url(../img/sub/mov/starscore.png) no-repeat center/100% auto; margin:0 3px -2px 0;}
 
 section.detail_box1 > div.detail_top div.detail_info2{}
 section.detail_box1 > div.detail_top div.detail_info2 dl{margin-bottom:15px; }
@@ -525,11 +525,11 @@ section.detail_box2 .tab-content .trailer_cont ul:after{content:""; display:bloc
 section.detail_box2 .tab-content .trailer_cont ul li{float:left; width:32%; margin-right:2%; text-align:center;}
 section.detail_box2 .tab-content .trailer_cont ul li:last-child{margin-right:0;}
 section.detail_box2 .tab-content .trailer_cont ul li div.trailer_thumb{display:block; cursor:pointer; position:relative;}
-section.detail_box2 .tab-content .trailer_cont ul li div.trailer_thumb:before{content:""; display:block; width:50px; height:50px; background:url(../img/sub/mov_detail/start.png) no-repeat center/100% auto; position:absolute; top:37%; left:50%; transform:translateX(-50%);}
+section.detail_box2 .tab-content .trailer_cont ul li div.trailer_thumb:before{content:""; display:block; width:50px; height:50px; background:url(../img/sub/mov/start.png) no-repeat center/100% auto; position:absolute; top:37%; left:50%; transform:translateX(-50%);}
 section.detail_box2 .tab-content .trailer_cont ul li div.trailer_thumb img{display:block; width:100%; margin-bottom:5px;}
 section.detail_box2 .tab-content .trailer_cont ul li div.trailer_thumb span{display:block;}
 section.detail_box2 .tab-content .trailer_cont ul li div.trailer_popup{display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:#fff; padding:30px 30px; border-radius:5px; z-index:400;}
-section.detail_box2 .tab-content .trailer_cont ul li div.trailer_popup button{display:block; text-indent:-9999px; width:15px; height:15px; border:0; position:absolute; top:10px; right:10px; background:url(../img/sub/mov_detail/close.png) no-repeat 0/15px auto;}
+section.detail_box2 .tab-content .trailer_cont ul li div.trailer_popup button{display:block; text-indent:-9999px; width:15px; height:15px; border:0; position:absolute; top:10px; right:10px; background:url(../img/sub/mov/close.png) no-repeat 0/15px auto;}
 section.detail_box2 .tab-content .trailer_cont ul li div.trailer_popup iframe{width:854px; height:480px;}
 
 section.detail_box2 .tab-content .people_cont{}
@@ -540,6 +540,14 @@ section.detail_box2 .tab-content .people_cont ul li div{ border-radius:50%; over
 section.detail_box2 .tab-content .people_cont ul li div img{width:100%;}
 section.detail_box2 .tab-content .people_cont ul li strong{font-weight:400; font-size:12px; line-height:12px;}
 section.detail_box2 .tab-content .people_cont ul li span{color:#999; margin: 0 0 0 3px;}
+
+section.detail_box2 .tab-content table.mov_comment{}
+section.detail_box2 .tab-content table.mov_comment td{padding:20px 0;}
+section.detail_box2 .tab-content table.mov_comment td .rating{font-size:20px; margin-bottom:5px;}
+section.detail_box2 .tab-content table.mov_comment td .rating span{font-weight:700;}
+section.detail_box2 .tab-content table.mov_comment td ul.star_box{}
+section.detail_box2 .tab-content table.mov_comment td ul.star_box li{display:inline-block; text-indent:-9999px; width:18px; height:18px; background:url(../img/sub/mov/nonpoint.png) no-repeat center/100% auto; cursor:pointer;}
+section.detail_box2 .tab-content table.mov_comment td ul.star_box li.checked{background-image:url(../img/sub/mov/starscore.png); }
 
 /* 트레일러 영상 재생시 검은배경 */
 .black_bg{display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:300;}

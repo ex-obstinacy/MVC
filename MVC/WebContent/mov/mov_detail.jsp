@@ -120,10 +120,22 @@
 		$('#writeComment').submit(function() {
 // 			alert(ratingPoint);
 			$('#cmgrade').attr('value', ratingPoint);
+		});
+		
+		// 평점 별 채우기
+		$(".star_box li").click(function(){
+			var starArr = $(".star_box li").get();
+			var checkIndex = $(this).text();
 			
+			$(".star_box li").removeClass("checked");
+			
+			for(var i = 0; i < checkIndex; i++){
+				$(starArr[i]).attr("class", "checked");
+			}
 			
 		});
 		
+
 		
 	});
 	
@@ -138,12 +150,11 @@
 	    }
 		
 		function rating(rating) {
-			ratingPoint = rating + 1;
+			ratingPoint = rating;
 // 			alert(rating);
 			var element = document.getElementById('rating_point');
 			element.innerHTML = ratingPoint;
-			
-			
+					
 		}
 	
 	</script>
@@ -267,20 +278,28 @@
 					<form action="MovCommentWritePro.mo" method="post" id="writeComment">
 						<input type="hidden" name="movie_board_movCode" value="<%=article.getMovieCd()%>">
 						<input type="hidden" name="cmgrade" id="cmgrade" value="10">
-						<table class="table">
+						<table class="mov_comment">
+							<colgroup>
+								<col width="20%"/>
+								<col width="70%"/>
+								<col width=""/>
+							</colgroup>
 							<tr>
-								<td align="center" width="220">
-									<span id="rating_point">10</span> 점<br>
+								<td align="center">
+									<div class="rating"><span id="rating_point">0</span>점</div>
+									<ul class="star_box">
 									<%
-									for (int i = 0; i < 10; i++) {
+									for (int i = 1; i < 11; i++) {
 									%>
-									<i class='fas fa-star' onclick="rating(<%=i %>)"></i>
+<%-- 									<i class='fas fa-star' onclick="rating(<%=i %>)"></i> --%>
+										<li onclick="rating(<%=i %>)"><%=i %></li>
 									<%	
 									}
 									%>
+									</ul>
 								</td>
 								<td><textarea placeholder="리뷰를 작성해주세요" name="content" class="single-textarea"></textarea></td>
-								<td align="center" width="150"><input type="submit" value="관람평 작성" class="genric-btn primary circle"></td>
+								<td align="center"><input type="submit" value="관람평 작성" class="genric-btn primary circle"></td>
 							</tr>
 						</table>
 						<table class="table">
