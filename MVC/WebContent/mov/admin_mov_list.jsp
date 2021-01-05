@@ -153,16 +153,15 @@
 											<%
 												}
 											%>
-											<tr>
-												<td colspan="8" align="right"><input type="button" value="등록" class="btn_3" onclick="location.href='AdminMovWrite.mo'"></td>
-											</tr>
 										</table>
 									</div>
 								</div>
 							</div>
 						</section>
-						<section id="pageList">
-							<div class="container">
+						<section id="pageList" style="text-align: center; width: 100%;">
+							<div class="container" style="width: 100%">
+								<input type="button" value="등록" class="btn_3" onclick="location.href='AdminMovWrite.mo'" style="margin-right: 50px">
+								
 								<%
 									if (nowPage <= 1) {
 								%>

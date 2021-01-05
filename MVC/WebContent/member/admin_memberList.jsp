@@ -178,7 +178,7 @@
 								</div>
 							</div>
 						</section>
-						<section id="pageList">
+						<section id="pageList" style="text-align: center;width: 100%">
 							<div class="container">
 								<%
 									if (nowPage <= 1) {

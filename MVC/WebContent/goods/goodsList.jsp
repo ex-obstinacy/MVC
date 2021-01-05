@@ -178,8 +178,9 @@
 <!-- 		<input type="button" value="상품등록" class="btn_3" onclick="location.href='GoodsWriteForm.go'" > -->
 <!-- 	  </div> -->
 <!-- 	</section> -->
-	<section id="pageList">
+	<section id="pageList" style="text-align: center;">
 	  <div class="container">
+			<input type="button" value="상품등록" class="btn_3" onclick="location.href='GoodsWriteForm.go'" style="margin-right: 50px;">
 	<%if(nowPage <= 1) {%>
 			<input type="button" value="이전" class="btn_3">&nbsp;
 	<%} else {%>
@@ -200,7 +201,6 @@
 			<input type="button" value="다음" class="btn_3" onclick="location.href='GoodsList.go?page=<%=nowPage + 1 %>'">
 	<%} %>
 	
-			<input type="button" value="상품등록" class="btn_3" onclick="location.href='GoodsWriteForm.go'" >
 	  </div>
 	</section>
 	<%
