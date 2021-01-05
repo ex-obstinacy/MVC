@@ -58,7 +58,7 @@
 <!-- 		password="itwillbs8030909" -->
 <!-- 		driverClassName="com.mysql.jdbc.Driver" -->
 <!-- 		factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory" -->
-<!-- 		url="jdbc:mysql://localhost/itwillbs6?useUnicode=yes&amp;useSSL=false&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;serverTimezone=UTC" -->
+<!-- 		url="jdbc:mysql://localhost/itwillbs5?useUnicode=yes&amp;useSSL=false&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;serverTimezone=UTC" -->
 <!-- 		maxActive="500" -->
 <!-- 		maxIdle="20" -->
 <!-- 	/> -->
