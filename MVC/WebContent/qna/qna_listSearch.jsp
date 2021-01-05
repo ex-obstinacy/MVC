@@ -64,6 +64,11 @@
 	color: #FFF !important;
 }
 
+.btnDiv {text-align: center;}
+.btnDiv > div {display: inline-block;}
+.btnWrite {margin-right: 100px;}
+.search{margin-left: 200px;}
+
 /* Style the current/active link */
 
 /* Add responsiveness - on screens less than 500px, make the navigation links appear on top of each other, instead of next to each other */
@@ -78,7 +83,7 @@
 }
 
 .search input[type=text] {
-	float: right;
+/* 	float: right; */
 	padding: 6px;
 	border: none;
 	margin-top: 8px;
@@ -205,21 +210,15 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 			</div>
 		</div>
 	</section>
-	<section id="buttonArea">
-		<div class="container">
-			<input type="button" value="글쓰기" class="btn_3" onclick="location.href='QnaWriteForm.qn'">
-			<div class="search">
-				<form action="QnaListSearch.qn" method="post">
-					<input type="text" name="search" class="input_box" placeholder="Search..">
-				</form>
-			</div>
-		</div>
-	</section>
-	<section id="pageList">
-		<div class="container">
-				<%
+			<div class="btnDiv">
+				<div class="btnWrite">
+			<%
 if(member_id!=null){
 		%>
+		<input type="button" value="글쓰기" class="btn_3" onclick="location.href='QnaWriteForm.qn'">
+			</div>
+			
+			<div>
 			<%if(nowPage <= 1) {%>
 			<br>
 			<input type="button" value="이전" class="btn_3">&nbsp;
@@ -230,7 +229,7 @@ if(member_id!=null){
 			if(i == nowPage) { %>
 			[<%=i %>]&nbsp;
 			<%} else { %>
-			<a href="QnaList.an?page=<%=i %>">[<%=i %>]
+			<a href="QnaList.qn?page=<%=i %>">[<%=i %>]
 			</a>&nbsp;
 			<%} %>
 			<%} %>
@@ -239,11 +238,19 @@ if(member_id!=null){
 			<%} else { %>
 			<input type="button" value="다음" class="btn_3" onclick="location.href='QnaList.qn?page=<%=nowPage + 1 %>'">
 			<%} %>
-								<%
+			</div>
+			
+			<div class="search">
+				<form action="QnaListSearch.qn" method="post">
+					<input type="text" name="search" class="input_box" placeholder="Search..">
+					<input type="submit" name="searchBtn" class="btn_3" value="검색">
+				</form>
+			</div>
+		</div>	
+			<%
 	}
 	%>
-		</div>
-	</section>
+	
 	<%
 	} else {
 	%>

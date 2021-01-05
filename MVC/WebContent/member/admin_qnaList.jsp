@@ -49,6 +49,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>MVC</title>
+    
+       <style type="text/css">
+    	/* div정리 */
+		.btnDiv {text-align: center;}
+		.btnDiv > div {display: inline-block;}
+		.btnWrite {margin-right: 50px;}
+		.search{margin-left: 50px;}
+    
+    </style>
+    
     <link rel="icon" href="img/favicon.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -166,24 +176,12 @@
 							<%}%>
 						</table>
 						
-						<section id="buttonArea">
-							<div class="container">
-								<%
-									if(id!=null){
-								%>
-								<div class="search">
-									<form action="QnaListSearch.qn" method="post">
-										<input type="text" name="search" class="input_box" placeholder="Search..">
-									</form>
-								</div>
-								<%
-									}
-								%>
-							</div>
-						</section>
+
+	
 							
-						<section id="pageList">
-							<div class="container">
+						<div class="btnDiv">
+								
+								<div>
 								<%
 									if(id!=null){
 										if(nowPage <= 1) {
@@ -213,8 +211,13 @@
 									}
 								%>
 							</div>
-						</section>
-	
+								<div class="search">
+									<form action="QnaListSearch.qn" method="post">
+										<input type="text" name="search" class="input_box" placeholder="Search..">
+										<input type="submit" name="searchBtn" class="btn_3" value="검색">
+									</form>
+								</div>
+						</div>
 
 						<% 
 							}else {

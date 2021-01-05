@@ -193,7 +193,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 						<%
 							} else {
 						%>
-							<input type="button" value="글쓰기" class="btn_3" onclick="alert('사용 권한이 없습니다.');"/>
+							<input type="button" value="글쓰기" class="btn_3" onclick="alert('글쓰기 권한이 없습니다.');"/>
 						<%
 							}
 						
@@ -201,7 +201,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 						}else{
 							
 						%>
-							<input type="button" value="글쓰기" class="btn_3" onclick="alert('사용 권한이 없습니다.');"/>
+							<input type="button" value="글쓰기" class="btn_3" onclick="alert('글쓰기 권한이 없습니다.');"/>
 						<%	
 						}
 				

@@ -177,6 +177,7 @@
 											<!-- 							</div> -->
 										</table>
 										<section id="commandCell">
+											<br>
 											<input type="submit" value="수정" class="bbs-button">&nbsp;&nbsp; <input type="button" value="뒤로" onclick="history.back()" class="bbs-button">
 									</form>
 								</section>
