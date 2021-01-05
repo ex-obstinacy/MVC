@@ -84,6 +84,8 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/sub.css">
+
+<link rel="stylesheet" type="text/css" href="css/bbs.css" />
 </head>
 <body>
 	<!--::header part start::-->
@@ -156,7 +158,7 @@
 													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">파일 &nbsp; &nbsp; 첨부</td>
 													<td class="bbs-list-b">
-														<input type="file" name="file" id="file" class="form-control" value="<%=article.getFile() %>">
+														<input type="file" name="file" id="file"  class="form-control" value="<%=article.getFile() %>">
 													</td>
 													<td class="bbs-list-blank"></td>
 												</tr>
@@ -181,7 +183,7 @@
 											<!-- 							</div> -->
 										</table>
 										<section id="commandCell">
-											<input type="submit" value="수정">&nbsp;&nbsp; <input type="button" value="뒤로" onclick="history.back()">
+											<input type="submit" value="수정" class="bbs-button">&nbsp;&nbsp; <input type="button" value="뒤로" onclick="history.back()" class="bbs-button">
 										</section>
 									</form>
 								</section>

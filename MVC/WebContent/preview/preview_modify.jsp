@@ -81,6 +81,8 @@ String nowPage = request.getParameter("page");
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/sub.css">
+
+<link rel="stylesheet" type="text/css" href="css/bbs.css" />
 </head>
 <body>
 	<!--::header part start::-->
@@ -181,7 +183,8 @@ String nowPage = request.getParameter("page");
 											<!-- 							</div> -->
 										</table>
 										<section id="commandCell">
-											<input type="submit" value="수정">&nbsp;&nbsp; <input type="button" value="뒤로" onclick="history.back()">
+											<br>
+											<input type="submit" value="수정" class="bbs-button">&nbsp;&nbsp; <input type="button" value="뒤로" onclick="history.back()" class="bbs-button">
 									</form>
 								</section>
 								<!-- 게시판 -->
