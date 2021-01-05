@@ -108,7 +108,7 @@
 									if (memberShip.getGrade().equals("VIP")) {
 								%>
 									<div class="membership_box">
-										<p>현재 멤버쉽포인트는 <span class="point"><%=memberShip.getPoint()%></span>로 <span class="member_gr vip"><%=memberShip.getGrade() %></span>등급입니다.</p>
+										<p>현재 멤버쉽포인트는 <span class="point"><%=memberShip.getPoint()%></span>포인트로 <span class="member_gr vip"><%=memberShip.getGrade() %></span>등급입니다.</p>
 										<p>항상 이용해주셔서 감사합니다!</p>
 									</div><!-- .membership_box -->
 								<%
@@ -122,15 +122,15 @@
 									} else if(memberShip.getGrade().equals("SILVER")){								
 								%>
 									<div class="membership_box">
-										<p>현재 멤버쉽포인트는 <span class="point"><%=memberShip.getPoint()%></span>로 <span class="member_gr silver"><%=memberShip.getGrade() %></span>등급입니다.</p>
-										<p><span class="member_gr gold"><%=memberShip.getNextGrade() %></span>등급까지 남은 멤버쉽포인트는 <span class="point"><%=memberShip.getNextPoint() - memberShip.getPoint() %></span>입니다.</p>
+										<p>현재 멤버쉽포인트는 <span class="point"><%=memberShip.getPoint()%></span>포인트로 <span class="member_gr silver"><%=memberShip.getGrade() %></span>등급입니다.</p>
+										<p><span class="member_gr gold"><%=memberShip.getNextGrade() %></span>등급까지 남은 멤버쉽포인트는 <span class="point"><%=memberShip.getNextPoint() - memberShip.getPoint() %></span>포인트입니다.</p>
 									</div><!-- .membership_box -->
 								<%
 									} else if(memberShip.getGrade().equals("BRONZE")){								
 								%>
 									<div class="membership_box">
-										<p>현재 멤버쉽포인트는 <span class="point"><%=memberShip.getPoint()%></span>로 <span class="member_gr bronze"><%=memberShip.getGrade() %></span>등급입니다.</p>
-										<p><span class="member_gr silver"><%=memberShip.getNextGrade() %></span>등급까지 남은 멤버쉽포인트는 <span class="point"><%=memberShip.getNextPoint() - memberShip.getPoint() %></span>입니다.</p>
+										<p>현재 멤버쉽포인트는 <span class="point"><%=memberShip.getPoint()%></span>포인트로 <span class="member_gr bronze"><%=memberShip.getGrade() %></span>등급입니다.</p>
+										<p><span class="member_gr silver"><%=memberShip.getNextGrade() %></span>등급까지 남은 멤버쉽포인트는 <span class="point"><%=memberShip.getNextPoint() - memberShip.getPoint() %></span>포인트입니다.</p>
 									</div><!-- .membership_box -->
 	                    		<%
 									}
