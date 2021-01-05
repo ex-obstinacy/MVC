@@ -36,7 +36,9 @@ public class QnaListAction implements Action {
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-
+		
+		
+		
 //		System.out.println(id);
 
 		if ("admin".equals(id)) {

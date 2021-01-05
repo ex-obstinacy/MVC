@@ -38,7 +38,7 @@
 	color: #FFF !important;
 	text-decoration: none;
 	font-size: 17px;
-	width: 33%;
+	width: 33.333333333%;
 	/* Four equal-width links. If you have two links, use 50%, and 33.33% for three links, etc.. */
 	text-align: center; /* If you want the text to be centered */
 }
