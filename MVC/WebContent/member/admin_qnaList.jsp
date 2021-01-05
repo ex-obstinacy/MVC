@@ -180,7 +180,9 @@
 	
 							
 						<div class="btnDiv">
-								
+								<div class="btnWrite">
+									<input type="button" value="글쓰기" class="btn_3" onclick="location.href='QnaWriteForm.qn'">
+								</div>
 								<div>
 								<%
 									if(id!=null){
