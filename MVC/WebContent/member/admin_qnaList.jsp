@@ -192,7 +192,7 @@
 								<%
 									} else {
 								%>
-								<input type="button" value="이전" class="btn_3" onclick="location.href='QnaList.qn?page=<%=nowPage - 1 %>'">&nbsp;
+								<input type="button" value="이전" class="btn_3" onclick="location.href='AdminQnAList.ad?page=<%=nowPage - 1 %>'">&nbsp;
 								<%
 									} for(int i = startPage; i <= endPage; i++) { 
 										if(i == nowPage) { 
@@ -201,13 +201,13 @@
 								<%
 										} else { 
 								%>
-								<a href="QnaList.an?page=<%=i %>">[<%=i %>]</a>&nbsp;
+								<a href="AdminQnAList.ad?page=<%=i %>">[<%=i %>]</a>&nbsp;
 								<%		} %>
 								<%	} %>
 								<%	if(nowPage >= maxPage) { %>
 								<input type="button" value="다음" class="btn_3">
 								<%	} else { %>
-								<input type="button" value="다음" class="btn_3" onclick="location.href='QnaList.qn?page=<%=nowPage + 1 %>'">
+								<input type="button" value="다음" class="btn_3" onclick="location.href='AdminQnAList.ad?page=<%=nowPage + 1 %>'">
 								<%	} %>
 								<%
 									}

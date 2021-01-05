@@ -160,20 +160,20 @@
 								%>
 									<input type="button" value="이전" class="btn_3">&nbsp;
 										<%} else {%>
-									<input type="button" value="이전" class="btn_3" onclick="location.href='QnaList.qn?page=<%=nowPage - 1 %>'">&nbsp;
+									<input type="button" value="이전" class="btn_3" onclick="location.href='MemberQnADetail.me?page=<%=nowPage - 1 %>'">&nbsp;
 										<%}
 										for(int i = startPage; i <= endPage; i++) { 
 											if(i == nowPage) { 
 										%>
 									[<%=i %>]&nbsp;
 											<%} else { %>
-									<a href="QnaList.an?page=<%=i %>">[<%=i %>]</a>&nbsp;
+									<a href="MemberQnADetail.me?page=<%=i %>">[<%=i %>]</a>&nbsp;
 											<%} %>
 										<%} %>
 										<%if(nowPage >= maxPage) { %>
 									<input type="button" value="다음" class="btn_3">
 										<%} else { %>
-									<input type="button" value="다음" class="btn_3" onclick="location.href='QnaList.qn?page=<%=nowPage + 1 %>'">
+									<input type="button" value="다음" class="btn_3" onclick="location.href='MemberQnADetail.me?page=<%=nowPage + 1 %>'">
 										<%} %>
 									<%}%>
 								</div>

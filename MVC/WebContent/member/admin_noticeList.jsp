@@ -176,20 +176,20 @@
 								<%if(nowPage <= 1) {%>
 								<input type="button" value="이전" class="btn_3">&nbsp;
 								<%} else {%>
-								<input type="button" value="이전" class="btn_3" onclick="location.href='NoticeList.no?page=<%=nowPage - 1 %>'">&nbsp;
+								<input type="button" value="이전" class="btn_3" onclick="location.href='AdminNoticeList.ad?page=<%=nowPage - 1 %>'">&nbsp;
 								<%} %>
 								<%for(int i = startPage; i <= endPage; i++) { 
 								if(i == nowPage) { %>
 								[<%=i %>]&nbsp;
 								<%} else { %>
-								<a href="NoticeList.no?page=<%=i %>">[<%=i %>]
+								<a href="AdminNoticeList.ad?page=<%=i %>">[<%=i %>]
 								</a>&nbsp;
 								<%} %>
 								<%} %>
 								<%if(nowPage >= maxPage) { %>
 								<input type="button" value="다음" class="btn_3">
 								<%} else { %>
-								<input type="button" value="다음" class="btn_3" onclick="location.href='NoticeList.no?page=<%=nowPage + 1 %>'">
+								<input type="button" value="다음" class="btn_3" onclick="location.href='AdminNoticeList.ad?page=<%=nowPage + 1 %>'">
 								<%} %>
 							</div>
 						</section>
