@@ -177,6 +177,7 @@ div.member_order .btnBox{text-align:center; margin-top:30px; margin-bottom:50px;
 #cinemaform div.btnBox{text-align:center; padding:55px;}
 
 /* 예매 메인페이지 reserveMain*/
+div.reserveMain h3.sub_title{font-weight: 700;}
 #movieform{}
 #movieform > table{width:100%; border:1px solid #ccc; border-top:2px solid #121212; border-spacing:0px; margin-bottom:20px;}
 #movieform > table th, #movieform > table td{border-right: 1px solid #ccc;}
