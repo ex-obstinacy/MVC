@@ -84,13 +84,13 @@
                           	<%
                           		} else {
                             %>
-                            <a href="MemberMain.me" class="btn_mypage"><img src="img/user.png"></a><a href="MemberLogout.me" class="btn_logout"><img src="img/logout.png"></a>
+                            <a href="MemberMain.me" class="btn_mypage"><img src="img/user.png"></a><a href="BasketList.go" class="btn_cart"><img src="img/cart.png"></a><a href="MemberLogout.me" class="btn_logout"><img src="img/logout.png"></a>
                             <%
                           		}
                           	}
                             %>
                             
-                            <a href="BasketList.go" class="btn_cart"><img src="img/cart.png"></a>
+<!--                             <a href="BasketList.go" class="btn_cart"><img src="img/cart.png"></a> -->
                             
                         </div>
                     </nav>
