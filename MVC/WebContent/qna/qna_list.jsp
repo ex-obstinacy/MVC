@@ -5,28 +5,30 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
+	
 	// 전달받은 request 객체로부터 데이터 가져오기
 	// "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
 	// "pageInfo" 객체로부터 페이지 관련 값들을 꺼내서 변수에 저장
-	ArrayList<QnaBean> articleList = (ArrayList<QnaBean>)request.getAttribute("articleList");
 
-	
-	
+	ArrayList<QnaBean> articleList = (ArrayList<QnaBean>)request.getAttribute("articleList");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
 	int nowPage = pageInfo.getPage();
 	int maxPage = pageInfo.getMaxPage();
 	int startPage = pageInfo.getStartPage();
 	int endPage = pageInfo.getEndPage();
 	int listCount = pageInfo.getListCount();
+		
+
 	
-// 	QnaBean article = (QnaBean)request.getAttribute("article");
-// 	QnaBean article2 = (QnaBean)request.getAttribute("article2");
-	
-// 	String Member_id =(String)session.getAttribute("id");
-	
-	String member_id = (String)session.getAttribute("id"); // 
+		
+String member_id = (String)session.getAttribute("id"); // 
 	
 	String id = (String)request.getAttribute("id");
+	
+
+	
+	
+
 	
 	
 %>
@@ -236,7 +238,7 @@ if(member_id!=null){
 		<div class="container">
 		<%
 	if(member_id!=null){
-		if (member_id.equals("admin")) {
+		
 	%>
 			<%if(nowPage <= 1) {%>
 			<br>
@@ -258,11 +260,9 @@ if(member_id!=null){
 			<input type="button" value="다음" class="btn_3" onclick="location.href='QnaList.qn?page=<%=nowPage + 1 %>'">
 			<%} %>
 					<%
-		}
-// 		else{
-			
-// 		}
-	}
+	
+
+	}// member_id=null
 	%>
 		</div>
 	</section>

@@ -681,5 +681,34 @@ public class QnaDAO {
 		return articleList;
 	}
 
+	// 일반회원일때 글 목록 
+	public int selectListCount2(String id) {
+		
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT COUNT(num) FROM qna where p_member_id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectListCount2() 오류 ! - " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+
 
 }
