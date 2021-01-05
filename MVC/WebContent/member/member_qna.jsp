@@ -162,7 +162,7 @@
 										<%} else {%>
 									<input type="button" value="이전" class="btn_3" onclick="location.href='MemberQnADetail.me?page=<%=nowPage - 1 %>'">&nbsp;
 										<%}
-										for(int i = startPage; i <= endPage; i++) { 
+										for(int i = startPage; i < endPage; i++) { 
 											if(i == nowPage) { 
 										%>
 									[<%=i %>]&nbsp;
