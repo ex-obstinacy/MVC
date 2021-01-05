@@ -80,12 +80,16 @@ ArrayList<StoreBean> orderList = (ArrayList<StoreBean>)request.getAttribute("ord
 							<td><%=orderList.get(i).getReserveNum() %></td>
 						</tr>
 						<tr>
-							<th>상품명 / 수량</th>
+							<th>상품명</th>
 							<td colspan="3"><%=orderList.get(i).getName()%></td>
 						</tr>
 						<tr>
 							<th>구성품</th>
 							<td colspan="3"><%=orderList.get(i).getComponent()%></td>
+						</tr>
+						<tr>
+							<th>구매수량</th>
+							<td colspan="3"><%=orderList.get(i).getOrderCount()%></td>
 						</tr>					
 						<tr>
 							<th>유효기간</th>
