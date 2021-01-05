@@ -274,7 +274,7 @@ MemberBean article = (MemberBean) request.getAttribute("article");
 				<!-- 						        <section class="cart_area"> -->
 
 <!-- 				<div id="sub_content"> -->
-					<section class="member_form">
+					<section class="member_form" style="width:75%">
 
 
 						<div class="container">
