@@ -187,7 +187,7 @@
 							</section>
 							<section id="buttonArea">
 								<div class="container">
-									<input type="button" value="글쓰기" class="btn_3" onclick="location.href='QnaWriteForm.qn'">
+									<input type="button" value="1대1 문의" class="btn_3" onclick="location.href='QnaList.qn'">
 								</div>
 							</section>
 							<%
