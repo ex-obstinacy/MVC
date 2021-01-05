@@ -180,6 +180,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 	<div class="btnDiv">
 <!-- 		<div class="container"> -->
 
+
 					<div class="btnWrite">
 					<input type="button" value="글쓰기" class="btn_3" onclick="location.href='NoticeWriteForm.no'">
 					</div>
@@ -220,7 +221,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 	} else {
 	%>
 	<section id="emptyArea">
-		<div class="container">등록된 글이 없습니다</div>
+		<div class="container">등록된  글이 없습니다</div>
 	</section>
 	<section id="buttonArea">
 		<div class="container">

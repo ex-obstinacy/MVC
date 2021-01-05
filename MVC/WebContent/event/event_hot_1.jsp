@@ -144,7 +144,7 @@ String member_id = (String) session.getAttribute("id"); // member_id (로그인�
 								<!-- 리스트 시작 -->
 								<div class="bbs-document-wrap" itemscope itemtype="http://schema.org/Article">
 									<div class="bbs-title" itemprop="name">
-										<p>함께해요! # 안심 영화관 만들기</p>
+										<p>함께해요!  안심 영화관 만들기</p>
 									</div>
 									<div class="bbs-detail">
 										<div class="detail-attr detail-writer">
