@@ -173,11 +173,11 @@
         </div>
       </div>
 	</section>
-	<section id="buttonArea">
-  	  <div class="container">
-		<input type="button" value="상품등록" class="btn_3" onclick="location.href='GoodsWriteForm.go'" >
-	  </div>
-	</section>
+<!-- 	<section id="buttonArea"> -->
+<!--   	  <div class="container"> -->
+<!-- 		<input type="button" value="상품등록" class="btn_3" onclick="location.href='GoodsWriteForm.go'" > -->
+<!-- 	  </div> -->
+<!-- 	</section> -->
 	<section id="pageList">
 	  <div class="container">
 	<%if(nowPage <= 1) {%>
@@ -199,6 +199,8 @@
 	<%} else { %>
 			<input type="button" value="다음" class="btn_3" onclick="location.href='GoodsList.go?page=<%=nowPage + 1 %>'">
 	<%} %>
+	
+			<input type="button" value="상품등록" class="btn_3" onclick="location.href='GoodsWriteForm.go'" >
 	  </div>
 	</section>
 	<%
