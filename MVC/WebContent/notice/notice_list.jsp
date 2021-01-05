@@ -181,17 +181,30 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 <!-- 		<div class="container"> -->
 
 
+
 					<div class="btnWrite">
 					<%
-						if (member_id.equals("admin")) {
-					%>
-						<input type="button" value="글쓰기" class="btn_3" onclick="location.href='NoticeWriteForm.no'">
-					<%
-						} else {
-					%>
-						<input type="button" value="뒤로" class="btn_3" onclick="history.back()">
-					<%
+						if(member_id!=null){
+							
+						
+							if (member_id.equals("admin")) {
+						%>
+							<input type="button" value="글쓰기" class="btn_3" onclick="location.href='NoticeWriteForm.no'">
+						<%
+							} else {
+						%>
+							<input type="button" value="글쓰기" class="btn_3" onclick="alert('사용 권한이 없습니다.');"/>
+						<%
+							}
+						
+							
+						}else{
+							
+						%>
+							<input type="button" value="글쓰기" class="btn_3" onclick="alert('사용 권한이 없습니다.');"/>
+						<%	
 						}
+				
 					%>
 					</div>
 
