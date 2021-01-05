@@ -235,8 +235,9 @@ if(member_id!=null){
 	<section id="pageList">
 		<div class="container">
 		<%
-if(member_id!=null){
-		%>
+	if(member_id!=null){
+		if (member_id.equals("admin")) {
+	%>
 			<%if(nowPage <= 1) {%>
 			<br>
 			<input type="button" value="이전" class="btn_3">&nbsp;
@@ -247,7 +248,7 @@ if(member_id!=null){
 			if(i == nowPage) { %>
 			[<%=i %>]&nbsp;
 			<%} else { %>
-			<a href="QnaList.an?page=<%=i %>">[<%=i %>]
+			<a href="QnaList.qn?page=<%=i %>">[<%=i %>]
 			</a>&nbsp;
 			<%} %>
 			<%} %>
@@ -257,6 +258,10 @@ if(member_id!=null){
 			<input type="button" value="다음" class="btn_3" onclick="location.href='QnaList.qn?page=<%=nowPage + 1 %>'">
 			<%} %>
 					<%
+		}
+// 		else{
+			
+// 		}
 	}
 	%>
 		</div>
