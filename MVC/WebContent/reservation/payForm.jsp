@@ -403,13 +403,11 @@ if(adultnum == 0 && kidsnum == 0){
 								<input type="button" value="결제하기" id="payButton" onclick="requestPay()">
 							</td>
 							<td>
-								<input type="button" value="결제금액 10원으로 변경" class="changePriceBtn" onclick="changePrice(this)">
-<!-- 								가상 결제 완료 버튼 -->
-<!-- 								<input type="submit" value="결제완료 테스트" class="payTestBtn"> -->
+<!-- 								<input type="button" value="결제금액 10원으로 변경" class="changePriceBtn" onclick="changePrice(this)"> -->
+								<input type="submit" value="결제 테스트" class="btn_paytest">
 							</td>
 						</tr>
-					</table>
-					
+					</table>					
 				</div><!-- .rightBox -->
 				
 			</form>
