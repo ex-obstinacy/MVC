@@ -5,7 +5,7 @@
     %>
 <!DOCTYPE html>
 <div class="sub_main01">
-	<h2><%=id %> 님<h2> <br>
-    <h3><b>반갑습니다! Welcome Back!</b><h3>
+	<h2><%=id %> 님</h2> <br>
+    <h3><b>반갑습니다! Welcome Back!</b></h3>
 	<div class="black"></div>
 </div>

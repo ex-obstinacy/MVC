@@ -91,6 +91,9 @@
 </head>
 
 <body>
+	<!-- TOP 이동 버튼 -->
+	<jsp:include page="../inc/btn_top.jsp"/>
+	
   <!--::header part start::-->
 	<jsp:include page="/inc/top.jsp"/>
   <!-- Header part end-->
@@ -193,6 +196,8 @@
   <!--::footer_part start::-->
   <jsp:include page="/inc/bottom.jsp"/>
   <!--::footer_part end::-->
+  
+  
 
   <!-- jquery plugins here-->
   <!-- jquery -->

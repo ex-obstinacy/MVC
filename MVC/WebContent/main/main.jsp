@@ -99,6 +99,7 @@
     <!--헤더-->
     <jsp:include page="../inc/top.jsp"/>
     <!-- 헤더 끝-->
+    
 
     <!-- 메인슬라이더 시작-->
     <section class="banner_part">
@@ -270,6 +271,8 @@
     <!--::footer_part start::-->
     <jsp:include page="../inc/bottom.jsp"/>
     <!--::footer_part end::-->
+    
+    
 
     <!-- jquery plugins here-->
     <script src="js/jquery-1.12.1.min.js"></script>

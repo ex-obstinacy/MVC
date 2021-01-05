@@ -5,8 +5,34 @@
 	//session 객체에 저장된 id 값 가져와서 변수에 저장
 	String id = (String)session.getAttribute("id");
 %>
-
 <!DOCTYPE html>
+<script src="js/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	// TOP 이동 버튼
+	$(window).scroll(function() {
+        if ($(this).scrollTop() > 300) {
+            $('a.btn_top').fadeIn(100);
+        } else {
+            $('a.btn_top').fadeOut(100);
+        }
+    });
+    
+    $("a.btn_top").click(function() {
+        $('html, body').animate({
+            scrollTop : 0
+        }, 500);
+        return false;
+    });
+	
+});
+
+</script>
+
+<!-- TOP 이동 버튼 -->
+<a href="#" class="btn_top">TOP</a>
+
 <header class="main_menu home_menu">
         <div class="container">
             <div class="row align-items-center">

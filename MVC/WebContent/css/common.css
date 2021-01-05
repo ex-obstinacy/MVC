@@ -25,7 +25,9 @@ h3.sub_title:after{content:""; display:block; width:100%; height:0.5px; backgrou
     padding: 50px 0 0 0;
 }
 
-
+/* TOP 이동 버튼 20210105 추가*/
+a.btn_top{display:none; width:50px; height:50px; background:url(../img/arrow_top.png) no-repeat center 8px/18px auto #888;  color:#fff; position:fixed; bottom:30px; right:30px; z-index:999; border-radius:50%; text-align:center; padding-top:26px; box-sizing:border-box; transition:all 0.3s;}
+a.btn_top:hover{background-color:#FF243E;}
 
 /* 헤더 */
 .hearer_icon{}
@@ -57,3 +59,12 @@ footer div.finfo span:after{content:""; display:inline-block; width:0.5px; heigh
 footer div.finfo span:nth-child(2):after, footer div.finfo span:last-child:after{display:none;}
 
 footer div.fcopy{font-size:12px; color:#555;}
+
+
+
+
+
+
+
+
+

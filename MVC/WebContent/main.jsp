@@ -349,6 +349,8 @@
     <!--::footer_part start::-->
     <jsp:include page="inc/bottom.jsp"/>
     <!--::footer_part end::-->
+    
+    
 
     <!-- jquery plugins here-->
     <script src="js/jquery-1.12.1.min.js"></script>
