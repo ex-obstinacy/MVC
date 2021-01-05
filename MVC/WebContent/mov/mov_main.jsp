@@ -92,7 +92,7 @@
 
 <body>
 	<!-- TOP 이동 버튼 -->
-	<jsp:include page="../inc/btn_top.jsp"/>
+<%-- 	<jsp:include page="../inc/btn_top.jsp"/> --%>
 	
   <!--::header part start::-->
 	<jsp:include page="/inc/top.jsp"/>
