@@ -166,7 +166,7 @@
 	<jsp:include page="/inc/top.jsp"/>
   <!-- Header part end-->
 
-<div id="sub_content" class="mov_detail">
+<!-- <div id="sub_content" class="mov_detail"> -->
 	<div class="stillcut_box">
 		<div class="stillcut_pager">
 			<button class="prev">prev</button>
@@ -302,16 +302,23 @@
 								<td align="center"><input type="submit" value="관람평 작성" class="genric-btn primary circle"></td>
 							</tr>
 						</table>
-						<table class="table">
+						<table class="comment_list">
+							<colgroup>
+								<col width="90%"/>
+								<col width=""/>
+							</colgroup>
 							<tr>
-								<td colspan="2">총 <%=listCount %> 건</td>
+								<th colspan="2">총 <b><%=listCount %></b>건</th>
 							</tr>
 							<%for (int i = 0; i < articleList.size(); i++) { %>
 							<tr>
 								<td>
-									<%=articleList.get(i).getMember_id() %> | <i class='fas fa-star'></i><%=articleList.get(i).getCmgrade() %><br>
-									<%=articleList.get(i).getContent() %><br>
-									<%=articleList.get(i).getDate() %>
+									<span class="comment_star"><%=articleList.get(i).getCmgrade() %></span>
+									<div>
+										<span class="comment_id"><%=articleList.get(i).getMember_id() %></span>
+										<span class="comment_content"><%=articleList.get(i).getContent() %></span>
+										<span class="comment_date"><%=articleList.get(i).getDate() %></span>
+									</div>									
 								</td>
 								<td>
 									<%if (articleList.get(i).getMember_id().equals(id)) { %>
@@ -374,7 +381,7 @@
 		</section><!-- .detail_box2 -->
 	</div><!-- .container -->
 	
-</div><!-- #sub_content -->
+<!-- </div>#sub_content -->
 
   <!--::footer_part start::-->
   <jsp:include page="/inc/bottom.jsp"/>

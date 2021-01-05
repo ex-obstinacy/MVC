@@ -593,6 +593,18 @@ section.detail_box2 .tab-content table.mov_comment td ul.star_box{}
 section.detail_box2 .tab-content table.mov_comment td ul.star_box li{display:inline-block; text-indent:-9999px; width:18px; height:18px; background:url(../img/sub/mov/nonpoint.png) no-repeat center/100% auto; cursor:pointer;}
 section.detail_box2 .tab-content table.mov_comment td ul.star_box li.checked{background-image:url(../img/sub/mov/starscore.png); }
 
+section.detail_box2 .tab-content table.comment_list{width:100%; margin-bottom:50px;}
+section.detail_box2 .tab-content table.comment_list th{border-bottom:1px solid #555; padding:10px 0; font-size:20px; font-weight:300; }
+section.detail_box2 .tab-content table.comment_list td{padding:20px 0; border-bottom:1px dotted #ccc;}
+section.detail_box2 .tab-content table.comment_list td span.comment_star{float:left; display:inline-block; line-height:30px; font-size:18px; margin-right:20px; font-weight:600;}
+section.detail_box2 .tab-content table.comment_list td span.comment_star:before{content:""; display:inline-block; width:40px; height:40px;  line-height:30px; background:url(../img/sub/mov/starscore.png) no-repeat center/100% auto; margin:0 5px -14px 0;}
+section.detail_box2 .tab-content table.comment_list td > div{float:left;}
+section.detail_box2 .tab-content table.comment_list td > div span{display:block; font-size:12px; margin-bottom:10px;}
+section.detail_box2 .tab-content table.comment_list td > div span.comment_id{font-weight:bold;}
+section.detail_box2 .tab-content table.comment_list td > div span.comment_comment{}
+section.detail_box2 .tab-content table.comment_list td > div span.comment_date{margin-bottom:0; color:#aaa;}
+
+
 /* 트레일러 영상 재생시 검은배경 */
 .black_bg{display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:300;}
 
