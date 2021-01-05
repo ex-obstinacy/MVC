@@ -62,17 +62,19 @@ ArrayList<StoreBean> orderList = (ArrayList<StoreBean>)request.getAttribute("ord
 					<div class="left_sidebar_area">
 						<aside class="left_widgets p_filter_widgets">
 							<div class="l_w_title"></div>
-							<div class="widgets_inner">
-								<ul class="list">
+							<div class="side_menu">
+								<h3>마이페이지</h3>
+								<ul class="list side_list">
+									<li><a href="MemberMain.me">나의 등급</a></li>
 									<li><a href="MemberReserveList.me">예매내역</a></li>
-									<li><a href="MemberOrderList.me">결제내역</a></li>
+									<li class="active"><a href="MemberOrderList.me">결제내역</a></li>
 									<li><a href="BasketList.go">장바구니</a></li>
 									<li><a href="MemberMovComment.me">리뷰내역</a></li>
 									<li><a href="MemberQnADetail.me">1:1문의</a></li>
 									<li><a href="MemberInfo.me">My 정보</a></li>
 									<li><a href="MemberDelete.me">회원 탈퇴</a></li>
 								</ul>
-							</div>
+							</div><!-- .side_menu -->
 						</aside>
 					</div>
 				</div>
@@ -82,7 +84,7 @@ ArrayList<StoreBean> orderList = (ArrayList<StoreBean>)request.getAttribute("ord
   <div class="row align-items-center latest_product_inner">
 	<div class="container">
 		<div class="member_order">
-			<h2>결제 내역</h2>
+			<h2 class="member_title">결제내역</h2><!-- .member_title -->
 			<!-- 임시이미지 -->
 					<%
 					if(orderList != null){

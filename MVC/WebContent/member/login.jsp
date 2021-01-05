@@ -70,7 +70,7 @@
 	    		</div><!-- .login_box -->
 	    		
 	    		<a href="http://localhost:8080/MVC/MovDetail.mo?movieCd=20192567" class="right_banner">
-	    			<img src="img/sub/login/login_banner1.jpg">
+	    			<img src="img/sub/member/login_banner1.jpg">
 	    		</a><!-- .right_banner -->
     		</section><!-- .login_part -->
     	</div><!-- .container -->

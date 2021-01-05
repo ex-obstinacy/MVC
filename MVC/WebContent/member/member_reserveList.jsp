@@ -82,9 +82,11 @@
 					<div class="left_sidebar_area">
 						<aside class="left_widgets p_filter_widgets">
 							<div class="l_w_title"></div>
-							<div class="widgets_inner">
-								<ul class="list">
-									<li><a href="MemberReserveList.me">예매내역</a></li>
+							<div class="side_menu">
+								<h3>마이페이지</h3>
+								<ul class="list side_list">
+									<li><a href="MemberMain.me">나의 등급</a></li>
+									<li class="active"><a href="MemberReserveList.me">예매내역</a></li>
 									<li><a href="MemberOrderList.me">결제내역</a></li>
 									<li><a href="BasketList.go">장바구니</a></li>
 									<li><a href="MemberMovComment.me">리뷰내역</a></li>
@@ -92,7 +94,7 @@
 									<li><a href="MemberInfo.me">My 정보</a></li>
 									<li><a href="MemberDelete.me">회원 탈퇴</a></li>
 								</ul>
-							</div>
+							</div><!-- .side_menu -->
 						</aside>
 					</div>
 				</div>
@@ -102,6 +104,7 @@
 						<!--         <section class="cart_area"> -->
 						<div class="container">
 							<div class="cart_inner">
+							<h2 class="member_title">예매내역</h2><!-- .member_title -->
 							<%
 								if(articleList.size() != 0) {
 							%>

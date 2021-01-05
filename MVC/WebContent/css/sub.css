@@ -67,6 +67,37 @@ section.member_form form table.necessary td input[type=text]{width:300px;}
 section.member_form form table.necessary td input[type=password]{width:300px;}
 section.member_form form table.necessary td input[type=email]{width:300px;}
 
+/* 멤버쪽 사이드 메뉴 css */
+.side_menu{}
+.side_menu h3{ font-weight:bold; padding:50px 10px; border-bottom:1px solid #ccc; background:#eee; text-align:center;} 
+.side_menu .side_list{}
+.side_menu .side_list li a{display:block; font-size:14px !important; padding:15px 20px; border-bottom:1px solid #eee; transition:all 0.3s;}
+.side_menu .side_list li a:hover{background:#ddd;}
+.side_menu .side_list li.active a{font-weight:bold; background:#ff3368; color:#fff;}
+
+/* member_main */
+h2.member_title{padding-bottom:20px; margin-bottom:80px; border-bottom:1px solid #ccc;}
+.membership_box{margin-bottom:50px; text-align:center;}
+.membership_box p{font-size:18px; line-height:30px;}
+.membership_box p span{display:inline-block;}
+.membership_box p span.point{font-weight:700;}
+.membership_box p span.member_gr{font-weight:700; background-repeat:no-repeat; background-size:30px auto; padding-left:33px;}
+.membership_box p span.vip{background-image:url(../img/sub/member/membership_vip.png);}
+.membership_box p span.gold{background-image:url(../img/sub/member/membership_gold.png);}
+.membership_box p span.silver{background-image:url(../img/sub/member/membership_silver.png);}
+.membership_box p span.bronze{background-image:url(../img/sub/member/membership_bronze.png);}
+
+table.membership_info{border-top:1px solid #121212; border-bottom:1px solid #121212;}
+table.membership_info th{padding:15px 0; text-align:center; border-right:1px dotted #bbb; border-bottom:1px solid #ccc;}
+table.membership_info th:last-child{border-right:0;}
+table.membership_info th span{display:block; margin:0 auto 5px auto; width:30px; height:30px; background-repeat:no-repeat; background-size:100% auto;}
+table.membership_info th span.vip{background-image:url(../img/sub/member/membership_vip.png); }
+table.membership_info th span.gold{background-image:url(../img/sub/member/membership_gold.png); }
+table.membership_info th span.silver{background-image:url(../img/sub/member/membership_silver.png); }
+table.membership_info th span.bronze{background-image:url(../img/sub/member/membership_bronze.png); }
+table.membership_info td{padding:20px 10px; text-align:center; background:#f3f3f3; border-right:1px dotted #bbb; border-bottom:1px dotted #bbb; word-break:keep-all;}
+table.membership_info td:last-child{border-right:0;}
+
 /* member_order */ 
 div.member_order{width:100%; margin:0 auto;}
 div.member_order h2{margin: 0; line-height:1.2em; font-size:30px; color:#1a1a1a; font-weight:600; font-family: "Poppins", sans-serif; transition: 0.5s; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; }

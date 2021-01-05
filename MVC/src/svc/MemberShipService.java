@@ -30,7 +30,7 @@ public class MemberShipService {
 			
 		} else if (memberShip.getPoint() > 1000) {
 			memberShip.setGrade("SILVER");
-			memberShip.setNextGrade("GODL");
+			memberShip.setNextGrade("GOLD");
 			memberShip.setNextPoint(2000);
 			
 		} else {

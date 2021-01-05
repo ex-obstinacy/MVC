@@ -81,8 +81,10 @@
 					<div class="left_sidebar_area">
 						<aside class="left_widgets p_filter_widgets">
 							<div class="l_w_title"></div>
-							<div class="widgets_inner">
-								<ul class="list">
+							<div class="side_menu">
+								<h3>마이페이지</h3>
+								<ul class="list side_list">
+									<li class="active"><a href="MemberMain.me">나의 등급</a></li>
 									<li><a href="MemberReserveList.me">예매내역</a></li>
 									<li><a href="MemberOrderList.me">결제내역</a></li>
 									<li><a href="BasketList.go">장바구니</a></li>
@@ -91,7 +93,7 @@
 									<li><a href="MemberInfo.me">My 정보</a></li>
 									<li><a href="MemberDelete.me">회원 탈퇴</a></li>
 								</ul>
-							</div>
+							</div><!-- .side_menu -->
 						</aside>
 					</div>
 				</div>
@@ -101,22 +103,68 @@
 						<!--         <section class="cart_area"> -->
 						<div class="container">
 							<div class="cart_inner">
-							
+								<h2 class="member_title">나의 등급</h2><!-- .member_title -->
 								<%
 									if (memberShip.getGrade().equals("VIP")) {
 								%>
-								<div><h5><%=memberShip.getGrade() %> 입니다.</h5></div>
-	                    		<h4><B>항상 이용해주셔서 감사합니다!</B></h4>
+									<div class="membership_box">
+										<p>현재 멤버쉽포인트는 <span class="point"><%=memberShip.getPoint()%></span>로 <span class="member_gr vip"><%=memberShip.getGrade() %></span>등급입니다.</p>
+										<p>항상 이용해주셔서 감사합니다!</p>
+									</div><!-- .membership_box -->
 								<%
-									} else {
-								
+									} else if(memberShip.getGrade().equals("GOLD")){								
 								%>
-							
-								<div><h5><%=memberShip.getGrade() %> 입니다.</h5></div>
-	                    		<h4><B><%=memberShip.getNextGrade() %></B> 까지 남은 POINT <B><%=memberShip.getNextPoint() - memberShip.getPoint() %></B></h4>
+									<div class="membership_box">
+										<p>현재 멤버쉽포인트는 <span class="point"><%=memberShip.getPoint()%></span>포인트로 <span class="member_gr gold"><%=memberShip.getGrade() %></span>등급입니다.</p>
+										<p><span class="member_gr vip"><%=memberShip.getNextGrade() %></span>등급까지 남은 멤버쉽포인트는 <span class="point"><%=memberShip.getNextPoint() - memberShip.getPoint() %></span>포인트입니다.</p>
+									</div><!-- .membership_box -->
+								<%
+									} else if(memberShip.getGrade().equals("SILVER")){								
+								%>
+									<div class="membership_box">
+										<p>현재 멤버쉽포인트는 <span class="point"><%=memberShip.getPoint()%></span>로 <span class="member_gr silver"><%=memberShip.getGrade() %></span>등급입니다.</p>
+										<p><span class="member_gr gold"><%=memberShip.getNextGrade() %></span>등급까지 남은 멤버쉽포인트는 <span class="point"><%=memberShip.getNextPoint() - memberShip.getPoint() %></span>입니다.</p>
+									</div><!-- .membership_box -->
+								<%
+									} else if(memberShip.getGrade().equals("BRONZE")){								
+								%>
+									<div class="membership_box">
+										<p>현재 멤버쉽포인트는 <span class="point"><%=memberShip.getPoint()%></span>로 <span class="member_gr bronze"><%=memberShip.getGrade() %></span>등급입니다.</p>
+										<p><span class="member_gr silver"><%=memberShip.getNextGrade() %></span>등급까지 남은 멤버쉽포인트는 <span class="point"><%=memberShip.getNextPoint() - memberShip.getPoint() %></span>입니다.</p>
+									</div><!-- .membership_box -->
 	                    		<%
 									}
 	                    		%>
+	                    			<table class="membership_info">
+	                    				<colgroup>
+	                    					<col width="10%"/>
+	                    					<col width="22.5%"/>
+	                    					<col width="22.5%"/>
+	                    					<col width="22.5%"/>
+	                    					<col width="22.5%"/>
+	                    				</colgroup>
+	                    				<tr>
+	                    					<th>등급</th>
+	                    					<th><span class="bronze"></span>BRONZE</th>
+	                    					<th><span class="silver"></span>SILVER</th>
+	                    					<th><span class="gold"></span>GOLD</th>
+	                    					<th><span class="vip"></span>VIP</th>
+	                    				</tr>
+	                    				<tr>
+	                    					<td>조건</td>
+	                    					<td>회원가입시 적용</td>
+	                    					<td>멤버쉽포인트 1000포인트 이상</td>
+	                    					<td>멤버쉽포인트 2000포인트 이상</td>
+	                    					<td>멤버쉽포인트 3000포인트 이상</td>
+	                    				</tr>
+	                    				<tr>
+	                    					<td>혜택</td>
+	                    					<td>-</td>
+	                    					<td>매년 영화관람권 1개 지급</td>
+	                    					<td>매년 영화관람권 3개 지급</td>
+	                    					<td>매년 영화관람권 6개 지급</td>
+	                    				</tr>
+	                    			</table><!-- .membership_info -->
 							
 							</div>
 						</div>

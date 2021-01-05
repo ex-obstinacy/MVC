@@ -238,108 +238,118 @@
 	<jsp:include page="/inc/sub_main1.jsp"/>
 
     <!--================ 메뉴 영역 =================-->
-    <section class="cat_product_area section_padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="left_sidebar_area">
-                        <aside class="left_widgets p_filter_widgets">
-                            <div class="l_w_title">
-                            
-                            </div>
-                            <div class="widgets_inner">
-                                <ul class="list">
+    <section class="cart_area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="left_sidebar_area">
+						<aside class="left_widgets p_filter_widgets">
+							<div class="l_w_title"></div>
+							<div class="side_menu">
+								<h3>마이페이지</h3>
+								<ul class="list side_list">
+									<li><a href="MemberMain.me">나의 등급</a></li>
 									<li><a href="MemberReserveList.me">예매내역</a></li>
 									<li><a href="MemberOrderList.me">결제내역</a></li>
 									<li><a href="BasketList.go">장바구니</a></li>
 									<li><a href="MemberMovComment.me">리뷰내역</a></li>
 									<li><a href="MemberQnADetail.me">1:1문의</a></li>
-									<li><a href="MemberInfo.me">My 정보</a></li>
+									<li class="active"><a href="MemberInfo.me">My 정보</a></li>
 									<li><a href="MemberDelete.me">회원 탈퇴</a></li>
 								</ul>
-                            </div>
-                        </aside>
-                    </div>
-                </div>
-          <!--================ 메뉴 영역 =================-->          
-                
-                <div class="col-lg-9">
-                    <div class="row align-items-center latest_product_inner">
-                    
-                    
-					    <form action="MemberUpdatePro.me" id="join" method="post" name="fr" class="container" onsubmit="return check()">
-							<table>
-								<tr>
-									<td class=td_size>아이디</td>
-									<td><%=article.getId() %></td>
-								</tr>
-								<tr>
-									<td>비밀번호</td>
-									<td><input type="password" name="pass" id="pass" required="required"></td>
-								</tr>
-								<tr>
-									<td>변경할 비밀번호</td>
-									<td><input type="password" name="chPass" id="chPass" onkeyup="checkPasswd(this)"><span id="checkPasswdResult"></span></td>
-								</tr>
-								<tr>
-									<td>변경할 비밀번호 재확인</td>
-									<td><input type="password" name="rePass" id="rePass" onkeyup="retryPasswd(this)"><span id="retryPasswdResult"></span></td>
-								</tr>
-								<tr>
-									<td>이름</td>
-									<td><%=article.getName() %></td>
-								</tr>
-								<tr>
-									<td>전화번호</td>
-									<td><input type="text" name="phone" required="required" value="<%=article.getPhone() %>" placeholder="ex.000-0000-0000"></td>
-								</tr>
-								<tr>
-									<td>이메일</td>
-									<td><input type="email" name="email" id="email" required="required" value="<%=article.getEmail() %>"></td>
-								</tr>
-								<tr>
-									<td>변경할 이메일</td>
-									<td><input type="email" name="chEmail" id="chEmail"></td>
-								</tr>									
-								<tr>
-									<td>변경할 이메일 재확인</td>
-									<td><input type="email" name="reEmail" id="reEmail" onkeyup="retryEmail(this)"><span id="retryEmailResult"></span></td>
-								</tr>
-								<tr>
-									<td>성별</td>
-									<td><input type="radio" name="gender" value="male" id="male" required="required" <% if(article.getGender().equals("male")) { %> checked="checked" <% } %>>남 
-										<input type="radio" name="gender" value="female" id="female" <% if(article.getGender().equals("female")) { %> checked="checked" <% } %>>여</td>
-								</tr>
-								<tr>
-									<td>생년월일</td>
-									<td><input type="date" name="birthday" id="birthday" required="required" value="<%=article.getBirthday() %>"></td>
-								</tr>
-							</table>
-							<table>
-								<tr>
-									<td rowspan="3" class=td_size>주소</td>
-									<td><input type="text" name="postcode" id="postcode" class="id" placeholder="우편번호" value="<%=article.getPostcode() %>" readonly="readonly"> <input type="button" value="우편번호검색" class="genric-btn info circle" onclick="execPostCode()"></td>
-								</tr>
-								<tr>
-									<td><input type="text" name="address" id="address" placeholder="주소" size="46" value="<%=article.getAddress() %>" readonly="readonly"></td>
-								</tr>
-								<tr>
-									<td><input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소" value="<%=article.getDetailAddress() %>"> <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목" value="<%=article.getExtraAddress() %>" readonly="readonly"></td>
-								</tr>
-							</table>
-							<div class="clear"></div>
-							<div id="buttons">
-								<input type="submit" value="정보수정" class="genric-btn primary circle">
-								<input type="button" value="뒤로" class="genric-btn success circle" onclick="">
+							</div><!-- .side_menu -->
+						</aside>
+					</div>
+				</div>
+				<!--================ 메뉴 영역 =================-->
+				<div class="col-lg-9">
+					<div class="row align-items-center latest_product_inner">
+						<!--         <section class="cart_area"> -->
+						<div class="container">
+							<div class="cart_inner">
+								<h2 class="member_title">My 정보</h2><!-- .member_title -->
+								<form action="MemberUpdatePro.me" id="join" method="post" name="fr"onsubmit="return check()">
+									<fieldset>
+										<legend>필수 항목</legend>
+										<table class="necessary">
+											<colgroup>
+												<col width="15%"/>
+												<col width=""/>
+											</colgroup>
+											<tr>
+												<th>아이디</th>
+												<td><input type="text" name="id" class="id" id="myId" required="required" placeholder="4~12자 영문과 숫자 조합" onkeyup="checkId(this)"><span id="checkIdResult"></span></td>
+						<!-- 				<input type="button" value="ID확인" class="genric-btn info circle" id="chkId"> -->
+											</tr>
+											<tr>
+												<th>비밀번호</th>
+												<td><input type="password" name="pass" id="pass" required="required" placeholder="4~16자 영문(대.소문자),숫자,특수문자" onkeyup="checkPasswd(this)"><span id="checkPasswdResult"></span></td>
+											</tr>
+											<tr>
+												<th>비밀번호 재확인</th>
+												<td><input type="password" name="rePass" id="rePass" required="required" onkeyup="retryPasswd(this)"><span id="retryPasswdResult"></span></td>
+											</tr>
+											<tr>
+												<th>이름</th>
+												<td><input type="text" name="name" id="name" required="required"></td>
+											</tr>
+											<tr>
+												<th>전화번호</th>
+												<td><input type="text" name="phone" required="required" placeholder="ex.000-0000-0000"></td>
+											</tr>
+											<tr>
+												<th>이메일</th>
+												<td><input type="email" name="email" id="email" required="required"></td>
+											</tr>
+											<tr>
+												<th>이메일 재확인</th>
+												<td><input type="email" name="reEmail" id="reEmail" required="required" onkeyup="retryEmail(this)"><span id="retryEmailResult"></span></td>
+											</tr>
+											<tr>
+												<th>성별</th>
+												<td><input type="radio" name="gender" value="male" id="male" required="required">남 <input type="radio" name="gender" value="female" id="female">여</td>
+											</tr>
+											<tr>
+												<th>생년월일</th>
+												<td><input type="date" name="birthday" id="birthday" required="required" placeholder="2000-12-20"></td>
+											</tr>
+										</table>
+									</fieldset>
+							
+									<fieldset>
+										<legend>선택 항목</legend>
+										<table>
+											<colgroup>
+												<col width="15%"/>
+												<col width=""/>
+											</colgroup>
+											<tr>
+												<th rowspan="3" class=th_size>주소</th>
+												<td><input type="text" name="postcode" id="postcode" class="id" placeholder="우편번호" readonly="readonly"> <input type="button" value="우편번호검색" class="genric-btn info circle" onclick="execPostCode()"></td>
+											</tr>
+											<tr>
+												<td><input type="text" name="address" id="address" placeholder="주소" size="46" readonly="readonly"></td>
+											</tr>
+											<tr>
+												<td><input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소"> <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목" readonly="readonly"></td>
+											</tr>
+										</table>
+									</fieldset>
+									<div id="buttons">
+										<input type="submit" value="가입하기" class="genric-btn primary circle">
+										<input type="reset" value="취소" class="genric-btn success circle">
+									</div>
+								</form>
+							
 							</div>
-						</form>
-                    
-                    
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+						</div>
+						<!--   </section> -->
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
     <!--================End Category Product Area =================-->
 
 
