@@ -155,7 +155,7 @@
 			</div><!-- .now_ranking -->
 			
 			<div class="screen_ranking ranking_box">
-				<h2>상영 예정작 <strong>TOP 5</strong>
+				<h2>상영 예정작 <strong>개봉일 TOP 5</strong>
 					<a href="MovToBeMain.mo">더보기 ></a>
 				</h2>
 				<ul>
