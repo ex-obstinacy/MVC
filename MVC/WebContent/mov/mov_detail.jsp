@@ -280,26 +280,27 @@
 						<input type="hidden" name="cmgrade" id="cmgrade" value="10">
 						<table class="mov_comment">
 							<colgroup>
-								<col width="20%"/>
-								<col width="70%"/>
-								<col width=""/>
+								<col width="25%"/>
+								<col width="65%"/>
+								<col width="10%"/>
 							</colgroup>
 							<tr>
 								<td align="center">
-									<div class="rating"><span id="rating_point">0</span>점</div>
+									<div class="rating"><span id="rating_point">10</span>점</div>
 									<ul class="star_box">
 									<%
 									for (int i = 1; i < 11; i++) {
 									%>
 <%-- 									<i class='fas fa-star' onclick="rating(<%=i %>)"></i> --%>
-										<li onclick="rating(<%=i %>)"><%=i %></li>
+										<li onclick="rating(<%=i %>)" class="checked"><%=i %></li>
 									<%	
 									}
 									%>
 									</ul>
+									<p>별을 클릭하면 평점이 바뀝니다.</p>
 								</td>
-								<td><textarea placeholder="리뷰를 작성해주세요" name="content" class="single-textarea"></textarea></td>
-								<td align="center"><input type="submit" value="관람평 작성" class="genric-btn primary circle"></td>
+								<td><textarea placeholder="평점 및 영화 관람평을 작성해주세요" name="content" class="single-textarea"></textarea></td>
+								<td align="center"><input type="submit" value="관람평 작성" class="btn_cominsert"></td>
 							</tr>
 						</table>
 						<table class="comment_list">

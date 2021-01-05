@@ -356,8 +356,7 @@ public class MemberDAO {
 			
 			if (rs.next()) {
 				memberShip = new MemberShipBean();
-				memberShip.setPoint(rs.getInt(1));
-				
+				memberShip.setPoint(rs.getInt(1));				
 			}
 			
 		} catch (SQLException e) {

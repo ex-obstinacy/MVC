@@ -76,7 +76,7 @@ section.member_form form table.necessary td input[type=email]{width:300px;}
 .side_menu .side_list li.active a{font-weight:bold; background:#ff3368; color:#fff;}
 
 /* member_main */
-h2.member_title{padding-bottom:20px; margin-bottom:80px; border-bottom:1px solid #ccc;}
+h2.member_title{padding-bottom:20px; margin-bottom:50px; border-bottom:1px solid #ccc;}
 .membership_box{margin-bottom:50px; text-align:center;}
 .membership_box p{font-size:18px; line-height:30px;}
 .membership_box p span{display:inline-block;}
@@ -617,13 +617,17 @@ section.detail_box2 .tab-content .people_cont ul li div img{width:100%;}
 section.detail_box2 .tab-content .people_cont ul li strong{font-weight:400; font-size:12px; line-height:12px;}
 section.detail_box2 .tab-content .people_cont ul li span{color:#999; margin: 0 0 0 3px;}
 
-section.detail_box2 .tab-content table.mov_comment{}
-section.detail_box2 .tab-content table.mov_comment td{padding:20px 0;}
+section.detail_box2 .tab-content table.mov_comment{width:100%; margin-bottom:20px;}
+section.detail_box2 .tab-content table.mov_comment td{border:1px solid #ccc;}
+section.detail_box2 .tab-content table.mov_comment td:first-child{background:#f9f9f9;}
 section.detail_box2 .tab-content table.mov_comment td .rating{font-size:20px; margin-bottom:5px;}
 section.detail_box2 .tab-content table.mov_comment td .rating span{font-weight:700;}
-section.detail_box2 .tab-content table.mov_comment td ul.star_box{}
+section.detail_box2 .tab-content table.mov_comment td ul.star_box{margin-bottom:5px;}
 section.detail_box2 .tab-content table.mov_comment td ul.star_box li{display:inline-block; text-indent:-9999px; width:18px; height:18px; background:url(../img/sub/mov/nonpoint.png) no-repeat center/100% auto; cursor:pointer;}
 section.detail_box2 .tab-content table.mov_comment td ul.star_box li.checked{background-image:url(../img/sub/mov/starscore.png); }
+section.detail_box2 .tab-content table.mov_comment td p{font-size:12px; color:#777;}
+section.detail_box2 .tab-content table.mov_comment td textarea{background:#fff;}
+section.detail_box2 .tab-content table.mov_comment td input.btn_cominsert{width:100%; padding:50px 0; border:0; background:#666; color:#fff;}
 
 section.detail_box2 .tab-content table.comment_list{width:100%; margin-bottom:50px;}
 section.detail_box2 .tab-content table.comment_list th{border-bottom:1px solid #555; padding:10px 0; font-size:20px; font-weight:300; }

@@ -20,15 +20,15 @@ public class MemberShipService {
 		
 		MemberShipBean memberShip = memberDAO.selectMemberShip(id);
 		
-		if (memberShip.getPoint() > 3000) {
+		if (memberShip.getPoint() >= 3000) {
 			memberShip.setGrade("VIP");
 			
-		} else if (memberShip.getPoint() > 2000) {
+		} else if (memberShip.getPoint() >= 2000) {
 			memberShip.setGrade("GOLD");
 			memberShip.setNextGrade("VIP");
 			memberShip.setNextPoint(3000);
 			
-		} else if (memberShip.getPoint() > 1000) {
+		} else if (memberShip.getPoint() >= 1000) {
 			memberShip.setGrade("SILVER");
 			memberShip.setNextGrade("GOLD");
 			memberShip.setNextPoint(2000);
@@ -39,6 +39,7 @@ public class MemberShipService {
 			memberShip.setNextPoint(1000);
 			
 		}
+
 		
 		close(con);
 		
