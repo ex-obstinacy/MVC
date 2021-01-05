@@ -335,8 +335,8 @@
 								</tr>
 							</table>
 									<div id="buttons">
-										<input type="submit" value="가입하기" class="genric-btn primary circle">
-										<input type="reset" value="취소" class="genric-btn success circle">
+								<input type="submit" value="정보수정" class="genric-btn primary circle">
+								<input type="button" value="뒤로" class="genric-btn success circle" onclick="">
 									</div>
 								</form>
 
