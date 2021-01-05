@@ -336,7 +336,7 @@
 							</table>
 									<div id="buttons">
 								<input type="submit" value="정보수정" class="genric-btn primary circle">
-								<input type="button" value="뒤로" class="genric-btn success circle" onclick="">
+								<input type="button" value="뒤로" class="genric-btn success circle" onclick="history.back()">
 									</div>
 								</form>
 
