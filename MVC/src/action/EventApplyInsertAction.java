@@ -79,12 +79,12 @@ public class EventApplyInsertAction implements Action {
 			out.println("</script>"); // 자바스크립트 끝 태그
 		} else {
 			// 1. ActionForward 객체 생성
-//			response.setContentType("text/html; charset=UTF-8");
-//			PrintWriter out = response.getWriter();
-//			out.println("<script>"); // 자바스크립트 시작 태그
-//			out.println("alert('회원 이벤트 응모 완료!')"); // 다이얼로그 메세지 출력
-//			
-//			out.println("</script>"); // 자바스크립트 끝 태그
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>"); // 자바스크립트 시작 태그
+			out.println("alert('회원 이벤트 응모 완료!')"); // 다이얼로그 메세지 출력
+			
+			out.println("</script>"); // 자바스크립트 끝 태그
 			forward = new ActionForward();
 			// 2. 포워딩 경로(URL) 지정
 			//    (주의! 경로명 앞에 슬래시(/) 기호 붙이지 말 것!)

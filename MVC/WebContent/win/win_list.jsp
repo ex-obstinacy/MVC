@@ -16,6 +16,8 @@ int startPage = pageInfo.getStartPage();
 int endPage = pageInfo.getEndPage();
 int listCount = pageInfo.getListCount();
 
+
+
 String member_id = (String) session.getAttribute("id");
 %>
 <!DOCTYPE html>

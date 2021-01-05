@@ -93,7 +93,7 @@ public class QnaListAction implements Action {
 			// BoardListService 클래스 인스턴스 생성 후
 			// getListCount() 메서드를 호출하여 전체 게시물 수(listCount) 가져오기
 			QnaListService qnaListService = new QnaListService();
-			int listCount = qnaListService.getListCount();
+			int listCount = qnaListService.getListCount2(id);
 //		System.out.println("전체 게시물 수 : " + listCount);
 
 			// 전체 게시물 목록을 저장할 ArrayList 객체(articleList) 생성

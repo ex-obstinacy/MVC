@@ -103,6 +103,36 @@ public class QnaListService {
 		// 6. 조회된 게시물 목록 리턴
 		return articleList;
 	}
+
+
+
+
+	// admin 이 아닌 일반회원 글 전체 조회
+
+	public int getListCount2(String id) throws Exception {
+		
+		System.out.println("QnaListService - getListCount2()");
+		int listCount = 0;
+		
+		// 1(공통). Connection 객체 가져오기
+		Connection con = getConnection();
+		
+		// 2(공통). QnaDAO 객체 가져오기
+		QnaDAO qnaDAO = QnaDAO.getInstance();
+		
+		// 3(공통).QnaDAO 객체에 Connection 객체 전달
+		qnaDAO.setConnection(con);
+		
+		// 4. QnaDAO 객체의 selectListCount() 메서드 호출하여
+		//    전체 게시물 수 가져오기
+		listCount = qnaDAO.selectListCount2(id);
+		
+		// 5(공통). Connection 객체 반환하기
+		close(con);
+		
+		
+		return listCount;
+	}
 	
 	
 	
