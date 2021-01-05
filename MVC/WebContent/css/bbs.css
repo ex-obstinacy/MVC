@@ -54,10 +54,10 @@
 
 .bbs-button,
 .bbs-button:link,
-.bbs-button:visited { position: relative;  float:left; zoom: 1; margin: 0; padding: 0 15px; height: 38px; line-height: 38px; font-size: 15px; font-weight: normal; color: white; background-image: none; background-color: #4871a2; border: none; border-radius: 3px; text-decoration: none; cursor: pointer; vertical-align: middle; text-shadow: none; box-shadow: none; }
+.bbs-button:visited { position: relative;  float:left; zoom: 1; margin: 0; padding: 0 15px; height: 38px; line-height: 38px; font-size: 15px; font-weight: normal; color: white; background-image: none; background-color: #FF3368; border: none; border-radius: 3px; text-decoration: none; cursor: pointer; vertical-align: middle; text-shadow: none; box-shadow: none; }
 .bbs-button:hover,
 .bbs-button:focus,
-.bbs-button:active { position: relative; display: inline-block; *display: inline; zoom: 1; margin: 0; padding: 0 15px; height: 38px; line-height: 38px; font-size: 15px; font-weight: normal; color: white; background-image: none; background-color: #4871a2; border: none; border-radius: 3px; text-decoration: none; cursor: pointer; vertical-align: middle; text-shadow: none; box-shadow: none; }
+.bbs-button:active { position: relative; display: inline-block; *display: inline; zoom: 1; margin: 0; padding: 0 15px; height: 38px; line-height: 38px; font-size: 15px; font-weight: normal; color: white; background-image: none; background-color: #FF3368; border: none; border-radius: 3px; text-decoration: none; cursor: pointer; vertical-align: middle; text-shadow: none; box-shadow: none; }
 
 .bbs-default-document { display: inline-block; *display: inline; zoom: 1; margin: 0; width: 100%; }
 .bbs-document-wrap { float: left; width: 100%; background-color: white; }
@@ -112,7 +112,7 @@
 .bbs-view table tr { border: 0; }
 .bbs-view table td { padding: 10px 0; height: auto; text-align: center; vertical-align: middle; }
 .bbs-view table td.bbs-list-blank { width: 30px; }
-.bbs-view table td.bbs-list-a { width: 150px; background-color: #3373b9; color:#ffffff; }
+.bbs-view table td.bbs-list-a { width: 150px; background-color: #FF3368; color:#ffffff; }
 .bbs-view table td.bbs-list-b { padding-left:20px; padding-right:20px; width: auto; font-size:14px; }
 .bbs-view table td.bbs-list-b img { display: inline; margin: 0; width: 16px; height: 16px; vertical-align: middle; }
 .bbs-view table td.bbs-list-view { width: 55px; }

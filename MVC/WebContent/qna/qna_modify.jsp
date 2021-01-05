@@ -106,7 +106,7 @@
 			<div class="inr02">
 				<!--main content-->
 				<div class="col-md-10 col-md-push-2">
-					<h3>자유게시판</h3>
+					<h3>1대1 문의 수정</h3>
 					<div class="block" style="padding-top: 5px;">
 						<div class="row" style="min-height: 500px;">
 							<!-- 게시판 -->
@@ -183,6 +183,7 @@
 											<!-- 							</div> -->
 										</table>
 										<section id="commandCell">
+											<br>
 											<input type="submit" value="수정" class="bbs-button">&nbsp;&nbsp; <input type="button" value="뒤로" onclick="history.back()" class="bbs-button">
 										</section>
 									</form>

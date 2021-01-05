@@ -104,7 +104,7 @@
 			<div class="inr02">
 				<!--main content-->
 				<div class="col-md-10 col-md-push-2">
-					<h3>자유게시판</h3>
+					<h3>공지사항</h3>
 					<div class="block" style="padding-top: 5px;">
 						<div class="row" style="min-height: 500px;">
 							<!-- 게시판 -->

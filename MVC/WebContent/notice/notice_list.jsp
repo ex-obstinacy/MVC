@@ -179,13 +179,11 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 <!-- 	<section id="buttonArea"> -->
 	<div class="btnDiv">
 <!-- 		<div class="container"> -->
-			<%
-			if(member_id!=null){
-				if(member_id.equals("admin")){
-					%><div class="btnWrite"><input type="button" value="글쓰기" class="btn_3" onclick="location.href='NoticeWriteForm.no'"></div><%
-				}
-			}
-			%>
+
+					<div class="btnWrite">
+					<input type="button" value="글쓰기" class="btn_3" onclick="location.href='NoticeWriteForm.no'">
+					</div>
+
 <!-- 		</div> -->
 <!-- 	</section> -->
 <!-- 	<section id="pageList"> -->

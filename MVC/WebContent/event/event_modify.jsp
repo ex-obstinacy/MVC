@@ -109,7 +109,7 @@ String nowPage = request.getParameter("page");
 			<div class="inr02">
 				<!--main content-->
 				<div class="col-md-10 col-md-push-2">
-					<h3>영화 게시판 글수정</h3>
+					<h3>영화 이벤트 글 수정</h3>
 					<div class="block" style="padding-top: 5px;">
 						<div class="row" style="min-height: 500px;">
 							<!-- 게시판 -->

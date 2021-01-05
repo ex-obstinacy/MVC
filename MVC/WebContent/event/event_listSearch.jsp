@@ -190,62 +190,35 @@ String member_id = (String) session.getAttribute("id");
 	<section id="buttonArea">
 		<div class="container">
 			<%
-				if (member_id != null) {
-				if (member_id.equals("admin")) {
-			%>
-			<input type="button" value="글쓰기" class="btn_3" onclick="location.href='EventWriteForm.ev'">
-			<%
-				}
-			}
-			%>
+if(member_id!=null){
+	if(member_id.equals("admin")){
+		%><input type="button" value="글쓰기" class="btn_3" onclick="location.href='EventWriteForm.ev'">&nbsp; &nbsp; &nbsp;<%
+	}
+}%>
+			<%if(nowPage <= 1) {%>
+			
+			<input type="button" value="이전" class="btn_3">&nbsp;
+			<%} else {%>
+			<input type="button" value="이전" class="btn_3" onclick="location.href='EventList.ev?page=<%=nowPage - 1 %>'">&nbsp;
+			<%} %>
+			<%for(int i = startPage; i <= endPage; i++) { 
+			if(i == nowPage) { %>
+			[<%=i %>]&nbsp;
+			<%} else { %>
+			<a href="EventList.ev?page=<%=i %>">[<%=i %>]
+			</a>&nbsp;
+			<%} %>
+			<%} %>
+			<%if(nowPage >= maxPage) { %>
+			<input type="button" value="다음" class="btn_3">
+			<%} else { %>
+			<input type="button" value="다음" class="btn_3" onclick="location.href='EventList.ev?page=<%=nowPage + 1 %>'">
+			<%} %>
 			<div class="search">
 				<form action="EventListSearch.ev" method="post">
 					<input type="text" name="search" class="input_box" placeholder="Search..">
 				</form>
 			</div>
-		</div>
-	</section>
-	<section id="pageList">
-		<div class="container">
-			<%
-				if (nowPage <= 1) {
-			%>
-			<br>
-			<input type="button" value="이전" class="btn_3">&nbsp;
-			<%
-				} else {
-			%>
-			<input type="button" value="이전" class="btn_3" onclick="location.href='EventList.ev?page=<%=nowPage - 1%>'">&nbsp;
-			<%
-				}
-			%>
-			<%
-				for (int i = startPage; i <= endPage; i++) {
-				if (i == nowPage) {
-			%>
-			[<%=i%>]&nbsp;
-			<%
-				} else {
-			%>
-			<a href="EventList.ev?page=<%=i%>">[<%=i%>]
-			</a>&nbsp;
-			<%
-				}
-			%>
-			<%
-				}
-			%>
-			<%
-				if (nowPage >= maxPage) {
-			%>
-			<input type="button" value="다음" class="btn_3">
-			<%
-				} else {
-			%>
-			<input type="button" value="다음" class="btn_3" onclick="location.href='EventList.ev?page=<%=nowPage + 1%>'">
-			<%
-				}
-			%>
 		</div>
 	</section>
 	<%

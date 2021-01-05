@@ -139,7 +139,7 @@ int re_lev = Integer.parseInt(request.getParameter("re_lev"));
 				<div class="inr02">
 					<!-- 컨텐츠 -->
 					<div class="col-md-12 contents_sub">
-						<h3>공지사항</h3>
+						<h3>1대1 문의</h3>
 						<!-- S -->
 						<div class="block" style="padding-top: 5px;">
 							<div class="row" style="min-height: 500px;">

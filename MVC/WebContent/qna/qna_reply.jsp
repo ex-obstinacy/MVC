@@ -84,6 +84,8 @@ String member_id = (String) session.getAttribute("id");
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/sub.css">
+
+<link rel="stylesheet" type="text/css" href="css/bbs.css" />
 </head>
 <body>
 	<!--::header part start::-->
@@ -173,7 +175,8 @@ String member_id = (String) session.getAttribute("id");
 											<!-- 							</div> -->
 										</table>
 										<section id="commandCell">
-											<input type="submit" value="등록">&nbsp;&nbsp; <input type="reset" value="다시쓰기" />
+											<br>
+											<input type="submit" value="등록" class="bbs-button">&nbsp;&nbsp; <input type="reset" value="다시쓰기" class="bbs-button" />
 									</form>
 								</section>
 								<!-- 게시판 -->

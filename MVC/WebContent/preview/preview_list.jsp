@@ -71,6 +71,8 @@
 	}
 }
 
+
+
 .search input[type=text] {
 	float: right;
 	padding: 6px;
@@ -79,7 +81,11 @@
 	margin-right: 16px;
 	font-size: 17px;
 	background-color: #EAEAEA;
+	display:inline;
+	
 }
+
+
 
 @media screen and (max-width: 600px) {
 	.search input[type=text] {
@@ -89,6 +95,7 @@
 		width: 100%;
 		margin: 0;
 		padding: 14px;
+		display:inline;
 	}
 	.search input[type=text] {
 		border: 1px solid #ccc;
@@ -187,23 +194,11 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 			<%
 if(member_id!=null){
 	if(member_id.equals("admin")){
-		%>
-			<input type="button" value="글쓰기" class="btn_3" onclick="location.href='PreviewWriteForm.pr'">
-			<%
+		%><input type="button" value="글쓰기" class="btn_3" onclick="location.href='PreviewWriteForm.pr'">&nbsp; &nbsp; &nbsp;<%
 	}
-}
-%>
-			<div class="search">
-				<form action="PreviewListSearch.pr" method="post">
-					<input type="text" name="search" class="input_box" placeholder="Search..">
-				</form>
-			</div>
-		</div>
-	</section>
-	<section id="pageList">
-		<div class="container">
+}%>
 			<%if(nowPage <= 1) {%>
-			<br>
+			
 			<input type="button" value="이전" class="btn_3">&nbsp;
 			<%} else {%>
 			<input type="button" value="이전" class="btn_3" onclick="location.href='PreviewList.pr?page=<%=nowPage - 1 %>'">&nbsp;
@@ -221,8 +216,15 @@ if(member_id!=null){
 			<%} else { %>
 			<input type="button" value="다음" class="btn_3" onclick="location.href='PreviewList.pr?page=<%=nowPage + 1 %>'">
 			<%} %>
+			<div class="search">
+				<form action="PreviewListSearch.pr" method="post">
+					<input type="text" name="search" class="input_box" placeholder="Search..">
+				</form>
+			</div>
 		</div>
 	</section>
+
+
 	<%
 	} else {
 	%>
@@ -235,7 +237,7 @@ if(member_id!=null){
 if(member_id!=null){
 	if(member_id.equals("admin")){
 		%>
-			<input type="button" value="글쓰기" class="btn_3" onclick="location.href='PreviewWriteForm.pr'">
+			<input type="button" value="글쓰기" class="btn_3" onclick="location.href='EventWriteForm.ev'">
 		</div>
 		<%
 	}
