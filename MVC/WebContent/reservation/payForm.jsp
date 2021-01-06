@@ -162,45 +162,51 @@ if(adultnum == 0 && kidsnum == 0){
 	IMP.init("imp56648633"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.	
 	
 	function requestPay() {
-				var payMethod=$("input:checkbox[name='payMethod']:checked").val();
-				var movieName=$('.movieSubject').text();
-				var ticketnum = $("input:hidden[name='ticketnum']").val();
-				var queryString = $('#payForm').serialize();
-				
+				if(document.getElementById("payPrice").value == 0){
+					document.payForm.submit();					
+				}else{
+					var payMethod=$("input:checkbox[name='payMethod']:checked").val();
+					var movieName=$('.movieSubject').text();
+					var ticketnum = $("input:hidden[name='ticketnum']").val();
+					var queryString = $('#payForm').serialize();
+					
 
-				if(payMethod == null){
-					alert("결제수단을 선택해주세요.");
-					return false;
+					if(payMethod == null){
+						alert("결제수단을 선택해주세요.");
+						return false;
+					}
+					
+			      // IMP.request_pay(param, callback) 호출
+			      IMP.request_pay({ // param
+			          pg: "html5_inicis",
+			          pay_method:payMethod,
+			          merchant_uid: ticketnum, // 예매 번호
+			          name: movieName, // 상품명
+			          amount: payPrice.value, // 상품가격
+			          buyer_email: "gildong@gmail.com",
+			          buyer_name: "홍길동",
+			          buyer_tel: "010-4242-4242",
+			          buyer_addr: "서울특별시 강남구 신사동",
+			          buyer_postcode: "01181"
+			      }, function (rsp) { // callback
+			    	  if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+			    	      // jQuery로 HTTP 요청
+			    	      jQuery.ajax({
+			    	          url:"http://localhost:8080/MVC/PayPro.re",
+			    	          method: "POST",
+			    	          headers: { "Content-Type": "application/json" },
+			    	          data: queryString
+			    	      }).done(function (data) {
+			    	        // 가맹점 서버 결제 API 성공시 로직
+			    	        document.payForm.submit();
+			    	      })
+			    	    } else {
+			    	      alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
+			    	    }
+			      });
 				}
 				
-		      // IMP.request_pay(param, callback) 호출
-		      IMP.request_pay({ // param
-		          pg: "html5_inicis",
-		          pay_method:payMethod,
-		          merchant_uid: ticketnum, // 예매 번호
-		          name: movieName, // 상품명
-		          amount: payPrice.value, // 상품가격
-		          buyer_email: "gildong@gmail.com",
-		          buyer_name: "홍길동",
-		          buyer_tel: "010-4242-4242",
-		          buyer_addr: "서울특별시 강남구 신사동",
-		          buyer_postcode: "01181"
-		      }, function (rsp) { // callback
-		    	  if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
-		    	      // jQuery로 HTTP 요청
-		    	      jQuery.ajax({
-		    	          url:"http://localhost:8080/MVC/PayPro.re",
-		    	          method: "POST",
-		    	          headers: { "Content-Type": "application/json" },
-		    	          data: queryString
-		    	      }).done(function (data) {
-		    	        // 가맹점 서버 결제 API 성공시 로직
-		    	        document.payForm.submit();
-		    	      })
-		    	    } else {
-		    	      alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
-		    	    }
-		      });
+				
 	}
 	 
 	$(document).ready(function(){
