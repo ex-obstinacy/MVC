@@ -171,8 +171,8 @@ function requestPay() {
               <tr>
                 <th scope="col"></th>
                 <th scope="col">상품</th>
-                <th scope="col">수량</th>
-                <th scope="col">합계</th>
+                <th scope="col" width = "200">수량</th>
+                <th scope="col" width = "150">합계</th>
               </tr>
             </thead>
             <%
