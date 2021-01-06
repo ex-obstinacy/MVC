@@ -18,19 +18,9 @@
 	int endPage = pageInfo.getEndPage();
 	int listCount = pageInfo.getListCount();
 		
-
-	
-		
 String member_id = (String)session.getAttribute("id"); // 
 	
 	String id = (String)request.getAttribute("id");
-	
-
-	
-	
-
-	
-	
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,9 +62,11 @@ String member_id = (String)session.getAttribute("id"); //
 	color: #FFF !important;
 }
 
+/* div정리 */
+.pageDiv{margin: 0 0 30px 400px;}
 .btnDiv {text-align: center;}
 .btnDiv > div {display: inline-block;}
-.btnWrite {margin-right: 100px;}
+.btnWrite {margin-right: 500px;}
 .search{margin-left: 200px;}
 
 /* Style the current/active link */
@@ -213,70 +205,69 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 							<td align="center"><%=articleList.get(i).getReadcount() %></td>
 						</tr>
 								<%}%>
-
-							
-							
-							
-							
 						<%}%>
 					</table>
 				</div>
 			</div>
+			<div class="pageDiv">
+				<%if(nowPage <= 1) {%>
+				<br>
+				<input type="button" value="이전" class="btn_3">&nbsp;
+				<%} else {%>
+				<input type="button" value="이전" class="btn_3" onclick="location.href='QnaList.qn?page=<%=nowPage - 1 %>'">&nbsp;
+				<%} %>
+				<%for(int i = startPage; i <= endPage; i++) { 
+				if(i == nowPage) { %>
+				[<%=i %>]&nbsp;
+				<%} else { %>
+				<a href="QnaList.qn?page=<%=i %>">[<%=i %>]
+				</a>&nbsp;
+				<%} %>
+				<%} %>
+				<%if(nowPage >= maxPage) { %>
+				<input type="button" value="다음" class="btn_3">
+				<%} else { %>
+				<input type="button" value="다음" class="btn_3" onclick="location.href='QnaList.qn?page=<%=nowPage + 1 %>'">
+				<%} %>
+			</div>
 		</div>
 	</section>
-<!-- 	<section id="buttonArea"> -->
-<!-- 		<div class="container"> -->
-			
-			<div class="btnDiv">
-				<div class="btnWrite">
+		<div class="btnDiv">
+			<div class="btnWrite">
 			<%
-if(member_id!=null){
-		%>
-		<input type="button" value="글쓰기" class="btn_3" onclick="location.href='QnaWriteForm.qn'">
+				if(member_id!=null){
+					
+				
+					if (member_id.equals("admin")) {
+				%>
+					<input type="button" value="글쓰기" class="btn_3" onclick="location.href='QnaWriteForm.qn'">
+				<%
+					} else {
+				%>
+					<input type="button" value="글쓰기" class="btn_3" onclick="alert('글쓰기 권한이 없습니다.');"/>
+				<%
+					}
+				
+					
+				}else{
+					
+				%>
+					<input type="button" value="글쓰기" class="btn_3" onclick="alert('글쓰기 권한이 없습니다.');"/>
+				<%	
+				}
+		
+			%>
 			</div>
-			
-			<div>
-			<%if(nowPage <= 1) {%>
-			<br>
-			<input type="button" value="이전" class="btn_3">&nbsp;
-			<%} else {%>
-			<input type="button" value="이전" class="btn_3" onclick="location.href='QnaList.qn?page=<%=nowPage - 1 %>'">&nbsp;
-			<%} %>
-			<%for(int i = startPage; i <= endPage; i++) { 
-			if(i == nowPage) { %>
-			[<%=i %>]&nbsp;
-			<%} else { %>
-			<a href="QnaList.qn?page=<%=i %>">[<%=i %>]
-			</a>&nbsp;
-			<%} %>
-			<%} %>
-			<%if(nowPage >= maxPage) { %>
-			<input type="button" value="다음" class="btn_3">
-			<%} else { %>
-			<input type="button" value="다음" class="btn_3" onclick="location.href='QnaList.qn?page=<%=nowPage + 1 %>'">
-			<%} %>
-			</div>
-			
 			<div class="search">
 				<form action="QnaListSearch.qn" method="post">
 					<input type="text" name="search" class="input_box" placeholder="Search..">
 					<input type="submit" name="searchBtn" class="btn_3" value="검색">
 				</form>
 			</div>
-		</div>	
-			<%
-	}
-	%>
-	
-
-
-
-	
-
-	<% 
-	}else {
-	%>
-			
+		</div>
+		<% 
+		} else {
+		%>
 	<section id="emptyArea">
 		<div class="container">등록된 글이 없습니다</div>
 	</section>

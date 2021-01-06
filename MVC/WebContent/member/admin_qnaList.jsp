@@ -52,10 +52,11 @@
     
        <style type="text/css">
     	/* div정리 */
-		.btnDiv {text-align: center;}
-		.btnDiv > div {display: inline-block;}
-		.btnWrite {margin-right: 50px;}
-		.search{margin-left: 50px;}
+	.pageDiv{margin: 0 0 30px 250px;}
+	.btnDiv {text-align: center;}
+	.btnDiv > div {display: inline-block;}
+	.btnWrite {margin-right: 150px;}
+	.search{margin-left: 200px;}
     
     </style>
     
@@ -160,44 +161,41 @@
 							<%	}%>
 							<%}%>
 						</table>
-						
-
-	
-							
+						<!-- 페이지 버튼 -->
+						<div class="pageDiv">
+							<%
+								if(id!=null){
+									if(nowPage <= 1) {
+							%>
+							<input type="button" value="이전" class="btn_3">&nbsp;
+							<%
+								} else {
+							%>
+							<input type="button" value="이전" class="btn_3" onclick="location.href='AdminQnAList.ad?page=<%=nowPage - 1 %>'">&nbsp;
+							<%
+								} for(int i = startPage; i <= endPage; i++) { 
+									if(i == nowPage) { 
+							%>
+							[<%=i %>]&nbsp;
+							<%
+									} else { 
+							%>
+							<a href="AdminQnAList.ad?page=<%=i %>">[<%=i %>]</a>&nbsp;
+							<%		} %>
+							<%	} %>
+							<%	if(nowPage >= maxPage) { %>
+							<input type="button" value="다음" class="btn_3">
+							<%	} else { %>
+							<input type="button" value="다음" class="btn_3" onclick="location.href='AdminQnAList.ad?page=<%=nowPage + 1 %>'">
+							<%	} %>
+							<%
+								}
+							%>
+						</div>
 						<div class="btnDiv">
 								<div class="btnWrite">
 									<input type="button" value="글쓰기" class="btn_3" onclick="location.href='QnaWriteForm.qn'">
 								</div>
-								<div>
-								<%
-									if(id!=null){
-										if(nowPage <= 1) {
-								%>
-								<input type="button" value="이전" class="btn_3">&nbsp;
-								<%
-									} else {
-								%>
-								<input type="button" value="이전" class="btn_3" onclick="location.href='AdminQnAList.ad?page=<%=nowPage - 1 %>'">&nbsp;
-								<%
-									} for(int i = startPage; i <= endPage; i++) { 
-										if(i == nowPage) { 
-								%>
-								[<%=i %>]&nbsp;
-								<%
-										} else { 
-								%>
-								<a href="AdminQnAList.ad?page=<%=i %>">[<%=i %>]</a>&nbsp;
-								<%		} %>
-								<%	} %>
-								<%	if(nowPage >= maxPage) { %>
-								<input type="button" value="다음" class="btn_3">
-								<%	} else { %>
-								<input type="button" value="다음" class="btn_3" onclick="location.href='AdminQnAList.ad?page=<%=nowPage + 1 %>'">
-								<%	} %>
-								<%
-									}
-								%>
-							</div>
 								<div class="search">
 									<form action="QnaListSearch.qn" method="post">
 										<input type="text" name="search" class="input_box" placeholder="Search..">
@@ -205,7 +203,6 @@
 									</form>
 								</div>
 						</div>
-
 						<% 
 							}else {
 						%>
@@ -221,7 +218,6 @@
 						<%
 							}
 						%>
-                    
                     </div>
                 </div>
             </div>
