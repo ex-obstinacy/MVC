@@ -152,7 +152,7 @@
 							<%	} %>
 							</table>
 							
-							<section id="pageList">
+							<section id="pageList" style="text-align: center;width: 100%">
 								<div class="container">
 								<%
 									if(member_id!=null){
