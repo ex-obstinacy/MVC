@@ -203,6 +203,12 @@
            %>
          <form action="OrderForm2.go" name="basketform" method="post">
           <table class="table">
+            <colgroup>
+				<col width=""/>
+				<col width=""/>
+				<col width="200px"/>
+				<col width="150px"/>
+			</colgroup>
             <thead>
               <tr>
                 <th scope="col" class="checkbox"><input type="checkbox" id="ch_all"></th> <!-- 체크박스 전체 선택 및 해제 -->
