@@ -102,7 +102,7 @@
   <!--================Reservation Area =================-->
   <section id="sub_content" class="reserveMain">
 	  <div class="container">
-	  	<h3 class="sub_title"><b>관리자님! 영화관을 등록/삭제 해주세요.</b></h3>
+<!-- 	  	<h3 class="sub_title"><b>관리자님! 영화관을 등록/삭제 해주세요.</b></h3> -->
 	  	<div class="row">
 			<div class="col-lg-3">
 	            <div class="left_sidebar_area">
