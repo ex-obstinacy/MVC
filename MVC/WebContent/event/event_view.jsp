@@ -196,7 +196,7 @@ int num = Integer.parseInt(request.getParameter("num"));
 														var b = confirm("응모하시겠습니까?");
 
 														if (b) {
-															fr.submit();
+							ㄱ								fr.submit();
 														} else {
 															return false;
 														}

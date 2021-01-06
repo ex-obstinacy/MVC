@@ -215,20 +215,20 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 				<br>
 				<input type="button" value="이전" class="btn_3">&nbsp;
 				<%} else {%>
-				<input type="button" value="이전" class="btn_3" onclick="location.href='NoticeList.no?page=<%=nowPage - 1 %>'">&nbsp;
+				<input type="button" value="이전" class="btn_3" onclick="location.href='QnaList.qn?page=<%=nowPage - 1 %>'">&nbsp;
 				<%} %>
 				<%for(int i = startPage; i <= endPage; i++) { 
 				if(i == nowPage) { %>
 				[<%=i %>]&nbsp;
 				<%} else { %>
-				<a href="NoticeList.no?page=<%=i %>">[<%=i %>]
+				<a href="QnaList.qn?page=<%=i %>">[<%=i %>]
 				</a>&nbsp;
 				<%} %>
 				<%} %>
 				<%if(nowPage >= maxPage) { %>
 				<input type="button" value="다음" class="btn_3">
 				<%} else { %>
-				<input type="button" value="다음" class="btn_3" onclick="location.href='NoticeList.no?page=<%=nowPage + 1 %>'">
+				<input type="button" value="다음" class="btn_3" onclick="location.href='QnaList.qn?page=<%=nowPage + 1 %>'">
 				<%} %>
 			</div>
 		</div>
@@ -241,7 +241,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 				
 					if (member_id.equals("admin")) {
 				%>
-					<input type="button" value="글쓰기" class="btn_3" onclick="location.href='NoticeWriteForm.no'">
+					<input type="button" value="글쓰기" class="btn_3" onclick="location.href='QnaWriteForm.qn'">
 				<%
 					} else {
 				%>
@@ -260,7 +260,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 			%>
 			</div>
 			<div class="search">
-				<form action="NoticeListSearch.no" method="post">
+				<form action="QnaListSearch.qn" method="post">
 					<input type="text" name="search" class="input_box" placeholder="Search..">
 					<input type="submit" name="searchBtn" class="btn_3" value="검색">
 				</form>
