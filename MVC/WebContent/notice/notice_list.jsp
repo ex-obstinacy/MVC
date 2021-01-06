@@ -64,6 +64,7 @@
 .btnDiv > div {display: inline-block;}
 .btnWrite {margin-right: 500px;}
 .search{margin-left: 200px;}
+
 /* Style the current/active link */
 
 /* Add responsiveness - on screens less than 500px, make the navigation links appear on top of each other, instead of next to each other */
@@ -198,8 +199,6 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 			</div>
 		</div>
 	</section>
-<!-- 	<section id="buttonArea"> -->
-<!-- 		<div class="container"> -->
 		<div class="btnDiv">
 			<div class="btnWrite">
 			<%
@@ -226,9 +225,6 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		
 			%>
 			</div>
-<!-- 		</div> -->
-<!-- 	</section> -->
-<!-- 	<section id="pageList"> -->
 			<div class="search">
 				<form action="NoticeListSearch.no" method="post">
 					<input type="text" name="search" class="input_box" placeholder="Search..">
@@ -236,7 +232,6 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 				</form>
 			</div>
 		</div>
-<!-- 	</section> -->
 	<%
 	} else {
 	%>

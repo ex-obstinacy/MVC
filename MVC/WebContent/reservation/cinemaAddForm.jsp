@@ -65,7 +65,7 @@
 		// 등록된 영화관 리스트 가져오기
 		$.getJSON('CinemaListJson.re', function(rdata) {
 			$.each(rdata, function(index, item) {
-				$('#cldiv').append("<li class='cl_div "+item.cinema_local+"'><input type='radio' name='cinema' id='"+item.cinema_name+"' value='"+item.cinema_namefull+"' class='rcinema'/><label for='"+item.cinema_name+"'>"
+				$('#cldiv').append("<li class='cl_div "+item.cinema_local+"'><input type='radio' name='cinema' id='"+item.cinema_name+"' value='"+item.cinema_name+"' class='rcinema'/><label for='"+item.cinema_name+"'>"
 						+"<span id='span_c1'>["+item.cinema_localfull+"]</span><span id='span_c2'>"+item.cinema_name+"</span></label></li>");
 			});
 		});

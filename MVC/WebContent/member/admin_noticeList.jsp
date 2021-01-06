@@ -50,11 +50,13 @@
     <title>MVC</title>
     
     <style type="text/css">
-    	/* div정리 */
-		.btnDiv {text-align: center;}
-		.btnDiv > div {display: inline-block;}
-		.btnWrite {margin-right: 50px;}
-		.search{margin-left: 50px;}
+    
+	/* div정리 */
+	.pageDiv{margin: 0 0 30px 250px;}
+	.btnDiv {text-align: center;}
+	.btnDiv > div {display: inline-block;}
+	.btnWrite {margin-right: 150px;}
+	.search{margin-left: 200px;}
     
     </style>
     
@@ -123,6 +125,9 @@
 							if(articleList != null && listCount > 0) {
 						%>
 						<table class="table">
+							<%
+								if(id!=null){
+							%>
 							<tr>
 								<td align="center">번호</td>
 								<td align="center">제 목</td>
@@ -147,43 +152,64 @@
 							}
 							%>
 						</table>
-
-
-	<div class="btnDiv">
-		<div class="btnWrite">
-			<input type="button" value="글쓰기" class="btn_3" onclick="location.href='NoticeWriteForm.no'">
-		</div>
-		<div>
-			<%if(nowPage <= 1) {%>
-			<br>
-			<input type="button" value="이전" class="btn_3">&nbsp;
-			<%} else {%>
-			<input type="button" value="이전" class="btn_3" onclick="location.href='AdminNoticeList.ad?page=<%=nowPage - 1 %>'">&nbsp;
-			<%} %>
-			<%for(int i = startPage; i <= endPage; i++) { 
-			if(i == nowPage) { %>
-			[<%=i %>]&nbsp;
-			<%} else { %>
-			<a href="AdminNoticeList.ad?page=<%=i %>">[<%=i %>]
-			</a>&nbsp;
-			<%} %>
-			<%} %>
-			<%if(nowPage >= maxPage) { %>
-			<input type="button" value="다음" class="btn_3">
-			<%} else { %>
-			<input type="button" value="다음" class="btn_3" onclick="location.href='AdminNoticeList.ad?page=<%=nowPage + 1 %>'">
-			<%} %>
-		</div>
-		<div class="search">
-			<form action="NoticeListSearch.no" method="post">
-				<input type="text" name="search" class="input_box" placeholder="Search..">
-				<input type="submit" name="searchBtn" class="btn_3" value="검색">
-			</form>
-		</div>
-	</div>
-
-
                     </div>
+                    <!-- 페이지 버튼 -->
+						<div class="pageDiv">
+							<%
+								if(id!=null){
+									if(nowPage <= 1) {
+							%>
+							<input type="button" value="이전" class="btn_3">&nbsp;
+							<%
+								} else {
+							%>
+							<input type="button" value="이전" class="btn_3" onclick="location.href='AdminNoticeList.ad?page=<%=nowPage - 1 %>'">&nbsp;
+							<%
+								} for(int i = startPage; i <= endPage; i++) { 
+									if(i == nowPage) { 
+							%>
+							[<%=i %>]&nbsp;
+							<%
+									} else { 
+							%>
+							<a href="AdminQnAList.ad?page=<%=i %>">[<%=i %>]</a>&nbsp;
+							<%		} %>
+							<%	} %>
+							<%	if(nowPage >= maxPage) { %>
+							<input type="button" value="다음" class="btn_3">
+							<%	} else { %>
+							<input type="button" value="다음" class="btn_3" onclick="location.href='AdminNoticeList.ad?page=<%=nowPage + 1 %>'">
+							<%	} %>
+							<%
+								}
+							%>
+						</div>
+						<div class="btnDiv">
+								<div class="btnWrite">
+									<input type="button" value="글쓰기" class="btn_3" onclick="location.href='NoticeWriteForm.no'">
+								</div>
+								<div class="search">
+									<form action="NoticeListSearch.no" method="post">
+										<input type="text" name="search" class="input_box" placeholder="Search..">
+										<input type="submit" name="searchBtn" class="btn_3" value="검색">
+									</form>
+								</div>
+						</div>
+						<% 
+							}else {
+						%>
+			
+						<section id="emptyArea">
+							<div class="container">등록된 글이 없습니다</div>
+						</section>
+						<section id="buttonArea">
+							<div class="container">
+								<input type="button" value="글쓰기" class="btn_3" onclick="location.href='NoticeWriteForm.no'">
+							</div>
+						</section>
+						<%
+							}
+						%>
                 </div>
             </div>
         </div>
