@@ -114,7 +114,6 @@
 		<div class="container">
 			<div class="inr02">
 				<!--main content-->
-				<div class="col-md-10 col-md-push-2">
 					<h3>영화 이벤트 글 쓰기</h3>
 					<div class="block" style="padding-top: 5px;">
 						<div class="row" style="min-height: 500px;">
@@ -122,72 +121,58 @@
 							<div class="bbs-view m_noview">
 								<section id="writeForm">
 									<form action="EventWritePro.ev" method="post" enctype="multipart/form-data" name="eventform">
-										<table>
-											<!-- 								<form action="NoticeWritePro.no" method="post"enctype="multipart/form-data" name="noticeform"> -->
-											<input type="hidden" name="mode" value="up">
+										<input type="hidden" name="mode" value="up">
 											<input Type="hidden" Name="bbs" Value="free">
 											<input Type="hidden" Name="num_a" Value="7">
 											<input Type="hidden" Name="num_b" Value="9">
 											<input Type="hidden" Name="htmltype" Value="HTML">
+										<table>
+											<!-- 								<form action="NoticeWritePro.no" method="post"enctype="multipart/form-data" name="noticeform"> -->
+											
 											<colgroup>
-												<col width="30" />
-												<col width="150" />
-												<col />
-												<col width="30" />
-												<col width="150" />
-												<col />
+
 											</colgroup>
 											<tbody>
 												<tr>
-													<td class="bbs-list-blank" style="width: 30px;"></td>
 													<td class="bbs-list-a" style="width: 150px;">제 &nbsp; &nbsp; 목</td>
-													<td class="bbs-list-b" colspan="4">
+													<td class="bbs-list-b">
 														<input type="text" name="subject" value="" placeholder="제목 입력란" class="form-control" required="required">
 													</td>
 												</tr>
 												
 												<tr>
-													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">I &nbsp; &nbsp; D</td>
 													<td class="bbs-list-b">
 														<input type="text" name="member_id" placeholder="아이디" class="form-control" value="<%=member_id %>" readonly>
 													</td>
-													<td class="bbs-list-blank"></td>
 												</tr>												
 												
 												<tr>
-													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">응모 버튼 여부</td>
 													<td class="bbs-list-b">
 														
-														<input type="radio" name="apply" value="생성" class="form-control"><label for="버튼있음">버튼있음</label>
-														<input type="radio" name="apply" value="없음" class="form-control"><label for="버튼없음">버튼없음</label>
+														<input type="radio" name="apply" value="생성" ><label for="버튼있음">버튼있음</label>
+														<input type="radio" name="apply" value="없음"><label for="버튼없음">버튼없음</label>
 													</td>
-													<td class="bbs-list-blank"></td>
 												</tr>												
 												
 												<tr>
-													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">본문 &nbsp; &nbsp; 파일</td>
 													<td class="bbs-list-b">
 														<input type="file" name="file" placeholder="파 일" class="form-control" value="" readonly>
 													</td>
-													<td class="bbs-list-blank"></td>
 												</tr>
 												
 												<tr>
-													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">미리보기 &nbsp; &nbsp; 파일</td>
 													<td class="bbs-list-b">
 														<input type="file" name="thumbnail" placeholder="미리보기 파일" class="form-control" value="" readonly>
 													</td>
-													<td class="bbs-list-blank"></td>
 												</tr>
 												
 												<tr>
-													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">본 문</td>
-													<td class="bbs-list-b" colspan="4">
+													<td class="bbs-list-b" >
 														<textarea id="editor1" name="content" style="width: 800px; height: 500px; resize: none;"></textarea>
 													</td>
 												</tr>
@@ -204,8 +189,8 @@
 											<!-- 							</div> -->
 										</table>
 										<section id="commandCell">
-											<br>
-											<input type="submit" value="등록" class="bbs-button">&nbsp;&nbsp; <input type="reset" value="다시쓰기" class="bbs-button" />
+											<input type="submit" value="등록" class="genric-btn primary circle">&nbsp;&nbsp; <input type="reset" value="다시쓰기" class="genric-btn info circle" />
+										</section>
 									</form>
 								</section>
 								<!-- 게시판 -->

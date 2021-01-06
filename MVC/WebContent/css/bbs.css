@@ -112,11 +112,11 @@
 .bbs-view table tr { border: 0; }
 .bbs-view table td { padding: 10px 0; height: auto; text-align: center; vertical-align: middle; }
 .bbs-view table td.bbs-list-blank { width: 30px; }
-.bbs-view table td.bbs-list-a { width: 150px; background-color: #FF3368; color:#ffffff; }
+.bbs-view table td.bbs-list-a { background-color:#ddd; color:#121212;}
 .bbs-view table td.bbs-list-b { padding-left:20px; padding-right:20px; width: auto; font-size:14px; }
 .bbs-view table td.bbs-list-b img { display: inline; margin: 0; width: 16px; height: 16px; vertical-align: middle; }
 .bbs-view table td.bbs-list-view { width: 55px; }
-.bbs-view tbody tr td { word-break: break-all; border: 0; border-bottom: 1px solid #5b5353; }
+.bbs-view tbody tr td { word-break: break-all; border: 0; border-bottom: 1px solid #bbb; }
 /* .bbs-view tbody tr:hover { background-color: #f7f7f7; } */
 .bbs-view tbody tr.bbs-list-notice { background-color: #f4f4f4; }
 .bbs-view tbody tr.bbs-list-notice td.bbs-list-uid { font-weight: bold; color: #515151; }

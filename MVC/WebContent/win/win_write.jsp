@@ -119,7 +119,6 @@ String member_id = (String)session.getAttribute("id");
 		<div class="container">
 			<div class="inr02">
 				<!--main content-->
-				<div class="col-md-10 col-md-push-2">
 					<h3>이벤트 당첨 발표글 쓰기</h3>
 					<div class="block" style="padding-top: 5px;">
 						<div class="row" style="min-height: 500px;">
@@ -128,61 +127,51 @@ String member_id = (String)session.getAttribute("id");
 								<section id="writeForm">
 									<form action="WinWritePro.wi" method="post"  name="eventform">
 											
-											
-										<table>
-<%-- 											<input type="hidden" name="num" value="<%=article.getEvent_num()%>" /> --%>
-											<!-- 								<form action="NoticeWritePro.no" method="post"enctype="multipart/form-data" name="noticeform"> -->
-											
-											
 											<input type="hidden" name="mode" value="up">
 											<input Type="hidden" Name="bbs" Value="free">
 											<input Type="hidden" Name="num_a" Value="7">
 											<input Type="hidden" Name="num_b" Value="9">
 											<input Type="hidden" Name="htmltype" Value="HTML">
+										<table>
+<%-- 											<input type="hidden" name="num" value="<%=article.getEvent_num()%>" /> --%>
+											<!-- 								<form action="NoticeWritePro.no" method="post"enctype="multipart/form-data" name="noticeform"> -->
+											
+											
+											
 											<colgroup>
-												<col width="30" />
-												<col width="150" />
-												<col />
-												<col width="30" />
-												<col width="150" />
-												<col />
+												<col width="20%">
+												<col width="80%">
 											</colgroup>
 											<tbody>
 												<tr>
-													<td class="bbs-list-blank" style="width: 30px;"></td>
-													<td class="bbs-list-a" style="width: 150px;">제 &nbsp; &nbsp; 목</td>
-													<td class="bbs-list-b" colspan="4">
+													<td class="bbs-list-a" >제 &nbsp; &nbsp; 목</td>
+													<td class="bbs-list-b" >
 														<input type="text" name="subject" value="" placeholder="제목 입력란" class="form-control" required="required">
 													</td>
 												</tr>
 												
 												<tr>
-													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">I &nbsp; &nbsp; D</td>
 													<td class="bbs-list-b">
 														<input type="text" name="member_id" placeholder="아이디" class="form-control" value="<%=member_id %>" readonly>
 													</td>
-													<td class="bbs-list-blank"></td>
 												</tr>												
 												
 																						
 												
 												<tr>
-													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">이벤트 글 번호</td>
 													<td class="bbs-list-b">
 														<input type="text" name="event_num" placeholder="이벤트 글 번호" class="form-control"  required="required">
 													</td>
-													<td class="bbs-list-blank"></td>
 												</tr>
 												
 												
 						
 												<tr>
-													<td class="bbs-list-blank"></td>
 													<td class="bbs-list-a">본 문</td>
-													<td class="bbs-list-b" colspan="4">
-														<textarea id="editor1" name="content" style="width: 800px; height: 500px; resize: none;"></textarea>
+													<td class="bbs-list-b">
+														<textarea id="editor1" name="content" style="width: 100%; height: 500px; resize: none;"></textarea>
 													</td>
 												</tr>
 											</tbody>
@@ -198,8 +187,8 @@ String member_id = (String)session.getAttribute("id");
 											<!-- 							</div> -->
 										</table>
 										<section id="commandCell">
-											<br>
-											<input type="submit" value="등록" class="bbs-button">&nbsp;&nbsp; <input type="reset" value="다시쓰기" class="bbs-button" />
+											<input type="submit" value="등록" class="genric-btn primary circle">&nbsp;&nbsp; <input type="reset" value="다시쓰기" class="genric-btn info circle" />
+										</section>
 									</form>
 								</section>
 								<!-- 게시판 -->
