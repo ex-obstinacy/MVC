@@ -127,59 +127,53 @@ String nowPage = request.getParameter("page");
 											<input Type="hidden" Name="num_b" Value="9">
 											<input Type="hidden" Name="htmltype" Value="HTML">
 											<colgroup>
-												<col width="30" />
-												<col width="150" />
-												<col />
-												<col width="30" />
-												<col width="150" />
-												<col />
+	
 											</colgroup>
 											<tbody>
 												<tr>
-													<td class="bbs-list-blank" style="width: 30px;"></td>
-													<td class="bbs-list-a" style="width: 150px;">제 &nbsp;
-														&nbsp; 목</td>
+													
+													<td class="bbs-list-a" style="width: 150px;">제 &nbsp;&nbsp; 목</td>
 													<td class="bbs-list-b" colspan="4"><input type="text"
 														name="subject" value="<%=article.getSubject()%>"
 														class="form-control" required="required"></td>
 												</tr>
 												<tr>
-													<td class="bbs-list-blank"></td>
+													
 													<td class="bbs-list-a">I &nbsp; &nbsp; D</td>
 													<td class="bbs-list-b"><input type="text"
 														name="member_id" placeholder="아이디" class="form-control"
 														value="<%=article.getMember_id()%>" readonly></td>
-													<td class="bbs-list-blank"></td>
+													
 												</tr>
 
 												<tr>
-													<td class="bbs-list-blank"></td>
+													
 													<td class="bbs-list-a">응모 버튼 여부</td>
 													<td class="bbs-list-b">
-													<input type="radio" name="apply" value="생성" class="form-control"><label for="버튼있음">버튼있음</label> 
-													<input type="radio" name="apply" value="없음" class="form-control"><label for="버튼없음">버튼없음</label>
+													<input type="radio" name="apply" value="생성" ><label for="버튼있음">버튼있음</label> 
+													<input type="radio" name="apply" value="없음" ><label for="버튼없음">버튼없음</label>
 													</td>
-													<td class="bbs-list-blank"></td>
+													
 												</tr>
 
 												<tr>
-													<td class="bbs-list-blank"></td>
+													
 													<td class="bbs-list-a">본문 &nbsp; &nbsp; 파일</td>
 													<td class="bbs-list-b"><input type="file" name="file"
 														id="file" class="form-control"
 														value="<%=article.getFile()%>"></td>
-													<td class="bbs-list-blank"></td>
+													
 												</tr>
 												<tr>
-													<td class="bbs-list-blank"></td>
+												
 													<td class="bbs-list-a">미리보기 &nbsp; &nbsp; 파일</td>
 													<td class="bbs-list-b"><input type="file"
 														name="thumbnail" id="thumbnail" class="form-control"
 														value="<%=article.getThumbnail()%>" readonly></td>
-													<td class="bbs-list-blank"></td>
+							
 												</tr>
 												<tr>
-													<td class="bbs-list-blank"></td>
+													
 													<td class="bbs-list-a">본 문</td>
 													<td class="bbs-list-b" colspan="4"><textarea
 															id="editor1" name="content"
@@ -202,6 +196,7 @@ String nowPage = request.getParameter("page");
 											<br>
 											<input type="submit" value="수정" class="bbs-button">&nbsp;&nbsp; 
 											<input type="button" value="뒤로" onclick="history.back()" class="bbs-button">
+											</section>
 									</form>
 								</section>
 								<!-- 게시판 -->
