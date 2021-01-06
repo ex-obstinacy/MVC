@@ -102,7 +102,7 @@
                             <div class="l_w_title">
                             
                             </div>
-                            <div class="widgets_inner">
+                            <div class="widgets_inner memside">
                                 <ul class="list">
                                     <li>
                                         <a href="AdminMovList.mo">영화</a>

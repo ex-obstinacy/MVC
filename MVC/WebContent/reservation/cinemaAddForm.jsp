@@ -107,7 +107,7 @@
 			<div class="col-lg-3">
 	            <div class="left_sidebar_area">
 	                <aside class="left_widgets p_filter_widgets">
-	                    <div class="widgets_inner">
+	                    <div class="widgets_inner memside">
 	                        <ul class="list">
 	                            <li>
 	                                <a href="AdminMovList.mo">영화</a>

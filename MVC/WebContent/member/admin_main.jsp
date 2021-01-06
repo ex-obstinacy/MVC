@@ -77,7 +77,7 @@
                             <div class="l_w_title">
                             
                             </div>
-                            <div class="widgets_inner">
+                            <div class="widgets_inner memside">
                                 <ul class="list">
                                     <li>
                                         <a href="AdminMovList.mo">영화</a>
@@ -108,10 +108,9 @@
           <!--================ 메뉴 영역 =================-->          
                 
                 <div class="col-lg-9">
-                    <div class="row align-items-center latest_product_inner">
-	                    <h3><%=id %> 님<br>
-	                    열심히 일하자!</h3>
-                    
+                    <div class="row align-items-center latest_product_inner admin_m">
+                    	<img alt="admin" src="img/admin.png" id="admin_img">
+	                    <h3>관리자님, 반갑습니다.</h3>
                     </div>
                 </div>
             </div>
