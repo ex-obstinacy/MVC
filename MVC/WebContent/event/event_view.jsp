@@ -148,6 +148,10 @@ int num = Integer.parseInt(request.getParameter("num"));
 									</div>
 									<div class="bbs-detail">
 										<div class="detail-attr detail-writer">
+											<div class="detail-name">글번호</div>
+											<div class="detail-value"><%=article.getNum()%></div>
+										</div>
+										<div class="detail-attr detail-writer">
 											<div class="detail-name">작성자</div>
 											<div class="detail-value"><%=article.getMember_id()%></div>
 										</div>
