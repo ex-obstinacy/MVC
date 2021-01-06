@@ -59,10 +59,12 @@
 }
 
 /* div정리 */
+.pageDiv{margin: 0 0 30px 400px;}
 .btnDiv {text-align: center;}
 .btnDiv > div {display: inline-block;}
-.btnWrite {margin-right: 100px;}
+.btnWrite {margin-right: 500px;}
 .search{margin-left: 200px;}
+
 /* Style the current/active link */
 
 /* Add responsiveness - on screens less than 500px, make the navigation links appear on top of each other, instead of next to each other */
@@ -192,8 +194,31 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 					</table>
 				</div>
 			</div>
+			
+			
+		<div class="pageDiv">
+			<%if(nowPage <= 1) {%>
+			
+			<input type="button" value="이전" class="btn_3">&nbsp;
+			<%} else {%>
+			<input type="button" value="이전" class="btn_3" onclick="location.href='PreviewList.pr?page=<%=nowPage - 1 %>'">&nbsp;
+			<%} %>
+			<%for(int i = startPage; i <= endPage; i++) { 
+			if(i == nowPage) { %>
+			[<%=i %>]&nbsp;
+			<%} else { %>
+			<a href="PreviewList.pr?page=<%=i %>">[<%=i %>]
+			</a>&nbsp;
+			<%} %>
+			<%} %>
+			<%if(nowPage >= maxPage) { %>
+			<input type="button" value="다음" class="btn_3">
+			<%} else { %>
+			<input type="button" value="다음" class="btn_3" onclick="location.href='PreviewList.pr?page=<%=nowPage + 1 %>'">
+			<%} %>
+			</div>
 		</div>
-	</section>
+</section>
 	
 	
 	<div class="btnDiv">	
@@ -224,27 +249,6 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		
 		</div>
 		
-		<div>	
-			<%if(nowPage <= 1) {%>
-			
-			<input type="button" value="이전" class="btn_3">&nbsp;
-			<%} else {%>
-			<input type="button" value="이전" class="btn_3" onclick="location.href='PreviewList.pr?page=<%=nowPage - 1 %>'">&nbsp;
-			<%} %>
-			<%for(int i = startPage; i <= endPage; i++) { 
-			if(i == nowPage) { %>
-			[<%=i %>]&nbsp;
-			<%} else { %>
-			<a href="PreviewList.pr?page=<%=i %>">[<%=i %>]
-			</a>&nbsp;
-			<%} %>
-			<%} %>
-			<%if(nowPage >= maxPage) { %>
-			<input type="button" value="다음" class="btn_3">
-			<%} else { %>
-			<input type="button" value="다음" class="btn_3" onclick="location.href='PreviewList.pr?page=<%=nowPage + 1 %>'">
-			<%} %>
-			</div>
 			
 			<div class="search">
 				<form action="PreviewListSearch.pr" method="post">

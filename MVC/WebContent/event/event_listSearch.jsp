@@ -58,9 +58,10 @@ String member_id = (String) session.getAttribute("id");
 }
 
 /* div정리 */
+.pageDiv{margin: 0 0 30px 400px;}
 .btnDiv {text-align: center;}
 .btnDiv > div {display: inline-block;}
-.btnWrite {margin-right: 100px;}
+.btnWrite {margin-right: 500px;}
 .search{margin-left: 200px;}
 
 /* Style the current/active link */
@@ -191,8 +192,32 @@ String member_id = (String) session.getAttribute("id");
 					</table>
 				</div>
 			</div>
+			
+			
+		<div class="pageDiv">
+			<%if(nowPage <= 1) {%>
+			<br>
+			<input type="button" value="이전" class="btn_3">&nbsp;
+			<%} else {%>
+			<input type="button" value="이전" class="btn_3" onclick="location.href='EventList.ev?page=<%=nowPage - 1 %>'">&nbsp;
+			<%} %>
+			<%for(int i = startPage; i <= endPage; i++) { 
+			if(i == nowPage) { %>
+			[<%=i %>]&nbsp;
+			<%} else { %>
+			<a href="EventList.ev?page=<%=i %>">[<%=i %>]
+			</a>&nbsp;
+			<%} %>
+			<%} %>
+			<%if(nowPage >= maxPage) { %>
+			<input type="button" value="다음" class="btn_3">
+			<%} else { %>
+			<input type="button" value="다음" class="btn_3" onclick="location.href='EventList.ev?page=<%=nowPage + 1 %>'">
+			<%} %>
 		</div>
-	</section>
+	</div>
+</section>
+	
 	<div class="btnDiv">	
 			<div class="btnWrite">
 			
@@ -221,28 +246,6 @@ String member_id = (String) session.getAttribute("id");
 		
 		</div>
 		
-		<div>
-			<%if(nowPage <= 1) {%>
-			
-			<input type="button" value="이전" class="btn_3">&nbsp;
-			<%} else {%>
-			<input type="button" value="이전" class="btn_3" onclick="location.href='EventList.ev?page=<%=nowPage - 1 %>'">&nbsp;
-			<%} %>
-			<%for(int i = startPage; i <= endPage; i++) { 
-			if(i == nowPage) { %>
-			[<%=i %>]&nbsp;
-			<%} else { %>
-			<a href="EventList.ev?page=<%=i %>">[<%=i %>]
-			</a>&nbsp;
-			<%} %>
-			<%} %>
-			<%if(nowPage >= maxPage) { %>
-			<input type="button" value="다음" class="btn_3">
-			<%} else { %>
-			<input type="button" value="다음" class="btn_3" onclick="location.href='EventList.ev?page=<%=nowPage + 1 %>'">
-			<%} %>
-		</div>
-			
 			<div class="search">
 				<form action="EventListSearch.ev" method="post">
 					<input type="text" name="search" class="input_box" placeholder="Search..">
