@@ -254,7 +254,7 @@ SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 	} else {
 	%>
 	<section id="emptyArea">
-		<div class="container">등록된 글이 없습니다</div>
+		<div class="container">등록된 글이 없습니다.</div>
 	</section>
 	<section id="buttonArea">
 		<div class="container">
