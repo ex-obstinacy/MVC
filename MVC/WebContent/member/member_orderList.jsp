@@ -66,6 +66,10 @@
 <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/sub.css">
 
+<style>
+	th{background:#eee;}
+	th, td{text-align:center; word-break:keep-all;}
+</style>
 </head>
 
 <body>
@@ -113,6 +117,13 @@
 							<%
 								if (articleList != null && listCount > 0) {
 							%>
+							<colgroup>
+								<col width="20%">
+								<col width="25%">
+								<col width="30%">
+								<col width="15%">
+								<col width="10%">
+							</colgroup>
 							<tr>
 								<th>구매일</th>
 								<th>주문번호</th>
@@ -132,25 +143,25 @@
 									if (count == 1) {
 							%>
 							<tr>
-								<td align="center"><%=articleList.get(i).getDate() %></td>
-								<td align="center"><a href="MemberOrderDetail.me?orderNum=<%=articleList.get(i).getOrderNum() %>"><%=articleList.get(i).getOrderNum() %></a></td>
+								<td><%=articleList.get(i).getDate() %></td>
+								<td><a href="MemberOrderDetail.me?orderNum=<%=articleList.get(i).getOrderNum() %>"><%=articleList.get(i).getOrderNum() %></a></td>
 <%-- 								<%if(orderCount == 0){ %> --%>
-								<td align="center"><%=articleList.get(i).getName() %></td>
+								<td><%=articleList.get(i).getName() %></td>
 <%-- 								<%} else { %> --%>
 <%-- 								<td align="center"><%=articleList.get(i).getName() %> 외 <%=orderCount %></td> --%>
 <%-- 								<% } %> --%>
-								<td align="center"><%=articleList.get(i).getSumPrice() %></td>
-								<td align="center"><%=articleList.get(i).getMember_name() %></td>
+								<td><%=articleList.get(i).getSumPrice() %></td>
+								<td><%=articleList.get(i).getMember_name() %></td>
 							</tr>
 							<%
 									} else {
 							%>
 							<tr>
-								<td align="center"><%=articleList.get(i).getDate() %></td>
-								<td align="center"><a href="MemberOrderDetail.me?orderNum=<%=articleList.get(i).getOrderNum() %>"><%=articleList.get(i).getOrderNum() %></a></td>
-								<td align="center"><%=articleList.get(i).getName() %> 외 <%=count-1 %></td>
-								<td align="center"><%=articleList.get(i).getSumPrice() %></td>
-								<td align="center"><%=articleList.get(i).getMember_name() %></td>
+								<td><%=articleList.get(i).getDate() %></td>
+								<td><a href="MemberOrderDetail.me?orderNum=<%=articleList.get(i).getOrderNum() %>"><%=articleList.get(i).getOrderNum() %></a></td>
+								<td><%=articleList.get(i).getName() %> 외 <%=count-1 %></td>
+								<td><%=articleList.get(i).getSumPrice() %></td>
+								<td><%=articleList.get(i).getMember_name() %></td>
 							</tr>
 							
 							<%			

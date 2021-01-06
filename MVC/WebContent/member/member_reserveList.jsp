@@ -65,6 +65,10 @@
 <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/sub.css">
 
+<style>
+	th{background:#eee;}
+	th, td{text-align:center; word-break:keep-all;}
+</style>
 </head>
 
 <body>
@@ -112,6 +116,14 @@
 							<%
 								if (articleList != null && listCount > 0) {
 							%>
+							<colgroup>
+								<col width="15%">
+								<col width="25%">
+								<col width="5%">
+								<col width="25%">
+								<col width="15%">
+								<col width="15%">
+							</colgroup>
 							<tr>
 								<th>예매번호</th>
 								<th>영화제목</th>
@@ -123,13 +135,14 @@
 							<%
 								for (int i = 0; i < articleList.size(); i++) {
 							%>
+							
 							<tr>
-								<td align="center"><a href="MemberReserveDetail.me?ticketnum=<%=articleList.get(i).getTicketnum() %>&moviecode=<%=articleList.get(i).getMovie_code() %>&page=<%=nowPage %>"><%=articleList.get(i).getTicketnum() %></a></td>
-								<td align="center"><%=articleList.get(i).getMovie_subject() %></td>
-								<td align="center"><%=articleList.get(i).getCinema_name() %>점</td>
-								<td align="center"><%=articleList.get(i).getShowdate() %> / <%=articleList.get(i).getShowtime() %></td>
-								<td align="center"><%=articleList.get(i).getSeatnum() %></td>
-								<td align="center">성인 : <%=articleList.get(i).getAdultnum() %>명, 아동 및 청소년 : <%=articleList.get(i).getKidsnum() %></td>
+								<td><a href="MemberReserveDetail.me?ticketnum=<%=articleList.get(i).getTicketnum() %>&moviecode=<%=articleList.get(i).getMovie_code() %>&page=<%=nowPage %>"><%=articleList.get(i).getTicketnum() %></a></td>
+								<td><%=articleList.get(i).getMovie_subject() %></td>
+								<td><%=articleList.get(i).getCinema_name() %>점</td>
+								<td><%=articleList.get(i).getShowdate() %> / <%=articleList.get(i).getShowtime() %></td>
+								<td><%=articleList.get(i).getSeatnum() %></td>
+								<td>성인 : <%=articleList.get(i).getAdultnum() %>명, 아동 및 청소년 : <%=articleList.get(i).getKidsnum() %></td>
 							</tr>
 								<%	} %>
 							<%	} %>

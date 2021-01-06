@@ -74,6 +74,10 @@
 <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/sub.css">
 
+<style>
+	th{background:#eee;}
+	th, td{text-align:center; word-break:keep-all;}
+</style>
 </head>
 
 <body>
@@ -120,11 +124,17 @@
 							
 								<div class="table-responsive">
 									<table class="table">
+										<colgroup>
+											<col width="20%">
+											<col width="50%">
+											<col width="20%">
+											<col width="10%">
+										</colgroup>
 										<tr>
-											<th align="center">제목</th>
-											<th align="center">내용</th>
-											<th align="center">작성일</th>
-											<th align="center">평점</th>
+											<th>제목</th>
+											<th>내용</th>
+											<th>작성일</th>
+											<th>평점</th>
 										</tr>
 										<%
 												for (int i = 0; i < articleList.size(); i++) {
