@@ -6,6 +6,8 @@
 int movienum = Integer.parseInt(request.getParameter("movienum")); // 영화번호 전달
 int moviecode = Integer.parseInt(request.getParameter("moviecode")); // 영화코드 전달
 ArrayList<ReserveBean> seatList = (ArrayList<ReserveBean>)request.getAttribute("seatList");
+//session 객체에 저장된 id 값 가져와서 변수에 저장
+String id = (String)session.getAttribute("id");
 %>
 <!DOCTYPE html>
 <html>
@@ -204,6 +206,7 @@ ArrayList<ReserveBean> seatList = (ArrayList<ReserveBean>)request.getAttribute("
 		<h3 class="sub_title">인원/좌석 선택</h3>
 		<form action="PayForm.re?movienum=<%=movienum %>&moviecode=<%=moviecode %>" name="selectSeat" method="post" id="seatForm"><!-- 영화번호 전달 -->
 			<input type="hidden" name="moivenum" value="<%=movienum %>"><!-- 영화번호 전달 -->
+			<input type="hidden" name="member_id" value="<%=id%>"><!-- 아이디값 전달 -->
 			<div id="peopleBoard">
 				<input type="hidden" value="0" id="peopleNum" name="peopleNum"> <!-- 총 인원수(선택수 제한하는데 필요) -->
 				<div class="adultNum">				
