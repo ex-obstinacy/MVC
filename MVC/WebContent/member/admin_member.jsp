@@ -78,40 +78,25 @@
                 <div class="col-lg-3">
                     <div class="left_sidebar_area">
                         <aside class="left_widgets p_filter_widgets">
-                            <div class="l_w_title">
-                            
-                            </div>
-                            <div class="widgets_inner memside">
-                            	<ul class="list">
-                                    <li>
-                                        <a href="AdminMovList.mo">영화</a>
-                                    </li>
-                                    <li>
-                                    	<a href="CinemaAddForm.re">영화관</a>
-                                    </li>
-                                    <li>
-                                    	<a href="MovieAddForm.re">영화관 - 영화</a><br>
-                                    </li>
-                                    <li>
-                                        <a href="GoodsList.go">스토어</a>
-                                    </li>
-                                    <li>
-                                        <a href="AdminNoticeList.ad">공지사항</a>
-                                    </li>
-                                    <li>
-                                        <a href="AdminQnAList.ad">1대1 문의</a>
-                                    </li>
-                                    <li>
-                                        <a href="AdminMemberList.ad">회원 목록</a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <div class="side_menu">
+								<h3>관리자메뉴</h3>
+								<ul class="list side_list">
+									<li><a href="AdminMovList.mo">영화목록</a></li>
+									<li><a href="CinemaAddForm.re">영화관</a></li>
+									<li><a href="MovieAddForm.re">상영중인 영화</a></li>
+									<li><a href="GoodsList.go">스토어</a></li>
+									<li><a href="AdminNoticeList.ad">공지사항</a></li>
+									<li><a href="AdminQnAList.ad">1대1 문의</a></li>
+									<li class="active"><a href="AdminMemberList.ad">회원 목록</a></li>
+								</ul>
+							</div><!-- .side_menu -->
                         </aside>
                     </div>
                 </div>
           <!--================ 메뉴 영역 =================-->          
                 
                 <div class="col-lg-9">
+                	<h2 class="member_title">회원목록</h2><!-- .member_title -->
                     <div class="row align-items-center latest_product_inner">
                     	<table class="table">
                     		<tr>

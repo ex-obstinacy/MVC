@@ -20,7 +20,7 @@ div.rank_box i.next{right:-30px;}
 div.rank_box i.prev{left:-30px;}
 div.rank_box ul.rank_slider{}
 div.rank_box ul.rank_slider li{margin:0 10px;  position:relative;}
-div.rank_box ul.rank_slider li:before{display:block; color:#fff; font-size:24px; line-height:24px; padding:3px; font-weight:bold; position:absolute; top:0px; left:0px; background:rgba(0,0,0,0.3);}
+div.rank_box ul.rank_slider li:before{display:block; color:#fff; font-size:24px; line-height:24px; padding:5px; font-weight:bold; position:absolute; top:0px; left:0px; background:rgba(0,0,0,0.3); z-index:1;}
 div.rank_box ul.rank_slider li:nth-child(1):before{content:"1";}
 div.rank_box ul.rank_slider li:nth-child(2):before{content:"2";}
 div.rank_box ul.rank_slider li:nth-child(3):before{content:"3";}

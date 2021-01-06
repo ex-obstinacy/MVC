@@ -113,12 +113,6 @@ div.member_order .infoBox .rightBox table th{background:#f3f3f3; border-right:1p
 
 div.member_order .btnBox{text-align:center; margin-top:30px; margin-bottom:50px;}
 
-/* 관리자페이지 */
-.admin_m{vertical-align: middle;}
-#admin_img{width: 100px; margin: 50px;}
-div.memside > ul > li{margin: 15px 0;}
-
-
 /******************** 멤버 서브페이지 끝 ********************/
 
 /******************** 예매쪽 서브페이지 시작 ********************/
@@ -153,7 +147,7 @@ div.memside > ul > li{margin: 15px 0;}
 
 #movieform > table td>ul#ultime li{float:left; margin: 100px 60px;}
 #movieform > table td>ul#ultime li>#seltime, #selguan{width: 100px; height: 35px; text-align-last: center;}
-#movieform div.btnBox{text-align:right; margin-right: 30px;}
+#movieform div.btnBox{text-align:right; }
 
 #mlistdiv{width: 70%; margin-left: 50px;}
 #mformdiv{width:100%; margin: 50px 0;}
@@ -260,7 +254,7 @@ div.reserveMain h3.sub_title{font-weight: 700;}
 #movieform > table #tdtime li.notimelist{border: none; text-align:center; font-size: 16px;}
 #movieform > table #tdtime li.notimelist > img{width: 50px; margin: 40px 0 20px 0;}
 
-#movieform div.btnBox{text-align:right; margin-bottom: 50px;}
+#movieform div.btnBox{text-align:right;}
 
 /* 좌석선택 서브페이지 */
 form#seatForm{}
