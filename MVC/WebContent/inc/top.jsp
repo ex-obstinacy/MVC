@@ -101,7 +101,7 @@ $(document).ready(function() {
                             <%
                           	if (id == null) {
                             %>
-                            <a href="MemberLogin.me" class="btn_mypage"><img src="img/user.png"></a>
+                            <a href="MemberLogin.me" class="btn_mypage"><img src="img/user.png"></a><a href="BasketList.go" class="btn_cart"><img src="img/cart.png"></a>
                             <%
                           	} else {
                           		if (id.equals("admin")) {
