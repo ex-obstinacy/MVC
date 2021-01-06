@@ -51,12 +51,14 @@
     
     <style type="text/css">
     
+    
 	/* div정리 */
 	.pageDiv{margin: 0 0 30px 250px;}
 	.btnDiv {text-align: center;}
 	.btnDiv > div {display: inline-block;}
 	.btnWrite {margin-right: 150px;}
 	.search{margin-left: 200px;}
+	
     
     </style>
     
@@ -83,6 +85,11 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/sub.css">
+    
+<style>
+	th{background:#eee;}
+	th, td{text-align:center; word-break:keep-all;}
+</style>   
     
 </head>
 
@@ -129,11 +136,11 @@
 								if(id!=null){
 							%>
 							<tr>
-								<td align="center">번호</td>
-								<td align="center">제 목</td>
-								<td align="center">작성자</td>
-								<td align="center">작성일</td>
-								<td align="center">조회수</td>
+								<th>번호</th>
+								<th>제 목</th>
+								<th>작성자</th>
+								<th>작성일</th>
+								<th>조회수</th>
 							</tr>
 							<%
 								for(int i = 0; i < articleList.size(); i++) {

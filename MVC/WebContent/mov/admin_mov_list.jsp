@@ -66,6 +66,10 @@
          }
 	</script>  
       
+<style>
+	th{background:#eee;}
+	th, td{text-align:center; word-break:keep-all;}
+</style>      
 </head>
 
 <body>
@@ -112,14 +116,23 @@
 											<%
 												if (articleList != null && listCount > 0) {
 											%>
-											<tr align="center">
+											<colgroup>
+												<col width="25%">
+												<col width="10%">
+												<col width="20%">
+												<col width="20%">
+												<col width="10%">
+												<col width="10%">
+												<col width="5%">
+											</colgroup>
+											<tr>
 												<th>제목</th>
 												<th>영화 코드</th>
 												<th>장르</th>
 												<th>개봉일</th>
-												<th width="80">상영시간</th>
+												<th>상영시간</th>
 												<th>감독</th>
-												<th width="80">제작국가</th>
+												<th>제작국가</th>
 												<th></th>
 											</tr>
 											<%
@@ -130,10 +143,10 @@
 												<td align="center"><%=articleList.get(i).getMovieCd() %></td>
 												<td align="center"><%=articleList.get(i).getGenre() %></td>
 												<td align="center"><%=articleList.get(i).getOpenDt() %></td>
-												<td><%=articleList.get(i).getShowTm() %></td>
-												<td><%=articleList.get(i).getDirector() %></td>
+												<td align="center"><%=articleList.get(i).getShowTm() %>분</td>
+												<td align="center"><%=articleList.get(i).getDirector() %></td>
 												<td align="center"><%=articleList.get(i).getNationNm() %></td>
-												<td><input type="button" value="삭제" onclick="chDelete('<%=articleList.get(i).getMovieCd() %>')"></td>
+												<td align="center"> <input type="button" value="삭제" onclick="chDelete('<%=articleList.get(i).getMovieCd() %>')"></td>
 											</tr>
 											<%
 												}
