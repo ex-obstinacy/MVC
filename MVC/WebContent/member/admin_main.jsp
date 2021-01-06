@@ -92,10 +92,9 @@
           <!--================ 메뉴 영역 =================-->          
                 
                 <div class="col-lg-9">
-                    <div class="row align-items-center latest_product_inner">
-	                    <h3><%=id %> 님<br>
-	                    열심히 일하자!</h3>
-                    
+                    <div class="row align-items-center latest_product_inner" id="admin_m">
+                    	<img alt="Admin" src="img/admin.png" id="admin_img">
+	                    <h3>관리자님, 반갑습니다.</h3>
                     </div>
                 </div>
             </div>

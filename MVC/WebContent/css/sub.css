@@ -113,17 +113,21 @@ div.member_order .infoBox .rightBox table th{background:#f3f3f3; border-right:1p
 
 div.member_order .btnBox{text-align:center; margin-top:30px; margin-bottom:50px;}
 
+/* Admin cdss */
+#admin_m{vertical-align: middle; margin: 130px 200px;}
+#admin_img{width: 60px; margin: 30px;}
+
 /******************** 멤버 서브페이지 끝 ********************/
 
 /******************** 예매쪽 서브페이지 시작 ********************/
 /* 관리자 - 영화 등록 페이지 */
-#mlistform{}
+#mlistform{margin-left: 50px;}
 #mlistform > table{width:100%; border:1px solid #ccc; border-top:2px solid #121212; border-spacing:0px; margin-bottom:20px;}
 #mlistform > table th, #mlistform > table td{border-right: 1px solid #ccc;}
 #mlistform > table th{background:#fff; border-bottom:1px solid #121212; padding:20px 0; font-size:17px; text-align:center;}
 #mlistform > table th:first-child{border-right: none;}
 #mlistform > table th#thBox{text-align:right; padding-right: 50px; width: 200px; border-left: none;}
-#mlistform > table td{height:260px; padding:0;}
+#mlistform > table td{height:410px; padding:0;}
 #mlistform > table td>ul{height:100%; overflow-y: auto; background:#f2f2f2;}
 #mlistform > table td>ul li{border-bottom:1px solid #ddd; }
 #mlistform > table td>ul li label{width:100%; cursor:pointer; font-size:12px; padding:10px 10px; background:#fff;}
@@ -155,7 +159,7 @@ div.member_order .btnBox{text-align:center; margin-top:30px; margin-bottom:50px;
 /* 관리자 - 영화관 등록 페이지 */
 #clistform, #cinemaform{display: inline-block; vertical-align: top; text-align: center;}
 
-#clistform{margin: 50px 0 50px 0;}
+#clistform{margin: 50px 0 50px 100px;}
 #clistform > table{width:100%; border:1px solid #ccc; border-top:2px solid #121212; border-spacing:0px; margin-bottom:20px;}
 #clistform > table th, #clistform > table td{border-right: 1px solid #ccc;}
 #clistform > table th{background:#fff; border-bottom:1px solid #121212; padding:20px 0; font-size:17px; text-align:center;}
