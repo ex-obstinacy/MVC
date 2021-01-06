@@ -67,9 +67,10 @@ System.out.println("영화코드 : " + movieCd);
 				$('#tdcinema').append("<li class='cdiv reserveNo "+item.cinema_local+" "+item.cinema_name+"'><input type='radio' name='cinema' id='"+item.cinema_name+"' value='"+item.cinema_name+"' class='rcinema "+item.cinema_name+"'/><label for='"+item.cinema_name+"'>"+item.cinema_name+"</label></li>");
 			});
 			// 서울-강남점, 부산-서면점 만 오픈함
-			if($('#tdcinema li').hasClass('강남') || $('#tdcinema li').hasClass('서면')) {
+			if($('#tdcinema li').hasClass('강남') || $('#tdcinema li').hasClass('서면') || $('#tdcinema li').hasClass('MVC영화관')) {
 				$('#movieform > table td>ul#tdcinema li.강남').removeClass('reserveNo');
 				$('#movieform > table td>ul#tdcinema li.서면').removeClass('reserveNo');
+				$('#movieform > table td>ul#tdcinema li.MVC영화관').removeClass('reserveNo');
 			}
 			// 오픈안한 영화관은 클릭안됨
 			$('#movieform > table td>ul#tdcinema li.reserveNo').click(function() {
