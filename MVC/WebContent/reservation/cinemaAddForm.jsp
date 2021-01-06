@@ -107,7 +107,7 @@
 			<div class="col-lg-3">
 	            <div class="left_sidebar_area">
 	                <aside class="left_widgets p_filter_widgets">
-                         <div class="side_menu">
+	                    <div class="side_menu">
 							<h3>관리자메뉴</h3>
 							<ul class="list side_list">
 								<li><a href="AdminMovList.mo">영화목록</a></li>
@@ -119,10 +119,11 @@
 								<li><a href="AdminMemberList.ad">회원 목록</a></li>
 							</ul>
 						</div><!-- .side_menu -->
-                     </aside>
+					</aside>
 	            </div>
 	        </div>
 	        <div class="col-lg-9">
+	        	<h2 class="member_title">영화관</h2><!-- .member_title -->
 			  	<!-- 등록된 영화 목록 -->
 			  	<div id="cinemadiv">
 				  	<form action="CinemaDeletePro.re" method="post" id="clistform">
